@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="CEngine.h">
+      <Filter>02.Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>00.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>00.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="global.h">
+      <Filter>01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="singleton.h">
+      <Filter>01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="value.h">
+      <Filter>01.Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CEngine.cpp">
+      <Filter>02.Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>00.Default</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>00.Default</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="00.Default">
+      <UniqueIdentifier>{cdd4dc94-5218-4c6a-bd85-7e351b5dee0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Header">
+      <UniqueIdentifier>{f53a4a92-552b-4c6c-82b4-f18bcf71c3b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Engine">
+      <UniqueIdentifier>{5801f608-798a-46ef-a317-9c4a630dfaea}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
