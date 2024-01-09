@@ -9,8 +9,6 @@ private:
 	HWND				m_hWnd;
 	unsigned __int32	m_width;
 	unsigned __int32	m_height;
-
-	// ÃÖÀûÈ­ test
 	bool				m_bStandByMode = false;
 
 private:

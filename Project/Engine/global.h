@@ -18,3 +18,4 @@ using namespace Microsoft::WRL;
 #include "define.h"
 #include "singleton.h"
 #include "value.h"
+#include "types.h"

@@ -7,9 +7,6 @@
     <ClInclude Include="framework.h">
       <Filter>00.Default</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>00.Default</Filter>
-    </ClInclude>
     <ClInclude Include="define.h">
       <Filter>01.Header</Filter>
     </ClInclude>
@@ -22,6 +19,15 @@
     <ClInclude Include="value.h">
       <Filter>01.Header</Filter>
     </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CGraphics.h">
+      <Filter>03.Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="types.h">
+      <Filter>01.Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -31,7 +37,10 @@
       <Filter>00.Default</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>00.Default</Filter>
+      <Filter>01.Header</Filter>
+    </ClCompile>
+    <ClCompile Include="CGraphics.cpp">
+      <Filter>03.Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +52,9 @@
     </Filter>
     <Filter Include="02.Engine">
       <UniqueIdentifier>{5801f608-798a-46ef-a317-9c4a630dfaea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Graphics">
+      <UniqueIdentifier>{ea6a4f73-3465-41ca-8da0-83875ad8b501}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
