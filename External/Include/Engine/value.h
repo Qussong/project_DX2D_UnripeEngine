@@ -1,8 +1,5 @@
 #pragma once
 
-#define WINDOW_WIDTH			500
-#define WINDOW_HEIGHT			500
-
 #define WINDOW_POS_LEFT			0
 #define WINDOW_POS_TOP			0
 

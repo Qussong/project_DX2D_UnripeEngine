@@ -8,7 +8,9 @@ private:
 	HWND		m_hWnd;
 	uint32		m_width;
 	uint32		m_height;
+	float		m_clearColor[4];
 	bool		m_bStandByMode;
+
 
 private:
 	ComPtr<ID3D11Device>			m_device;

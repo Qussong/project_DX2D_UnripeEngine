@@ -160,17 +160,26 @@ call EngineCopy.bat</Command>
   <ItemGroup>
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CGraphics.h" />
+    <ClInclude Include="CKeyMgr.h" />
+    <ClInclude Include="CPathMgr.h" />
+    <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="enum.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="SimpleMath.h" />
     <ClInclude Include="singleton.h" />
+    <ClInclude Include="struct.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="value.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CGraphics.cpp" />
+    <ClCompile Include="CKeyMgr.cpp" />
+    <ClCompile Include="CPathMgr.cpp" />
+    <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -178,6 +187,9 @@ call EngineCopy.bat</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SimpleMath.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

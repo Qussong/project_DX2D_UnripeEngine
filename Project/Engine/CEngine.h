@@ -6,11 +6,19 @@ class CEngine
 	SINGLETON(CEngine);
 
 private:
-	HWND				m_hWnd;
+	HWND		m_hWnd;
+
+	// Resolution
+	int32		 m_width;
+	int32		 m_height;
 
 public:
-	int Init(HWND _hWnd);
-	void Update();
+	HWND GetWindowHandle() { return m_hWnd; }
+
+public:
+	int Init(HWND _hWnd, uint32 _width, uint32 _height);
+	void Progress();
+	void Tick();
 	void Render();
 };
 

@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "Client.h"
+#include "value_client.h"
 
 #include <Engine/global.h>
 #include <Engine/CEngine.h>
@@ -29,7 +30,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
-    if (FAILED(CEngine::GetInst()->Init(g_hWnd)))
+    if (FAILED(CEngine::GetInst()->Init(g_hWnd, WINDOW_WIDTH, WINDOW_HEIGHT)))
     {
         MessageBox(nullptr, L"Engine Init Failed", L"Engine Error", MB_OK);
         return E_FAIL;
@@ -57,8 +58,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         else
         {
             // Engine
-            CEngine::GetInst()->Update();
-            CEngine::GetInst()->Render();
+            CEngine::GetInst()->Progress();
         }
     }
 

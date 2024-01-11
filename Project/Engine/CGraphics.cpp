@@ -5,6 +5,7 @@ CGraphics::CGraphics()
 	: m_hWnd(nullptr)
 	, m_width(0)
 	, m_height(0)
+	, m_clearColor{}
 	, m_bStandByMode(false)
 	, m_viewport{}
 {
@@ -39,9 +40,26 @@ int CGraphics::Init(HWND _hWnd, uint32 _width, uint32 _height)
 
 void CGraphics::RenderBegin()
 {
-	float clearColor[4] = { 1.f, 0.f, 0.f, 1.f };
+	
+	// test
+	if (KEY_STATE::TAP == CKeyMgr::GetInst()->GetKeyState(KEY::UP))
+	{
+		for (size_t i = 0; i < 4; i++)
+		{
+			m_clearColor[i] > 1.f ? m_clearColor[i] = 1.f : m_clearColor[i] += 0.1f;
+		}
+	}
+
+	if (KEY_STATE::TAP == CKeyMgr::GetInst()->GetKeyState(KEY::DOWN))
+	{
+		for (size_t i = 0; i < 4; i++)
+		{
+			m_clearColor[i] < 0.f ? m_clearColor[i] = 0.f : m_clearColor[i] -= 0.1f;
+		}
+	}
+
 	m_context->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(), nullptr);	// ·»´õ Å¸°Ù ¼³Á¤
-	m_context->ClearRenderTargetView(m_renderTargetView.Get(), clearColor);			// ·»´õ Å¸°Ù Å¬¸®¾î (clearColor)
+	m_context->ClearRenderTargetView(m_renderTargetView.Get(), m_clearColor);		// ·»´õ Å¸°Ù Å¬¸®¾î (clearColor)
 	m_context->RSSetViewports(1, &m_viewport);
 }
 

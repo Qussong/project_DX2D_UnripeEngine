@@ -19,14 +19,32 @@
     <ClInclude Include="value.h">
       <Filter>01.Header</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>01.Header</Filter>
-    </ClInclude>
     <ClInclude Include="CGraphics.h">
       <Filter>03.Graphics</Filter>
     </ClInclude>
     <ClInclude Include="types.h">
       <Filter>01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimeMgr.h">
+      <Filter>04.Manager\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="CPathMgr.h">
+      <Filter>04.Manager\Path</Filter>
+    </ClInclude>
+    <ClInclude Include="enum.h">
+      <Filter>01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="struct.h">
+      <Filter>01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleMath.h">
+      <Filter>External\SimpleMath</Filter>
+    </ClInclude>
+    <ClInclude Include="CKeyMgr.h">
+      <Filter>04.Manager\Key</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>01.Header\pch</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -36,11 +54,20 @@
     <ClCompile Include="Engine.cpp">
       <Filter>00.Default</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>01.Header</Filter>
-    </ClCompile>
     <ClCompile Include="CGraphics.cpp">
       <Filter>03.Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeMgr.cpp">
+      <Filter>04.Manager\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="CPathMgr.cpp">
+      <Filter>04.Manager\Path</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyMgr.cpp">
+      <Filter>04.Manager\Key</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>01.Header\pch</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -56,5 +83,31 @@
     <Filter Include="03.Graphics">
       <UniqueIdentifier>{ea6a4f73-3465-41ca-8da0-83875ad8b501}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04.Manager">
+      <UniqueIdentifier>{9480c3df-977d-431a-9590-cc1778ae3945}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Manager\Time">
+      <UniqueIdentifier>{48201da1-c7c3-4eb1-96fe-8331909187be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Manager\Path">
+      <UniqueIdentifier>{02852da9-dbe3-43c2-8fec-d00a6f0bf2dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Manager\Key">
+      <UniqueIdentifier>{495bafc3-f9b0-4167-a73b-8960c7c7c09f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External">
+      <UniqueIdentifier>{86d55df2-b786-4383-8cf8-1a3989930851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\SimpleMath">
+      <UniqueIdentifier>{3871ca77-5e6f-4c00-8a61-1f8e69b48d40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Header\pch">
+      <UniqueIdentifier>{30d7911d-47ef-4afd-a776-910d86f315bf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SimpleMath.inl">
+      <Filter>External\SimpleMath</Filter>
+    </None>
   </ItemGroup>
 </Project>
