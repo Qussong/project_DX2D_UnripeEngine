@@ -33,4 +33,6 @@ private:
 	void DeviceAndSwapChain();
 	void RenderTargetView();
 	void SetViewport();
+
+	void Test();
 };

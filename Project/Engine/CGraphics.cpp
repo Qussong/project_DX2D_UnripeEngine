@@ -143,3 +143,38 @@ void CGraphics::SetViewport()
 	m_viewport.MinDepth = 0.f;
 	m_viewport.MaxDepth = 1.f;
 }
+
+void CGraphics::Test()
+{
+	// 정점정보
+	Vtx triangle[3] = {};
+	Vtx rectangle[4] = {};
+
+	ComPtr<ID3D11Buffer>		VB;
+	ComPtr<ID3D11InputLayout>	Layout;
+	ComPtr<ID3DBlob>			VSBlob;
+	ComPtr<ID3D11VertexShader>	VS;
+	ComPtr<ID3DBlob>			PSBlob;
+	ComPtr<ID3D11PixelShader>	PS;
+	ComPtr<ID3DBlob>			ErrBlob;
+
+	// 정점정보 입력
+	{
+		triangle[0].vPos = Vec3{ 0.f, 1.f, 0.f };
+		triangle[0].vColor = Vec4{ 1.f, 0.f, 0.f, 1.f };
+		triangle[0].vUV = Vec2{0.f, 0.f};
+
+		triangle[1].vPos = Vec3{ 1.f, -1.f, 0.f };
+		triangle[1].vColor = Vec4{ 0.f, 1.f, 0.f, 1.f };
+		triangle[1].vUV = Vec2{ 0.f, 0.f };
+
+		triangle[2].vPos = Vec3{ -1.f, -1.f, 0.f };
+		triangle[2].vColor = Vec4{ 0.f, 0.f, 1.f, 1.f };
+		triangle[2].vUV = Vec2{ 0.f, 0.f };
+	}
+
+	// Vertex Buffer 생성
+	{
+		
+	}
+}
