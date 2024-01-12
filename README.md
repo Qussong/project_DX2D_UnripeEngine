@@ -14,5 +14,7 @@ DirectX 2D Engine
 &nbsp;&nbsp;- PathMgr ) contentPath -> resourcePath, ShaderPath 변경 (Getter : GetResourcePath, GetShaderPath)<br>
 &nbsp;&nbsp;- CEngine ) 사각형 출력 test 코드 추가<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_Rect.png" width=250><br>
-&nbsp;&nbsp;- Debug 용 콘솔창 출력 코드 추가
-&nbsp;&nbsp;- 메모리 누수 체크 코드 추가
+&nbsp;&nbsp;- Debug 용 콘솔창 출력 코드 추가<br>
+&nbsp;&nbsp;- main) 메모리 누수 체크 코드 추가<br>
+&nbsp;&nbsp;- CEngine) 상수버퍼 생성코드 추가 및 쉐이더 코드에 바인딩<br>
+&nbsp;&nbsp;- 좌,우 방향키로 Rectangle 위치 조정 코드 추가<br>

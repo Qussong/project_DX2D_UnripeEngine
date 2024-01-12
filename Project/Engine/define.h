@@ -8,3 +8,5 @@
 #define		DEVICE		CGraphics::GetInst()->GetDevice()
 #define		CONTEXT		CGraphics::GetInst()->GetContext()
 #define		SWAPCHAIN	CGraphics::GetInst()->GetSwapChain()
+
+#define		DT			CTimeMgr::GetInst()->DeltaTime()

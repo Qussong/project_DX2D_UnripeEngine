@@ -50,6 +50,9 @@ void CEngine::Tick()
 	// manager
 	CTimeMgr::GetInst()->Tick();
 	CKeyMgr::GetInst()->Tick();
+
+	// test
+	Test_tick();
 }
 
 void CEngine::Render()
@@ -282,6 +285,52 @@ void CEngine::Test_init()
 			_exit(EXIT_FAILURE);
 		}
 	}
+
+	// Constant Buffer »ý¼º
+	{
+		UINT elementSize = sizeof(cTransform);
+		UINT elementCnt = sizeof(cTransform) / sizeof(cTransform);
+
+		D3D11_BUFFER_DESC desc = {};
+		{
+			desc.ByteWidth = elementSize * elementCnt;
+			desc.Usage = D3D11_USAGE_DYNAMIC;
+			desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+			desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+			desc.MiscFlags = 0;
+			desc.StructureByteStride = elementSize;
+		}
+
+		D3D11_SUBRESOURCE_DATA tSubData = {};
+		tSubData.pSysMem = &m_transform;
+
+		HRESULT hr = DEVICE->CreateBuffer(&desc, &tSubData, m_CB.GetAddressOf());
+		if (FAILED(hr))
+		{
+			MessageBoxA(nullptr, "Constant Buffer Create Failed", "Constant Buffer Error", MB_OK);
+			_exit(EXIT_FAILURE);
+		}
+	}
+}
+
+void CEngine::Test_tick()
+{
+	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::LEFT))
+	{
+		m_transform.vWorldPos.x -= DT;
+	}
+
+	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::RIGHT))
+	{
+		m_transform.vWorldPos.x += DT;
+	}
+
+	D3D11_MAPPED_SUBRESOURCE tSub = {};
+	CONTEXT->Map(m_CB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &tSub);
+
+	memcpy(tSub.pData, &m_transform, sizeof(cTransform) * 1);
+
+	CONTEXT->Unmap(m_CB.Get(), 0);
 }
 
 void CEngine::Test_render()
@@ -289,6 +338,7 @@ void CEngine::Test_render()
 	UINT	elementSize = sizeof(Vtx);
 	UINT	offset		= 0;
 	uint32	idxCnt		= sizeof(m_idx) / sizeof(uint32);
+	UINT	slotNum		= 0;
 
 	CONTEXT->IASetVertexBuffers(0, 1, m_VB.GetAddressOf(), &elementSize, &offset);
 	CONTEXT->IASetIndexBuffer(m_IB.Get(), DXGI_FORMAT_R32_UINT, 0);
@@ -297,4 +347,5 @@ void CEngine::Test_render()
 	CONTEXT->VSSetShader(m_VS.Get(), 0, 0);
 	CONTEXT->PSSetShader(m_PS.Get(), 0, 0);
 	CONTEXT->DrawIndexed(idxCnt, 0, 0);
+	CONTEXT->VSSetConstantBuffers(slotNum, 1, m_CB.GetAddressOf());
 }

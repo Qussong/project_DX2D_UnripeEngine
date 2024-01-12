@@ -173,7 +173,6 @@ void CGraphics::TestKey()
 {
 	if (KEY_STATE::TAP == CKeyMgr::GetInst()->GetKeyState(KEY::UP))
 	{
-
 		for (size_t i = 0; i < 4; i++)
 		{
 			m_clearColor[i] >= 1.f ? m_clearColor[i] = 1.f : m_clearColor[i] += 0.1f;
