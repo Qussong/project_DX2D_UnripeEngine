@@ -2,6 +2,7 @@
 #include "Client.h"
 #include "value_client.h"
 
+
 // 외부 라이브러리
 #include <Engine/global.h>
 #include <Engine/CEngine.h>
@@ -11,6 +12,10 @@
 #else
 #pragma comment(lib, "Engine\\Engine.lib")
 #endif
+
+// 메모리 누수 체크
+#define _CRTDBG_MAP_ALLOC
+#include <crtdbg.h>
 
 // 디버그용 콘솔
 #ifdef _DEBUG
@@ -33,6 +38,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
+    // 메모리 누수 체크
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    //_CrtSetBreakAlloc();
+
     MyRegisterClass(hInstance);
 
     if (!InitInstance (hInstance, nCmdShow))

@@ -15,3 +15,4 @@ DirectX 2D Engine
 &nbsp;&nbsp;- CEngine ) 사각형 출력 test 코드 추가<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_Rect.png" width=250><br>
 &nbsp;&nbsp;- Debug 용 콘솔창 출력 코드 추가
+&nbsp;&nbsp;- 메모리 누수 체크 코드 추가

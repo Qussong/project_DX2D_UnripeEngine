@@ -198,37 +198,36 @@ void CEngine::Test_init()
 
 	// Layout
 	{
+		//	float3 vPos : POS;
 		//	float4 vColor : COLOR;
-		//	float3 vPos : POSITION;
 		//	float2 vUV : TEXCOORD;
 
 		const int32 elementCnt = 3;
 		D3D11_INPUT_ELEMENT_DESC descVtx[elementCnt] = {};
 		{
-			descVtx[0].InputSlot = 0;
-			descVtx[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-			descVtx[0].SemanticName = "POSITION";
+			descVtx[0].SemanticName = "POS";
 			descVtx[0].SemanticIndex = 0;
-			descVtx[0].InstanceDataStepRate = 0;
-			descVtx[0].AlignedByteOffset = 0;
 			descVtx[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+			descVtx[0].InputSlot = 0;
+			descVtx[0].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;// 0;
+			descVtx[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+			descVtx[0].InstanceDataStepRate = 0;
 
-			descVtx[1].InputSlot = 0;
-			descVtx[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 			descVtx[1].SemanticName = "COLOR";
 			descVtx[1].SemanticIndex = 0;
-			descVtx[1].InstanceDataStepRate = 0;
-			descVtx[1].AlignedByteOffset = 12;
 			descVtx[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+			descVtx[1].InputSlot = 0;
+			descVtx[1].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;// 12;
+			descVtx[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+			descVtx[1].InstanceDataStepRate = 0;
 
-			descVtx[2].InputSlot = 0;
-			descVtx[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 			descVtx[2].SemanticName = "TEXCOORD";
 			descVtx[2].SemanticIndex = 0;
-			descVtx[2].InstanceDataStepRate = 0;
-			descVtx[2].AlignedByteOffset = 28;
 			descVtx[2].Format = DXGI_FORMAT_R32G32_FLOAT;
-
+			descVtx[2].InputSlot = 0;
+			descVtx[2].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;// 28;
+			descVtx[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+			descVtx[2].InstanceDataStepRate = 0;
 		}
 
 		HRESULT hr = DEVICE->CreateInputLayout(

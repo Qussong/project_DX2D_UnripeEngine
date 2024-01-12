@@ -4,9 +4,9 @@
 
 struct VS_IN
 {
-    float3 vPos : POSITION; // Sementic
-    float4 vColor : COLOR;
-    float2 vUV : TEXCOORD;
+    float3 vPos     : POS;  // Semantic
+    float4 vColor   : COLOR;
+    float2 vUV      : TEXCOORD;
 };
 
 struct VS_OUT
