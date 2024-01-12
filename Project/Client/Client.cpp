@@ -2,6 +2,7 @@
 #include "Client.h"
 #include "value_client.h"
 
+// 외부 라이브러리
 #include <Engine/global.h>
 #include <Engine/CEngine.h>
 
@@ -9,6 +10,15 @@
 #pragma comment(lib, "Engine\\Engine_d.lib")
 #else
 #pragma comment(lib, "Engine\\Engine.lib")
+#endif
+
+// 디버그용 콘솔
+#ifdef _DEBUG
+#ifdef UNICODE
+#pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
+#else
+#pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
+#endif
 #endif
 
 HINSTANCE               g_hInst;

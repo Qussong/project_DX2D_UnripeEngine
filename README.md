@@ -13,4 +13,5 @@ DirectX 2D Engine
 **_24/01/12_** :<br>
 &nbsp;&nbsp;- PathMgr ) contentPath -> resourcePath, ShaderPath 변경 (Getter : GetResourcePath, GetShaderPath)<br>
 &nbsp;&nbsp;- CEngine ) 사각형 출력 test 코드 추가<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_Rect.png">
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_Rect.png" width=250><br>
+&nbsp;&nbsp;- Debug 용 콘솔창 출력 코드 추가

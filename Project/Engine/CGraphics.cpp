@@ -173,17 +173,26 @@ void CGraphics::TestKey()
 {
 	if (KEY_STATE::TAP == CKeyMgr::GetInst()->GetKeyState(KEY::UP))
 	{
+
 		for (size_t i = 0; i < 4; i++)
 		{
-			m_clearColor[i] > 1.f ? m_clearColor[i] = 1.f : m_clearColor[i] += 0.1f;
+			m_clearColor[i] >= 1.f ? m_clearColor[i] = 1.f : m_clearColor[i] += 0.1f;
 		}
+
+		cout << "R " << (int)(m_clearColor[0] * 255)
+			 << "/G " << (int)(m_clearColor[1] * 255)
+			 << "/G " << (int)(m_clearColor[2] * 255) << endl;
 	}
 
 	if (KEY_STATE::TAP == CKeyMgr::GetInst()->GetKeyState(KEY::DOWN))
 	{
 		for (size_t i = 0; i < 4; i++)
 		{
-			m_clearColor[i] < 0.f ? m_clearColor[i] = 0.f : m_clearColor[i] -= 0.1f;
+			m_clearColor[i] <= 0.f ? m_clearColor[i] = 0.f : m_clearColor[i] -= 0.1f;
 		}
+
+		cout << "R " << (int)(m_clearColor[0] * 255)
+			 << "/G " << (int)(m_clearColor[1] * 255)
+			 << "/G " << (int)(m_clearColor[2] * 255) << endl;
 	}
 }
