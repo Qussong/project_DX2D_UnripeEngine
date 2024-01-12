@@ -10,4 +10,7 @@ DirectX 2D Engine
 &nbsp;&nbsp;- Time, Path, Key Manager 추가
 &nbsp;&nbsp;- SimpleMath 라이브러리 추가
 
-**_24/01/11_** :<br>
+**_24/01/12_** :<br>
+&nbsp;&nbsp;- PathMgr ) contentPath -> resourcePath, ShaderPath 변경 (Getter : GetResourcePath, GetShaderPath)<br>
+&nbsp;&nbsp;- CEngine ) 사각형 출력 test 코드 추가<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_Rect.png">

@@ -1,6 +1,5 @@
 #pragma once
 
-
 // STL
 #include <stdlib.h>
 #include <string>

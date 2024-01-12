@@ -7,14 +7,11 @@ CGraphics::CGraphics()
 	, m_height(0)
 	, m_clearColor{}
 	, m_bStandByMode(false)
-	, m_viewport{}
 {
-
 }
 
 CGraphics::~CGraphics()
 {
-
 }
 
 int CGraphics::Init(HWND _hWnd, uint32 _width, uint32 _height)
@@ -23,74 +20,76 @@ int CGraphics::Init(HWND _hWnd, uint32 _width, uint32 _height)
 	m_width = _width;
 	m_height = _height;
 
-	RECT rt = { 0, 0, (LONG)m_width, (LONG)m_height };
-	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, false);
-	int resizeWindowWidth = rt.right - rt.left;
-	int resizeWindowHeight = rt.bottom - rt.top;
-	int centerPosLeft = (MONITOR_SIZE_WIDTH - resizeWindowWidth) / 2;
-	int centerPosTop = (MONITOR_SIZE_HEIGHT - resizeWindowHeight) / 2;
-	SetWindowPos(m_hWnd, nullptr, centerPosLeft, centerPosTop, resizeWindowWidth, resizeWindowHeight, SWP_NOZORDER);
-
+	SetWindow();
 	DeviceAndSwapChain();
 	RenderTargetView();
-	SetViewport();
+	DepthStencilView();
 
 	return S_OK;
 }
 
 void CGraphics::RenderBegin()
 {
-	
 	// test
-	if (KEY_STATE::TAP == CKeyMgr::GetInst()->GetKeyState(KEY::UP))
-	{
-		for (size_t i = 0; i < 4; i++)
-		{
-			m_clearColor[i] > 1.f ? m_clearColor[i] = 1.f : m_clearColor[i] += 0.1f;
-		}
-	}
+	TestKey();
 
-	if (KEY_STATE::TAP == CKeyMgr::GetInst()->GetKeyState(KEY::DOWN))
+	CONTEXT->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(), m_depthStencilView.Get());
+	CONTEXT->ClearRenderTargetView(m_renderTargetView.Get(), m_clearColor);		// 렌더 타겟 클리어 (clearColor)
+	CONTEXT->ClearDepthStencilView(m_depthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, (UINT8)0.f);
+	
+	D3D11_VIEWPORT	viewport = {};
 	{
-		for (size_t i = 0; i < 4; i++)
-		{
-			m_clearColor[i] < 0.f ? m_clearColor[i] = 0.f : m_clearColor[i] -= 0.1f;
-		}
+		viewport.TopLeftX = 0.f;
+		viewport.TopLeftY = 0.f;
+		viewport.Width = (FLOAT)m_width;
+		viewport.Height = (FLOAT)m_height;
+		viewport.MinDepth = 0.f;
+		viewport.MaxDepth = 1.f;
 	}
-
-	m_context->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(), nullptr);	// 렌더 타겟 설정
-	m_context->ClearRenderTargetView(m_renderTargetView.Get(), m_clearColor);		// 렌더 타겟 클리어 (clearColor)
-	m_context->RSSetViewports(1, &m_viewport);
+	CONTEXT->RSSetViewports(1, &viewport);
 }
 
 void CGraphics::RenderEnd()
 {
 	HRESULT hr = NULL;
 
-	if (!m_bStandByMode)
+	// window 최소화 o
+	if (m_bStandByMode)
 	{
-		hr = m_swapChain->Present(1, 0);
-		assert(SUCCEEDED(hr));
+		hr = SWAPCHAIN->Present(0, DXGI_PRESENT_TEST);
 
-		// StanbyMode Check
-		if (hr == DXGI_STATUS_OCCLUDED)
-			m_bStandByMode = true;
-	}
-	else
-	{
-		hr = m_swapChain->Present(0, DXGI_PRESENT_TEST);
 		if (DXGI_STATUS_OCCLUDED == hr)
 			return;
 		else
 			m_bStandByMode = false;
 	}
+
+	// window 최소화 x
+	else
+	{
+		hr = SWAPCHAIN->Present(0, 0);
+
+		// StanbyMode Check
+		if (hr == DXGI_STATUS_OCCLUDED)
+			m_bStandByMode = true;
+	}
+}
+
+void CGraphics::SetWindow()
+{
+	RECT rt = { 0, 0, (LONG)m_width, (LONG)m_height };
+	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, false);
+	int resizeWindowWidth = rt.right - rt.left;
+	int resizeWindowHeight = rt.bottom - rt.top;
+	int centerPosLeft = (MONITOR_SIZE_WIDTH - resizeWindowWidth) / 2;
+	int centerPosTop = (MONITOR_SIZE_HEIGHT - resizeWindowHeight) / 2;
+
+	SetWindowPos(m_hWnd, nullptr, centerPosLeft, centerPosTop, resizeWindowWidth, resizeWindowHeight, SWP_NOZORDER);
 }
 
 void CGraphics::DeviceAndSwapChain()
 {
-	DXGI_SWAP_CHAIN_DESC desc;
-	ZeroMemory(&desc, sizeof(desc));
-
+	DXGI_SWAP_CHAIN_DESC desc = {};
 	{
 		desc.BufferDesc.Width = m_width;
 		desc.BufferDesc.Height = m_height;
@@ -118,63 +117,73 @@ void CGraphics::DeviceAndSwapChain()
 		// Result
 		m_swapChain.GetAddressOf(), m_device.GetAddressOf(), nullptr, m_context.GetAddressOf());
 
-	assert(SUCCEEDED(hr));
+	if (FAILED(hr))
+	{
+		MessageBoxA(nullptr, "Device Init Failed", "Device Error", MB_OK);
+		_exit(EXIT_FAILURE);
+	}
 }
 
 void CGraphics::RenderTargetView()
 {
-	ComPtr<ID3D11Texture2D> backBuffer;
+	ComPtr<ID3D11Texture2D> renderTarget;	// = back buffer
 
-	// backBuffer
-	HRESULT hr = m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)backBuffer.GetAddressOf());
-	assert(SUCCEEDED(hr));
-
-	// renderTargetVier (backBuffer)
-	hr = m_device->CreateRenderTargetView(backBuffer.Get(), nullptr, m_renderTargetView.GetAddressOf());
-	assert(SUCCEEDED(hr));
-}
-
-void CGraphics::SetViewport()
-{
-	m_viewport.TopLeftX = 0.f;
-	m_viewport.TopLeftY = 0.f;
-	m_viewport.Width = (FLOAT)m_width;
-	m_viewport.Height = (FLOAT)m_height;
-	m_viewport.MinDepth = 0.f;
-	m_viewport.MaxDepth = 1.f;
-}
-
-void CGraphics::Test()
-{
-	// 정점정보
-	Vtx triangle[3] = {};
-	Vtx rectangle[4] = {};
-
-	ComPtr<ID3D11Buffer>		VB;
-	ComPtr<ID3D11InputLayout>	Layout;
-	ComPtr<ID3DBlob>			VSBlob;
-	ComPtr<ID3D11VertexShader>	VS;
-	ComPtr<ID3DBlob>			PSBlob;
-	ComPtr<ID3D11PixelShader>	PS;
-	ComPtr<ID3DBlob>			ErrBlob;
-
-	// 정점정보 입력
+	// render target texture
+	m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)renderTarget.GetAddressOf());
+	// render target view
+	HRESULT hr = m_device->CreateRenderTargetView(renderTarget.Get(), nullptr, m_renderTargetView.GetAddressOf());
+	
+	if (FAILED(hr))
 	{
-		triangle[0].vPos = Vec3{ 0.f, 1.f, 0.f };
-		triangle[0].vColor = Vec4{ 1.f, 0.f, 0.f, 1.f };
-		triangle[0].vUV = Vec2{0.f, 0.f};
+		MessageBoxA(nullptr, "Render Target View Create Failed", "RenderTarget Error", MB_OK);
+		_exit(EXIT_FAILURE);
+	}
+}
 
-		triangle[1].vPos = Vec3{ 1.f, -1.f, 0.f };
-		triangle[1].vColor = Vec4{ 0.f, 1.f, 0.f, 1.f };
-		triangle[1].vUV = Vec2{ 0.f, 0.f };
+void CGraphics::DepthStencilView()
+{
+	ComPtr<ID3D11Texture2D> depthStencil;
 
-		triangle[2].vPos = Vec3{ -1.f, -1.f, 0.f };
-		triangle[2].vColor = Vec4{ 0.f, 0.f, 1.f, 1.f };
-		triangle[2].vUV = Vec2{ 0.f, 0.f };
+	D3D11_TEXTURE2D_DESC desc = {};
+	{
+		desc.Width = m_width;
+		desc.Height = m_height;
+		desc.MipLevels = 1;
+		desc.ArraySize = 1;
+		desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+		desc.SampleDesc.Count = 1;
+		desc.SampleDesc.Quality = 0;
+		desc.Usage = D3D11_USAGE_DEFAULT;	// GPU 읽기, 쓰기
+		desc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+		desc.CPUAccessFlags = 0;
+		desc.MiscFlags = 0;
 	}
 
-	// Vertex Buffer 생성
+	DEVICE->CreateTexture2D(&desc, nullptr, depthStencil.GetAddressOf());
+	HRESULT hr = DEVICE->CreateDepthStencilView(depthStencil.Get(), nullptr, m_depthStencilView.GetAddressOf());
+
+	if (FAILED(hr))
 	{
-		
+		MessageBoxA(nullptr, "Depth-Stencil View Create Failed", "DepthStendcil Error", MB_OK);
+		_exit(EXIT_FAILURE);
+	}
+}
+
+void CGraphics::TestKey()
+{
+	if (KEY_STATE::TAP == CKeyMgr::GetInst()->GetKeyState(KEY::UP))
+	{
+		for (size_t i = 0; i < 4; i++)
+		{
+			m_clearColor[i] > 1.f ? m_clearColor[i] = 1.f : m_clearColor[i] += 0.1f;
+		}
+	}
+
+	if (KEY_STATE::TAP == CKeyMgr::GetInst()->GetKeyState(KEY::DOWN))
+	{
+		for (size_t i = 0; i < 4; i++)
+		{
+			m_clearColor[i] < 0.f ? m_clearColor[i] = 0.f : m_clearColor[i] -= 0.1f;
+		}
 	}
 }

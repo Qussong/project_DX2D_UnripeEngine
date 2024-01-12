@@ -20,5 +20,22 @@ public:
 	void Progress();
 	void Tick();
 	void Render();
+
+private:
+	Vtx							m_rectangle[4] = {};
+	UINT						m_idx[6] = {};
+
+	ComPtr<ID3D11Buffer>		m_VB;			// VertexBuffer
+	ComPtr<ID3D11Buffer>		m_IB;			// IndexBuffer
+	ComPtr<ID3D11InputLayout>	m_Layout;		// InputLayout
+	ComPtr<ID3DBlob>			m_VSBlob;		// VertexShaderBlob
+	ComPtr<ID3D11VertexShader>	m_VS;			// VertexShader
+	ComPtr<ID3DBlob>			m_PSBlob;		// PixelShaderBlob
+	ComPtr<ID3D11PixelShader>	m_PS;			// PixelShader
+	ComPtr<ID3DBlob>			m_ErrBlob;	// ErrorBlob
+
+public:
+	void Test_init();
+	void Test_render();
 };
 

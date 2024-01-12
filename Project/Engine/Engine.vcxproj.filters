@@ -104,10 +104,18 @@
     <Filter Include="01.Header\pch">
       <UniqueIdentifier>{30d7911d-47ef-4afd-a776-910d86f315bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{63846d4b-7913-4af2-871f-727b316bb625}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
       <Filter>External\SimpleMath</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="std2d.fx">
+      <Filter>Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
