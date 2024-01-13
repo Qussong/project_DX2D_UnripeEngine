@@ -109,131 +109,11 @@ void CEngine::Test_init()
 	m_RectMesh = new CMesh();
 	m_RectMesh->Create(m_arrRect, 4, m_arrIdx, 6);
 
-	// Vertex Shader 积己
-	{
-		wstring path = CPathMgr::GetInst()->GetShaderPath();
-		path.append(L"std2d.fx");
+	// Shader 积己
+	m_Shader = new CGraphicShader();
+	m_Shader->VertexShader(L"std2d.fx", "VS_Std2D");
+	m_Shader->PixelShader(L"std2d.fx", "PS_Std2D");
 
-		const char function[] = "VS_Std2D";
-		const char version[] = "vs_5_0";
-
-		// hlsl 狼 VS 哪颇老
-		HRESULT hr = D3DCompileFromFile(
-			path.c_str(), 
-			nullptr, 
-			D3D_COMPILE_STANDARD_FILE_INCLUDE, 
-			function,
-			version,
-			D3DCOMPILE_DEBUG, 
-			0, 
-			m_VSBlob.GetAddressOf(),
-			m_ErrBlob.GetAddressOf());
-		
-		if (FAILED(hr))
-		{
-			MessageBoxA(nullptr, "Vertex Shader Copile Failed", "VertexShader Error", MB_OK);
-			_exit(EXIT_FAILURE);
-		}
-
-		// VS 积己
-		hr = DEVICE->CreateVertexShader(
-			m_VSBlob->GetBufferPointer(),
-			m_VSBlob->GetBufferSize(),
-			nullptr, 
-			m_VS.GetAddressOf());
-
-		if (FAILED(hr))
-		{
-			MessageBoxA(nullptr, "Vertex Shader Create Failed", "VertexShader Error", MB_OK);
-			_exit(EXIT_FAILURE);
-		}
-	}
-
-	// Layout
-	{
-		//	float3 vPos		: POS;
-		//	float4 vColor	: COLOR;
-		//	float2 vUV		: TEXCOORD;
-
-		const int32 elementCnt = 3;
-		D3D11_INPUT_ELEMENT_DESC descVtx[elementCnt] = {};
-		{
-			descVtx[0].SemanticName = "POS";
-			descVtx[0].SemanticIndex = 0;
-			descVtx[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
-			descVtx[0].InputSlot = 0;
-			descVtx[0].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;// 0;
-			descVtx[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-			descVtx[0].InstanceDataStepRate = 0;
-
-			descVtx[1].SemanticName = "COLOR";
-			descVtx[1].SemanticIndex = 0;
-			descVtx[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-			descVtx[1].InputSlot = 0;
-			descVtx[1].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;// 12;
-			descVtx[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-			descVtx[1].InstanceDataStepRate = 0;
-
-			descVtx[2].SemanticName = "TEXCOORD";
-			descVtx[2].SemanticIndex = 0;
-			descVtx[2].Format = DXGI_FORMAT_R32G32_FLOAT;
-			descVtx[2].InputSlot = 0;
-			descVtx[2].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;// 28;
-			descVtx[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-			descVtx[2].InstanceDataStepRate = 0;
-		}
-
-		HRESULT hr = DEVICE->CreateInputLayout(
-			descVtx,
-			elementCnt,
-			m_VSBlob->GetBufferPointer(),
-			m_VSBlob->GetBufferSize(),
-			m_Layout.GetAddressOf());
-
-		if (FAILED(hr))
-		{
-			MessageBoxA(nullptr, "InputLayout Create Failed", "InputLayout Error", MB_OK);
-			_exit(EXIT_FAILURE);
-		}
-	}
-
-	// Pixel Shader 积己
-	{
-		wstring path = CPathMgr::GetInst()->GetShaderPath();
-		path.append(L"std2d.fx");
-
-		const char function[] = "PS_Std2D";
-		const char version[] = "ps_5_0";
-
-		HRESULT hr = D3DCompileFromFile(
-			path.c_str(),
-			nullptr,
-			D3D_COMPILE_STANDARD_FILE_INCLUDE,
-			function,
-			version,
-			D3DCOMPILE_DEBUG,
-			0,
-			m_PSBlob.GetAddressOf(),
-			m_ErrBlob.GetAddressOf());
-
-		if (FAILED(hr))
-		{
-			MessageBoxA(nullptr, "Pixel Shader Compile Failed", "PixelShader Error", MB_OK);
-			_exit(EXIT_FAILURE);
-		}
-
-		DEVICE->CreatePixelShader(
-			m_PSBlob->GetBufferPointer(),
-			m_PSBlob->GetBufferSize(),
-			nullptr,
-			m_PS.GetAddressOf());
-
-		if (FAILED(hr))
-		{
-			MessageBoxA(nullptr, "Pixel Shader Create Failed", "PixelShader Error", MB_OK);
-			_exit(EXIT_FAILURE);
-		}
-	}
 
 	// Constant Buffer 积己
 	{
@@ -280,6 +160,7 @@ void CEngine::Test_tick()
 			<< "/Y " << (int)(m_tTransform.vWorldPos[1] * 255) << endl;
 	}
 
+
 	// 惑荐 滚欺 官牢爹
 	D3D11_MAPPED_SUBRESOURCE tSub = {};
 	CONTEXT->Map(m_CB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &tSub);
@@ -290,11 +171,10 @@ void CEngine::Test_tick()
 
 void CEngine::Test_render()
 {
-	CONTEXT->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	CONTEXT->IASetInputLayout(m_Layout.Get());
+	// update data
+	m_RectMesh->Update();
+	m_Shader->Update();
 
-	CONTEXT->VSSetShader(m_VS.Get(), nullptr, 0);
-	CONTEXT->PSSetShader(m_PS.Get(), nullptr, 0);
-
+	// render
 	m_RectMesh->Render();
 }

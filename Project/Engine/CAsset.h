@@ -16,6 +16,8 @@ private:
 	const ASSET_TYPE	m_eType;
 
 public:
+	virtual void Update() = 0;
+
 	const wstring& GetAssetKey() { return m_strKey; }
 	const wstring& GetRelativePath() { return m_strRelativePath; }
 

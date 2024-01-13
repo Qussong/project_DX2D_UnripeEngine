@@ -1,6 +1,7 @@
 #pragma once
 
 class CMesh;
+class CGraphicShader;
 
 class CEngine
 	: public CSingleton<CEngine>
@@ -29,13 +30,8 @@ private:
 	UINT						m_arrIdx[6]			= {};
 
 	CMesh*						m_RectMesh = nullptr;
+	CGraphicShader*				m_Shader = nullptr;
 
-	ComPtr<ID3D11InputLayout>	m_Layout;		// InputLayout
-	ComPtr<ID3DBlob>			m_VSBlob;		// VertexShaderBlob
-	ComPtr<ID3D11VertexShader>	m_VS;			// VertexShader
-	ComPtr<ID3DBlob>			m_PSBlob;		// PixelShaderBlob
-	ComPtr<ID3D11PixelShader>	m_PS;			// PixelShader
-	ComPtr<ID3DBlob>			m_ErrBlob;		// ErrorBlob
 	ComPtr<ID3D11Buffer>		m_CB;			// ConstantBuffer
 
 public:

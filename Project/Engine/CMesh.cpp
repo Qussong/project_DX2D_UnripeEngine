@@ -84,13 +84,16 @@ void CMesh::Create(void* _vtx, uint32 _vtxCnt, void* _idx, uint32 _idxCnt)
 	}
 }
 
-void CMesh::Render()
+void CMesh::Update()
 {
 	UINT	elementSize = sizeof(Vtx);
-	UINT	iOffset		= 0;
+	UINT	iOffset = 0;
 
 	CONTEXT->IASetVertexBuffers(0, 1, m_VB.GetAddressOf(), &elementSize, &iOffset);
 	CONTEXT->IASetIndexBuffer(m_IB.Get(), DXGI_FORMAT_R32_UINT, 0);
+}
 
+void CMesh::Render()
+{
 	CONTEXT->DrawIndexed(m_iIdxCnt, 0, 0);
 }

@@ -12,7 +12,6 @@ private:
 	float		m_arrClearColor[4];
 	bool		m_bStandByMode;
 
-
 private:
 	ComPtr<ID3D11Device>			m_Device;
 	ComPtr<ID3D11DeviceContext>		m_Context;
@@ -22,17 +21,16 @@ private:
 	ComPtr<ID3D11DepthStencilView>  m_DepthStencilView;
 
 public:
-	int Init(HWND _hWnd, uint32 _width, uint32 _height);
-
 	ID3D11Device* GetDevice() { return m_Device.Get(); }
 	ID3D11DeviceContext* GetContext() { return m_Context.Get(); }
 	IDXGISwapChain* GetSwapChain() { return m_SwapChain.Get(); }
 
+public:
+	int Init(HWND _hWnd, uint32 _width, uint32 _height);
 	void RenderBegin();
 	void RenderEnd();
 
 private:
-
 	void SetWindow();
 	void DeviceAndSwapChain();
 	void RenderTargetView();

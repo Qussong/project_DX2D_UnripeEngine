@@ -22,4 +22,6 @@ DirectX 2D Engine
 **_24/01/13_** :<br>
 &nbsp;&nbsp;- CEntity 클래스 추가 ← 모든 객체의 기본 ( member : id, name )<br>
 &nbsp;&nbsp;- CAsset 클래스 추가 ( ASSET_TYPE 열거형 추가 )<br>
-&nbsp;&nbsp;- CMesh 클래스 추가 ( VB, IB 생성 및 세팅, DrawIndexed() )<br> 
+&nbsp;&nbsp;- CMesh 클래스 추가 ( VB, IB 생성 및 세팅, DrawIndexed() )<br>
+&nbsp;&nbsp;- CShader 클래스 추가<br>
+&nbsp;&nbsp;- CGraphicShader 클래스 추가(VS, PS 생성 및 세팅)

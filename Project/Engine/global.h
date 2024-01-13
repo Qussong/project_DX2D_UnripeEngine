@@ -39,3 +39,5 @@ using namespace DirectX;
 #include "CEntity.h"
 #include "CAsset.h"
 #include "CMesh.h"
+#include "CShader.h"
+#include "CGraphicShader.h"

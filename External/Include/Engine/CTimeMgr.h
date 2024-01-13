@@ -6,16 +6,15 @@ class CTimeMgr
 	SINGLETON(CTimeMgr);
 
 private:
-	LARGE_INTEGER	m_frequency;
-	LARGE_INTEGER	m_prevCnt;
-	LARGE_INTEGER	m_curCnt;
-	float			m_deltaTime;
-
+	LARGE_INTEGER	m_lFrequency;
+	LARGE_INTEGER	m_lPrevCnt;
+	LARGE_INTEGER	m_lCurCnt;
+	float			m_fDeltaTime;
 	float			m_fAccTime;	// Accumulated : ´©ÀûµÈ, ½×ÀÎ
-	int32			m_FPS;
+	int32			m_iFPS;
 
 public:
-	float DeltaTime() { return m_deltaTime; }
+	float DeltaTime() { return m_fDeltaTime; }
 
 public:
 	void Init();

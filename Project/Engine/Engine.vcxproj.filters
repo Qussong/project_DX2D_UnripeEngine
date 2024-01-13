@@ -58,6 +58,9 @@
     <ClInclude Include="CEntity.h">
       <Filter>Entity</Filter>
     </ClInclude>
+    <ClInclude Include="CGraphicShader.h">
+      <Filter>05.Asset\Shader\CGraphicShader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -92,6 +95,9 @@
     </ClCompile>
     <ClCompile Include="CEntity.cpp">
       <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="CGraphicShader.cpp">
+      <Filter>05.Asset\Shader\CGraphicShader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +148,9 @@
     </Filter>
     <Filter Include="Entity">
       <UniqueIdentifier>{396c5459-cbe6-4fb1-9121-7b05d7711d72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Asset\Shader\CGraphicShader">
+      <UniqueIdentifier>{9bce500b-0b8f-46ab-a648-eccfd8d28160}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
