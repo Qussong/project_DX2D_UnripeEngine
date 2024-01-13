@@ -1,5 +1,7 @@
 #pragma once
 
+class CMesh;
+
 class CEngine
 	: public CSingleton<CEngine>
 {
@@ -9,25 +11,25 @@ private:
 	HWND		m_hWnd;
 
 	// Resolution
-	int32		 m_width;
-	int32		 m_height;
+	int32		 m_iWidth;
+	int32		 m_iHeight;
 
 public:
-	HWND GetWindowHandle() { return m_hWnd; }
+	HWND	GetWindowHandle() { return m_hWnd; }
 
 public:
-	int Init(HWND _hWnd, uint32 _width, uint32 _height);
-	void Progress();
-	void Tick();
-	void Render();
+	int		Init(HWND _hWnd, uint32 _width, uint32 _height);
+	void	Progress();
+	void	Tick();
+	void	Render();
 
 private:
-	cTransform					m_transform		= { Vec4(0.f, 0.f, 0.f, 1.f), Vec4(1.f, 1.f, 1.f, 1.f) };
-	Vtx							m_rectangle[4]	= {};
-	UINT						m_idx[6]		= {};
+	tTransform					m_tTransform		= { Vec4(0.f, 0.f, 0.f, 1.f), Vec4(1.f, 1.f, 1.f, 1.f) };
+	Vtx							m_arrRect[4]		= {};
+	UINT						m_arrIdx[6]			= {};
 
-	ComPtr<ID3D11Buffer>		m_VB;			// VertexBuffer
-	ComPtr<ID3D11Buffer>		m_IB;			// IndexBuffer
+	CMesh*						m_RectMesh = nullptr;
+
 	ComPtr<ID3D11InputLayout>	m_Layout;		// InputLayout
 	ComPtr<ID3DBlob>			m_VSBlob;		// VertexShaderBlob
 	ComPtr<ID3D11VertexShader>	m_VS;			// VertexShader

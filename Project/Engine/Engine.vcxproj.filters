@@ -46,6 +46,18 @@
     <ClInclude Include="pch.h">
       <Filter>01.Header\pch</Filter>
     </ClInclude>
+    <ClInclude Include="CAsset.h">
+      <Filter>05.Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="CMesh.h">
+      <Filter>05.Asset\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="CShader.h">
+      <Filter>05.Asset\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="CEntity.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -68,6 +80,18 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>01.Header\pch</Filter>
+    </ClCompile>
+    <ClCompile Include="CAsset.cpp">
+      <Filter>05.Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CMesh.cpp">
+      <Filter>05.Asset\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="CShader.cpp">
+      <Filter>05.Asset\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="CEntity.cpp">
+      <Filter>Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +130,18 @@
     </Filter>
     <Filter Include="Shader">
       <UniqueIdentifier>{63846d4b-7913-4af2-871f-727b316bb625}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Asset">
+      <UniqueIdentifier>{6b79de61-8d09-4e6d-b1d4-dda373efdc06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Asset\Mesh">
+      <UniqueIdentifier>{b6d81a1e-ad45-41b6-8325-4ae20cff9ac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Asset\Shader">
+      <UniqueIdentifier>{8cfe08e8-80c4-4794-be34-86e80d44dea9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity">
+      <UniqueIdentifier>{396c5459-cbe6-4fb1-9121-7b05d7711d72}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

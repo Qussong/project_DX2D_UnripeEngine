@@ -18,7 +18,7 @@ struct Vtx
 };
 
 // 상수버퍼 구조체
-struct cTransform
+struct tTransform
 {
 	Vec4 vWorldPos;
 	Vec4 vWorldScale;

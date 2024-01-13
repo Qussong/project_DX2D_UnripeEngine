@@ -18,3 +18,8 @@ DirectX 2D Engine
 &nbsp;&nbsp;- main) 메모리 누수 체크 코드 추가<br>
 &nbsp;&nbsp;- CEngine) 상수버퍼 생성코드 추가 및 쉐이더 코드에 바인딩<br>
 &nbsp;&nbsp;- 좌,우 방향키로 Rectangle 위치 조정 코드 추가<br>
+
+**_24/01/13_** :<br>
+&nbsp;&nbsp;- CEntity 클래스 추가 ← 모든 객체의 기본 ( member : id, name )<br>
+&nbsp;&nbsp;- CAsset 클래스 추가 ( ASSET_TYPE 열거형 추가 )<br>
+&nbsp;&nbsp;- CMesh 클래스 추가 ( VB, IB 생성 및 세팅, DrawIndexed() )<br> 

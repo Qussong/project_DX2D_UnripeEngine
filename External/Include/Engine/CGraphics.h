@@ -6,27 +6,27 @@ class CGraphics
 
 private:
 	HWND		m_hWnd;
-	uint32		m_width;
-	uint32		m_height;
+	uint32		m_iWidth;
+	uint32		m_iHeight;
 
-	float		m_clearColor[4];
+	float		m_arrClearColor[4];
 	bool		m_bStandByMode;
 
 
 private:
-	ComPtr<ID3D11Device>			m_device;
-	ComPtr<ID3D11DeviceContext>		m_context;
-	ComPtr<IDXGISwapChain>			m_swapChain;
+	ComPtr<ID3D11Device>			m_Device;
+	ComPtr<ID3D11DeviceContext>		m_Context;
+	ComPtr<IDXGISwapChain>			m_SwapChain;
 
-	ComPtr<ID3D11RenderTargetView>	m_renderTargetView;
-	ComPtr<ID3D11DepthStencilView>  m_depthStencilView;
+	ComPtr<ID3D11RenderTargetView>	m_RenderTargetView;
+	ComPtr<ID3D11DepthStencilView>  m_DepthStencilView;
 
 public:
 	int Init(HWND _hWnd, uint32 _width, uint32 _height);
 
-	ID3D11Device* GetDevice() { return m_device.Get(); }
-	ID3D11DeviceContext* GetContext() { return m_context.Get(); }
-	IDXGISwapChain* GetSwapChain() { return m_swapChain.Get(); }
+	ID3D11Device* GetDevice() { return m_Device.Get(); }
+	ID3D11DeviceContext* GetContext() { return m_Context.Get(); }
+	IDXGISwapChain* GetSwapChain() { return m_SwapChain.Get(); }
 
 	void RenderBegin();
 	void RenderEnd();

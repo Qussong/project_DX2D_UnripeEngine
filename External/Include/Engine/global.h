@@ -34,3 +34,8 @@ using namespace DirectX;
 #include "CTimeMgr.h"
 #include "CPathMgr.h"
 #include "CKeyMgr.h"
+
+#include "CGraphics.h"
+#include "CEntity.h"
+#include "CAsset.h"
+#include "CMesh.h"

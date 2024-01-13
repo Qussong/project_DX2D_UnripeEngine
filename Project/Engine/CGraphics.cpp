@@ -3,9 +3,9 @@
 
 CGraphics::CGraphics()
 	: m_hWnd(nullptr)
-	, m_width(0)
-	, m_height(0)
-	, m_clearColor{}
+	, m_iWidth(0)
+	, m_iHeight(0)
+	, m_arrClearColor{}
 	, m_bStandByMode(false)
 {
 }
@@ -17,10 +17,11 @@ CGraphics::~CGraphics()
 int CGraphics::Init(HWND _hWnd, uint32 _width, uint32 _height)
 {
 	m_hWnd = _hWnd;
-	m_width = _width;
-	m_height = _height;
+	m_iWidth = _width;
+	m_iHeight = _height;
 
 	SetWindow();
+
 	DeviceAndSwapChain();
 	RenderTargetView();
 	DepthStencilView();
@@ -33,16 +34,16 @@ void CGraphics::RenderBegin()
 	// test
 	TestKey();
 
-	CONTEXT->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(), m_depthStencilView.Get());
-	CONTEXT->ClearRenderTargetView(m_renderTargetView.Get(), m_clearColor);		// 렌더 타겟 클리어 (clearColor)
-	CONTEXT->ClearDepthStencilView(m_depthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, (UINT8)0.f);
+	CONTEXT->OMSetRenderTargets(1, m_RenderTargetView.GetAddressOf(), m_DepthStencilView.Get());
+	CONTEXT->ClearRenderTargetView(m_RenderTargetView.Get(), m_arrClearColor);		// 렌더 타겟 클리어 (clearColor)
+	CONTEXT->ClearDepthStencilView(m_DepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, (UINT8)0);
 	
 	D3D11_VIEWPORT	viewport = {};
 	{
 		viewport.TopLeftX = 0.f;
 		viewport.TopLeftY = 0.f;
-		viewport.Width = (FLOAT)m_width;
-		viewport.Height = (FLOAT)m_height;
+		viewport.Width = (FLOAT)m_iWidth;
+		viewport.Height = (FLOAT)m_iHeight;
 		viewport.MinDepth = 0.f;
 		viewport.MaxDepth = 1.f;
 	}
@@ -51,12 +52,10 @@ void CGraphics::RenderBegin()
 
 void CGraphics::RenderEnd()
 {
-	HRESULT hr = NULL;
-
 	// window 최소화 o
 	if (m_bStandByMode)
 	{
-		hr = SWAPCHAIN->Present(0, DXGI_PRESENT_TEST);
+		HRESULT hr = SWAPCHAIN->Present(0, DXGI_PRESENT_TEST);
 
 		if (DXGI_STATUS_OCCLUDED == hr)
 			return;
@@ -67,7 +66,7 @@ void CGraphics::RenderEnd()
 	// window 최소화 x
 	else
 	{
-		hr = SWAPCHAIN->Present(0, 0);
+		HRESULT hr = SWAPCHAIN->Present(0, 0);
 
 		// StanbyMode Check
 		if (hr == DXGI_STATUS_OCCLUDED)
@@ -77,7 +76,7 @@ void CGraphics::RenderEnd()
 
 void CGraphics::SetWindow()
 {
-	RECT rt = { 0, 0, (LONG)m_width, (LONG)m_height };
+	RECT rt = { 0, 0, (LONG)m_iWidth, (LONG)m_iHeight };
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, false);
 	int resizeWindowWidth = rt.right - rt.left;
 	int resizeWindowHeight = rt.bottom - rt.top;
@@ -91,8 +90,8 @@ void CGraphics::DeviceAndSwapChain()
 {
 	DXGI_SWAP_CHAIN_DESC desc = {};
 	{
-		desc.BufferDesc.Width = m_width;
-		desc.BufferDesc.Height = m_height;
+		desc.BufferDesc.Width = m_iWidth;
+		desc.BufferDesc.Height = m_iHeight;
 		desc.BufferDesc.RefreshRate.Numerator = 60;
 		desc.BufferDesc.RefreshRate.Denominator = 1;
 		desc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
@@ -115,7 +114,7 @@ void CGraphics::DeviceAndSwapChain()
 		// SwapChain
 		&desc,
 		// Result
-		m_swapChain.GetAddressOf(), m_device.GetAddressOf(), nullptr, m_context.GetAddressOf());
+		m_SwapChain.GetAddressOf(), m_Device.GetAddressOf(), nullptr, m_Context.GetAddressOf());
 
 	if (FAILED(hr))
 	{
@@ -129,9 +128,9 @@ void CGraphics::RenderTargetView()
 	ComPtr<ID3D11Texture2D> renderTarget;	// = back buffer
 
 	// render target texture
-	m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)renderTarget.GetAddressOf());
+	m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)renderTarget.GetAddressOf());
 	// render target view
-	HRESULT hr = m_device->CreateRenderTargetView(renderTarget.Get(), nullptr, m_renderTargetView.GetAddressOf());
+	HRESULT hr = m_Device->CreateRenderTargetView(renderTarget.Get(), nullptr, m_RenderTargetView.GetAddressOf());
 	
 	if (FAILED(hr))
 	{
@@ -146,8 +145,8 @@ void CGraphics::DepthStencilView()
 
 	D3D11_TEXTURE2D_DESC desc = {};
 	{
-		desc.Width = m_width;
-		desc.Height = m_height;
+		desc.Width = m_iWidth;
+		desc.Height = m_iHeight;
 		desc.MipLevels = 1;
 		desc.ArraySize = 1;
 		desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
@@ -160,7 +159,7 @@ void CGraphics::DepthStencilView()
 	}
 
 	DEVICE->CreateTexture2D(&desc, nullptr, depthStencil.GetAddressOf());
-	HRESULT hr = DEVICE->CreateDepthStencilView(depthStencil.Get(), nullptr, m_depthStencilView.GetAddressOf());
+	HRESULT hr = DEVICE->CreateDepthStencilView(depthStencil.Get(), nullptr, m_DepthStencilView.GetAddressOf());
 
 	if (FAILED(hr))
 	{
@@ -169,29 +168,30 @@ void CGraphics::DepthStencilView()
 	}
 }
 
+// ClearColor 변경
 void CGraphics::TestKey()
 {
 	if (KEY_STATE::TAP == CKeyMgr::GetInst()->GetKeyState(KEY::UP))
 	{
 		for (size_t i = 0; i < 4; i++)
 		{
-			m_clearColor[i] >= 1.f ? m_clearColor[i] = 1.f : m_clearColor[i] += 0.1f;
+			m_arrClearColor[i] >= 1.f ? m_arrClearColor[i] = 1.f : m_arrClearColor[i] += 0.1f;
 		}
 
-		cout << "R " << (int)(m_clearColor[0] * 255)
-			 << "/G " << (int)(m_clearColor[1] * 255)
-			 << "/G " << (int)(m_clearColor[2] * 255) << endl;
+		cout << "R " << (int)(m_arrClearColor[0] * 255)
+			 << "/G " << (int)(m_arrClearColor[1] * 255)
+			 << "/G " << (int)(m_arrClearColor[2] * 255) << endl;
 	}
 
 	if (KEY_STATE::TAP == CKeyMgr::GetInst()->GetKeyState(KEY::DOWN))
 	{
 		for (size_t i = 0; i < 4; i++)
 		{
-			m_clearColor[i] <= 0.f ? m_clearColor[i] = 0.f : m_clearColor[i] -= 0.1f;
+			m_arrClearColor[i] <= 0.f ? m_arrClearColor[i] = 0.f : m_arrClearColor[i] -= 0.1f;
 		}
 
-		cout << "R " << (int)(m_clearColor[0] * 255)
-			 << "/G " << (int)(m_clearColor[1] * 255)
-			 << "/G " << (int)(m_clearColor[2] * 255) << endl;
+		cout << "R " << (int)(m_arrClearColor[0] * 255)
+			 << "/G " << (int)(m_arrClearColor[1] * 255)
+			 << "/G " << (int)(m_arrClearColor[2] * 255) << endl;
 	}
 }

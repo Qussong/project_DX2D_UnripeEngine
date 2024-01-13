@@ -158,10 +158,14 @@ call EngineCopy.bat</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CAsset.h" />
     <ClInclude Include="CEngine.h" />
+    <ClInclude Include="CEntity.h" />
     <ClInclude Include="CGraphics.h" />
     <ClInclude Include="CKeyMgr.h" />
+    <ClInclude Include="CMesh.h" />
     <ClInclude Include="CPathMgr.h" />
+    <ClInclude Include="CShader.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="enum.h" />
@@ -175,10 +179,14 @@ call EngineCopy.bat</Command>
     <ClInclude Include="value.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAsset.cpp" />
     <ClCompile Include="CEngine.cpp" />
+    <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CGraphics.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
+    <ClCompile Include="CMesh.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
+    <ClCompile Include="CShader.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="pch.cpp">
