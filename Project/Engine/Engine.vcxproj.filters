@@ -61,6 +61,9 @@
     <ClInclude Include="CGraphicShader.h">
       <Filter>05.Asset\Shader\CGraphicShader</Filter>
     </ClInclude>
+    <ClInclude Include="CConstantBuffer.h">
+      <Filter>ConstantBuffer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -98,6 +101,9 @@
     </ClCompile>
     <ClCompile Include="CGraphicShader.cpp">
       <Filter>05.Asset\Shader\CGraphicShader</Filter>
+    </ClCompile>
+    <ClCompile Include="CConstantBuffer.cpp">
+      <Filter>ConstantBuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +157,9 @@
     </Filter>
     <Filter Include="05.Asset\Shader\CGraphicShader">
       <UniqueIdentifier>{9bce500b-0b8f-46ab-a648-eccfd8d28160}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ConstantBuffer">
+      <UniqueIdentifier>{b207fd24-97ab-4b73-83c5-c607a0979615}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

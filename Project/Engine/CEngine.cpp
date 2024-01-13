@@ -79,32 +79,9 @@ void CEngine::Test_init()
 	m_Shader->VertexShader(L"std2d.fx", "VS_Std2D");
 	m_Shader->PixelShader(L"std2d.fx", "PS_Std2D");
 
-
 	// Constant Buffer 생성
-	{
-		UINT elementSize = sizeof(tTransform);
-		UINT elementCnt = sizeof(tTransform) / sizeof(tTransform);
-
-		D3D11_BUFFER_DESC desc = {};
-		{
-			desc.ByteWidth = elementSize * elementCnt;
-			desc.Usage = D3D11_USAGE_DYNAMIC;
-			desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-			desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-			desc.MiscFlags = 0;
-			desc.StructureByteStride = elementSize;
-		}
-
-		D3D11_SUBRESOURCE_DATA tSubData = {};
-		tSubData.pSysMem = &m_tTransform;
-
-		HRESULT hr = DEVICE->CreateBuffer(&desc, &tSubData, m_CB.GetAddressOf());
-		if (FAILED(hr))
-		{
-			MessageBoxA(nullptr, "Constant Buffer Create Failed", "Constant Buffer Error", MB_OK);
-			_exit(EXIT_FAILURE);
-		}
-	}
+	m_CB = new CConstantBuffer();
+	m_CB->Create(sizeof(tTransform), 1);
 }
 
 void CEngine::Test_RectMesh()
@@ -200,7 +177,6 @@ void CEngine::Test_CircleMesh()
 							vecIdx.data(), 
 							(uint32)vecIdx.size());
 	}
-
 }
 
 void CEngine::Test_tick()
@@ -221,12 +197,11 @@ void CEngine::Test_tick()
 			<< "/Y " << (int)(m_tTransform.vWorldPos[1] * 255) << endl;
 	}
 
+
 	// 상수 버퍼 바인딩
-	D3D11_MAPPED_SUBRESOURCE tSub = {};
-	CONTEXT->Map(m_CB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &tSub);
-	memcpy(tSub.pData, &m_tTransform, sizeof(tTransform) * 1);
-	CONTEXT->Unmap(m_CB.Get(), 0);
-	CONTEXT->VSSetConstantBuffers(0, 1, m_CB.GetAddressOf());
+	uint32 registerNum = 0;
+	m_CB->SetData(&m_tTransform, 1);
+	m_CB->Update(registerNum);
 }
 
 void CEngine::Test_render()

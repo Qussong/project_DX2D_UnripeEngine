@@ -2,6 +2,7 @@
 
 class CMesh;
 class CGraphicShader;
+class CConstantBuffer;
 
 class CEngine
 	: public CSingleton<CEngine>
@@ -25,14 +26,15 @@ public:
 	void	Render();
 
 private:
-	tTransform					m_tTransform		= { Vec4(0.f, 0.f, 0.f, 1.f), Vec4(1.f, 1.f, 1.f, 1.f) };
+	tTransform			m_tTransform = { Vec4(0.f, 0.f, 0.f, 1.f), Vec4(1.f, 1.f, 1.f, 1.f) };
 
-	CMesh*						m_RectMesh = nullptr;
-	CMesh*						m_CircleMesh = nullptr;
+	CMesh*				m_RectMesh = nullptr;
+	CMesh*				m_CircleMesh = nullptr;
 
-	CGraphicShader*				m_Shader = nullptr;
+	CGraphicShader*		m_Shader = nullptr;
 
-	ComPtr<ID3D11Buffer>		m_CB;			// ConstantBuffer
+	CConstantBuffer*	m_CB = nullptr;
+	//ComPtr<ID3D11Buffer>		m_CB;			// ConstantBuffer
 
 public:
 	void Test_init();

@@ -41,3 +41,4 @@ using namespace DirectX;
 #include "CMesh.h"
 #include "CShader.h"
 #include "CGraphicShader.h"
+#include "CConstantBuffer.h"

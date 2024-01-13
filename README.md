@@ -27,3 +27,4 @@ DirectX 2D Engine
 &nbsp;&nbsp;- CGraphicShader 클래스 추가(VS, PS 생성 및 세팅)<br>
 &nbsp;&nbsp;- Circle Mesh 출력코드 추가<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_Circle.png" width=250><br>
+&nbsp;&nbsp;- CConstantBuffer 클래스 추가 (상수버퍼 생성,바인딩 기능 분리)<br>
