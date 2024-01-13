@@ -26,16 +26,18 @@ public:
 
 private:
 	tTransform					m_tTransform		= { Vec4(0.f, 0.f, 0.f, 1.f), Vec4(1.f, 1.f, 1.f, 1.f) };
-	Vtx							m_arrRect[4]		= {};
-	UINT						m_arrIdx[6]			= {};
 
 	CMesh*						m_RectMesh = nullptr;
+	CMesh*						m_CircleMesh = nullptr;
+
 	CGraphicShader*				m_Shader = nullptr;
 
 	ComPtr<ID3D11Buffer>		m_CB;			// ConstantBuffer
 
 public:
 	void Test_init();
+	void Test_RectMesh();
+	void Test_CircleMesh();
 	void Test_tick();
 	void Test_render();
 };
