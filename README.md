@@ -15,7 +15,7 @@ DirectX 2D Engine
 &nbsp;&nbsp;- CEngine ) 사각형 출력 test 코드 추가<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_Rect.png" width=250><br>
 &nbsp;&nbsp;- Debug 용 콘솔창 출력 코드 추가<br>
-&nbsp;&nbsp;- main) 메모리 누수 체크 코드 추가<br>
+&nbsp;&nbsp;- Client) 메모리 누수 체크 코드 추가<br>
 &nbsp;&nbsp;- CEngine) 상수버퍼 생성코드 추가 및 쉐이더 코드에 바인딩<br>
 &nbsp;&nbsp;- 좌,우 방향키로 Rectangle 위치 조정 코드 추가<br>
 
@@ -28,3 +28,4 @@ DirectX 2D Engine
 &nbsp;&nbsp;- Circle Mesh 출력코드 추가<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_Circle.png" width=250><br>
 &nbsp;&nbsp;- CConstantBuffer 클래스 추가 (상수버퍼 생성,바인딩 기능 분리)<br>
+&nbsp;&nbsp;- Client) 메모리 누수 발생 줄 체크 코드 추가 (new 재정의)

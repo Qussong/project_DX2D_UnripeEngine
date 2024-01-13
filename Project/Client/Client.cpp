@@ -15,7 +15,12 @@
 
 // 메모리 누수 체크
 #define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
 #include <crtdbg.h>
+
+#ifdef _DEBUG
+#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#endif
 
 // 디버그용 콘솔
 #ifdef _DEBUG
@@ -40,7 +45,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
     // 메모리 누수 체크
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    //_CrtSetBreakAlloc();
+    //_CrtSetBreakAlloc(433);
 
     MyRegisterClass(hInstance);
 

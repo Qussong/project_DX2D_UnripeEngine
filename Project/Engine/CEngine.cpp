@@ -13,6 +13,15 @@ CEngine::~CEngine()
 {
 	if (nullptr != m_RectMesh)
 		delete m_RectMesh;
+
+	if (nullptr != m_CircleMesh)
+		delete m_CircleMesh;
+
+	if (nullptr != m_Shader)
+		delete m_Shader;
+
+	if (nullptr != m_CB)
+		delete m_CB;
 }
 
 int CEngine::Init(HWND _hWnd, uint32 _width, uint32 _height)
