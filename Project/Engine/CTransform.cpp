@@ -9,6 +9,7 @@ CTransform::CTransform()
 	, m_arrDirection {}
 	, m_matWorld {}
 {
+	SetName(L"Transform");
 }
 
 CTransform::~CTransform()

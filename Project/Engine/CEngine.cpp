@@ -12,13 +12,32 @@ CEngine::CEngine()
 CEngine::~CEngine()
 {
 	if (nullptr != m_pRectMesh)
+	{
 		delete m_pRectMesh;
+		m_pRectMesh = nullptr;
+	}
 
 	if (nullptr != m_pCircleMesh)
+	{
 		delete m_pCircleMesh;
+		m_pCircleMesh = nullptr;
+	}
 
 	if (nullptr != m_pShader)
+	{
 		delete m_pShader;
+	}
+
+	uint32 size = m_vecObj.size();
+	for (size_t i = 0; i < size; i++)
+	{
+		if (nullptr != m_vecObj[i])
+		{
+			delete m_vecObj[i];
+			m_vecObj[i] = nullptr;
+		}
+	}
+
 }
 
 int CEngine::Init(HWND _hWnd, uint32 _width, uint32 _height)

@@ -29,6 +29,7 @@ using namespace DirectX;
 #include "types.h"
 #include "struct.h"
 #include "enum.h"
+#include "func.h"
 
 #include "CEngine.h"
 #include "CTimeMgr.h"

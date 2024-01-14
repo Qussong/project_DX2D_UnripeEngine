@@ -79,6 +79,9 @@
     <ClInclude Include="CMeshRender.h">
       <Filter>08.RenderComponent\MeshRender</Filter>
     </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>01.Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">

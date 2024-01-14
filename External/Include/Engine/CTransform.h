@@ -11,13 +11,11 @@ public:
 	virtual ~CTransform();
 
 private:
-	Vec3 m_v3RelativePostion;
-	Vec3 m_v3RelativeScale;
-	Vec3 m_v3RelativeRotation;
-
-	Vec3 m_arrDirection[3];
-
-	Matrix m_matWorld;
+	Vec3	m_v3RelativePostion;
+	Vec3	m_v3RelativeScale;
+	Vec3	m_v3RelativeRotation;
+	Vec3	m_arrDirection[3];
+	Matrix	m_matWorld;
 
 public:
 	virtual void Begin();

@@ -4,6 +4,7 @@
 CShader::CShader(ASSET_TYPE _type)
 	: Super(_type)
 {
+	SetName(L"Shader");
 }
 
 CShader::~CShader()

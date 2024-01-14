@@ -3,6 +3,7 @@
 
 CConstantBuffer::CConstantBuffer()
 {
+	SetName(L"ConstantBuffer");
 }
 
 CConstantBuffer::~CConstantBuffer()

@@ -4,9 +4,7 @@
 class CComponent;
 class CRenderComponent;
 class CTransform;
-
-//class CMeshRender;
-#include "CMeshRender.h"
+class CMeshRender;
 
 class CGameObject
 	: public CEntity
@@ -18,8 +16,8 @@ public:
 	virtual ~CGameObject();
 
 private:
-	CComponent* m_arrBasicComp[(uint32)COMPONENT_TYPE::END];
-	CRenderComponent* m_pRenderComp;
+	CComponent*			m_arrBasicComp[(uint32)COMPONENT_TYPE::END];
+	CRenderComponent*	m_pRenderComp;
 
 public:
 	void Begin();
@@ -32,5 +30,5 @@ public:
 	CComponent* GetComponent(COMPONENT_TYPE _type) { return m_arrBasicComp[(uint32)_type]; }
 
 	CTransform* Transform() { return (CTransform*)m_arrBasicComp[(uint32)COMPONENT_TYPE::TRANSFORM]; }
-	CMeshRender* MeshRender() { return dynamic_cast<CMeshRender*>(m_pRenderComp); }
+	CMeshRender* MeshRender();
 };

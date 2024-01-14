@@ -5,10 +5,26 @@ CGameObject::CGameObject()
 	: m_arrBasicComp{}
 	, m_pRenderComp(nullptr)
 {
+	SetName(L"GameObject");
 }
 
 CGameObject::~CGameObject()
 {
+	uint32 size = (uint32)COMPONENT_TYPE::END;
+	for (size_t i = 0; i < size; i++)
+	{
+		if (nullptr != m_arrBasicComp[i])
+		{
+			delete m_arrBasicComp[i];
+			m_arrBasicComp[i] = nullptr;
+		}
+	}
+
+	if (nullptr != m_pRenderComp)
+	{
+		delete m_pRenderComp;
+		m_pRenderComp = nullptr;
+	}
 }
 
 void CGameObject::Begin()
@@ -97,4 +113,14 @@ void CGameObject::AddComponent(CComponent* _comp)
 	{
 		MessageBoxA(nullptr, "Add Component Failed", "Component Error", MB_OK);
 	}
+}
+
+CMeshRender* CGameObject::MeshRender()
+{
+	if (nullptr != m_pRenderComp)
+	{
+		return dynamic_cast<CMeshRender*>(m_pRenderComp);
+	}
+
+	return nullptr;
 }

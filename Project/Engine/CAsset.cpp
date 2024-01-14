@@ -7,6 +7,7 @@ CAsset::CAsset(ASSET_TYPE _type)
 	, m_iRefCnt(0)
 	, m_eType(_type)
 {
+	SetName(L"Asset");
 }
 
 CAsset::~CAsset()

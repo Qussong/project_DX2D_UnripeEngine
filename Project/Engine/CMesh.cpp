@@ -8,6 +8,7 @@ CMesh::CMesh()
 	, m_iIdxCnt(0)
 	, m_pIdxSysMem(nullptr)
 {
+	SetName(L"Mesh");
 }
 
 CMesh::~CMesh()

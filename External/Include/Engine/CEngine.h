@@ -27,12 +27,10 @@ public:
 	void	Render();
 
 private:
-	CMesh*				m_pRectMesh = nullptr;
-	CMesh*				m_pCircleMesh = nullptr;
-
-	CGraphicShader*		m_pShader = nullptr;
-
-	vector<CGameObject*> m_vecObj;
+	CMesh*					m_pRectMesh = nullptr;
+	CMesh*					m_pCircleMesh = nullptr;
+	CGraphicShader*			m_pShader = nullptr;
+	vector<CGameObject*>	m_vecObj;
 
 public:
 	void RectMesh();

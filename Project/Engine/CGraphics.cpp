@@ -13,6 +13,15 @@ CGraphics::CGraphics()
 
 CGraphics::~CGraphics()
 {
+	uint32 size = (uint32)CB_TYPE::END;
+	for (size_t i = 0; i < size; i++)
+	{
+		if (nullptr != m_arrCB[i])
+		{
+			delete m_arrCB[i];
+			m_arrCB[i] = nullptr;
+		}
+	}
 }
 
 int CGraphics::Init(HWND _hWnd, uint32 _width, uint32 _height)
@@ -173,10 +182,11 @@ void CGraphics::DepthStencilView()
 void CGraphics::CostantBuffer()
 {
 	// Transform
-	CConstantBuffer* buffer = new CConstantBuffer;
-	buffer->Create(sizeof(tTransform), 1);
-	m_arrCB[(UINT)CB_TYPE::TRANSFORM] = buffer;
-
+	{
+		CConstantBuffer* pCB = new CConstantBuffer;
+		pCB->Create(sizeof(tTransform), 1);
+		m_arrCB[(UINT)CB_TYPE::TRANSFORM] = pCB;
+	}
 }
 
 // ClearColor º¯°æ

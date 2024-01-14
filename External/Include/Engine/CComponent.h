@@ -15,11 +15,9 @@ private:
 	CGameObject*			m_pOwner;
 
 public:
-	// Owner(GameObject) ∞° µπ∑¡¡‹
 	virtual void Begin() = 0;
 	virtual void Tick() = 0;
 	virtual void FinalTick() = 0;
-	// m_pOwner
 	virtual void UpdateData() = 0;
 
 public:
