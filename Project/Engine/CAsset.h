@@ -7,7 +7,7 @@ class CAsset
 
 public:
 	CAsset(ASSET_TYPE _type);
-	~CAsset();
+	virtual ~CAsset();
 
 private:
 	wstring				m_strKey;
@@ -16,7 +16,7 @@ private:
 	const ASSET_TYPE	m_eType;
 
 public:
-	virtual void Update() = 0;
+	virtual void UpdateData() = 0;
 
 	const wstring& GetAssetKey() { return m_strKey; }
 	const wstring& GetRelativePath() { return m_strRelativePath; }

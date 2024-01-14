@@ -46,7 +46,7 @@ void CConstantBuffer::SetData(void* _src, UINT _cnt)
 	CONTEXT->Unmap(m_CB.Get(), 0);
 }
 
-void CConstantBuffer::Update(UINT _registerNum)
+void CConstantBuffer::UpdateData(UINT _registerNum)
 {
 	CONTEXT->VSSetConstantBuffers(_registerNum, 1, m_CB.GetAddressOf());
 	CONTEXT->PSSetConstantBuffers(_registerNum, 1, m_CB.GetAddressOf());

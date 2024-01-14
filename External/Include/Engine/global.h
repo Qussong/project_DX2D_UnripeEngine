@@ -42,3 +42,9 @@ using namespace DirectX;
 #include "CShader.h"
 #include "CGraphicShader.h"
 #include "CConstantBuffer.h"
+#include "CGameObject.h"
+
+#include "CComponent.h"
+#include "CTransform.h"
+#include "CRenderComponent.h"
+#include "CMeshRender.h"

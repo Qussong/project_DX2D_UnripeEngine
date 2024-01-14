@@ -1,4 +1,5 @@
 #pragma once
+
 class CGraphics
 	: public CSingleton<CGraphics>
 {
@@ -20,10 +21,13 @@ private:
 	ComPtr<ID3D11RenderTargetView>	m_RenderTargetView;
 	ComPtr<ID3D11DepthStencilView>  m_DepthStencilView;
 
+	CConstantBuffer*				m_arrCB[(uint32)CB_TYPE::END];
+
 public:
 	ID3D11Device* GetDevice() { return m_Device.Get(); }
 	ID3D11DeviceContext* GetContext() { return m_Context.Get(); }
 	IDXGISwapChain* GetSwapChain() { return m_SwapChain.Get(); }
+	CConstantBuffer* GetConstantBuffer(CB_TYPE _type) { return m_arrCB[(UINT)_type]; }
 
 public:
 	int Init(HWND _hWnd, uint32 _width, uint32 _height);
@@ -35,7 +39,8 @@ private:
 	void DeviceAndSwapChain();
 	void RenderTargetView();
 	void DepthStencilView();
-
+	void CostantBuffer();
+	
 	// test
 	void TestKey();
 };

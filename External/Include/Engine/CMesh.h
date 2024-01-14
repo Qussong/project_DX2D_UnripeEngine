@@ -7,7 +7,7 @@ class CMesh
 
 public:
 	CMesh();
-	~CMesh();
+	virtual ~CMesh();
 
 private:
 	ComPtr<ID3D11Buffer>	m_VB;			// VertexBuffer
@@ -21,7 +21,7 @@ private:
 
 public:
 	void Create(void* _vtx, uint32 _vtxCnt, void* _idx, uint32 _idxCnt);
-	virtual void Update() override;
+	virtual void UpdateData() override;
 	void Render();
 };
 

@@ -11,7 +11,7 @@ CGraphicShader::~CGraphicShader()
 {
 }
 
-void CGraphicShader::Update()
+void CGraphicShader::UpdateData()
 {
 	CONTEXT->IASetInputLayout(m_Layout.Get());
 	CONTEXT->IASetPrimitiveTopology(m_Topology);
@@ -106,7 +106,6 @@ void CGraphicShader::VertexShader(const wstring& _fileName, const string& _funct
 		MessageBoxA(nullptr, "Vertex Shader Create Failed", "VertexShader Error", MB_OK);
 		_exit(EXIT_FAILURE);
 	}
-
 }
 
 void CGraphicShader::PixelShader(const wstring& _fileName, const string& _function, const string& _version)

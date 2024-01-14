@@ -10,6 +10,6 @@ CShader::~CShader()
 {
 }
 
-void CShader::Update()
+void CShader::UpdateData()
 {
 }

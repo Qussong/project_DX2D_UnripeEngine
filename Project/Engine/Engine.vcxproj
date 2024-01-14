@@ -159,16 +159,21 @@ call EngineCopy.bat</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CAsset.h" />
+    <ClInclude Include="CComponent.h" />
     <ClInclude Include="CConstantBuffer.h" />
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CEntity.h" />
+    <ClInclude Include="CGameObject.h" />
     <ClInclude Include="CGraphics.h" />
     <ClInclude Include="CGraphicShader.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CMesh.h" />
+    <ClInclude Include="CMeshRender.h" />
     <ClInclude Include="CPathMgr.h" />
+    <ClInclude Include="CRenderComponent.h" />
     <ClInclude Include="CShader.h" />
     <ClInclude Include="CTimeMgr.h" />
+    <ClInclude Include="CTransform.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="enum.h" />
     <ClInclude Include="framework.h" />
@@ -182,16 +187,21 @@ call EngineCopy.bat</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAsset.cpp" />
+    <ClCompile Include="CComponent.cpp" />
     <ClCompile Include="CConstantBuffer.cpp" />
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CEntity.cpp" />
+    <ClCompile Include="CGameObject.cpp" />
     <ClCompile Include="CGraphics.cpp" />
     <ClCompile Include="CGraphicShader.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CMesh.cpp" />
+    <ClCompile Include="CMeshRender.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
+    <ClCompile Include="CRenderComponent.cpp" />
     <ClCompile Include="CShader.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
+    <ClCompile Include="CTransform.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

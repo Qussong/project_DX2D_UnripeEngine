@@ -64,6 +64,21 @@
     <ClInclude Include="CConstantBuffer.h">
       <Filter>ConstantBuffer</Filter>
     </ClInclude>
+    <ClInclude Include="CGameObject.h">
+      <Filter>06.GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CComponent.h">
+      <Filter>07.Component</Filter>
+    </ClInclude>
+    <ClInclude Include="CTransform.h">
+      <Filter>07.Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="CRenderComponent.h">
+      <Filter>08.RenderComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="CMeshRender.h">
+      <Filter>08.RenderComponent\MeshRender</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -104,6 +119,21 @@
     </ClCompile>
     <ClCompile Include="CConstantBuffer.cpp">
       <Filter>ConstantBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameObject.cpp">
+      <Filter>06.GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CComponent.cpp">
+      <Filter>07.Component</Filter>
+    </ClCompile>
+    <ClCompile Include="CTransform.cpp">
+      <Filter>07.Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="CRenderComponent.cpp">
+      <Filter>08.RenderComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="CMeshRender.cpp">
+      <Filter>08.RenderComponent\MeshRender</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +190,21 @@
     </Filter>
     <Filter Include="ConstantBuffer">
       <UniqueIdentifier>{b207fd24-97ab-4b73-83c5-c607a0979615}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.GameObject">
+      <UniqueIdentifier>{03911c28-869e-4951-8820-ab5b1bed5200}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Component">
+      <UniqueIdentifier>{b502fdb8-0edf-4cb7-9e9a-d29e387b4f4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Component\Transform">
+      <UniqueIdentifier>{215606f7-abee-4124-b02b-01ce51fa3de2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.RenderComponent">
+      <UniqueIdentifier>{e87623e0-3833-4fd8-baeb-a63c254d67af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.RenderComponent\MeshRender">
+      <UniqueIdentifier>{22ead642-06d9-4f7f-948f-b17b8674dfdb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

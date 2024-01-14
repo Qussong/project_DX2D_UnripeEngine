@@ -7,13 +7,12 @@ class CShader
 
 public:
 	CShader(ASSET_TYPE _type);
-	~CShader();
+	virtual ~CShader();
 	
 protected:
 	ComPtr<ID3DBlob>	m_ErrBlob;	// ErrorBlob
 
 public:
-	virtual void Update() override;
-
+	virtual void UpdateData() override;
 };
 

@@ -29,3 +29,15 @@ DirectX 2D Engine
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_Circle.png" width=250><br>
 &nbsp;&nbsp;- CConstantBuffer 클래스 추가 (상수버퍼 생성,바인딩 기능 분리)<br>
 &nbsp;&nbsp;- Client) 메모리 누수 발생 줄 체크 코드 추가 (new 재정의)
+
+**_24/01/14_** :<br>
+&nbsp;&nbsp;- CGameObject 클래스 추가<br>
+&nbsp;&nbsp;- CComponent 클래스 추가<br>
+&nbsp;&nbsp;- CTransform 클래스 추가<br>
+&nbsp;&nbsp;- CRenderComponent 클래스 추가<br>
+&nbsp;&nbsp;- CMeshRender 클래스 추가<br>
+&nbsp;&nbsp;- CGraphics) 상수버퍼 멤버로 추가<br>
+&nbsp;&nbsp;- std2d.fx) Scale 연산코드 추가 (VS_Std2D)<br>
+&nbsp;&nbsp;- 객체 GameObjet화 하여 화면상에 여러개 출력<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_RectAndCircle.png" width=250><br>
+<!-- &nbsp;&nbsp;- <br> -->

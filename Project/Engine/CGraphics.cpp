@@ -7,6 +7,7 @@ CGraphics::CGraphics()
 	, m_iHeight(0)
 	, m_arrClearColor{}
 	, m_bStandByMode(false)
+	, m_arrCB{}
 {
 }
 
@@ -25,6 +26,7 @@ int CGraphics::Init(HWND _hWnd, uint32 _width, uint32 _height)
 	DeviceAndSwapChain();
 	RenderTargetView();
 	DepthStencilView();
+	CostantBuffer();
 
 	return S_OK;
 }
@@ -166,6 +168,15 @@ void CGraphics::DepthStencilView()
 		MessageBoxA(nullptr, "Depth-Stencil View Create Failed", "DepthStendcil Error", MB_OK);
 		_exit(EXIT_FAILURE);
 	}
+}
+
+void CGraphics::CostantBuffer()
+{
+	// Transform
+	CConstantBuffer* buffer = new CConstantBuffer;
+	buffer->Create(sizeof(tTransform), 1);
+	m_arrCB[(UINT)CB_TYPE::TRANSFORM] = buffer;
+
 }
 
 // ClearColor º¯°æ

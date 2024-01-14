@@ -12,14 +12,14 @@ struct KeyData
 // 정점 구조체
 struct Vtx
 {
-	Vec3	vPos;
-	Vec4	vColor;
-	Vec2	vUV;
+	Vec3	v3Pos;
+	Vec4	v4Color;
+	Vec2	v2UV;
 };
 
 // 상수버퍼 구조체
 struct tTransform
 {
-	Vec4 vWorldPos;
-	Vec4 vWorldScale;
+	Vec4 v4WorldPos;
+	Vec4 v4WorldScale;
 };

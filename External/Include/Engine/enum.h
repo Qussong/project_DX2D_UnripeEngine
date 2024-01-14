@@ -44,3 +44,45 @@ enum class ASSET_TYPE
 
 	END,
 };
+
+enum class COMPONENT_TYPE
+{
+	// Basic Component
+	TRANSFORM,
+	COLLIDER2D,
+	COLLIDER3D,
+	ANIMATOR2D,
+	ANIMATOR3D,
+	LIGHT2D,
+	LIGHT3D,
+	CAMERA,
+
+	END,
+
+	// Render Component
+	MESHRENDER,
+	TILEMAP,
+	PARTICLESYSTEM,
+	SKYBOX,
+	DECAL,
+	LANDSCAPE,
+};
+
+enum class DIR_TYPE
+{
+	UP,
+	FRONT,
+	RIGHT,
+
+	END,
+};
+
+enum class CB_TYPE
+{
+	TRANSFORM,
+	MATERIAL_CONST,
+	GLOBAL_DATA,
+	ANIMATION,
+
+	END,
+};

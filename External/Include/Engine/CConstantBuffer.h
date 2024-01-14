@@ -8,7 +8,7 @@ class CConstantBuffer :
 
 public:
     CConstantBuffer();
-    ~CConstantBuffer();
+    virtual ~CConstantBuffer();
 
 private:
     ComPtr<ID3D11Buffer>	m_CB;   // ConstantBuffer
@@ -19,7 +19,7 @@ private:
 public:
     void Create(UINT _size, UINT _cnt);
     void SetData(void* _src, UINT _cnt = 0);    // Binding
-    void Update(UINT _registerNum);
+    void UpdateData(UINT _registerNum);
 
 };
 

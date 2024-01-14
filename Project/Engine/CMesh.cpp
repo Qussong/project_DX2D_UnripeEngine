@@ -84,7 +84,7 @@ void CMesh::Create(void* _vtx, uint32 _vtxCnt, void* _idx, uint32 _idxCnt)
 	}
 }
 
-void CMesh::Update()
+void CMesh::UpdateData()
 {
 	UINT	elementSize = sizeof(Vtx);
 	UINT	iOffset = 0;

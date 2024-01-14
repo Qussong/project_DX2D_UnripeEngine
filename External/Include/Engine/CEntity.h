@@ -4,7 +4,7 @@ class CEntity
 {
 public:
 	CEntity();
-	~CEntity();
+	virtual ~CEntity();
 
 private:
 	static UINT g_iNextID;

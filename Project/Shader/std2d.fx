@@ -25,7 +25,9 @@ VS_OUT VS_Std2D(VS_IN _in)
 {
     VS_OUT output = (VS_OUT) 0.f;
     
-    output.vPos     = float4(_in.vPos.xy + vWorldPos.xy, 0.f, 1.f);
+    float2 vFinalPos = _in.vPos.xy * vWorldScale.xy + vWorldPos.xy;
+    
+    output.vPos     = float4(vFinalPos.xy, 0.f, 1.f);
     output.vColor   = _in.vColor;
     output.vUV      = _in.vUV;
     

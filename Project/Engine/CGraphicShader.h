@@ -24,7 +24,7 @@ private:
 	void Layout();
 
 public:
-	virtual void Update() override;
+	virtual void UpdateData() override;
 
 public:
 	void SetTopology(D3D11_PRIMITIVE_TOPOLOGY _topology) { m_Topology = _topology; }

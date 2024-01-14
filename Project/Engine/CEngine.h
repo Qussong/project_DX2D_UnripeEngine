@@ -3,6 +3,7 @@
 class CMesh;
 class CGraphicShader;
 class CConstantBuffer;
+class CGameObject;
 
 class CEngine
 	: public CSingleton<CEngine>
@@ -26,21 +27,17 @@ public:
 	void	Render();
 
 private:
-	tTransform			m_tTransform = { Vec4(0.f, 0.f, 0.f, 1.f), Vec4(1.f, 1.f, 1.f, 1.f) };
+	CMesh*				m_pRectMesh = nullptr;
+	CMesh*				m_pCircleMesh = nullptr;
 
-	CMesh*				m_RectMesh = nullptr;
-	CMesh*				m_CircleMesh = nullptr;
+	CGraphicShader*		m_pShader = nullptr;
 
-	CGraphicShader*		m_Shader = nullptr;
-
-	CConstantBuffer*	m_CB = nullptr;
-	//ComPtr<ID3D11Buffer>		m_CB;			// ConstantBuffer
+	vector<CGameObject*> m_vecObj;
 
 public:
-	void Test_init();
-	void Test_RectMesh();
-	void Test_CircleMesh();
+	void RectMesh();
+	void CircleMesh();
 	void Test_tick();
 	void Test_render();
+	void Test_GameObject();
 };
-
