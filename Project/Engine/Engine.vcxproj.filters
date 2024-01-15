@@ -7,35 +7,17 @@
     <ClInclude Include="framework.h">
       <Filter>00.Default</Filter>
     </ClInclude>
-    <ClInclude Include="define.h">
-      <Filter>01.Header</Filter>
-    </ClInclude>
     <ClInclude Include="global.h">
-      <Filter>01.Header</Filter>
-    </ClInclude>
-    <ClInclude Include="singleton.h">
-      <Filter>01.Header</Filter>
-    </ClInclude>
-    <ClInclude Include="value.h">
       <Filter>01.Header</Filter>
     </ClInclude>
     <ClInclude Include="CGraphics.h">
       <Filter>03.Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="types.h">
-      <Filter>01.Header</Filter>
     </ClInclude>
     <ClInclude Include="CTimeMgr.h">
       <Filter>04.Manager\Time</Filter>
     </ClInclude>
     <ClInclude Include="CPathMgr.h">
       <Filter>04.Manager\Path</Filter>
-    </ClInclude>
-    <ClInclude Include="enum.h">
-      <Filter>01.Header</Filter>
-    </ClInclude>
-    <ClInclude Include="struct.h">
-      <Filter>01.Header</Filter>
     </ClInclude>
     <ClInclude Include="SimpleMath.h">
       <Filter>External\SimpleMath</Filter>
@@ -62,7 +44,7 @@
       <Filter>05.Asset\Shader\CGraphicShader</Filter>
     </ClInclude>
     <ClInclude Include="CConstantBuffer.h">
-      <Filter>ConstantBuffer</Filter>
+      <Filter>03.Graphics\ConstantBuffer</Filter>
     </ClInclude>
     <ClInclude Include="CGameObject.h">
       <Filter>06.GameObject</Filter>
@@ -79,8 +61,35 @@
     <ClInclude Include="CMeshRender.h">
       <Filter>08.RenderComponent\MeshRender</Filter>
     </ClInclude>
-    <ClInclude Include="func.h">
+    <ClInclude Include="component.h">
       <Filter>01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="manager.h">
+      <Filter>01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="value.h">
+      <Filter>01.Header\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="types.h">
+      <Filter>01.Header\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="struct.h">
+      <Filter>01.Header\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="singleton.h">
+      <Filter>01.Header\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>01.Header\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="enum.h">
+      <Filter>01.Header\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>01.Header\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="etc.h">
+      <Filter>01.Header\etc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -121,7 +130,7 @@
       <Filter>05.Asset\Shader\CGraphicShader</Filter>
     </ClCompile>
     <ClCompile Include="CConstantBuffer.cpp">
-      <Filter>ConstantBuffer</Filter>
+      <Filter>03.Graphics\ConstantBuffer</Filter>
     </ClCompile>
     <ClCompile Include="CGameObject.cpp">
       <Filter>06.GameObject</Filter>
@@ -191,9 +200,6 @@
     <Filter Include="05.Asset\Shader\CGraphicShader">
       <UniqueIdentifier>{9bce500b-0b8f-46ab-a648-eccfd8d28160}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ConstantBuffer">
-      <UniqueIdentifier>{b207fd24-97ab-4b73-83c5-c607a0979615}</UniqueIdentifier>
-    </Filter>
     <Filter Include="06.GameObject">
       <UniqueIdentifier>{03911c28-869e-4951-8820-ab5b1bed5200}</UniqueIdentifier>
     </Filter>
@@ -208,6 +214,12 @@
     </Filter>
     <Filter Include="08.RenderComponent\MeshRender">
       <UniqueIdentifier>{22ead642-06d9-4f7f-948f-b17b8674dfdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Graphics\ConstantBuffer">
+      <UniqueIdentifier>{b207fd24-97ab-4b73-83c5-c607a0979615}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Header\etc">
+      <UniqueIdentifier>{a63a0f10-53fb-49c7-aeb1-fe7582e9ef67}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

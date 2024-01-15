@@ -1,6 +1,9 @@
 #pragma once
 #include "CComponent.h"
 
+class CMesh;
+class CGraphicShader;
+
 class CRenderComponent :
     public CComponent
 {

@@ -1,6 +1,8 @@
 #pragma once
 #include "CEntity.h"
 
+class CGameObject;
+
 class CComponent
 	: public CEntity
 {

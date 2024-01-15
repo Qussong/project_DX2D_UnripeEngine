@@ -40,4 +40,7 @@ DirectX 2D Engine
 &nbsp;&nbsp;- std2d.fx) Scale 연산코드 추가 (VS_Std2D)<br>
 &nbsp;&nbsp;- 객체 GameObjet화 하여 화면상에 여러개 출력<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_RectAndCircle.png" width=250><br>
-<!-- &nbsp;&nbsp;- <br> -->
+
+**_24/01/15_** :<br>
+&nbsp;&nbsp;- <br>
+&nbsp;&nbsp;- <br>

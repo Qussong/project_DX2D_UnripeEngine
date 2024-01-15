@@ -169,6 +169,7 @@ call EngineCopy.bat</Command>
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CMesh.h" />
     <ClInclude Include="CMeshRender.h" />
+    <ClInclude Include="component.h" />
     <ClInclude Include="CPathMgr.h" />
     <ClInclude Include="CRenderComponent.h" />
     <ClInclude Include="CShader.h" />
@@ -176,9 +177,11 @@ call EngineCopy.bat</Command>
     <ClInclude Include="CTransform.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="enum.h" />
+    <ClInclude Include="etc.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="func.h" />
     <ClInclude Include="global.h" />
+    <ClInclude Include="manager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="SimpleMath.h" />
     <ClInclude Include="singleton.h" />

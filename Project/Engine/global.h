@@ -23,18 +23,10 @@ using namespace DirectX;
 #include "SimpleMath.h"
 
 // Custom
-#include "singleton.h"
-#include "define.h"
-#include "value.h"
-#include "types.h"
-#include "struct.h"
-#include "enum.h"
-#include "func.h"
-
-#include "CEngine.h"
-#include "CTimeMgr.h"
-#include "CPathMgr.h"
-#include "CKeyMgr.h"
+#include "etc.h"		// 각종 헤더
+#include "CEngine.h"	// 엔진
+#include "component.h"	// 컴포넌트
+#include "manager.h"	// 매니저
 
 #include "CGraphics.h"
 #include "CEntity.h"
@@ -44,8 +36,3 @@ using namespace DirectX;
 #include "CGraphicShader.h"
 #include "CConstantBuffer.h"
 #include "CGameObject.h"
-
-#include "CComponent.h"
-#include "CTransform.h"
-#include "CRenderComponent.h"
-#include "CMeshRender.h"
