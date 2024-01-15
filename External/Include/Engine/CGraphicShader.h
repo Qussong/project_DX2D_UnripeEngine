@@ -10,8 +10,8 @@ public:
 	~CGraphicShader();
 
 private:
-	ComPtr<ID3D11InputLayout>	m_Layout;		// InputLayout
-	D3D11_PRIMITIVE_TOPOLOGY	m_Topology;		// Topology
+	ComPtr<ID3D11InputLayout>	m_Layout;		
+	D3D11_PRIMITIVE_TOPOLOGY	m_Topology;		// default = D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST
 
 	ComPtr<ID3DBlob>			m_VSBlob;		// VertexShaderBlob
 	ComPtr<ID3DBlob>			m_PSBlob;		// PixelShaderBlob

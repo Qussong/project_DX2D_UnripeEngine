@@ -97,6 +97,9 @@
     <ClInclude Include="CPlayerScript.h">
       <Filter>09.Script\Player</Filter>
     </ClInclude>
+    <ClInclude Include="CAssetMgr.h">
+      <Filter>04.Manager\Asset</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -158,6 +161,9 @@
     </ClCompile>
     <ClCompile Include="CPlayerScript.cpp">
       <Filter>09.Script\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CAssetMgr.cpp">
+      <Filter>04.Manager\Asset</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +244,9 @@
     </Filter>
     <Filter Include="09.Script\Player">
       <UniqueIdentifier>{532ace6c-947c-4fdf-b417-d0274b3bcaff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Manager\Asset">
+      <UniqueIdentifier>{45f38ee3-c457-4983-85c4-6df74e18174f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

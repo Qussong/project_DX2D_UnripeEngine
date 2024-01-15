@@ -44,4 +44,4 @@ DirectX 2D Engine
 **_24/01/15_** :<br>
 &nbsp;&nbsp;- CScript 클래스 추가 (CGameObject 에 Script 관련 코드 추가)<br>
 &nbsp;&nbsp;- CPlayerScript 클래스 추가 및 GameObject에 부착실습<br>
-&nbsp;&nbsp;- <br>
+&nbsp;&nbsp;- CAssetMgr 클래스 생성 (Mesh, Shader 생성 담당)<br>

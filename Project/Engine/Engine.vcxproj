@@ -159,6 +159,7 @@ call EngineCopy.bat</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CAsset.h" />
+    <ClInclude Include="CAssetMgr.h" />
     <ClInclude Include="CComponent.h" />
     <ClInclude Include="CConstantBuffer.h" />
     <ClInclude Include="CEngine.h" />
@@ -193,6 +194,7 @@ call EngineCopy.bat</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAsset.cpp" />
+    <ClCompile Include="CAssetMgr.cpp" />
     <ClCompile Include="CComponent.cpp" />
     <ClCompile Include="CConstantBuffer.cpp" />
     <ClCompile Include="CEngine.cpp" />

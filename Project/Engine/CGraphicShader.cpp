@@ -2,7 +2,7 @@
 #include "CGraphicShader.h"
 
 CGraphicShader::CGraphicShader()
-	: Super(ASSET_TYPE::GRAPHICS_SHADER)
+	: Super(ASSET_TYPE::GRAPHIC_SHADER)
 	, m_Topology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
 {
 	SetName(L"GraphicShader");
