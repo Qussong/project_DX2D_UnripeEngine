@@ -42,9 +42,6 @@ int CGraphics::Init(HWND _hWnd, uint32 _width, uint32 _height)
 
 void CGraphics::RenderBegin()
 {
-	// test
-	TestKey();
-
 	CONTEXT->OMSetRenderTargets(1, m_RenderTargetView.GetAddressOf(), m_DepthStencilView.Get());
 	CONTEXT->ClearRenderTargetView(m_RenderTargetView.Get(), m_arrClearColor);		// ·»´õ Å¸°Ù Å¬¸®¾î (clearColor)
 	CONTEXT->ClearDepthStencilView(m_DepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, (UINT8)0);
@@ -186,33 +183,5 @@ void CGraphics::CostantBuffer()
 		CConstantBuffer* pCB = new CConstantBuffer;
 		pCB->Create(sizeof(tTransform), 1);
 		m_arrCB[(UINT)CB_TYPE::TRANSFORM] = pCB;
-	}
-}
-
-// ClearColor º¯°æ
-void CGraphics::TestKey()
-{
-	if (KEY_STATE::TAP == CKeyMgr::GetInst()->GetKeyState(KEY::UP))
-	{
-		for (size_t i = 0; i < 4; i++)
-		{
-			m_arrClearColor[i] >= 1.f ? m_arrClearColor[i] = 1.f : m_arrClearColor[i] += 0.1f;
-		}
-
-		cout << "R " << (int)(m_arrClearColor[0] * 255)
-			 << "/G " << (int)(m_arrClearColor[1] * 255)
-			 << "/G " << (int)(m_arrClearColor[2] * 255) << endl;
-	}
-
-	if (KEY_STATE::TAP == CKeyMgr::GetInst()->GetKeyState(KEY::DOWN))
-	{
-		for (size_t i = 0; i < 4; i++)
-		{
-			m_arrClearColor[i] <= 0.f ? m_arrClearColor[i] = 0.f : m_arrClearColor[i] -= 0.1f;
-		}
-
-		cout << "R " << (int)(m_arrClearColor[0] * 255)
-			 << "/G " << (int)(m_arrClearColor[1] * 255)
-			 << "/G " << (int)(m_arrClearColor[2] * 255) << endl;
 	}
 }

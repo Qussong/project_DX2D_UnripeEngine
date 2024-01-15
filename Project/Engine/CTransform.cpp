@@ -30,23 +30,6 @@ void CTransform::FinalTick()
 
 void CTransform::UpdateData()
 {
-	// key test
-	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::LEFT))
-	{
-		m_v3RelativePostion.x -= DT;
-
-		cout << "X " << (int)(m_v3RelativePostion[0] * 255)
-			<< "/Y " << (int)(m_v3RelativePostion[1] * 255) << endl;
-	}
-
-	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::RIGHT))
-	{
-		m_v3RelativePostion.x += DT;
-
-		cout << "X " << (int)(m_v3RelativePostion[0] * 255)
-			<< "/Y " << (int)(m_v3RelativePostion[1] * 255) << endl;
-	}
-
 	tTransform transform = {};
 	transform.v4WorldPos = Vec4(m_v3RelativePostion, 0.f);
 	transform.v4WorldScale = Vec4(m_v3RelativeScale, 0.f);

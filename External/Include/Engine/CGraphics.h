@@ -40,7 +40,4 @@ private:
 	void RenderTargetView();
 	void DepthStencilView();
 	void CostantBuffer();
-	
-	// test
-	void TestKey();
 };

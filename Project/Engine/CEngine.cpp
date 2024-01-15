@@ -64,7 +64,7 @@ int CEngine::Init(HWND _hWnd, uint32 _width, uint32 _height)
 	m_pShader->VertexShader(L"std2d.fx", "VS_Std2D");
 	m_pShader->PixelShader(L"std2d.fx", "PS_Std2D");
 
-	// GameObject 持失
+	// test_GameObject 持失
 	Test_GameObject();
 
 	return S_OK;
@@ -235,6 +235,7 @@ void CEngine::Test_GameObject()
 
 		obj->AddComponent(new CTransform);
 		obj->AddComponent(new CMeshRender);
+		obj->AddComponent(new CPlayerScript);
 
 		obj->Transform()->SetRelativePos(Vec3(0.5f, 0.f, 0.f));
 		obj->Transform()->SetRelativeScale(Vec3(0.6f, 0.6f, 1.f));

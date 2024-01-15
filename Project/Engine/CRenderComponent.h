@@ -25,11 +25,6 @@ public:
     CGraphicShader* GetGraphicShader() { return m_Shader; }
 
 public:
-    // Owner(GameObject) ∞° µπ∑¡¡‹
-    virtual void Begin() = 0;
-    virtual void Tick() = 0;
-    virtual void FinalTick() = 0;
-    virtual void UpdateData() = 0;
     virtual void Render() = 0;
 };
 

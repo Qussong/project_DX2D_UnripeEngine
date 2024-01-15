@@ -18,10 +18,10 @@ private:
 	Matrix	m_matWorld;
 
 public:
-	virtual void Begin();
-	virtual void Tick();
-	virtual void FinalTick();
-	virtual void UpdateData();
+	virtual void Begin() override;
+	virtual void Tick() override;
+	virtual void FinalTick() override;
+	virtual void UpdateData() override;
 
 public:
 	void SetRelativePos(Vec3 _pos) { m_v3RelativePostion = _pos; }

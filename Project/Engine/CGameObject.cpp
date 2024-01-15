@@ -10,6 +10,7 @@ CGameObject::CGameObject()
 
 CGameObject::~CGameObject()
 {
+	// basicComp
 	uint32 size = (uint32)COMPONENT_TYPE::END;
 	for (size_t i = 0; i < size; i++)
 	{
@@ -20,10 +21,19 @@ CGameObject::~CGameObject()
 		}
 	}
 
+	// renderComp
 	if (nullptr != m_pRenderComp)
 	{
 		delete m_pRenderComp;
 		m_pRenderComp = nullptr;
+	}
+
+	// script
+	size = m_vecScript.size();
+	for (size_t i = 0; i < size; i++)
+	{
+		delete m_vecScript[i];
+		m_vecScript[i] = nullptr;
 	}
 }
 
@@ -41,7 +51,11 @@ void CGameObject::Begin()
 	{
 		m_pRenderComp->Begin();
 	}
-
+	
+	for (CScript* script : m_vecScript)
+	{
+		script->Begin();
+	}
 }
 
 void CGameObject::Tick()
@@ -58,6 +72,11 @@ void CGameObject::Tick()
 	{
 		m_pRenderComp->Tick();
 	}
+
+	for (CScript* script : m_vecScript)
+	{
+		script->Tick();
+	}
 }
 
 void CGameObject::FinalTick()
@@ -73,6 +92,11 @@ void CGameObject::FinalTick()
 	if (nullptr != m_pRenderComp)
 	{
 		m_pRenderComp->FinalTick();
+	}
+
+	for (CScript* script : m_vecScript)
+	{
+		script->FinalTick();
 	}
 
 }
@@ -101,7 +125,20 @@ void CGameObject::AddComponent(CComponent* _comp)
 	{
 		COMPONENT_TYPE type = _comp->GetType();
 
-		if (type < COMPONENT_TYPE::END)
+		if (COMPONENT_TYPE::SCRIPT == type)
+		{
+			CScript* script = dynamic_cast<CScript*>(_comp);
+
+			// _comp 가 실제로 Script 클래스인경우
+			if (nullptr != script)
+			{
+				isAdd = true;
+				script->SetOwner(this);
+				m_vecScript.push_back(script);
+			}
+		}
+
+		if (COMPONENT_TYPE::END > type)
 		{
 			isAdd = true;
 			m_arrBasicComp[(uint32)type] = _comp;

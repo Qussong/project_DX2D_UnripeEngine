@@ -66,6 +66,9 @@ enum class COMPONENT_TYPE
 	SKYBOX,
 	DECAL,
 	LANDSCAPE,
+
+	// Script
+	SCRIPT,
 };
 
 enum class DIR_TYPE

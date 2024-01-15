@@ -91,6 +91,12 @@
     <ClInclude Include="etc.h">
       <Filter>01.Header\etc</Filter>
     </ClInclude>
+    <ClInclude Include="CScript.h">
+      <Filter>09.Script</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerScript.h">
+      <Filter>09.Script\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -146,6 +152,12 @@
     </ClCompile>
     <ClCompile Include="CMeshRender.cpp">
       <Filter>08.RenderComponent\MeshRender</Filter>
+    </ClCompile>
+    <ClCompile Include="CScript.cpp">
+      <Filter>09.Script</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerScript.cpp">
+      <Filter>09.Script\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +232,12 @@
     </Filter>
     <Filter Include="01.Header\etc">
       <UniqueIdentifier>{a63a0f10-53fb-49c7-aeb1-fe7582e9ef67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.Script">
+      <UniqueIdentifier>{d3dd2492-dc91-4cdc-86e7-f9823663e212}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.Script\Player">
+      <UniqueIdentifier>{532ace6c-947c-4fdf-b417-d0274b3bcaff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
