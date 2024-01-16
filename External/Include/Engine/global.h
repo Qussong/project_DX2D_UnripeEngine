@@ -37,3 +37,5 @@ using namespace DirectX;
 #include "CGraphicShader.h"
 #include "CConstantBuffer.h"
 #include "CGameObject.h"
+#include "CLevel.h"
+#include "CLayer.h"

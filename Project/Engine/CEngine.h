@@ -17,6 +17,9 @@ private:
 	int32		 m_iWidth;
 	int32		 m_iHeight;
 
+private:
+	vector<CGameObject*>	m_vecObj;
+
 public:
 	HWND	GetWindowHandle() { return m_hWnd; }
 
@@ -25,15 +28,4 @@ public:
 	void	Progress();
 	void	Tick();
 	void	Render();
-
-private:
-	//CMesh*					m_pRectMesh = nullptr;
-	//CMesh*					m_pCircleMesh = nullptr;
-	//CGraphicShader*			m_pShader = nullptr;
-	vector<CGameObject*>	m_vecObj;
-
-public:
-	void Test_tick();
-	void Test_render();
-	void Test_GameObject();
 };

@@ -7,8 +7,8 @@ DirectX 2D Engine
 &nbsp;&nbsp;- Device, Context, SwapChain 분리 (CGraphics)<br>
 
 **_24/01/10_** :<br>
-&nbsp;&nbsp;- Time, Path, Key Manager 추가
-&nbsp;&nbsp;- SimpleMath 라이브러리 추가
+&nbsp;&nbsp;- Time, Path, Key Manager 추가<br>
+&nbsp;&nbsp;- SimpleMath 라이브러리 추가<br>
 
 **_24/01/12_** :<br>
 &nbsp;&nbsp;- PathMgr ) contentPath -> resourcePath, ShaderPath 변경 (Getter : GetResourcePath, GetShaderPath)<br>
@@ -28,7 +28,7 @@ DirectX 2D Engine
 &nbsp;&nbsp;- Circle Mesh 출력코드 추가<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_Circle.png" width=250><br>
 &nbsp;&nbsp;- CConstantBuffer 클래스 추가 (상수버퍼 생성,바인딩 기능 분리)<br>
-&nbsp;&nbsp;- Client) 메모리 누수 발생 줄 체크 코드 추가 (new 재정의)
+&nbsp;&nbsp;- Client) 메모리 누수 발생 위치 체크 코드 추가 (new 재정의)
 
 **_24/01/14_** :<br>
 &nbsp;&nbsp;- CGameObject 클래스 추가<br>
@@ -45,3 +45,8 @@ DirectX 2D Engine
 &nbsp;&nbsp;- CScript 클래스 추가 (CGameObject 에 Script 관련 코드 추가)<br>
 &nbsp;&nbsp;- CPlayerScript 클래스 추가 및 GameObject에 부착실습<br>
 &nbsp;&nbsp;- CAssetMgr 클래스 생성 (Mesh, Shader 생성 담당)<br>
+
+**_24/01/16_** :<br>
+&nbsp;&nbsp;- CLevel, CLayer 클래스 추가<br>
+&nbsp;&nbsp;- CLevelMgr 클래스 추가<br>
+&nbsp;&nbsp;- 객체 생성 및 Init, Update, Render 과정을 CLevelMgr 에서 담당하도록 구조 변경<br>

@@ -4,3 +4,4 @@
 #include "CPathMgr.h"
 #include "CKeyMgr.h"
 #include "CAssetMgr.h"
+#include "CLevelMgr.h"

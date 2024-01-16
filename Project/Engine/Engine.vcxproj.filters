@@ -100,6 +100,15 @@
     <ClInclude Include="CAssetMgr.h">
       <Filter>04.Manager\Asset</Filter>
     </ClInclude>
+    <ClInclude Include="CLevel.h">
+      <Filter>10.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CLayer.h">
+      <Filter>10.Level\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevelMgr.h">
+      <Filter>04.Manager\Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -164,6 +173,15 @@
     </ClCompile>
     <ClCompile Include="CAssetMgr.cpp">
       <Filter>04.Manager\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevel.cpp">
+      <Filter>10.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CLayer.cpp">
+      <Filter>10.Level\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevelMgr.cpp">
+      <Filter>04.Manager\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +265,15 @@
     </Filter>
     <Filter Include="04.Manager\Asset">
       <UniqueIdentifier>{45f38ee3-c457-4983-85c4-6df74e18174f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10.Level">
+      <UniqueIdentifier>{1caebcba-4be1-4c66-a2ad-f1d873a6fb5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10.Level\Layer">
+      <UniqueIdentifier>{ef5c3e97-e267-4f8e-9f72-780d665400d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Manager\Level">
+      <UniqueIdentifier>{2bba6f46-8020-4dfd-86c1-f6570ce64e08}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
