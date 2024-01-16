@@ -3,8 +3,9 @@
 
 cbuffer TRANSFORM : register(b0)
 {
-    float4 vWorldPos;
-    float4 vWorldScale;
+    row_major matrix g_matWorld;
+    row_major matrix g_matView;
+    row_major matrix g_matProj;
 }
 
 struct VS_IN
@@ -25,11 +26,14 @@ VS_OUT VS_Std2D(VS_IN _in)
 {
     VS_OUT output = (VS_OUT) 0.f;
     
-    float2 vFinalPos = _in.vPos.xy * vWorldScale.xy + vWorldPos.xy;
+    // 연산순서 : local -> World -> View -> Projection
+    float4 v4WorldPos = mul(float4(_in.vPos, 1.f), g_matWorld);
+    float4 v4ViewPos = mul(v4WorldPos, g_matView);
+    float4 v4ProjPos = mul(v4ViewPos, g_matProj);
     
-    output.vPos     = float4(vFinalPos.xy, 0.f, 1.f);
-    output.vColor   = _in.vColor;
-    output.vUV      = _in.vUV;
+    output.vPos = v4WorldPos;
+    output.vColor = _in.vColor;
+    output.vUV = _in.vUV;
     
     return output;
 }

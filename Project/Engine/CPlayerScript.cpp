@@ -15,39 +15,87 @@ void CPlayerScript::Tick()
 {
 	CGameObject* owner = GetOwner();
 	CTransform* transform = owner->Transform();
-	Vec3 pos = transform->GetRelativePos();
+	Vec3 v3Scale = transform->GetRelativeScale();
+	Vec3 v3Rot = transform->GetRelativeRotation();
+	Vec3 v3Pos = transform->GetRelativePos();
 
+	bool posFlag = false;
+	bool rotFlag = false;
+
+	// Position
 	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::LEFT))
 	{
-		pos.x -= m_fSpeed * DT;
-
-		cout << "X " << (int)(pos[0] * 255)
-			<< "/Y " << (int)(pos[1] * 255) << endl;
+		v3Pos.x -= m_fSpeed * DT;
+		posFlag = true;
 	}
-
 	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::RIGHT))
 	{
-		pos.x += m_fSpeed * DT;
-
-		cout << "X " << (int)(pos[0] * 255)
-			<< "/Y " << (int)(pos[1] * 255) << endl;
+		v3Pos.x += m_fSpeed * DT;
+		posFlag = true;
 	}
-
 	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::UP))
 	{
-		pos.y += m_fSpeed * DT;
-
-		cout << "X " << (int)(pos[0] * 255)
-			<< "/Y " << (int)(pos[1] * 255) << endl;
+		v3Pos.y += m_fSpeed * DT;
+		posFlag = true;
 	}
-
 	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::DOWN))
 	{
-		pos.y -= m_fSpeed * DT;
-
-		cout << "X " << (int)(pos[0] * 255)
-			<< "/Y " << (int)(pos[1] * 255) << endl;
+		v3Pos.y -= m_fSpeed * DT;
+		posFlag = true;
 	}
 
-	transform->SetRelativePos(pos);
+
+	// Rotation
+	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::LCTRL))
+	{
+		if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::X))
+		{
+			v3Rot.x -= DT * XM_PI;
+			rotFlag = true;
+		}
+		if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::Y))
+		{
+			v3Rot.y -= DT * XM_PI;
+			rotFlag = true;
+		}
+		if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::Z))
+		{
+			v3Rot.z -= DT * XM_PI;
+			rotFlag = true;
+		}
+	}
+	else
+	{
+		if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::X))
+		{
+			v3Rot.x += DT * XM_PI;
+			rotFlag = true;
+		}
+		if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::Y))
+		{
+			v3Rot.y += DT * XM_PI;
+			rotFlag = true;
+		}
+		if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::Z))
+		{
+			v3Rot.z += DT * XM_PI;
+			rotFlag = true;
+		}
+	}
+
+	// monitoring
+	if (posFlag)
+	{
+		cout << "X " << (int)(v3Pos[0] * 255)
+			<< "/Y " << (int)(v3Pos[1] * 255) << endl;
+	}
+	if (rotFlag)
+	{
+		cout << "X " << (int)(v3Rot[0] * 180) << "им"
+			<< "/Y " << (int)(v3Rot[1] * 180) << "им"
+			<< "/Z " << (int)(v3Rot[2] * 180) << "им" << endl;
+	}
+
+	transform->SetRelativePos(v3Pos);
+	transform->SetRelativeRotation(v3Rot);
 }

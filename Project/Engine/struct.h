@@ -20,6 +20,7 @@ struct Vtx
 // 상수버퍼 구조체
 struct tTransform
 {
-	Vec4 v4WorldPos;
-	Vec4 v4WorldScale;
+	Matrix matWorld;
+	Matrix matView;
+	Matrix matProj;
 };

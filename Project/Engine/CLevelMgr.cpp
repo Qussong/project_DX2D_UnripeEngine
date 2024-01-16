@@ -45,7 +45,7 @@ void CLevelMgr::Init()
 		pObj->AddComponent(new CMeshRender);
 		pObj->AddComponent(new CPlayerScript);
 
-		pObj->Transform()->SetRelativePos(Vec3(0.5f, 0.f, 0.f));
+		pObj->Transform()->SetRelativePos(Vec3(0.5f, 0.f, 0.5f));
 		pObj->Transform()->SetRelativeScale(Vec3(0.6f, 0.6f, 1.f));
 
 		pObj->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"CircleMesh"));

@@ -14,12 +14,12 @@ private:
 	Vec3	m_v3RelativePostion;
 	Vec3	m_v3RelativeScale;
 	Vec3	m_v3RelativeRotation;
-	Vec3	m_arrDirection[3];
+	Vec3	m_arrDirection[(UINT)DIR_TYPE::END];
 	Matrix	m_matWorld;
 
 public:
-	virtual void Begin() override;
-	virtual void Tick() override;
+	virtual void Begin() override {};
+	virtual void Tick() override {};
 	virtual void FinalTick() override;
 	virtual void UpdateData() override;
 
