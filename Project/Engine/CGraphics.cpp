@@ -3,8 +3,7 @@
 
 CGraphics::CGraphics()
 	: m_hWnd(nullptr)
-	, m_iWidth(0)
-	, m_iHeight(0)
+	, m_v2Resolution{}
 	, m_arrClearColor{}
 	, m_bStandByMode(false)
 	, m_arrCB{}
@@ -24,11 +23,11 @@ CGraphics::~CGraphics()
 	}
 }
 
-int CGraphics::Init(HWND _hWnd, uint32 _width, uint32 _height)
+int CGraphics::Init(HWND _hWnd, float _width, float _height)
 {
 	m_hWnd = _hWnd;
-	m_iWidth = _width;
-	m_iHeight = _height;
+	m_v2Resolution.x = _width;
+	m_v2Resolution.y = _height;
 
 	SetWindow();
 
@@ -50,8 +49,8 @@ void CGraphics::RenderBegin()
 	{
 		viewport.TopLeftX = 0.f;
 		viewport.TopLeftY = 0.f;
-		viewport.Width = (FLOAT)m_iWidth;
-		viewport.Height = (FLOAT)m_iHeight;
+		viewport.Width = m_v2Resolution.x;
+		viewport.Height = m_v2Resolution.y;
 		viewport.MinDepth = 0.f;
 		viewport.MaxDepth = 1.f;
 	}
@@ -84,7 +83,7 @@ void CGraphics::RenderEnd()
 
 void CGraphics::SetWindow()
 {
-	RECT rt = { 0, 0, (LONG)m_iWidth, (LONG)m_iHeight };
+	RECT rt = { 0, 0, (LONG)m_v2Resolution.x, (LONG)m_v2Resolution.y };
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, false);
 	int resizeWindowWidth = rt.right - rt.left;
 	int resizeWindowHeight = rt.bottom - rt.top;
@@ -98,8 +97,8 @@ void CGraphics::DeviceAndSwapChain()
 {
 	DXGI_SWAP_CHAIN_DESC desc = {};
 	{
-		desc.BufferDesc.Width = m_iWidth;
-		desc.BufferDesc.Height = m_iHeight;
+		desc.BufferDesc.Width = static_cast<UINT>(m_v2Resolution.x);
+		desc.BufferDesc.Height = static_cast<UINT>(m_v2Resolution.y);
 		desc.BufferDesc.RefreshRate.Numerator = 60;
 		desc.BufferDesc.RefreshRate.Denominator = 1;
 		desc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
@@ -153,8 +152,8 @@ void CGraphics::DepthStencilView()
 
 	D3D11_TEXTURE2D_DESC desc = {};
 	{
-		desc.Width = m_iWidth;
-		desc.Height = m_iHeight;
+		desc.Width = static_cast<UINT>(m_v2Resolution.x);
+		desc.Height = static_cast<UINT>(m_v2Resolution.y);
 		desc.MipLevels = 1;
 		desc.ArraySize = 1;
 		desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;

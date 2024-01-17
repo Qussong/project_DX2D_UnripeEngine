@@ -42,12 +42,12 @@ void CTransform::FinalTick()
 
 void CTransform::UpdateData()
 {
-	tTransform transform = {};
-	transform.matWorld = m_matWorld;
+	tTransform tCBTransform = {};
+	tCBTransform.matWorld = m_matWorld;
 
 	// 0번 Register 에 바인딩
 	uint32 registerNum = 0;
 	CConstantBuffer* pCB = GRAPHICS->GetConstantBuffer(CB_TYPE::TRANSFORM);
-	pCB->SetData(&transform);
+	pCB->SetData(&g_tTransform);
 	pCB->UpdateData(registerNum);
 }

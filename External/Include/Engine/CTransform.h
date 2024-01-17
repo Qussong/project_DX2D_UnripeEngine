@@ -11,11 +11,11 @@ public:
 	virtual ~CTransform();
 
 private:
-	Vec3	m_v3RelativePostion;
-	Vec3	m_v3RelativeScale;
-	Vec3	m_v3RelativeRotation;
-	Vec3	m_arrDirection[(UINT)DIR_TYPE::END];
-	Matrix	m_matWorld;
+	Vec3		m_v3RelativePostion;					// S
+	Vec3		m_v3RelativeScale;						// R
+	Vec3		m_v3RelativeRotation;					// T
+	Vec3		m_arrDirection[(UINT)DIR_TYPE::END];	// Direction
+	Matrix		m_matWorld;								// WorldMatrix
 
 public:
 	virtual void Begin() override {};
@@ -32,7 +32,6 @@ public:
 	Vec3 GetRelativePos() { return m_v3RelativePostion; }
 	Vec3 GetRelativeScale() { return m_v3RelativeScale; }
 	Vec3 GetRelativeRotation() { return m_v3RelativeRotation; }
-	Matrix GetWorldMatrix() { return m_matWorld; }
 	Vec3 GetDirection(DIR_TYPE _dir) { return m_arrDirection[(uint32)_dir]; }
+	Matrix GetWorldMatrix() { return m_matWorld; }
 };
-

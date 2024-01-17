@@ -27,6 +27,5 @@ public:
 	CGameObject* GetOwner() { return m_pOwner; }
 
 	void SetOwner(CGameObject* _owner) { m_pOwner = _owner; }
-
 };
 

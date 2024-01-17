@@ -109,6 +109,12 @@
     <ClInclude Include="CLevelMgr.h">
       <Filter>04.Manager\Level</Filter>
     </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>07.Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CCameraScript.h">
+      <Filter>09.Script\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -182,6 +188,15 @@
     </ClCompile>
     <ClCompile Include="CLevelMgr.cpp">
       <Filter>04.Manager\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>07.Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CCameraScript.cpp">
+      <Filter>09.Script\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="extern.cpp">
+      <Filter>01.Header\etc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +289,12 @@
     </Filter>
     <Filter Include="04.Manager\Level">
       <UniqueIdentifier>{2bba6f46-8020-4dfd-86c1-f6570ce64e08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Component\Camera">
+      <UniqueIdentifier>{c1929d68-356f-4da3-96dd-ddd6403bd448}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.Script\Camera">
+      <UniqueIdentifier>{345ae071-0920-4464-b4aa-536b0aae95e5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

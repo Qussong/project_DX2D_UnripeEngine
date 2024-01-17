@@ -3,15 +3,14 @@
 
 CEngine::CEngine()
 	: m_hWnd(nullptr)
-	, m_iWidth(0)
-	, m_iHeight(0)
+	, m_v2Resolution{}
 
 {
 }
 
 CEngine::~CEngine()
 {
-	uint32 size = m_vecObj.size();
+	size_t size = m_vecObj.size();
 	for (size_t i = 0; i < size; i++)
 	{
 		if (nullptr != m_vecObj[i])
@@ -26,11 +25,11 @@ int CEngine::Init(HWND _hWnd, uint32 _width, uint32 _height)
 {
 	// member init
 	m_hWnd = _hWnd;
-	m_iWidth = _width;
-	m_iHeight = _height;
+	m_v2Resolution.x = static_cast<float>(_width);
+	m_v2Resolution.y = static_cast<float>(_height);
 
 	// Device, Context, SwapChain init
-	CGraphics::GetInst()->Init(m_hWnd, m_iWidth, m_iHeight);
+	CGraphics::GetInst()->Init(m_hWnd, m_v2Resolution.x, m_v2Resolution.y);
 
 	// Manager init
 	CTimeMgr::GetInst()->Init();

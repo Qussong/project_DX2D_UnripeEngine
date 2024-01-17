@@ -86,8 +86,8 @@ void CPlayerScript::Tick()
 	// monitoring
 	if (posFlag)
 	{
-		cout << "X " << (int)(v3Pos[0] * 255)
-			<< "/Y " << (int)(v3Pos[1] * 255) << endl;
+		cout << "X " << (int)(v3Pos[0] * GRAPHICS->GetResolution().x / 2)
+			<< "/Y " << (int)(v3Pos[1] * GRAPHICS->GetResolution().y / 2) << endl;
 	}
 	if (rotFlag)
 	{

@@ -12,10 +12,7 @@ class CEngine
 
 private:
 	HWND		m_hWnd;
-
-	// Resolution
-	int32		 m_iWidth;
-	int32		 m_iHeight;
+	Vec2		m_v2Resolution;
 
 private:
 	vector<CGameObject*>	m_vecObj;

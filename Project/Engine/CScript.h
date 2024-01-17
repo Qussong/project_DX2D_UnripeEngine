@@ -12,5 +12,11 @@ public:
 
 private:
     uint32 m_iScriptType;
+
+public:
+    //virtual void Begin() = 0;
+    //virtual void Tick() = 0;
+    //virtual void FinalTick() = 0;
+    //virtual void UpdateData() = 0;
 };
 

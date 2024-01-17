@@ -67,7 +67,7 @@ void CKeyMgr::Tick()
 	else
 	{
 		SHORT keyState = 0;
-		SHORT pressed = 0x8001;
+		SHORT pressed = static_cast<SHORT>(0x8001);
 
 		for (size_t i = 0; i < m_vecKeyData.size(); ++i)
 		{

@@ -11,7 +11,7 @@ CGameObject::CGameObject()
 CGameObject::~CGameObject()
 {
 	// basicComp
-	uint32 size = (uint32)COMPONENT_TYPE::END;
+	size_t size = (uint32)COMPONENT_TYPE::END;
 	for (size_t i = 0; i < size; i++)
 	{
 		if (nullptr != m_arrBasicComp[i])

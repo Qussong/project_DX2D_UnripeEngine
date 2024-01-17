@@ -17,10 +17,11 @@ struct Vtx
 	Vec2	v2UV;
 };
 
-// 상수버퍼 구조체
+// 상수버퍼 대응 구조체
 struct tTransform
 {
 	Matrix matWorld;
 	Matrix matView;
 	Matrix matProj;
 };
+extern tTransform g_tTransform;

@@ -54,4 +54,10 @@ DirectX 2D Engine
 &nbsp;&nbsp;- 변경된 상수버퍼 대응 구조체에 따라 쉐이더의 상수버퍼구조체 수정<br>
 &nbsp;&nbsp;- std2d.fx) VS 연산수정 (World, View, Projection 행렬계산)<br>
 &nbsp;&nbsp;- CPlayerScript) x,y,z 축 회전 구현<br>
+
+**_24/01/17_** :<br>
+&nbsp;&nbsp;- CEngine, CGraphics) 해상도(Resolution) 값 타입 float->Vec2 변경<br>
+&nbsp;&nbsp;- 상수버퍼 대응 구조체(tTransform) 객체 전역변수로 선언 (변수명 : g_tTransform)<br>
+&nbsp;&nbsp;- CCamera 클래스 추가 (View, Porjection 변환 기능 추가중)<br>
+&nbsp;&nbsp;- CCameraScript 클래스 추가<br>
 &nbsp;&nbsp;- <br>

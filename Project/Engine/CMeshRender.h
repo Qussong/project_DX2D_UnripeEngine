@@ -17,6 +17,5 @@ private:
     virtual void FinalTick();
     virtual void UpdateData();
     virtual void Render();
-
 };
 

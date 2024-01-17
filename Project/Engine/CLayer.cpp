@@ -7,7 +7,7 @@ CLayer::CLayer()
 
 CLayer::~CLayer()
 {
-	uint32 size = m_vecParent.size();
+	size_t size = m_vecParent.size();
 	for (size_t i = 0; i < size; ++i)
 	{
 		delete m_vecParent[i];
@@ -17,7 +17,7 @@ CLayer::~CLayer()
 
 void CLayer::Begin()
 {
-	uint32 size = m_vecParent.size();
+	size_t size = m_vecParent.size();
 	for (size_t i = 0; i < size; ++i)
 	{
 		m_vecParent[i]->Begin();
@@ -26,7 +26,7 @@ void CLayer::Begin()
 
 void CLayer::Tick()
 {
-	uint32 size = m_vecParent.size();
+	size_t size = m_vecParent.size();
 	for (size_t i = 0; i < size; ++i)
 	{
 		m_vecParent[i]->Tick();
@@ -35,7 +35,7 @@ void CLayer::Tick()
 
 void CLayer::FinalTick()
 {
-	uint32 size = m_vecParent.size();
+	size_t size = m_vecParent.size();
 	for (size_t i = 0; i < size; ++i)
 	{
 		m_vecParent[i]->FinalTick();
@@ -44,7 +44,7 @@ void CLayer::FinalTick()
 
 void CLayer::Render()
 {
-	uint32 size = m_vecParent.size();
+	size_t size = m_vecParent.size();
 	for (size_t i = 0; i < size; ++i)
 	{
 		m_vecParent[i]->Render();
