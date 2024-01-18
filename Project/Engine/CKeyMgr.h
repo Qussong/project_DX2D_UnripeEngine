@@ -20,4 +20,3 @@ public:
 	void Init();
 	void Tick();
 };
-
