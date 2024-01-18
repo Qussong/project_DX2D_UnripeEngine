@@ -2,6 +2,8 @@
 #include "CConstantBuffer.h"
 
 CConstantBuffer::CConstantBuffer()
+	: m_elementSize(0)
+	, m_elementCnt(0)
 {
 	SetName(L"ConstantBuffer");
 }

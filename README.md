@@ -57,11 +57,14 @@ DirectX 2D Engine
 
 **_24/01/17_** :<br>
 &nbsp;&nbsp;- CEngine, CGraphics) 해상도(Resolution) 값 타입 float->Vec2 변경<br>
-&nbsp;&nbsp;- 상수버퍼 대응 구조체(tTransform) 객체 전역변수로 선언 (변수명 : g_tTransform)<br>
+&nbsp;&nbsp;- CConstantBuffer) 상수버퍼 대응 구조체(tTransform) 객체 전역변수로 선언 (변수명 : g_tTransform)<br>
 &nbsp;&nbsp;- CCamera 클래스 추가 (View, Porjection 변환 기능 추가중)<br>
 &nbsp;&nbsp;- CCameraScript 클래스 추가<br>
 
 **_24/01/18_** :<br>
 &nbsp;&nbsp;- Camera) View변환 구현 (변환행렬 완성 : 카메라 이동변환, 회전변환 추가)<br>
 &nbsp;&nbsp;- CameraScript) 카메라 위치이동 구현(W,A,S,D)<br>
+&nbsp;&nbsp;- CKeyMgr) 마우스 드레그 관련 멤버, 함수 추가 (m_v2MouseDragDir, GetMouseDragDir())<br>
+&nbsp;&nbsp;- CameraScript) 카메라 회전이동 구현(마우스 드레그)<br>
+&nbsp;&nbsp;- <br>
 &nbsp;&nbsp;- <br>

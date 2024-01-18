@@ -24,4 +24,3 @@ struct tTransform
 	Matrix matView;
 	Matrix matProj;
 };
-extern tTransform g_tTransform;

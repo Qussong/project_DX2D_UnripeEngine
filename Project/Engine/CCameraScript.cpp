@@ -3,6 +3,7 @@
 
 CCameraScript::CCameraScript()
 	: m_fCamSpeed(1.f)
+	, m_fDragSpeed(3.f * 180.f)
 {
 }
 
@@ -35,6 +36,16 @@ void CCameraScript::Tick()
 	GetOwner()->Transform()->SetRelativePos(v3Pos);
 
 	// 회전이동
+	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::RBTN))
+	{
+		Vec3 v3Rot = GetOwner()->Transform()->GetRelativeRotation();
+		Vec2 v2DragDir = CKeyMgr::GetInst()->GetMouseDragDir();
+
+		v3Rot.x += (v2DragDir.x * (XM_PI / 180) * m_fDragSpeed * DT);
+		v3Rot.y += (v2DragDir.y * (XM_PI / 180) * m_fDragSpeed * DT);
+		GetOwner()->Transform()->SetRelativeRotation(v3Rot);
+	}
 
 	// FOV (확대, 축소)
+
 }

@@ -21,7 +21,7 @@ int g_keySync[(int)KEY::KEY_END]
 };
 
 CKeyMgr::CKeyMgr()
-	: m_vMousePos(0.f, 0.f)
+	: m_v2CurMousePos(0.f, 0.f)
 {
 }
 
@@ -99,6 +99,13 @@ void CKeyMgr::Tick()
 		POINT pt = {};
 		GetCursorPos(&pt);
 		ScreenToClient(CEngine::GetInst()->GetWindowHandle(), &pt);
-		m_vMousePos = Vec2((float)pt.x, (float)pt.y);
+		m_v2CurMousePos = Vec2((float)pt.x, (float)pt.y);
+
+		// 마우스 드래그 방향 계산
+		m_v2MouseDragDir = m_v2PrevMousePos - m_v2CurMousePos;
+		m_v2MouseDragDir.Normalize();
+
+		// 현재 커서 위치 기록
+		m_v2PrevMousePos = m_v2CurMousePos;
 	}
 }
