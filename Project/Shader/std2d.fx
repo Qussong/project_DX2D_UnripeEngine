@@ -8,6 +8,7 @@ cbuffer TRANSFORM : register(b0)
     row_major matrix g_matProj;
 }
 
+// 정점 구조체 Vtx 로부터 넘겨받는 정보
 struct VS_IN
 {
     float3 vPos     : POS;  // Semantic

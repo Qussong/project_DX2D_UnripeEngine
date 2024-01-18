@@ -73,9 +73,9 @@ enum class COMPONENT_TYPE
 
 enum class DIR_TYPE
 {
-	UP,
-	FRONT,
-	RIGHT,
+	RIGHT,	// x
+	UP,		// y
+	FRONT,	// z
 
 	END,
 };

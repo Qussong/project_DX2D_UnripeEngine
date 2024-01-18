@@ -24,10 +24,16 @@ private:
 	Matrix m_matView;	// View 변환 행렬
 	Matrix m_matProj;	// Projection 변환 행렬
 	
+private:
+	void ViewMatrix();			// View 변환 행렬 계산
+	void ProjectionMatrix();	// Projection 변환 행렬 계산
+
 public:
 	virtual void Begin() override {};
 	virtual void Tick() override {};
 	virtual void FinalTick() override;
 	virtual void UpdateData() override {};
+
+
 };
 

@@ -23,16 +23,18 @@ void CTransform::FinalTick()
 	Matrix matRotX = XMMatrixRotationX(m_v3RelativeRotation.x);
 	Matrix matRotY = XMMatrixRotationY(m_v3RelativeRotation.y);
 	Matrix matRotZ = XMMatrixRotationZ(m_v3RelativeRotation.z);
-	Matrix matTranslation = XMMatrixTranslation(m_v3RelativePostion.x, m_v3RelativePostion.y, m_v3RelativePostion.z);
+	Matrix matTrans = XMMatrixTranslation(m_v3RelativePostion.x, m_v3RelativePostion.y, m_v3RelativePostion.z);
 
 	// World 행렬
 	m_matWorld = XMMatrixIdentity();
-	m_matWorld = m_matWorld * matScale * (matRotX * matRotY * matRotZ) * matTranslation;
+	m_matWorld = m_matWorld * matScale * (matRotX * matRotY * matRotZ) * matTrans;
 
 	// 방향벡터
-	m_arrDirection[(UINT)DIR_TYPE::UP] = Vec3(1.f, 0.f, 0.f);
-	m_arrDirection[(UINT)DIR_TYPE::FRONT] = Vec3(0.f, 1.f, 0.f);
-	m_arrDirection[(UINT)DIR_TYPE::RIGHT] = Vec3(0.f, 0.f, 1.f);
+	m_arrDirection[(UINT)DIR_TYPE::RIGHT]	= Vec3(1.f, 0.f, 0.f);
+	m_arrDirection[(UINT)DIR_TYPE::UP]		= Vec3(0.f, 1.f, 0.f);
+	m_arrDirection[(UINT)DIR_TYPE::FRONT]	= Vec3(0.f, 0.f, 1.f);
+	// 각 축에 대한 기저 벡터에 월드 행렬을 곱한다.
+	// 결과 값을 Normalize 함으로써 현재 바라보고 있는 방향 벡터를 구한다.
 	for (size_t i = 0; i < (UINT)DIR_TYPE::END; ++i)
 	{
 		m_arrDirection[i] = XMVector3TransformNormal(m_arrDirection[i], m_matWorld);
@@ -42,8 +44,7 @@ void CTransform::FinalTick()
 
 void CTransform::UpdateData()
 {
-	tTransform tCBTransform = {};
-	tCBTransform.matWorld = m_matWorld;
+	g_tTransform.matWorld = m_matWorld;
 
 	// 0번 Register 에 바인딩
 	uint32 registerNum = 0;
