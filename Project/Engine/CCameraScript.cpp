@@ -3,7 +3,7 @@
 
 CCameraScript::CCameraScript()
 	: m_fCamSpeed(1.f)
-	, m_fDragSpeed(3.f * 180.f)
+	, m_fDragSpeed(10.f * 180.f)
 {
 }
 
@@ -40,9 +40,14 @@ void CCameraScript::Tick()
 	{
 		Vec3 v3Rot = GetOwner()->Transform()->GetRelativeRotation();
 		Vec2 v2DragDir = CKeyMgr::GetInst()->GetMouseDragDir();
+		//////////////////////////////////////////////////////////////////////////
+		// 회전이동시 드래그 값의 변화값에서 
+		// x의 변화량을 y에, y의 변화량을 x에 적용시키는 이유 : 
+		// x축 드래그하면 y축으로 회전하고, y축으로 드래그하면 x축으로 회전한다.
+		//////////////////////////////////////////////////////////////////////////
+		v3Rot.x += (v2DragDir.y * (XM_PI / 180) * m_fDragSpeed * DT);
+		v3Rot.y += (v2DragDir.x * (XM_PI / 180) * m_fDragSpeed * DT);
 
-		v3Rot.x += (v2DragDir.x * (XM_PI / 180) * m_fDragSpeed * DT);
-		v3Rot.y += (v2DragDir.y * (XM_PI / 180) * m_fDragSpeed * DT);
 		GetOwner()->Transform()->SetRelativeRotation(v3Rot);
 	}
 

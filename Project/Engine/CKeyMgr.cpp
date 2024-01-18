@@ -102,7 +102,7 @@ void CKeyMgr::Tick()
 		m_v2CurMousePos = Vec2((float)pt.x, (float)pt.y);
 
 		// 마우스 드래그 방향 계산
-		m_v2MouseDragDir = m_v2PrevMousePos - m_v2CurMousePos;
+		m_v2MouseDragDir = m_v2CurMousePos - m_v2PrevMousePos;
 		m_v2MouseDragDir.Normalize();
 
 		// 현재 커서 위치 기록
