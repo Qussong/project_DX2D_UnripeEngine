@@ -15,6 +15,9 @@ public:
 	void Init();
 
 private:
+	void Mesh();
+	void Shader();
+
 	template<typename T>
 	ASSET_TYPE GetAssetType();
 

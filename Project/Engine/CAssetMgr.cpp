@@ -24,6 +24,12 @@ CAssetMgr::~CAssetMgr()
 
 void CAssetMgr::Init()
 {
+	Mesh();		// Mesh 持失
+	Shader();	// shader 持失
+}
+
+void CAssetMgr::Mesh()
+{
 	// Rect Mesh
 	{
 		Vtx		arrRect[4] = {};
@@ -117,11 +123,17 @@ void CAssetMgr::Init()
 			(uint32)vecIdx.size());
 		AddAsset(L"CircleMesh", pCircleMesh);
 	}
+}
 
-	// shader 
+void CAssetMgr::Shader()
+{
 	CGraphicShader* pShader = new CGraphicShader;
+
 	pShader->VertexShader(L"std2d.fx", "VS_Std2D");
 	pShader->PixelShader(L"std2d.fx", "PS_Std2D");
+	pShader->SetRSType(RS_TYPE::CULL_NONE);	// default = CULL_BACK
+	pShader->SetDSType(DS_TYPE::LESS);		// default = LESS
+	pShader->SetBSType(BS_TYPE::DEFAULT);	// default = DEFAULT
 
 	AddAsset(L"Std2DShader", pShader);
 }

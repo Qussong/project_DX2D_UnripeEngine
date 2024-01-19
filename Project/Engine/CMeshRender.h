@@ -11,10 +11,9 @@ public:
     virtual ~CMeshRender();
 
 private:
-    // Owner(GameObject) ∞° µπ∑¡¡‹
-    virtual void Begin();
-    virtual void Tick();
-    virtual void FinalTick();
+    virtual void Begin() {};
+    virtual void Tick() {};
+    virtual void FinalTick() {};
     virtual void UpdateData();
     virtual void Render();
 };

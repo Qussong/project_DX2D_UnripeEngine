@@ -71,5 +71,10 @@ DirectX 2D Engine
 &nbsp;&nbsp;- Camera) 카메라 투영(Projection)변환 적용 및 원근투영, 직교투영 구현 (투영방식 변환키 : P)<br>
 &nbsp;&nbsp;- Clinet) 클라이언트 프로젝트 미리컴파일된 헤더 사용 설정 (pch_client)<br>
 &nbsp;&nbsp;- CameraScript) 마우스 휠 조작을 통한 Zoom In/Zoom Out 조작기능 추가<br>
+&nbsp;&nbsp;- Graphics) RasterizerState 추가 <br>
+&nbsp;&nbsp;- Graphics) DepthStencilState 추가 <br>
+&nbsp;&nbsp;- Graphics) BlendState 추가 <br>
+&nbsp;&nbsp;- GraphicShader) Mesh, Shader 생성 함수 분리 및 Shader 생성함수에 RS/DS/BS 적용<br>
+&nbsp;&nbsp;- CAssetMgr) Shader 생성시 RS/DS/BS 값 설정 <br>
+&nbsp;&nbsp;- RasterizerState 설정 CULL_NONE 으로 후면 이미지도 화면에 출력됨<br>
 &nbsp;&nbsp;- <br>
-

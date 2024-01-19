@@ -4,6 +4,9 @@
 CGraphicShader::CGraphicShader()
 	: Super(ASSET_TYPE::GRAPHIC_SHADER)
 	, m_Topology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
+	, m_eRSType(RS_TYPE::CULL_BACK)
+	, m_eDSType(DS_TYPE::LESS)
+	, m_eBSType(BS_TYPE::DEFAULT)
 {
 	SetName(L"GraphicShader");
 }
@@ -19,6 +22,13 @@ void CGraphicShader::UpdateData()
 
 	CONTEXT->VSSetShader(m_VS.Get(), nullptr, 0);
 	CONTEXT->PSSetShader(m_PS.Get(), nullptr, 0);
+	// + Hull Shader
+	// + Domain Shader
+	// + Geometry Shader
+
+	CONTEXT->RSSetState(GRAPHICS->GetRSState(m_eRSType).Get());
+	CONTEXT->OMSetDepthStencilState(GRAPHICS->GetDSState(m_eDSType).Get(), 0);
+	CONTEXT->OMSetBlendState(GRAPHICS->GetBSState(m_eBSType).Get(), nullptr, 0xffffffff);
 }
 
 void CGraphicShader::Layout()

@@ -7,6 +7,9 @@ CGraphics::CGraphics()
 	, m_arrClearColor{}
 	, m_bStandByMode(false)
 	, m_arrCB{}
+	, m_arrRS{}
+	, m_arrDS{}
+	, m_arrBS{}
 {
 }
 
@@ -35,6 +38,24 @@ int CGraphics::Init(HWND _hWnd, float _width, float _height)
 	RenderTargetView();
 	DepthStencilView();
 	CostantBuffer();
+	
+	if (FAILED(RasterizerState()))
+	{
+		MessageBoxA(nullptr, "Rasterizer State Create Failed", "Rasterizer Error", MB_OK);
+		_exit(EXIT_FAILURE);
+	}
+
+	if (FAILED(DepthStencilState()))
+	{
+		MessageBoxA(nullptr, "DepthStencil State Create Failed", "DepthStencil Error", MB_OK);
+		_exit(EXIT_FAILURE);
+	}
+
+	if (FAILED(BlendState()))
+	{
+		MessageBoxA(nullptr, "Blend State Create Failed", "Blend Error", MB_OK);
+		_exit(EXIT_FAILURE);
+	}
 
 	return S_OK;
 }
@@ -183,4 +204,170 @@ void CGraphics::CostantBuffer()
 		pCB->Create(sizeof(tTransform), 1);
 		m_arrCB[(UINT)CB_TYPE::TRANSFORM] = pCB;
 	}
+}
+
+int CGraphics::RasterizerState()
+{
+	//	CULL_BACK	0
+	//	CULL_FRONT	1
+	//	CULL_NONE	2
+	//	WIRE_FRAME	3
+
+	HRESULT hr = S_OK;	// ↔ E_FAIl
+	D3D11_RASTERIZER_DESC desc = {};
+
+	// CULL_BACK 은 기본값이기에 따로 생성할 필요가 없다.
+	m_arrRS[(uint32)RS_TYPE::CULL_BACK] = nullptr;
+
+	m_arrRS[(uint32)RS_TYPE::CULL_FRONT] = nullptr;
+	{
+		desc.FillMode = D3D11_FILL_SOLID;
+		desc.CullMode = D3D11_CULL_FRONT;
+		//desc.FrontCounterClockwise;
+		//desc.DepthBias;
+		//desc.DepthBiasClamp;
+		//desc.SlopeScaledDepthBias;
+		//desc.DepthClipEnable;
+		//desc.ScissorEnable;
+		//desc.MultisampleEnable;
+		//desc.AntialiasedLineEnable;
+	}
+	hr = DEVICE->CreateRasterizerState(&desc, m_arrRS[(uint32)RS_TYPE::CULL_FRONT].GetAddressOf());
+	if (FAILED(hr)) return E_FAIL;
+
+	m_arrRS[(uint32)RS_TYPE::CULL_NONE] = nullptr;
+	{
+		desc.FillMode = D3D11_FILL_SOLID;
+		desc.CullMode = D3D11_CULL_NONE;
+	}
+	hr = DEVICE->CreateRasterizerState(&desc, m_arrRS[(uint32)RS_TYPE::CULL_NONE].GetAddressOf());
+	if (FAILED(hr)) return E_FAIL;
+
+	m_arrRS[(uint32)RS_TYPE::WIRE_FRAME] = nullptr;
+	{
+		desc.FillMode = D3D11_FILL_WIREFRAME;
+		desc.CullMode = D3D11_CULL_NONE;
+	}
+	hr = DEVICE->CreateRasterizerState(&desc, m_arrRS[(uint32)RS_TYPE::WIRE_FRAME].GetAddressOf());
+	if (FAILED(hr)) return E_FAIL;
+
+	return hr;
+}
+
+int CGraphics::DepthStencilState()
+{
+	// LESS				0
+	// LESS_EQUAL		1
+	// GRATER			2
+	// GRATER_EQUAL		3
+	// NO_TEST			4
+	// NO_WRITE			5
+	// NO_TEST_NO_WRITE	6	
+
+	HRESULT hr = S_OK;	// ↔ E_FAIl
+	D3D11_DEPTH_STENCIL_DESC desc = {};
+
+	// LESS 는 기본값이기에 따로 생성할 필요가 없다.
+	m_arrDS[(uint32)DS_TYPE::LESS] = nullptr;
+
+	m_arrDS[(uint32)DS_TYPE::LESS_EQUAL] = nullptr;
+	{
+		desc.DepthEnable = true;
+		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+		desc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
+		desc.StencilEnable = false;
+		//desc.StencilReadMask;
+		//desc.StencilWriteMask;
+		//desc.FrontFace;
+		//desc.BackFace;
+	}
+	hr = DEVICE->CreateDepthStencilState(&desc, m_arrDS[(uint32)DS_TYPE::LESS_EQUAL].GetAddressOf());
+	if (FAILED(hr)) return E_FAIL;
+
+	m_arrDS[(uint32)DS_TYPE::GRATER] = nullptr;
+	{
+		desc.DepthEnable = true;
+		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+		desc.DepthFunc = D3D11_COMPARISON_GREATER;
+		desc.StencilEnable = false;
+	}
+	hr = DEVICE->CreateDepthStencilState(&desc, m_arrDS[(uint32)DS_TYPE::GRATER].GetAddressOf());
+	if (FAILED(hr)) return E_FAIL;
+
+	m_arrDS[(uint32)DS_TYPE::GRATER_EQUAL] = nullptr;
+	{
+		desc.DepthEnable = true;
+		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+		desc.DepthFunc = D3D11_COMPARISON_GREATER_EQUAL;
+		desc.StencilEnable = false;
+	}
+	hr = DEVICE->CreateDepthStencilState(&desc, m_arrDS[(uint32)DS_TYPE::GRATER_EQUAL].GetAddressOf());
+	if (FAILED(hr)) return E_FAIL;
+
+	m_arrDS[(uint32)DS_TYPE::NO_TEST] = nullptr;
+	{
+		desc.DepthEnable = false;
+		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+		desc.DepthFunc = D3D11_COMPARISON_NEVER;
+		desc.StencilEnable = false;
+	}
+	hr = DEVICE->CreateDepthStencilState(&desc, m_arrDS[(uint32)DS_TYPE::NO_TEST].GetAddressOf());
+	if (FAILED(hr)) return E_FAIL;
+
+	m_arrDS[(uint32)DS_TYPE::NO_WRITE] = nullptr;
+	{
+		desc.DepthEnable = true;
+		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+		desc.DepthFunc = D3D11_COMPARISON_LESS;
+		desc.StencilEnable = false;
+	}
+	hr = DEVICE->CreateDepthStencilState(&desc, m_arrDS[(uint32)DS_TYPE::NO_WRITE].GetAddressOf());
+	if (FAILED(hr)) return E_FAIL;
+
+	m_arrDS[(uint32)DS_TYPE::NO_TEST_NO_WRITE] = nullptr;
+	{
+		desc.DepthEnable = false;
+		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+		desc.DepthFunc = D3D11_COMPARISON_NEVER;
+		desc.StencilEnable = false;
+	}
+	hr = DEVICE->CreateDepthStencilState(&desc, m_arrDS[(uint32)DS_TYPE::NO_TEST_NO_WRITE].GetAddressOf());
+	if (FAILED(hr)) return E_FAIL;
+
+	return hr;
+}
+
+int CGraphics::BlendState()
+{
+	// DEFAULT		0
+	// ALPHA_BLEND	1
+	// ONE_ONE		2
+
+	HRESULT hr = S_OK;	// ↔ E_FAIl
+	D3D11_BLEND_DESC desc = {};
+
+	// DEFAULT 는 기본값이기에 따로 생성할 필요가 없다.
+	m_arrBS[(uint32)BS_TYPE::DEFAULT] = nullptr;
+
+	m_arrBS[(uint32)BS_TYPE::ALPHA_BLEND] = nullptr;
+	{
+		desc.AlphaToCoverageEnable = false;
+		desc.IndependentBlendEnable = true;
+
+		// D3D11_RENDER_TARGET_BLEND_DESC RenderTarget[8];
+		desc.RenderTarget[0].BlendEnable = true;
+		desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+		desc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+		desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+		desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+		desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
+		desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+		desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+	}
+	hr = DEVICE->CreateBlendState(&desc, m_arrBS[(uint32)BS_TYPE::ALPHA_BLEND].GetAddressOf());
+	if (FAILED(hr)) { return E_FAIL; }
+
+	m_arrBS[(uint32)BS_TYPE::ONE_ONE] = nullptr;
+
+	return hr;
 }

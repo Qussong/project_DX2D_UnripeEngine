@@ -11,29 +11,16 @@ CMeshRender::~CMeshRender()
 {
 }
 
-void CMeshRender::Begin()
-{
-}
-
-void CMeshRender::Tick()
-{
-}
-
-void CMeshRender::FinalTick()
-{
-}
-
 void CMeshRender::UpdateData()
 {
-	if (nullptr != GetGraphicShader())
-		GetGraphicShader()->UpdateData();
-
 	GetMesh()->UpdateData();
 	GetOwner()->Transform()->UpdateData();
+	GetGraphicShader()->UpdateData();
 }
 
 void CMeshRender::Render()
 {
+	// 화면상에 출력되기 위해선 Mesh,Shader가 둘다 있어야한다.
 	if (nullptr == GetMesh() || nullptr == GetGraphicShader())
 		return;
 
