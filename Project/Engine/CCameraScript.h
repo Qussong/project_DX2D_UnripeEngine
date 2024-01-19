@@ -10,6 +10,7 @@ public:
 private:
 	float	m_fCamSpeed;
 	float	m_fDragSpeed;
+	float	m_fWheelSpeed;
 
 private:
 	virtual void Begin() override {};

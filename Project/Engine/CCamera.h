@@ -35,6 +35,13 @@ public:
 	PROJ_TYPE GetProjectionType() { return m_eProjType; }
 	void SetProjectionType(PROJ_TYPE _type) { m_eProjType = _type; }
 
+	float GetFOV() { return m_fFOV; }
+	void SetFOV(float _fov) { m_fFOV = _fov; }
+
+	float GetScale() { return m_fScale; }
+	void SetScale(float _scale) { m_fScale = _scale; }
+
+
 public:
 	virtual void Begin() override {};
 	virtual void Tick() override {};

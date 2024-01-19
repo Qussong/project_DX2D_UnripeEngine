@@ -19,7 +19,6 @@
 
 // engine
 #include <Engine/global.h>
-#include <Engine/CEngine.h>
 #ifdef _DEBUG
 #pragma comment(lib, "Engine\\Engine_d.lib")
 #else
