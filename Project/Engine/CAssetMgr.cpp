@@ -131,7 +131,7 @@ void CAssetMgr::Shader()
 
 	pShader->VertexShader(L"std2d.fx", "VS_Std2D");
 	pShader->PixelShader(L"std2d.fx", "PS_Std2D");
-	pShader->SetRSType(RS_TYPE::CULL_NONE);	// default = CULL_BACK
+	pShader->SetRSType(RS_TYPE::WIRE_FRAME);	// default = CULL_BACK
 	pShader->SetDSType(DS_TYPE::LESS);		// default = LESS
 	pShader->SetBSType(BS_TYPE::DEFAULT);	// default = DEFAULT
 

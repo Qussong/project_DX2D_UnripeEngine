@@ -13,7 +13,7 @@ DirectX 2D Engine
 **_24/01/12_** :<br>
 &nbsp;&nbsp;- PathMgr ) contentPath -> resourcePath, ShaderPath 변경 (Getter : GetResourcePath, GetShaderPath)<br>
 &nbsp;&nbsp;- CEngine ) 사각형 출력 test 코드 추가<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_Rect.png" width=250><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_Rect.png" width=300><br>
 &nbsp;&nbsp;- Debug 용 콘솔창 출력 코드 추가<br>
 &nbsp;&nbsp;- Client) 메모리 누수 체크 코드 추가<br>
 &nbsp;&nbsp;- CEngine) 상수버퍼 생성코드 추가 및 쉐이더 코드에 바인딩<br>
@@ -26,7 +26,7 @@ DirectX 2D Engine
 &nbsp;&nbsp;- CShader 클래스 추가<br>
 &nbsp;&nbsp;- CGraphicShader 클래스 추가(VS, PS 생성 및 세팅)<br>
 &nbsp;&nbsp;- Circle Mesh 출력코드 추가<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_Circle.png" width=250><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_Circle.png" width=300><br>
 &nbsp;&nbsp;- CConstantBuffer 클래스 추가 (상수버퍼 생성,바인딩 기능 분리)<br>
 &nbsp;&nbsp;- Client) 메모리 누수 발생 위치 체크 코드 추가 (new 재정의)
 
@@ -39,7 +39,7 @@ DirectX 2D Engine
 &nbsp;&nbsp;- CGraphics) 상수버퍼 멤버로 추가<br>
 &nbsp;&nbsp;- std2d.fx) Scale 연산코드 추가 (VS_Std2D)<br>
 &nbsp;&nbsp;- 객체 GameObjet화 하여 화면상에 여러개 출력<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_RectAndCircle.png" width=250><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_RectAndCircle.png" width=300><br>
 
 **_24/01/15_** :<br>
 &nbsp;&nbsp;- CScript 클래스 추가 (CGameObject 에 Script 관련 코드 추가)<br>
@@ -71,10 +71,9 @@ DirectX 2D Engine
 &nbsp;&nbsp;- Camera) 카메라 투영(Projection)변환 적용 및 원근투영, 직교투영 구현 (투영방식 변환키 : P)<br>
 &nbsp;&nbsp;- Clinet) 클라이언트 프로젝트 미리컴파일된 헤더 사용 설정 (pch_client)<br>
 &nbsp;&nbsp;- CameraScript) 마우스 휠 조작을 통한 Zoom In/Zoom Out 조작기능 추가<br>
-&nbsp;&nbsp;- Graphics) RasterizerState 추가 <br>
-&nbsp;&nbsp;- Graphics) DepthStencilState 추가 <br>
-&nbsp;&nbsp;- Graphics) BlendState 추가 <br>
-&nbsp;&nbsp;- GraphicShader) Mesh, Shader 생성 함수 분리 및 Shader 생성함수에 RS/DS/BS 적용<br>
+&nbsp;&nbsp;- Graphics) RasterizerState/DepthStencilState/BlendState 추가 <br>
+&nbsp;&nbsp;- GraphicShader) Mesh/Shader 생성 함수 분리 및 Shader 생성시 RS/DS/BS 적용<br>
 &nbsp;&nbsp;- CAssetMgr) Shader 생성시 RS/DS/BS 값 설정 <br>
-&nbsp;&nbsp;- RasterizerState 설정 CULL_NONE 으로 후면 이미지도 화면에 출력됨<br>
-&nbsp;&nbsp;- <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_Circle_Wireframe.png" width=350><br>
+
+<!-- &nbsp;&nbsp;- <br> -->
