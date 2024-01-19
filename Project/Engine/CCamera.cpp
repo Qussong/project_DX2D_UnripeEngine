@@ -3,16 +3,16 @@
 
 CCamera::CCamera()
 	: Super(COMPONENT_TYPE::CAMERA)
+	, m_eProjType(PROJ_TYPE::PERSPECTIVE)
 	, m_fFOV(XM_PI / 2.f)	// 90º
-	, m_fWidth(0.f)
 	, m_fScale(1.f)
 	, m_v2Resolution(Vec2(0.f, 0.f))
 	, m_fAspectRatio(1.f)
-	, m_fNear(0.1f)
+	, m_fNear(1.f)
 	, m_fFar(1000.f)
-	, m_matView(XMMatrixIdentity())
-	, m_matProj(XMMatrixIdentity())
 {
+	m_matView = XMMatrixIdentity();
+	m_matProj = XMMatrixIdentity();
 	m_v2Resolution = GRAPHICS->GetResolution();
 	m_fAspectRatio = m_v2Resolution.x / m_v2Resolution.y;
 }
@@ -50,25 +50,31 @@ void CCamera::ViewMatrix()
 	// 역행렬을 곱해주는것이기에 곱해준 순서의 반대 순서로 연산해준다.
 	// 순방향 : SRT -> 역방향 : TRS
 	m_matView = matRevTrans * matRevRot;
-
-	// 상수버퍼 대응 구조체 값 세팅
-	g_tTransform.matView = m_matView;
 }
 
 void CCamera::ProjectionMatrix()
 {
 	// 직교투영
-	float fViewWidth = m_v2Resolution.x * m_fScale;
-	float fViewHeight = (m_v2Resolution.x / m_fAspectRatio) * m_fScale;
-	m_matProj = XMMatrixOrthographicLH(fViewWidth, fViewHeight, m_fNear, m_fFar);
-
-	// 상수버퍼 대응 구조체 값 세팅
-	g_tTransform.matProj = m_matProj;
-	g_tTransform.matProj = XMMatrixIdentity();
+	if (PROJ_TYPE::ORTHOGRAPHIC == m_eProjType)
+	{
+		float fViewWidth = m_v2Resolution.x * m_fScale;
+		float fViewHeight = m_v2Resolution.y * m_fScale;
+		m_matProj = XMMatrixOrthographicLH(fViewWidth, fViewHeight, m_fNear, m_fFar);
+	}
+	// 원근투영
+	else
+	{
+		m_matProj = XMMatrixPerspectiveFovLH(m_fFOV, m_fAspectRatio, m_fNear, m_fFar);
+	}
 }
 
 void CCamera::FinalTick()
 {
 	ViewMatrix();
 	ProjectionMatrix();
+
+	// 상수버퍼 대응 구조체 값 세팅
+	g_tTransform.matView = m_matView;
+	g_tTransform.matProj = m_matProj;
+	g_tTransform.matProj = XMMatrixIdentity();
 }

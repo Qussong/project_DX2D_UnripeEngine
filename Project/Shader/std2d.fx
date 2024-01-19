@@ -28,13 +28,13 @@ VS_OUT VS_Std2D(VS_IN _in)
     VS_OUT output = (VS_OUT) 0.f;
     
     // 연산순서 : local -> World -> View -> Projection
-    float4 v4WorldPos = mul(float4(_in.vPos, 1.f), g_matWorld);
-    float4 v4ViewPos = mul(v4WorldPos, g_matView);
-    float4 v4ProjPos = mul(v4ViewPos, g_matProj);
+    float4 v4WorldPos   = mul(float4(_in.vPos, 1.f), g_matWorld);
+    float4 v4ViewPos    = mul(v4WorldPos, g_matView);
+    float4 v4ProjPos    = mul(v4ViewPos, g_matProj);
     
-    output.vPos = v4ProjPos;
-    output.vColor = _in.vColor;
-    output.vUV = _in.vUV;
+    output.vPos     = v4ProjPos;
+    output.vColor   = _in.vColor;
+    output.vUV      = _in.vUV;
     
     return output;
 }
@@ -43,4 +43,5 @@ float4 PS_Std2D(VS_OUT _in) : SV_Target
 {
     return _in.vColor;
 }
+
 #endif

@@ -29,8 +29,6 @@ void CLevelMgr::Init()
 		pObj->AddComponent(new CCamera);
 		pObj->AddComponent(new CCameraScript);
 
-		pObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 0.f));
-
 		m_pCurLevel->AddObject(pObj, 0);
 	}
 
@@ -42,7 +40,8 @@ void CLevelMgr::Init()
 		pObj->AddComponent(new CMeshRender);
 		pObj->AddComponent(new CPlayerScript);
 
-		pObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 0.5f));
+		pObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 500.f));
+		pObj->Transform()->SetRelativeScale(Vec3(2.f, 2.f, 1.f));
 
 		pObj->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"CircleMesh"));
 		pObj->MeshRender()->SetGraphicShader(CAssetMgr::GetInst()->FindAsset<CGraphicShader>(L"Std2DShader"));

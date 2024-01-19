@@ -47,8 +47,7 @@ void CTransform::UpdateData()
 	g_tTransform.matWorld = m_matWorld;
 
 	// 0번 Register 에 바인딩
-	uint32 registerNum = 0;
 	CConstantBuffer* pCB = GRAPHICS->GetConstantBuffer(CB_TYPE::TRANSFORM);
 	pCB->SetData(&g_tTransform);
-	pCB->UpdateData(registerNum);
+	pCB->UpdateData(static_cast<uint32>(CB_TYPE::TRANSFORM));
 }

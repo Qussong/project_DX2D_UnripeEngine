@@ -5,6 +5,7 @@ class CComponent;
 class CRenderComponent;
 class CTransform;
 class CMeshRender;
+class CCamera;
 
 class CGameObject
 	: public CEntity
@@ -34,4 +35,5 @@ public:
 	CComponent* GetComponent(COMPONENT_TYPE _type) { return m_arrBasicComp[(uint32)_type]; }
 	CTransform* Transform() { return static_cast<CTransform*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::TRANSFORM]); }
 	CMeshRender* MeshRender();
+	CCamera* Camera() { return static_cast<CCamera*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::CAMERA]); }
 };

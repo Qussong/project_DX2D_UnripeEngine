@@ -154,10 +154,5 @@ void CGameObject::AddComponent(CComponent* _comp)
 
 CMeshRender* CGameObject::MeshRender()
 {
-	if (nullptr != m_pRenderComp)
-	{
-		return dynamic_cast<CMeshRender*>(m_pRenderComp);
-	}
-
-	return nullptr;
+	return dynamic_cast<CMeshRender*>(m_pRenderComp);
 }

@@ -89,3 +89,11 @@ enum class CB_TYPE
 
 	END,
 };
+
+enum class PROJ_TYPE
+{
+	ORTHOGRAPHIC,	// 직교투영
+	PERSPECTIVE,	// 원근투영
+
+	END,
+};
