@@ -74,7 +74,8 @@ void CCameraScript::Tick()
 		}
 	}
 
-	// FOV (확대, 축소)
+	// 확대, 축소
+
 
 
 	GetOwner()->Transform()->SetRelativePos(v3Pos);

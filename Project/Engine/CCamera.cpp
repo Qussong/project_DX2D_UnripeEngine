@@ -62,7 +62,7 @@ void CCamera::ProjectionMatrix()
 		m_matProj = XMMatrixOrthographicLH(fViewWidth, fViewHeight, m_fNear, m_fFar);
 	}
 	// 원근투영 (Perspective)
-	else
+	if (PROJ_TYPE::PERSPECTIVE == m_eProjType)
 	{
 		m_matProj = XMMatrixPerspectiveFovLH(m_fFOV, m_fAspectRatio, m_fNear, m_fFar);
 	}
