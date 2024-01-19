@@ -2,7 +2,7 @@
 #include "CPlayerScript.h"
 
 CPlayerScript::CPlayerScript()
-	: m_fSpeed(1.f)
+	: m_fSpeed(100.f)
 {
 	SetName(L"PlayerScript");
 }

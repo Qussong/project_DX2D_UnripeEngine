@@ -41,7 +41,7 @@ void CLevelMgr::Init()
 		pObj->AddComponent(new CPlayerScript);
 
 		pObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 500.f));
-		pObj->Transform()->SetRelativeScale(Vec3(2.f, 2.f, 1.f));
+		pObj->Transform()->SetRelativeScale(Vec3(100.f, 100.f, 1.f));
 
 		pObj->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"CircleMesh"));
 		pObj->MeshRender()->SetGraphicShader(CAssetMgr::GetInst()->FindAsset<CGraphicShader>(L"Std2DShader"));

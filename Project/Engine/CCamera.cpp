@@ -3,7 +3,7 @@
 
 CCamera::CCamera()
 	: Super(COMPONENT_TYPE::CAMERA)
-	, m_eProjType(PROJ_TYPE::PERSPECTIVE)
+	, m_eProjType(PROJ_TYPE::ORTHOGRAPHIC)
 	, m_fFOV(XM_PI / 2.f)	// 90º
 	, m_fScale(1.f)
 	, m_v2Resolution(Vec2(0.f, 0.f))
@@ -54,14 +54,14 @@ void CCamera::ViewMatrix()
 
 void CCamera::ProjectionMatrix()
 {
-	// 직교투영
+	// 직교투영 (Orthographic)
 	if (PROJ_TYPE::ORTHOGRAPHIC == m_eProjType)
 	{
 		float fViewWidth = m_v2Resolution.x * m_fScale;
 		float fViewHeight = m_v2Resolution.y * m_fScale;
 		m_matProj = XMMatrixOrthographicLH(fViewWidth, fViewHeight, m_fNear, m_fFar);
 	}
-	// 원근투영
+	// 원근투영 (Perspective)
 	else
 	{
 		m_matProj = XMMatrixPerspectiveFovLH(m_fFOV, m_fAspectRatio, m_fNear, m_fFar);
@@ -76,5 +76,4 @@ void CCamera::FinalTick()
 	// 상수버퍼 대응 구조체 값 세팅
 	g_tTransform.matView = m_matView;
 	g_tTransform.matProj = m_matProj;
-	g_tTransform.matProj = XMMatrixIdentity();
 }
