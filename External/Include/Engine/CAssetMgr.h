@@ -2,6 +2,7 @@
 
 class CAsset;
 class CGraphicShader;
+class CTexture;
 
 class CAssetMgr
 	: public CSingleton<CAssetMgr>
@@ -27,6 +28,8 @@ public:
 
 	template<typename T>
 	T* FindAsset(const wstring& _key);
+
+	CTexture* LoadTexture(const wstring& _strKey, const wstring& _strRelativePath = L"");
 };
 
 template<typename T>
@@ -40,6 +43,8 @@ inline ASSET_TYPE CAssetMgr::GetAssetType()
 		type = ASSET_TYPE::MESH;
 	else if (&typeid(CGraphicShader) == &info)
 		type = ASSET_TYPE::GRAPHIC_SHADER;
+	else if (&typeid(CTexture) == &info)
+		type = ASSET_TYPE::TEXTURE;
 
 	return type;
 }
@@ -52,7 +57,11 @@ inline void CAssetMgr::AddAsset(const wstring& _key, T* _asset)
 	map<wstring, CAsset*>::iterator iter = m_mapAsset[(UINT)type].find(_key);
 	if (m_mapAsset[(UINT)type].end() != iter)
 	{
-		MessageBoxA(nullptr, "Asset Already declared", "Add Asset Error", MB_OK);
+		if(ASSET_TYPE::TEXTURE == type)
+			MessageBoxA(nullptr, "Texture Already Loaded", "Add Asset Error", MB_OK);
+		else
+			MessageBoxA(nullptr, "Asset Already declared", "Add Asset Error", MB_OK);
+
 		_exit(EXIT_FAILURE);
 	}
 
@@ -74,5 +83,3 @@ inline T* CAssetMgr::FindAsset(const wstring& _key)
 	T* asset = (T*)iter->second;
 	return asset;
 }
-
-

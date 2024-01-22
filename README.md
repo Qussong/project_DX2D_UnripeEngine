@@ -82,7 +82,8 @@ DirectX 2D Engine
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/Dear_ImGui.png" width=500><br>
 &nbsp;&nbsp;- CImGuiMgr 클래스 추가<br>
 &nbsp;&nbsp;- CImGuiMgr) Simple Overlay 창 추가 (DeltaTime, FPS, MousePos)<br>
-&nbsp;&nbsp;- <br>
-
+&nbsp;&nbsp;- CTexture 클래스 추가<br>
+&nbsp;&nbsp;- CLevelMgr) Texture 출력 간단구현<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_texture_simple.png" width=500><br>
 
 <!-- &nbsp;&nbsp;- <br> -->

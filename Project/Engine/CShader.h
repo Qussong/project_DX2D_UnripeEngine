@@ -13,6 +13,6 @@ protected:
 	ComPtr<ID3DBlob>	m_ErrBlob;	// ErrorBlob
 
 public:
-	virtual void UpdateData() override;
+	virtual void UpdateData() override {};
 };
 

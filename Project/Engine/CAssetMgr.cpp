@@ -3,7 +3,6 @@
 
 CAssetMgr::CAssetMgr()
 {
-
 }
 
 CAssetMgr::~CAssetMgr()
@@ -44,19 +43,19 @@ void CAssetMgr::Mesh()
 
 			arrRect[0].v3Pos = Vec3{ -0.5f, 0.5f, 0.f };
 			arrRect[0].v4Color = Vec4{ 0.5f, 0.f, 0.5f, 1.f };
-			arrRect[0].v2UV = Vec2{ -1.f, 1.f };
+			arrRect[0].v2UV = Vec2{ 0.f, 0.f };
 
 			arrRect[1].v3Pos = Vec3{ 0.5f, 0.5f, 0.f };
 			arrRect[1].v4Color = Vec4{ 0.f, 0.5f, 0.5f, 1.f };
-			arrRect[1].v2UV = Vec2{ 1.f, 1.f };
+			arrRect[1].v2UV = Vec2{ 1.f, 0.f };
 
 			arrRect[2].v3Pos = Vec3{ 0.5f, -0.5f, 0.f };
 			arrRect[2].v4Color = Vec4{ 0.5f, 0.f, 0.5f, 1.f };
-			arrRect[2].v2UV = Vec2{ 1.f, -1.f };
+			arrRect[2].v2UV = Vec2{ 1.f, 1.f };
 
 			arrRect[3].v3Pos = Vec3{ -0.5f, -0.5f, 0.f };
 			arrRect[3].v4Color = Vec4{ 0.f, 0.5f, 0.5f, 1.f };
-			arrRect[3].v2UV = Vec2{ -1.f, -1.f };
+			arrRect[3].v2UV = Vec2{ 0.f, 1.f };
 		}
 
 		// 인덱스 정보 입력
@@ -90,7 +89,7 @@ void CAssetMgr::Mesh()
 
 		// 원 둘레
 		Vtx		temp;
-		int32	iSlice = 100;
+		int32	iSlice = 20;
 		float	fTheta = 0.f;
 		float	fRadius = 0.5f;
 
@@ -109,12 +108,12 @@ void CAssetMgr::Mesh()
 		for (size_t i = 0; i < iSlice - 1; i++)
 		{
 			vecIdx.push_back(0);
-			vecIdx.push_back(i + 2);
-			vecIdx.push_back(i + 1);
+			vecIdx.push_back((UINT)i + 2);
+			vecIdx.push_back((UINT)i + 1);
 		}
 		vecIdx.push_back(0);
 		vecIdx.push_back(1);
-		vecIdx.push_back(iSlice);
+		vecIdx.push_back((UINT)iSlice);
 
 		CMesh* pCircleMesh = new CMesh;
 		pCircleMesh->Create(vecCircle.data(),
@@ -127,13 +126,55 @@ void CAssetMgr::Mesh()
 
 void CAssetMgr::Shader()
 {
-	CGraphicShader* pShader = new CGraphicShader;
 
-	pShader->VertexShader(L"std2d.fx", "VS_Std2D");
-	pShader->PixelShader(L"std2d.fx", "PS_Std2D");
-	pShader->SetRSType(RS_TYPE::WIRE_FRAME);	// default = CULL_BACK
-	pShader->SetDSType(DS_TYPE::LESS);		// default = LESS
-	pShader->SetBSType(BS_TYPE::DEFAULT);	// default = DEFAULT
+	// Default Shader
+	{
+		CGraphicShader* pShader = new CGraphicShader;
+		pShader->VertexShader(L"std2d.fx", "VS_Std2D");
+		pShader->PixelShader(L"std2d.fx", "PS_Std2D");
+		pShader->SetRSType(RS_TYPE::CULL_NONE);	// default = CULL_BACK
+		pShader->SetDSType(DS_TYPE::LESS);		// default = LESS
+		pShader->SetBSType(BS_TYPE::DEFAULT);	// default = DEFAULT
 
-	AddAsset(L"Std2DShader", pShader);
+		AddAsset(L"2D_DefaultShader", pShader);
+	}
+
+	// WireFrame Shader
+	{
+		CGraphicShader* pShader = new CGraphicShader;
+		pShader->VertexShader(L"std2d.fx", "VS_Std2D");
+		pShader->PixelShader(L"std2d.fx", "PS_Std2D");
+		pShader->SetRSType(RS_TYPE::WIRE_FRAME);	
+		pShader->SetDSType(DS_TYPE::LESS);		
+		pShader->SetBSType(BS_TYPE::DEFAULT);	
+
+		AddAsset(L"2D_WireframeShader", pShader);
+	}
+}
+
+CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelativePath)
+{
+	CTexture* pTex = FindAsset<CTexture>(_strKey);
+
+	// 이력한 Key 값으로 이미 다른 Asset이 존재할 경우
+	if (nullptr != pTex)
+		return pTex;
+
+	wstring strFilePath = M_PATH->GetResourcetPath();
+	strFilePath += _strRelativePath;
+
+	pTex = new CTexture;
+	if (FAILED(pTex->Load(strFilePath)))
+	{
+		MessageBoxA(nullptr, "Texture Load Failed", "Asset Error", MB_OK);
+		delete pTex;
+		pTex = nullptr;
+		return nullptr;
+	}
+
+	pTex->SetAssetKey(_strKey);
+	pTex->SetRelativePath(_strRelativePath);
+	AddAsset(_strKey, pTex);
+
+	return pTex;
 }

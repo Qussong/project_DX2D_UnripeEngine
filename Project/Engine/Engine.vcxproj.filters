@@ -115,6 +115,9 @@
     <ClInclude Include="CCameraScript.h">
       <Filter>09.Script\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="CTexture.h">
+      <Filter>05.Asset\Texture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -197,6 +200,9 @@
     </ClCompile>
     <ClCompile Include="extern.cpp">
       <Filter>01.Header\etc</Filter>
+    </ClCompile>
+    <ClCompile Include="CTexture.cpp">
+      <Filter>05.Asset\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +301,9 @@
     </Filter>
     <Filter Include="09.Script\Camera">
       <UniqueIdentifier>{345ae071-0920-4464-b4aa-536b0aae95e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Asset\Texture">
+      <UniqueIdentifier>{ea9735ab-4e76-4021-8338-98a0ce83a088}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

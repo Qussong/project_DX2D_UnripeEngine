@@ -126,7 +126,7 @@ void CCameraScript::Tick()
 		}
 		GetOwner()->Camera()->SetScale(scale);
 		GetOwner()->Camera()->SetFOV(fov);
-		M_KEY->SetMouseWheel(0.f);
+		M_KEY->SetMouseWheel(0);
 	}
 
 }

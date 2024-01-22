@@ -23,6 +23,14 @@ using namespace DirectX;
 #pragma comment(lib, "d3dcompiler")
 #include "SimpleMath.h"
 
+// DirectxTex
+#include <DirectXTex/DirectXTex.h>
+#ifdef _DEBUG
+#pragma comment(lib, "DirectXTex\\DirectXTex_d")
+#else
+#pragma comment(lib, "DirectXTex\\DirectXTex")
+#endif
+
 // Custom
 #include "etc.h"		// 각종 헤더
 #include "CEngine.h"	// 엔진
@@ -39,3 +47,4 @@ using namespace DirectX;
 #include "CGameObject.h"
 #include "CLevel.h"
 #include "CLayer.h"
+#include "CTexture.h"

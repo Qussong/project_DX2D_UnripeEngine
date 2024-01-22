@@ -10,7 +10,3 @@ CShader::CShader(ASSET_TYPE _type)
 CShader::~CShader()
 {
 }
-
-void CShader::UpdateData()
-{
-}

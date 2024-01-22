@@ -17,6 +17,7 @@ private:
 
 public:
 	virtual void UpdateData() = 0;
+	virtual int Load(const wstring& _strFilePath) { return E_FAIL; }
 
 	const wstring& GetAssetKey() { return m_strKey; }
 	const wstring& GetRelativePath() { return m_strRelativePath; }
@@ -30,5 +31,7 @@ private:
 
 	int32 GetRefCount() { return m_iRefCnt; }
 	ASSET_TYPE GetAssetType() { return m_eType; }
+
+	friend CAssetMgr;
 };
 

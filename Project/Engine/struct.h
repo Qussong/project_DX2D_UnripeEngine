@@ -17,7 +17,7 @@ struct Vtx
 	Vec2	v2UV;
 };
 
-// 상수버퍼 대응 구조체
+// 상수버퍼 대응 구조체 (16 Byte 단위)
 struct tTransform
 {
 	Matrix matWorld;
