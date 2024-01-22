@@ -144,6 +144,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CImGuiMgr.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="imgui\imconfig.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="value_client.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CImGuiMgr.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />

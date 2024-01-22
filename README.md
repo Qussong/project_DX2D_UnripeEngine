@@ -80,4 +80,9 @@ DirectX 2D Engine
 &nbsp;&nbsp;- DirectXTex 라이브러리 추가<br>
 &nbsp;&nbsp;- Dear ImGui 추가<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/Dear_ImGui.png" width=500><br>
+&nbsp;&nbsp;- CImGuiMgr 클래스 추가<br>
+&nbsp;&nbsp;- <br>
+&nbsp;&nbsp;- <br>
+
+
 <!-- &nbsp;&nbsp;- <br> -->

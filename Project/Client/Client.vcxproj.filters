@@ -23,6 +23,9 @@
     <Filter Include="02.ImGui\backends">
       <UniqueIdentifier>{f90e3cb6-a651-4be2-881f-8cc51506156f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.ImGuiMgr">
+      <UniqueIdentifier>{fc9ed8de-59cf-43bc-acac-4c4426111767}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -67,6 +70,9 @@
     <ClInclude Include="imgui\imgui_impl_win32.h">
       <Filter>02.ImGui\backends</Filter>
     </ClInclude>
+    <ClInclude Include="CImGuiMgr.h">
+      <Filter>03.ImGuiMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -108,6 +114,9 @@
     </ClCompile>
     <ClCompile Include="imgui\imgui_impl_win32.cpp">
       <Filter>02.ImGui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="CImGuiMgr.cpp">
+      <Filter>03.ImGuiMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
