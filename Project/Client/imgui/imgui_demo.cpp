@@ -8352,7 +8352,7 @@ static void ShowExampleAppCustomRendering(bool* p_open)
 // (*) because of this constraint, the implicit \"Debug\" window can not be docked into an explicit DockSpace() node,
 // because that window is submitted as part of the part of the NewFrame() call. An easy workaround is that you can create
 // your own implicit "Debug##2" window after calling DockSpace() and leave it in the window stack for anyone to use.
-void ImGui::ShowExampleAppDockSpace(bool* p_open)
+void ShowExampleAppDockSpace(bool* p_open)
 {
     // READ THIS !!!
     // TL;DR; this demo is more complicated than what most users you would normally use.

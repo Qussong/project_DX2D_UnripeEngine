@@ -28,10 +28,10 @@ void CCameraScript::Tick()
 	Vec3 v3RightX = GetOwner()->Transform()->GetDirection(DIR_TYPE::RIGHT);
 	Vec3 v3FrontZ = GetOwner()->Transform()->GetDirection(DIR_TYPE::FRONT);
 	// 마우스 드래그 방향
-	Vec2 v2DragDir = CKeyMgr::GetInst()->GetMouseDragDir();
+	Vec2 v2DragDir = M_KEY->GetMouseDragDir();
 
 	// 카메라 투영 방식 변경 (직교투영 ↔ 원근투영)
-	if (KEY_STATE::TAP == CKeyMgr::GetInst()->GetKeyState(KEY::P))
+	if (KEY_STATE::TAP == M_KEY->GetKeyState(KEY::P))
 	{
 		if (PROJ_TYPE::ORTHOGRAPHIC == projType)
 		{
@@ -47,7 +47,7 @@ void CCameraScript::Tick()
 	// 위치이동 (상,하,좌,우)
 	{
 		// 상/전진
-		if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::W))
+		if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::W))
 		{
 			if(PROJ_TYPE::ORTHOGRAPHIC == projType)
 				v3Pos.y += (m_fCamSpeed * DT);
@@ -55,7 +55,7 @@ void CCameraScript::Tick()
 				v3Pos += (v3FrontZ * m_fCamSpeed * DT);
 		}
 		// 하/후진
-		if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::S))
+		if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::S))
 		{
 			if (PROJ_TYPE::ORTHOGRAPHIC == projType)
 				v3Pos.y -= (m_fCamSpeed * DT);
@@ -63,7 +63,7 @@ void CCameraScript::Tick()
 				v3Pos -= (v3FrontZ * m_fCamSpeed * DT);
 		}
 		// 좌
-		if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::A))
+		if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::A))
 		{
 			if (PROJ_TYPE::ORTHOGRAPHIC == projType)
 				v3Pos.x -= (m_fCamSpeed * DT);
@@ -72,7 +72,7 @@ void CCameraScript::Tick()
 
 		}
 		// 우
-		if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::D))
+		if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::D))
 		{
 			if (PROJ_TYPE::ORTHOGRAPHIC == projType)
 				v3Pos.x += (m_fCamSpeed * DT);
@@ -84,7 +84,7 @@ void CCameraScript::Tick()
  
 
 	// 회전이동 (조건 : 원근투영)
-	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::RBTN))
+	if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::RBTN))
 	{
 		if (PROJ_TYPE::PERSPECTIVE == projType)
 		{
@@ -101,7 +101,7 @@ void CCameraScript::Tick()
 	// 확대, 축소 (↑ : 120 , ↓ : -120)
 	{
 		// Zoom In
-		if (CKeyMgr::GetInst()->GetMouseWheel() < 0)
+		if (M_KEY->GetMouseWheel() < 0)
 		{
 			if (PROJ_TYPE::ORTHOGRAPHIC == projType)
 			{
@@ -113,7 +113,7 @@ void CCameraScript::Tick()
 			}
 		}
 		// Zoom Out
-		if (CKeyMgr::GetInst()->GetMouseWheel() > 0)
+		if (M_KEY->GetMouseWheel() > 0)
 		{
 			if (PROJ_TYPE::ORTHOGRAPHIC == projType)
 			{
@@ -126,7 +126,7 @@ void CCameraScript::Tick()
 		}
 		GetOwner()->Camera()->SetScale(scale);
 		GetOwner()->Camera()->SetFOV(fov);
-		CKeyMgr::GetInst()->SetMouseWheel(0.f);
+		M_KEY->SetMouseWheel(0.f);
 	}
 
 }

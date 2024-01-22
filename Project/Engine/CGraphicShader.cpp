@@ -82,7 +82,7 @@ void CGraphicShader::Layout()
 
 void CGraphicShader::VertexShader(const wstring& _fileName, const string& _function, const string& _version)
 {
-	wstring shaderFilePath = CPathMgr::GetInst()->GetShaderPath() + _fileName;
+	wstring shaderFilePath = M_PATH->GetShaderPath() + _fileName;
 
 	// hlsl 의 VS 컴파일
 	HRESULT hr = D3DCompileFromFile(
@@ -121,7 +121,7 @@ void CGraphicShader::VertexShader(const wstring& _fileName, const string& _funct
 
 void CGraphicShader::PixelShader(const wstring& _fileName, const string& _function, const string& _version)
 {
-	wstring shaderFilePath = CPathMgr::GetInst()->GetShaderPath() + _fileName;
+	wstring shaderFilePath = M_PATH->GetShaderPath() + _fileName;
 
 	HRESULT hr = D3DCompileFromFile(
 		shaderFilePath.c_str(),

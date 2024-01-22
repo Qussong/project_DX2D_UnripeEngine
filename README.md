@@ -76,12 +76,12 @@ DirectX 2D Engine
 &nbsp;&nbsp;- CAssetMgr) Shader 생성시 RS/DS/BS 값 설정 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_Circle_Wireframe.png" width=350><br>
 
-**_24/01/19_** :<br>
+**_24/01/22_** :<br>
 &nbsp;&nbsp;- DirectXTex 라이브러리 추가<br>
 &nbsp;&nbsp;- Dear ImGui 추가<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/Dear_ImGui.png" width=500><br>
 &nbsp;&nbsp;- CImGuiMgr 클래스 추가<br>
-&nbsp;&nbsp;- <br>
+&nbsp;&nbsp;- CImGuiMgr) Simple Overlay 창 추가 (DeltaTime, FPS, MousePos)<br>
 &nbsp;&nbsp;- <br>
 
 

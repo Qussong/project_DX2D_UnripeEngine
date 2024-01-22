@@ -4,6 +4,7 @@
 CPathMgr::CPathMgr()
 	: m_rootPath{}
 	, m_resourcePath{}
+	, m_shaderPath{}
 {
 }
 
@@ -32,6 +33,7 @@ void CPathMgr::Init()
 		}
 	}
 
+	// root path = "~\project_DX2D_UnripeEngine\"
 	wcscpy_s(m_resourcePath, m_rootPath);
 	wcscpy_s(m_shaderPath, m_rootPath);
 	

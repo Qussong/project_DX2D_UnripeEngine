@@ -3,7 +3,6 @@
 
 CImGuiMgr::CImGuiMgr()
 {
-
 }
 
 CImGuiMgr::~CImGuiMgr()
@@ -19,6 +18,7 @@ void CImGuiMgr::Init(HWND _hMainWnd)
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
+
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // IF using Docking Branch
@@ -76,41 +76,41 @@ void CImGuiMgr::Render()
 
 void CImGuiMgr::Test()
 {
-    // Dear ImGui Varialbe
+    DemoWindow();
+    //CustomWindow();
+    //MyScene();
+    Overlay();
+}
+
+void CImGuiMgr::DemoWindow()
+{
+    if (show_demo_window)
+        ImGui::ShowDemoWindow(&show_demo_window);
+}
+
+void CImGuiMgr::CustomWindow()
+{
     ImGuiIO& io = ImGui::GetIO();
-    bool show_demo_window = true;
-    bool show_another_window = false;
-    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-    // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
-    if (show_demo_window)
-        ImGui::ShowDemoWindow(&show_demo_window);   // Show demo window! :)
+    static float f = 0.0f;
+    static int counter = 0;
 
-    if (show_demo_window)
-        ImGui::ShowExampleAppDockSpace(&show_demo_window);
+    ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
 
-    // 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named window.
-    {
-        static float f = 0.0f;
-        static int counter = 0;
+    ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
+    ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
+    ImGui::Checkbox("Another Window", &show_another_window);
 
-        ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+    ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+    ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
 
-        ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
-        ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
-        ImGui::Checkbox("Another Window", &show_another_window);
+    if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
+        counter++;
+    ImGui::SameLine();
+    ImGui::Text("counter = %d", counter);
 
-        ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-        ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
-
-        if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
-            counter++;
-        ImGui::SameLine();
-        ImGui::Text("counter = %d", counter);
-
-        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
-        ImGui::End();
-    }
+    ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
+    ImGui::End();
 
     // 3. Show another simple window.
     if (show_another_window)
@@ -121,15 +121,38 @@ void CImGuiMgr::Test()
             show_another_window = false;
         ImGui::End();
     }
+}
 
-    // My Scene
+void CImGuiMgr::MyScene()
+{
+    ImGuiIO& io = ImGui::GetIO();
+
+    ImGui::Begin("My Scene");
     {
-        ImGui::Begin("My Scene");
-
-        const float window_width = ImGui::GetContentRegionAvail().x;
-        const float window_height = ImGui::GetContentRegionAvail().y;
-
-        ImGui::End();
+        //ImGui::Image();
     }
+    ImGui::End();
+}
+
+void CImGuiMgr::Overlay()
+{
+    ImGuiIO& io = ImGui::GetIO();
+    ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoDecoration 
+                                    | ImGuiWindowFlags_NoDocking 
+                                    | ImGuiWindowFlags_AlwaysAutoResize 
+                                    | ImGuiWindowFlags_NoSavedSettings 
+                                    | ImGuiWindowFlags_NoFocusOnAppearing 
+                                    | ImGuiWindowFlags_NoNav;
+
+    ImGui::SetNextWindowBgAlpha(0.35f); // Transparent background
+    ImGui::Begin("Example: Simple overlay", &show_overlay_window, window_flags);
+    {
+        ImGui::Text("Simple overlay\n" "(right-click to change position)");
+        ImGui::Separator();
+        ImGui::Text("Delta Time: %.3f (ms/frame)", M_TIME->DeltaTime() * 1000);
+        ImGui::Text("FPS: %d", M_TIME->FPS());
+        ImGui::Text("Mouse Pos: (%.1f, %.1f)", M_KEY->GetMouseCurPos().x, M_KEY->GetMouseCurPos().y);
+    }
+    ImGui::End();
 }
 

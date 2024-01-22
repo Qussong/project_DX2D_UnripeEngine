@@ -23,22 +23,22 @@ void CPlayerScript::Tick()
 	bool rotFlag = false;
 
 	// Position
-	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::LEFT))
+	if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::LEFT))
 	{
 		v3Pos.x -= m_fSpeed * DT;
 		posFlag = true;
 	}
-	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::RIGHT))
+	if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::RIGHT))
 	{
 		v3Pos.x += m_fSpeed * DT;
 		posFlag = true;
 	}
-	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::UP))
+	if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::UP))
 	{
 		v3Pos.y += m_fSpeed * DT;
 		posFlag = true;
 	}
-	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::DOWN))
+	if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::DOWN))
 	{
 		v3Pos.y -= m_fSpeed * DT;
 		posFlag = true;
@@ -46,19 +46,19 @@ void CPlayerScript::Tick()
 
 
 	// Rotation
-	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::LCTRL))
+	if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::LCTRL))
 	{
-		if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::X))
+		if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::X))
 		{
 			v3Rot.x -= DT * XM_PI;
 			rotFlag = true;
 		}
-		if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::Y))
+		if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::Y))
 		{
 			v3Rot.y -= DT * XM_PI;
 			rotFlag = true;
 		}
-		if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::Z))
+		if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::Z))
 		{
 			v3Rot.z -= DT * XM_PI;
 			rotFlag = true;
@@ -66,17 +66,17 @@ void CPlayerScript::Tick()
 	}
 	else
 	{
-		if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::X))
+		if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::X))
 		{
 			v3Rot.x += DT * XM_PI;
 			rotFlag = true;
 		}
-		if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::Y))
+		if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::Y))
 		{
 			v3Rot.y += DT * XM_PI;
 			rotFlag = true;
 		}
-		if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::Z))
+		if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::Z))
 		{
 			v3Rot.z += DT * XM_PI;
 			rotFlag = true;

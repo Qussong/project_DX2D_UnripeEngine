@@ -10,4 +10,10 @@
 #define		CONTEXT		CGraphics::GetInst()->GetContext()
 #define		SWAPCHAIN	CGraphics::GetInst()->GetSwapChain()
 
-#define		DT			CTimeMgr::GetInst()->DeltaTime()
+#define		M_TIME		CTimeMgr::GetInst()
+#define		M_PATH		CPathMgr::GetInst()
+#define		M_KEY		CKeyMgr::GetInst()
+#define		M_ASSET		CAssetMgr::GetInst()
+#define		M_LEVEL		CLevelMgr::GetInst()
+
+#define		DT			M_TIME->DeltaTime()

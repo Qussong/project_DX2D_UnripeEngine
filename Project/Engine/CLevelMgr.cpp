@@ -43,8 +43,8 @@ void CLevelMgr::Init()
 		pObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 500.f));
 		pObj->Transform()->SetRelativeScale(Vec3(100.f, 100.f, 1.f));
 
-		pObj->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"CircleMesh"));
-		pObj->MeshRender()->SetGraphicShader(CAssetMgr::GetInst()->FindAsset<CGraphicShader>(L"Std2DShader"));
+		pObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"CircleMesh"));
+		pObj->MeshRender()->SetGraphicShader(M_ASSET->FindAsset<CGraphicShader>(L"Std2DShader"));
 
 		m_pCurLevel->AddObject(pObj, 0);
 	}

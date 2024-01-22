@@ -32,11 +32,11 @@ int CEngine::Init(HWND _hWnd, uint32 _width, uint32 _height)
 	CGraphics::GetInst()->Init(m_hWnd, m_v2Resolution.x, m_v2Resolution.y);
 
 	// Manager init
-	CTimeMgr::GetInst()->Init();
-	CPathMgr::GetInst()->Init();
-	CKeyMgr::GetInst()->Init();
-	CAssetMgr::GetInst()->Init();
-	CLevelMgr::GetInst()->Init();
+	M_TIME->Init();
+	M_PATH->Init();
+	M_KEY->Init();
+	M_ASSET->Init();
+	M_LEVEL->Init();
 
 	return S_OK;
 }
@@ -50,9 +50,9 @@ void CEngine::Progress()
 void CEngine::Tick()
 {
 	// manager
-	CTimeMgr::GetInst()->Tick();
-	CKeyMgr::GetInst()->Tick();
-	CLevelMgr::GetInst()->Tick();
+	M_TIME->Tick();
+	M_KEY->Tick();
+	M_LEVEL->Tick();
 }
 
 void CEngine::Render()
@@ -61,9 +61,8 @@ void CEngine::Render()
 
 	// Rendering Pipeline
 	{
-		CLevelMgr::GetInst()->Render();
+		M_LEVEL->Render();
 	}
 
-	// Dear ImGui µÚ·Î ¿Å±è
-	//GRAPHICS->RenderEnd();
+	//GRAPHICS->RenderEnd();	// Dear ImGui µÚ·Î ¿Å±è
 }

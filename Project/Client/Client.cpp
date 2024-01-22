@@ -125,7 +125,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             // ↑ : 120 , ↓ : -120
             short zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
-            CKeyMgr::GetInst()->SetMouseWheel(zDelta);
+            M_KEY->SetMouseWheel(zDelta);
         }
         break;
     case WM_COMMAND:

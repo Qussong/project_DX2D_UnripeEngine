@@ -7,6 +7,7 @@ CTimeMgr::CTimeMgr()
 	, m_lCurCnt{}
 	, m_fDeltaTime(0.f)
 	, m_fAccTime(0.f)
+	, m_iFrameCnt(0)
 	, m_iFPS(0)
 {
 }
@@ -35,16 +36,21 @@ void CTimeMgr::Tick()
 
 	m_fAccTime += m_fDeltaTime;
 
-	// 1초마다 FPS 출력 갱신
+	// 1초마다 FPS 출력 및 갱신
 	if (1.f <= m_fAccTime)
 	{
-		wchar_t text[50] = {};
-		swprintf_s(text, sizeof(text) / sizeof(wchar_t), L"DT : %f, FPS : %d", m_fDeltaTime, m_iFPS);
-		SetWindowText(CEngine::GetInst()->GetWindowHandle(), text);
+		// PrintFPS();
 
+		m_iFPS = m_iFrameCnt;
 		m_fAccTime = 0.f;
-		m_iFPS = 0;
+		m_iFrameCnt = 0;
 	}
-	++m_iFPS;
+	++m_iFrameCnt;
 }
 
+void CTimeMgr::PrintFPS()
+{
+	wchar_t text[50] = {};
+	swprintf_s(text, sizeof(text) / sizeof(wchar_t), L"DT : %f, FPS : %d", m_fDeltaTime, m_iFPS);
+	SetWindowText(CEngine::GetInst()->GetWindowHandle(), text);
+}
