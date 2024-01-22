@@ -57,12 +57,13 @@ void CEngine::Tick()
 
 void CEngine::Render()
 {
-	CGraphics::GetInst()->RenderBegin();
+	GRAPHICS->RenderBegin();
 
 	// Rendering Pipeline
 	{
 		CLevelMgr::GetInst()->Render();
 	}
 
-	CGraphics::GetInst()->RenderEnd();
+	// Dear ImGui µÚ·Î ¿Å±è
+	//GRAPHICS->RenderEnd();
 }

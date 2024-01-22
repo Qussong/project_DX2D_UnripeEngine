@@ -26,9 +26,9 @@
 #endif
 
 // new ¿Á¡§¿«
-#ifdef _DEBUG
-#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
-#endif
+//#ifdef _DEBUG
+//#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+//#endif
 
 // custom
 #include "value_client.h"

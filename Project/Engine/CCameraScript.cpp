@@ -3,8 +3,8 @@
 
 CCameraScript::CCameraScript()
 	: m_fCamSpeed(100.f)
-	, m_fDragSpeed(10.f * 180.f)
-	, m_fWheelSpeed(100.f)
+	, m_fDragSpeed(5.f * 180.f)
+	, m_fWheelSpeed(50.f)
 {
 }
 
