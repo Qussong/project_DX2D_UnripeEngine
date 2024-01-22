@@ -8,8 +8,9 @@ cbuffer TRANSFORM : register(b0) // b = (constant) buffer
     row_major matrix g_matProj;
 }
 
-Texture2D       TEXTURE : register(t0);
-SamplerState    SAMPLER : register(s0);
+Texture2D       TEXTURE : register(t0); 
+SamplerState    SAMPLER_0 : register(s0); // ANISOTROPIC
+SamplerState    SAMPLER_1 : register(s1); // POINT
 
 // 정점 구조체 Vtx 로부터 넘겨받는 정보
 struct VS_IN
@@ -44,9 +45,8 @@ VS_OUT VS_Std2D(VS_IN _in)
 
 float4 PS_Std2D(VS_OUT _in) : SV_Target
 {
-    float4 color = TEXTURE.Sample(SAMPLER, _in.vUV);
+    float4 color = TEXTURE.Sample(SAMPLER_1, _in.vUV);
     
     return color;
 }
-
 #endif

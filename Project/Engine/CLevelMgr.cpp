@@ -23,8 +23,8 @@ void CLevelMgr::Init()
 
 	// Load Image
 	{
-		CTexture* pTex = M_ASSET->LoadTexture(L"poketmon", L"cat.png");
-		pTex->SetName(L"파이리");
+		CTexture* pTex = M_ASSET->LoadTexture(L"bird", L"bird.png");
+		pTex->SetName(L"bird");
 		if (nullptr != pTex)
 		{
 			pTex->UpdateData(0);	// t0 레지스터에 바인딩

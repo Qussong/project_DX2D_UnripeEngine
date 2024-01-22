@@ -10,6 +10,7 @@ CGraphics::CGraphics()
 	, m_arrRS{}
 	, m_arrDS{}
 	, m_arrBS{}
+	, m_arrSS{}
 {
 }
 
@@ -54,6 +55,12 @@ int CGraphics::Init(HWND _hWnd, float _width, float _height)
 	if (FAILED(BlendState()))
 	{
 		MessageBoxA(nullptr, "Blend State Create Failed", "Blend Error", MB_OK);
+		_exit(EXIT_FAILURE);
+	}
+
+	if (FAILED(SamplerState()))
+	{
+		MessageBoxA(nullptr, "Sampler State Create Failed", "Sampler Error", MB_OK);
 		_exit(EXIT_FAILURE);
 	}
 
@@ -368,6 +375,64 @@ int CGraphics::BlendState()
 	if (FAILED(hr)) { return E_FAIL; }
 
 	m_arrBS[(uint32)BS_TYPE::ONE_ONE] = nullptr;
+
+	return hr;
+}
+
+int CGraphics::SamplerState()
+{
+	HRESULT hr = S_OK;
+
+	D3D11_SAMPLER_DESC tDesc = {};
+	{
+		tDesc.Filter = D3D11_FILTER_ANISOTROPIC;
+		tDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+		tDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+		tDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+		//tDesc.MipLODBias;
+		//tDesc.MaxAnisotropy;
+		//tDesc.ComparisonFunc;
+		//tDesc.BorderColor[4];
+		tDesc.MinLOD = 0;
+		tDesc.MaxLOD = 1;
+	}
+	hr = DEVICE->CreateSamplerState(&tDesc, m_arrSS[(UINT)SS_TYPE::ANISOTROPIC].GetAddressOf());
+	if (FAILED(hr))
+	{
+		MessageBoxA(nullptr, "SamplerState(ANISOTROPIC) Create Failed", "Sampler Error", MB_OK);
+		return E_FAIL;
+	}
+
+	{
+		tDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
+		tDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+		tDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+		tDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+		//tDesc.MipLODBias;
+		//tDesc.MaxAnisotropy;
+		//tDesc.ComparisonFunc;
+		//tDesc.BorderColor[4];
+		tDesc.MinLOD = 0;
+		tDesc.MaxLOD = 1;
+	}
+	hr = DEVICE->CreateSamplerState(&tDesc, m_arrSS[(UINT)SS_TYPE::POINT].GetAddressOf());
+	if (FAILED(hr))
+	{
+		MessageBoxA(nullptr, "SamplerState(POINT) Create Failed", "Sampler Error", MB_OK);
+		return E_FAIL;
+	}
+
+	CONTEXT->VSSetSamplers(0, 1, m_arrSS[0].GetAddressOf());
+	//CONTEXT->HSSetSamplers(0, 1, m_arrSS[0].GetAddressOf());
+	//CONTEXT->DSSetSamplers(0, 1, m_arrSS[0].GetAddressOf());
+	//CONTEXT->GSSetSamplers(0, 1, m_arrSS[0].GetAddressOf());
+	CONTEXT->PSSetSamplers(0, 1, m_arrSS[0].GetAddressOf());
+
+	CONTEXT->VSSetSamplers(1, 1, m_arrSS[1].GetAddressOf());
+	//CONTEXT->HSSetSamplers(1, 1, m_arrSS[1].GetAddressOf());
+	//CONTEXT->DSSetSamplers(1, 1, m_arrSS[1].GetAddressOf());
+	//CONTEXT->GSSetSamplers(1, 1, m_arrSS[1].GetAddressOf());
+	CONTEXT->PSSetSamplers(1, 1, m_arrSS[1].GetAddressOf());
 
 	return hr;
 }

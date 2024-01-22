@@ -86,4 +86,9 @@ DirectX 2D Engine
 &nbsp;&nbsp;- CLevelMgr) Texture 출력 간단구현<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_texture_simple.png" width=500><br>
 
+**_24/01/22_** :<br>
+&nbsp;&nbsp;- CGraphics) SamplerState 추가(type : ANISOTROPIC, POINT)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/samplerstate.png" width=500><br>
+<!-- &nbsp;&nbsp;- <br> -->
+
 <!-- &nbsp;&nbsp;- <br> -->

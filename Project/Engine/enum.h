@@ -132,3 +132,12 @@ enum class BS_TYPE
 
 	END,
 };
+
+// Sampler State
+enum class SS_TYPE
+{
+	ANISOTROPIC,	// �̹漺
+	POINT,
+
+	END,
+};
