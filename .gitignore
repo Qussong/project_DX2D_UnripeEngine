@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/windows,c++,vs
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,c++,vs
 
+# Custom
+!/External
+
 ### C++ ###
 # Prerequisites
 *.d
@@ -414,8 +417,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# Custom
-!DirectXTex/DirectXTex.lib
-!DirectXTex/DirectXTex_d.lib
+
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,c++,vs
