@@ -45,6 +45,8 @@ void CEngine::Progress()
 {
 	Tick();
 	Render();
+
+	M_TASK->Tick();
 }
 
 void CEngine::Tick()
@@ -60,9 +62,5 @@ void CEngine::Render()
 	GRAPHICS->RenderBegin();
 
 	// Rendering Pipeline
-	{
-		M_LEVEL->Render();
-	}
-
-	//GRAPHICS->RenderEnd();	// Dear ImGui µÚ·Î ¿Å±è
+	M_LEVEL->Render();
 }

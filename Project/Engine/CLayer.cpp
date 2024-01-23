@@ -88,6 +88,11 @@ void CLayer::EraseFromGroup(CGameObject* _target, vector<CGameObject*> _group)
 	}
 }
 
+void CLayer::DoubleCheck(CGameObject* _obj)
+{
+	// 이미 vec안에 해당 객체가 존재하는지 확인하는 함수 구현하기
+}
+
 void CLayer::CheckChildAndChangeLayer(CGameObject* _obj, ADD_DEL_FLAG _flag, LAYER_TYPE _layerType)
 {
 	// 자식 객체 존재여부 확인

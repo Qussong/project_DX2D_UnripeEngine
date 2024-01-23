@@ -5,3 +5,4 @@
 #include "CKeyMgr.h"
 #include "CAssetMgr.h"
 #include "CLevelMgr.h"
+#include "CTaskMgr.h"

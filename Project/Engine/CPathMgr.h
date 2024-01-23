@@ -11,9 +11,11 @@ private:
 	wchar_t m_shaderPath[255];
 
 public:
-	void Init();
 	const wchar_t* GetRootPath() { return m_rootPath; }
 	const wchar_t* GetResourcetPath() { return m_resourcePath; }
 	const wchar_t* GetShaderPath() { return m_shaderPath; }
+
+public:
+	void Init();
 };
 

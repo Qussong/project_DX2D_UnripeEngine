@@ -102,11 +102,15 @@ DirectX 2D Engine
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CLayer) Layer 객체 등록함수 수정 및 보완 (AddObject() -> RegisterObject()) -> 자식 객체도 부모객체와 동일 레이어에 함께 등록<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CLayer) RemoveObject() 함수 추가 -> 레이어에서 객체 제거 가능, 부모객체 또는 자식 객체를 가지고 있는 객체를 레이어에서 제거시 자식 객체도 함께 제거<br>
 
-<!-- &nbsp;&nbsp;- Material 클래스 추가<br> -->
+**_24/01/24_** :<br>
+&nbsp;&nbsp;- CTaskMgr 클래스 추가 (Tick() 함수 구현중)<br>
+&nbsp;&nbsp;- func.cpp) GamePlayStatic::SpawnGameObject() 구현 (CLevel::AddObject() 함수 대체)<br>
+&nbsp;&nbsp;- <br>
+
 <!-- &nbsp;&nbsp;- 충돌체 클래스 추가<br> -->
 <!-- &nbsp;&nbsp;- Circle-Circle/Circle-Rect/Rect-Rect 충돌 구현<br> -->
+<!-- &nbsp;&nbsp;- Material 클래스 추가<br> -->
 <!-- &nbsp;&nbsp;- Animation 구현<br> -->
 <!-- &nbsp;&nbsp;- Postprocess 클래스 추가<br> -->
-
 
 <!-- &nbsp;&nbsp;- <br> -->

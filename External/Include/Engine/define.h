@@ -15,5 +15,6 @@
 #define		M_KEY		CKeyMgr::GetInst()
 #define		M_ASSET		CAssetMgr::GetInst()
 #define		M_LEVEL		CLevelMgr::GetInst()
+#define		M_TASK		CTaskMgr::GetInst()
 
 #define		DT			M_TIME->DeltaTime()

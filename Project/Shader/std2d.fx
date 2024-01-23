@@ -47,6 +47,9 @@ float4 PS_Std2D(VS_OUT _in) : SV_Target
 {
     float4 color = TEXTURE.Sample(SAMPLER_1, _in.vUV);
     
+    if (color.a < 0.1f)
+        discard;
+    
     return color;
 }
 #endif

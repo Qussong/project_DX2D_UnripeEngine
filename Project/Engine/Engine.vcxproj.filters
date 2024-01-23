@@ -121,6 +121,9 @@
     <ClInclude Include="..\..\External\Include\DirectXTex\DirectXTex.h">
       <Filter>External\DirectXTex</Filter>
     </ClInclude>
+    <ClInclude Include="CTaskMgr.h">
+      <Filter>04.Manager\Task</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -206,6 +209,12 @@
     </ClCompile>
     <ClCompile Include="CTexture.cpp">
       <Filter>05.Asset\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="CTaskMgr.cpp">
+      <Filter>04.Manager\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>01.Header\etc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -310,6 +319,9 @@
     </Filter>
     <Filter Include="External\DirectXTex">
       <UniqueIdentifier>{a327dd87-87a3-48b6-bdd8-da1fb43fc181}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Manager\Task">
+      <UniqueIdentifier>{a93fbfc8-5f20-4d87-929a-ec72eabf15b9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

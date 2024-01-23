@@ -131,11 +131,6 @@ void CGameObject::Render()
 	{
 		m_pRenderComp->Render();
 	}
-
-	//for (CGameObject* child : m_vecChild)
-	//{
-	//	child->Render();
-	//}
 }
 
 void CGameObject::AddComponent(CComponent* _comp)

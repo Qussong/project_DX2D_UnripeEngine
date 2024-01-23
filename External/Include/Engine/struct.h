@@ -24,3 +24,15 @@ struct tTransform
 	Matrix matView;
 	Matrix matProj;
 };
+
+// 
+struct tTask
+{
+	TASK_TYPE	eType;
+	UINT_PTR	iParam1;
+	UINT_PTR	iParam2;
+
+	// UINT_PTR : 
+	// 자료형 자체가 포인터 타입이 아니라, 주로 포인터 연산을
+	// 목적으로 활용되는 자료형이기 때문에 _PTR접미사가 붙는다.
+};

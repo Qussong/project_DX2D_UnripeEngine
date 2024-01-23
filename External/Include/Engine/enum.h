@@ -163,3 +163,16 @@ enum class ADD_DEL_FLAG
 	ADD,
 	DEL,
 };
+
+enum class TASK_TYPE
+{
+	// p1: GameObject, p2 : LayerType
+	CREATE_OBJET,
+
+	DELETE_OBJECT,
+	ADD_CHILD,
+	DISCONNECT_PARENT,
+	LEVEL_CHANGE,
+
+	END,
+};

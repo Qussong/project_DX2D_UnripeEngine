@@ -8,7 +8,6 @@ CLevelMgr::CLevelMgr()
 
 CLevelMgr::~CLevelMgr()
 {
-	// temp
 	if (nullptr != m_pCurLevel)
 	{
 		delete m_pCurLevel;
@@ -64,7 +63,7 @@ void CLevelMgr::Init()
 			pChildObj->AddComponent(new CMeshRender);
 
 			pChildObj->Transform()->SetLocalPos(Vec3(100.f, 0.f, 0.f));
-			pChildObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
+			pChildObj->Transform()->SetLocalScale(Vec3(50.f, 50.f, 1.f));
 
 			pChildObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 			pChildObj->MeshRender()->SetGraphicShader(M_ASSET->FindAsset<CGraphicShader>(L"2D_DefaultShader"));
@@ -78,8 +77,8 @@ void CLevelMgr::Init()
 				pChildObj2->AddComponent(new CTransform);
 				pChildObj2->AddComponent(new CMeshRender);
 
-				pChildObj2->Transform()->SetLocalPos(Vec3(100.f, 0.f, 0.f));
-				pChildObj2->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
+				pChildObj2->Transform()->SetLocalPos(Vec3(50.f, 0.f, 0.f));
+				pChildObj2->Transform()->SetLocalScale(Vec3(25.f, 25.f, 1.f));
 
 				pChildObj2->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 				pChildObj2->MeshRender()->SetGraphicShader(M_ASSET->FindAsset<CGraphicShader>(L"2D_DefaultShader"));
@@ -87,7 +86,8 @@ void CLevelMgr::Init()
 				pChildObj->AddChild(pChildObj2);
 			}
 		}
-		m_pCurLevel->AddObject(m_pTestObjet, LAYER_TYPE::LAYER_0);
+		//m_pCurLevel->AddObject(m_pTestObjet, LAYER_TYPE::LAYER_0);
+		GamePlayStatic::SpawnGameObject(m_pTestObjet, LAYER_TYPE::LAYER_0);
 	}
 }
 

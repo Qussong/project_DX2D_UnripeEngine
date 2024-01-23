@@ -20,8 +20,8 @@ public:
 	void RemoveObject(CGameObject* _obj);	// 해당 레이어에서 특정 객체 제거
 
 private:
-	void EraseFromGroup(CGameObject* _target, vector<CGameObject*> _group);
-
+	void EraseFromGroup(CGameObject* _target, vector<CGameObject*> _group);	// m_vecParent, m_vecObject 로 부터 타겟(_target)객체 제거
+	void DoubleCheck(CGameObject* _obj);	// m_vecParent, m_vecObject 에 이미 존재하는지 확인
 	void CheckChildAndChangeLayer(CGameObject* _obj,
 								ADD_DEL_FLAG _flag = ADD_DEL_FLAG::DEL,
 								LAYER_TYPE _layerType = LAYER_TYPE::NONE);
