@@ -3,7 +3,7 @@
 
 CCameraScript::CCameraScript()
 	: m_fCamSpeed(100.f)
-	, m_fDragSpeed(5.f * 180.f)
+	, m_fDragSpeed(3.f * 180.f)
 	, m_fWheelSpeed(50.f)
 {
 }
@@ -21,12 +21,12 @@ void CCameraScript::Tick()
 	// 카메라 시야각 (Perspective)
 	float fov = GetOwner()->Camera()->GetFOV();
 	// 카메라 컴포넌트를 소유한 GameObjectdml 로컬상의 위치값
-	Vec3 v3Pos = GetOwner()->Transform()->GetRelativePos();
+	Vec3 v3Pos = GetOwner()->Transform()->GetLocalPos();
 	// 카메라 컴포넌트를 소유한 GameObject의 로컬상의 회전값
-	Vec3 v3Rot = GetOwner()->Transform()->GetRelativeRotation();
+	Vec3 v3Rot = GetOwner()->Transform()->GetLocalRotation();
 	// 카메라 컴포넌트를 소유한 GameObject의 로컬상의 바라보고있는 방향
-	Vec3 v3RightX = GetOwner()->Transform()->GetDirection(DIR_TYPE::RIGHT);
-	Vec3 v3FrontZ = GetOwner()->Transform()->GetDirection(DIR_TYPE::FRONT);
+	Vec3 v3RightX = GetOwner()->Transform()->GetLocalDirection(DIR_TYPE::RIGHT);
+	Vec3 v3FrontZ = GetOwner()->Transform()->GetLocalDirection(DIR_TYPE::FRONT);
 	// 마우스 드래그 방향
 	Vec2 v2DragDir = M_KEY->GetMouseDragDir();
 
@@ -40,7 +40,7 @@ void CCameraScript::Tick()
 		else
 		{
 			GetOwner()->Camera()->SetProjectionType(PROJ_TYPE::ORTHOGRAPHIC);
-			GetOwner()->Transform()->SetRelativeRotation(Vec3(0.f, 0.f, 0.f));
+			GetOwner()->Transform()->SetLocalRotation(Vec3(0.f, 0.f, 0.f));
 		}
 	}
 
@@ -79,7 +79,7 @@ void CCameraScript::Tick()
 			if (PROJ_TYPE::PERSPECTIVE == projType)
 				v3Pos += (v3RightX * m_fCamSpeed * DT);
 		}
-		GetOwner()->Transform()->SetRelativePos(v3Pos);
+		GetOwner()->Transform()->SetLocalPos(v3Pos);
 	}
  
 
@@ -95,7 +95,7 @@ void CCameraScript::Tick()
 			v3Rot.x += (v2DragDir.y * (XM_PI / 180) * m_fDragSpeed * DT);
 			v3Rot.y += (v2DragDir.x * (XM_PI / 180) * m_fDragSpeed * DT);
 		}
-		GetOwner()->Transform()->SetRelativeRotation(v3Rot);
+		GetOwner()->Transform()->SetLocalRotation(v3Rot);
 	}
 
 	// 확대, 축소 (↑ : 120 , ↓ : -120)

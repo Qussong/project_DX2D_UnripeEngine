@@ -15,9 +15,9 @@ void CPlayerScript::Tick()
 {
 	CGameObject* owner = GetOwner();
 	CTransform* transform = owner->Transform();
-	Vec3 v3Scale = transform->GetRelativeScale();
-	Vec3 v3Rot = transform->GetRelativeRotation();
-	Vec3 v3Pos = transform->GetRelativePos();
+	Vec3 v3Scale = transform->GetLocalScale();
+	Vec3 v3Rot = transform->GetLocalRotation();
+	Vec3 v3Pos = transform->GetLocalPos();
 
 	bool posFlag = false;
 	bool rotFlag = false;
@@ -96,6 +96,6 @@ void CPlayerScript::Tick()
 			<< "/Z " << (int)(v3Rot[2] * 180) << "им" << endl;
 	}
 
-	transform->SetRelativePos(v3Pos);
-	transform->SetRelativeRotation(v3Rot);
+	transform->SetLocalPos(v3Pos);
+	transform->SetLocalRotation(v3Rot);
 }

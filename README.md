@@ -83,12 +83,22 @@ DirectX 2D Engine
 &nbsp;&nbsp;- CImGuiMgr 클래스 추가<br>
 &nbsp;&nbsp;- CImGuiMgr) Simple Overlay 창 추가 (DeltaTime, FPS, MousePos)<br>
 &nbsp;&nbsp;- CTexture 클래스 추가<br>
+&nbsp;&nbsp;- CAssetMgr) Texture Load 함수 구현 (LoadTexture())<br>
 &nbsp;&nbsp;- CLevelMgr) Texture 출력 간단구현<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_texture_simple.png" width=500><br>
 
-**_24/01/22_** :<br>
+**_24/01/23_** :<br>
 &nbsp;&nbsp;- CGraphics) SamplerState 추가(type : ANISOTROPIC, POINT)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/samplerstate.png" width=500><br>
-<!-- &nbsp;&nbsp;- <br> -->
+&nbsp;&nbsp;- 부모-자식 계층 관계 설계<br>
+&nbsp;&nbsp;- World-Local 좌표 설계<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/parent&child.png" width=500><br>
+
+<!-- &nbsp;&nbsp;- Material 클레스 추가<br> -->
+<!-- &nbsp;&nbsp;- 충돌체 클래스 추가<br> -->
+<!-- &nbsp;&nbsp;- Circle-Circle/Circle-Rect/Rect-Rect 충돌 구현<br> -->
+<!-- &nbsp;&nbsp;- Animation 구현<br> -->
+<!-- &nbsp;&nbsp;- Postprocess 클래스 추가<br> -->
+
 
 <!-- &nbsp;&nbsp;- <br> -->

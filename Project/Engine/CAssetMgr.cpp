@@ -126,7 +126,6 @@ void CAssetMgr::Mesh()
 
 void CAssetMgr::Shader()
 {
-
 	// Default Shader
 	{
 		CGraphicShader* pShader = new CGraphicShader;
@@ -156,7 +155,7 @@ CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRela
 {
 	CTexture* pTex = FindAsset<CTexture>(_strKey);
 
-	// 이력한 Key 값으로 이미 다른 Asset이 존재할 경우
+	// 이력한 Key 값으로 이미 다른 Texture 존재할 경우
 	if (nullptr != pTex)
 		return pTex;
 

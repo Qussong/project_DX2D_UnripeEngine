@@ -160,6 +160,7 @@ call EngineCopy.bat</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\External\Include\DirectXTex\DirectXTex.h" />
     <ClInclude Include="CAsset.h" />
     <ClInclude Include="CAssetMgr.h" />
     <ClInclude Include="CCamera.h" />
@@ -236,6 +237,7 @@ call EngineCopy.bat</Command>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\External\Include\DirectXTex\DirectXTex.inl" />
     <None Include="SimpleMath.inl" />
   </ItemGroup>
   <ItemGroup>

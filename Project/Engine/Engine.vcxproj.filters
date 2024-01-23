@@ -118,6 +118,9 @@
     <ClInclude Include="CTexture.h">
       <Filter>05.Asset\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\External\Include\DirectXTex\DirectXTex.h">
+      <Filter>External\DirectXTex</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -305,10 +308,16 @@
     <Filter Include="05.Asset\Texture">
       <UniqueIdentifier>{ea9735ab-4e76-4021-8338-98a0ce83a088}</UniqueIdentifier>
     </Filter>
+    <Filter Include="External\DirectXTex">
+      <UniqueIdentifier>{a327dd87-87a3-48b6-bdd8-da1fb43fc181}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
       <Filter>External\SimpleMath</Filter>
+    </None>
+    <None Include="..\..\External\Include\DirectXTex\DirectXTex.inl">
+      <Filter>External\DirectXTex</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

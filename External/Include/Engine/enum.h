@@ -47,6 +47,8 @@ enum class ASSET_TYPE
 
 enum class COMPONENT_TYPE
 {
+	NONE,
+
 	// Basic Component
 	TRANSFORM,
 	COLLIDER2D,
@@ -57,7 +59,7 @@ enum class COMPONENT_TYPE
 	LIGHT3D,
 	CAMERA,
 
-	END,
+	BASIC_END,
 
 	// Render Component
 	MESHRENDER,
@@ -66,6 +68,8 @@ enum class COMPONENT_TYPE
 	SKYBOX,
 	DECAL,
 	LANDSCAPE,
+
+	RENDER_END,
 
 	// Script
 	SCRIPT,

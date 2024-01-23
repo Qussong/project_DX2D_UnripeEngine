@@ -24,16 +24,16 @@ CCamera::~CCamera()
 void CCamera::ViewMatrix()
 {
 	// 카메라 컴포넌트를 소유한 GameObject 객체의 로컬상에서의 위치값
-	Vec3 v3CamPos = GetOwner()->Transform()->GetRelativePos();
+	Vec3 v3CamPos = GetOwner()->Transform()->GetLocalPos();
 
 	// View 변환에서 "위치변환"은 카메라가 이동한만큼 반대로 돌아가면된다.
 	// 때문에 카메라 위치 좌표에 -1 을 곱해준 거리만큼 이동변환 해주면 된다.
 	Matrix matRevTrans = XMMatrixTranslation(-v3CamPos.x, -v3CamPos.y, -v3CamPos.z);
 
 	// 카메라 컴포넌트를 소유한 GameObject 객체의 로컬상에서의 회전값
-	Vec3 v3RotX = GetOwner()->Transform()->GetDirection(DIR_TYPE::RIGHT);
-	Vec3 v3RotY = GetOwner()->Transform()->GetDirection(DIR_TYPE::UP);
-	Vec3 v3RotZ = GetOwner()->Transform()->GetDirection(DIR_TYPE::FRONT);
+	Vec3 v3RotX = GetOwner()->Transform()->GetLocalDirection(DIR_TYPE::RIGHT);
+	Vec3 v3RotY = GetOwner()->Transform()->GetLocalDirection(DIR_TYPE::UP);
+	Vec3 v3RotZ = GetOwner()->Transform()->GetLocalDirection(DIR_TYPE::FRONT);
 
 	// View 변환에 "회전변환"은 카메라가 화전한만큼 반대로 돌아가면된다.
 	// 때문에 카메라의 회전변환행렬의 역행렬을 구해서 곱해주면된다.

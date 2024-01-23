@@ -71,6 +71,8 @@ inline void CAssetMgr::AddAsset(const wstring& _key, T* _asset)
 template<typename T>
 inline T* CAssetMgr::FindAsset(const wstring& _key)
 {
+	// Asset Type : MESH, MESHDATA, TEXTURE, MATERIAL,
+	//				SOUND, COMPUTE_SHADER, GRAPHIC_SHADER
 	ASSET_TYPE type = GetAssetType<T>();
 
 	map<wstring, CAsset*>::iterator iter = m_mapAsset[(UINT)type].find(_key);

@@ -42,36 +42,35 @@ void CLevelMgr::Init()
 		m_pCurLevel->AddObject(pObj, 0);
 	}
 
-	// Circle
-	{
-		//CGameObject* pObj = new CGameObject;
-		//pObj->SetName(L"CircleObject");
-		//pObj->AddComponent(new CTransform);
-		//pObj->AddComponent(new CMeshRender);
-
-		//pObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 500.f));
-		//pObj->Transform()->SetRelativeScale(Vec3(100.f, 100.f, 1.f));
-
-		//pObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"CircleMesh"));
-		//pObj->MeshRender()->SetGraphicShader(M_ASSET->FindAsset<CGraphicShader>(L"2D_WireframeShader"));
-
-		//m_pCurLevel->AddObject(pObj, 0);
-	}
-
-	// Rect
+	// Parent
 	{
 		CGameObject* pObj = new CGameObject;
-		pObj->SetName(L"RectObject");
+		pObj->SetName(L"ParentObj_Rec");
 		pObj->AddComponent(new CTransform);
 		pObj->AddComponent(new CMeshRender);
 		pObj->AddComponent(new CPlayerScript);
 
-		pObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 500.f));
-		pObj->Transform()->SetRelativeScale(Vec3(100.f, 100.f, 1.f));
+		pObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
+		pObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
 
 		pObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		pObj->MeshRender()->SetGraphicShader(M_ASSET->FindAsset<CGraphicShader>(L"2D_DefaultShader"));
 
+		// Child
+		{
+			CGameObject* pChildObj = new CGameObject;
+			pChildObj->SetName(L"ChildObj_Rec");
+			pChildObj->AddComponent(new CTransform);
+			pChildObj->AddComponent(new CMeshRender);
+
+			pChildObj->Transform()->SetLocalPos(Vec3(100.f, 0.f, 0.f));
+			pChildObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
+
+			pChildObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+			pChildObj->MeshRender()->SetGraphicShader(M_ASSET->FindAsset<CGraphicShader>(L"2D_DefaultShader"));
+			
+			pObj->AddChild(pChildObj);
+		}
 		m_pCurLevel->AddObject(pObj, 0);
 	}
 }

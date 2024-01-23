@@ -78,7 +78,7 @@ void CImGuiMgr::Test()
 {
     DemoWindow();
     //CustomWindow();
-    //MyScene();
+    MyScene();
     Overlay();
 }
 
