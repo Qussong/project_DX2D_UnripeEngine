@@ -6,4 +6,4 @@
 #define MONITOR_SIZE_WIDTH		GetSystemMetrics(SM_CXSCREEN)
 #define MONITOR_SIZE_HEIGHT		GetSystemMetrics(SM_CYSCREEN)
 
-#define LAYER_MAX				32
+#define LAYER_MAX				(UINT)LAYER_TYPE::END

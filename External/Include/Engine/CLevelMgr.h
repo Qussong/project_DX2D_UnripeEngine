@@ -11,9 +11,16 @@ private:
 	CLevel*		m_pCurLevel;
 
 public:
+	CLevel* GetCurrentLevel() { return m_pCurLevel; }
+
+public:
 	void Init();
 	void Tick();
 	void FinalTick();
 	void Render();
+
+	// test
+	CGameObject* m_pTestObjet = nullptr;
+	void Test();
 };
 

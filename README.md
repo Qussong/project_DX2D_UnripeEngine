@@ -90,11 +90,19 @@ DirectX 2D Engine
 **_24/01/23_** :<br>
 &nbsp;&nbsp;- CGraphics) SamplerState 추가(type : ANISOTROPIC, POINT)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/samplerstate.png" width=500><br>
-&nbsp;&nbsp;- 부모-자식 계층 관계 설계<br>
-&nbsp;&nbsp;- World-Local 좌표 설계<br>
+&nbsp;&nbsp;- CGameObject) 부모/자식 계층 관계 설계<br>
+&nbsp;&nbsp;- CTransform) World/Local 좌표 설계<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/parent&child.png" width=500><br>
+&nbsp;&nbsp;- **"계층구조"** 추가에 따른 Level,Layer 설계 및 객체 추가함수 수정<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ enum) LAYER_TYPE 열거형 클래스 추가 (Layer 구분)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CLevelMgr) GetCurrentLevel() 함수 추가 -> 현재 렌더링중인 Level의 주소값 반환<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CLevel) GetLayer() 함수 추가 -> 특정 Layer의 주소값 반환<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CLevel) AddObject() 함수 보완 -> 인자로 넣어주는 레이어 구분값을 int형에서 열거형 클래스로 변경<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CLayer) CLayer 객체 생성시 생성자에 반드시 Layer 타입을 넣도록 수정<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CLayer) Layer 객체 등록함수 수정 및 보완 (AddObject() -> RegisterObject()) -> 자식 객체도 부모객체와 동일 레이어에 함께 등록<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CLayer) RemoveObject() 함수 추가 -> 레이어에서 객체 제거 가능, 부모객체 또는 자식 객체를 가지고 있는 객체를 레이어에서 제거시 자식 객체도 함께 제거<br>
 
-<!-- &nbsp;&nbsp;- Material 클레스 추가<br> -->
+<!-- &nbsp;&nbsp;- Material 클래스 추가<br> -->
 <!-- &nbsp;&nbsp;- 충돌체 클래스 추가<br> -->
 <!-- &nbsp;&nbsp;- Circle-Circle/Circle-Rect/Rect-Rect 충돌 구현<br> -->
 <!-- &nbsp;&nbsp;- Animation 구현<br> -->

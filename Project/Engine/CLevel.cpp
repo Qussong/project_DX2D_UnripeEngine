@@ -5,9 +5,9 @@ CLevel::CLevel()
 	: m_arrLayer{}
 {
 	// Level 에 속한 Layer 생성
-	for (size_t i = 0; i < LAYER_MAX; i++)
+	for (size_t i = 0; i < LAYER_MAX; ++i)
 	{
-		m_arrLayer[i] = new CLayer;
+		m_arrLayer[i] = new CLayer((LAYER_TYPE)i);
 	}
 }
 
@@ -20,9 +20,9 @@ CLevel::~CLevel()
 	}
 }
 
-void CLevel::AddObject(CGameObject* _obj, int _layerIdx)
+void CLevel::AddObject(CGameObject* _obj, LAYER_TYPE _layerType)
 {
-	m_arrLayer[_layerIdx]->AddObject(_obj);
+	m_arrLayer[(UINT)_layerType]->RegisterObject(_obj);
 }
 
 void CLevel::Begin()

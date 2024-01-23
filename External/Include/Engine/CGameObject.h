@@ -28,7 +28,7 @@ private:
 	CGameObject*			m_pParent;	// 해당 GameObject가 소속된 부모객체(nullptr 이면 부모객체 없음)
 	vector<CGameObject*>	m_vecChild;	// 소유하고 있는 자식객체
 
-	//int32				m_iLayerIdx;	// 소속된 Layer Index
+	LAYER_TYPE				m_eLayerIdx;	// 소속된 Layer Index
 
 public:
 	void Begin();
@@ -45,9 +45,16 @@ public:
 	CCamera*		Camera() { return static_cast<CCamera*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::CAMERA]); }
 
 public:
-	CGameObject* GetParent() { return m_pParent; }	// 부모객체 Getter
+	CGameObject* GetParent() { return m_pParent; }			// 부모객체 Getter
+	void SetParent(CGameObject* _obj) { m_pParent = _obj; }	// 부모객체 Setter
+
 	void Independent();								// 부모 객체로부터 도립
+
 	void AddChild(CGameObject* _child);				// 자식 객체 추가
 
-	friend class CLayer;	// m_iLayerIdx 에 접근
+	vector<CGameObject*> GetChild() { return m_vecChild; }
+
+public:
+	LAYER_TYPE	GetLayer() { return m_eLayerIdx; }
+	void		SetLayer(LAYER_TYPE _type) { m_eLayerIdx = _type; }
 };

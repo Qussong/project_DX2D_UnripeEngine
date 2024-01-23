@@ -145,3 +145,21 @@ enum class SS_TYPE
 
 	END,
 };
+
+enum class LAYER_TYPE
+{
+	NONE,
+
+	LAYER_0,
+	LAYER_1,
+	LAYER_2,
+	LAYER_3,
+	
+	END,
+};
+
+enum class ADD_DEL_FLAG
+{
+	ADD,
+	DEL,
+};
