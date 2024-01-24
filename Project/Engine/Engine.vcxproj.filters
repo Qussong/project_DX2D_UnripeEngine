@@ -124,6 +124,9 @@
     <ClInclude Include="CTaskMgr.h">
       <Filter>04.Manager\Task</Filter>
     </ClInclude>
+    <ClInclude Include="CMissileScript.h">
+      <Filter>09.Script\Missile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -215,6 +218,9 @@
     </ClCompile>
     <ClCompile Include="func.cpp">
       <Filter>01.Header\etc</Filter>
+    </ClCompile>
+    <ClCompile Include="CMissileScript.cpp">
+      <Filter>09.Script\Missile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -322,6 +328,9 @@
     </Filter>
     <Filter Include="04.Manager\Task">
       <UniqueIdentifier>{a93fbfc8-5f20-4d87-929a-ec72eabf15b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.Script\Missile">
+      <UniqueIdentifier>{33906313-8097-488f-90c1-27d25b989ee2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -14,7 +14,6 @@ public:
 private:
 	CLayer* m_arrLayer[LAYER_MAX];
 
-
 public:
 	CLayer* GetLayer(LAYER_TYPE _layerType) { return m_arrLayer[(UINT)_layerType]; }
 	void AddObject(CGameObject* _obj, LAYER_TYPE _layerType, bool _isChildMove = false);

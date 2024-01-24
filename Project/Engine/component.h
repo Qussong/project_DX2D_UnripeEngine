@@ -9,3 +9,4 @@
 #include "CScript.h"
 #include "CPlayerScript.h"
 #include "CCameraScript.h"
+#include "CMissileScript.h"

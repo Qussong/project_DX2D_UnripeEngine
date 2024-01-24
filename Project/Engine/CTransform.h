@@ -49,4 +49,5 @@ public:
 	Matrix GetWorldMatrix() { return m_matWorld; }
 
 	void SetAffectScale(bool _flag) { m_isAffectScale = _flag; }
+	Vec3 ToEulerAngles(Quaternion q);
 };

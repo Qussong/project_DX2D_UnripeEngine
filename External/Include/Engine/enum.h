@@ -158,12 +158,6 @@ enum class LAYER_TYPE
 	END,
 };
 
-enum class ADD_DEL_FLAG
-{
-	ADD,
-	DEL,
-};
-
 enum class TASK_TYPE
 {
 	// p1: GameObject, p2 : LayerType

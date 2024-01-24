@@ -17,7 +17,7 @@ private:
 
 public:
 	// 해당 레이어에 인자로 들어온 객체 추가
-	void AddObject(CGameObject* _obj, bool _isChildMove = false);
+	void AddObject(CGameObject* _obj, bool _isChildMove);
 	// 해당 레이어에서 인자로 들어온 객체 제거
 	void RemoveObject(CGameObject* _obj);
 	

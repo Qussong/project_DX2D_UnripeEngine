@@ -178,6 +178,7 @@ call EngineCopy.bat</Command>
     <ClInclude Include="CLevelMgr.h" />
     <ClInclude Include="CMesh.h" />
     <ClInclude Include="CMeshRender.h" />
+    <ClInclude Include="CMissileScript.h" />
     <ClInclude Include="component.h" />
     <ClInclude Include="CPathMgr.h" />
     <ClInclude Include="CPlayerScript.h" />
@@ -220,6 +221,7 @@ call EngineCopy.bat</Command>
     <ClCompile Include="CLevelMgr.cpp" />
     <ClCompile Include="CMesh.cpp" />
     <ClCompile Include="CMeshRender.cpp" />
+    <ClCompile Include="CMissileScript.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="CPlayerScript.cpp" />
     <ClCompile Include="CRenderComponent.cpp" />

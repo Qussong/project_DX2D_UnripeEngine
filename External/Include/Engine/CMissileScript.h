@@ -1,18 +1,22 @@
 #pragma once
 
-class CCameraScript
+class CMissileScript
 	: public CScript
 {
+	using Super = CScript;
+
 public:
-	CCameraScript();
-	virtual ~CCameraScript();
+	CMissileScript();
+	virtual ~CMissileScript();
 
 private:
-	float	m_fCamSpeed;
-	float	m_fDragSpeed;
-	float	m_fWheelSpeed;
+	float	m_fSpeed;
+	Vec2	m_v2Dir;
 
-private:
+public:
+	void SetDir(Vec2 _dir) { m_v2Dir = _dir; }
+
+public:
 	virtual void Begin() override {}
 	virtual void Tick() override;
 	virtual void FinalTick() override {}
