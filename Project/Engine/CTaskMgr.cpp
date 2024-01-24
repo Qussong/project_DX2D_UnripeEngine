@@ -17,8 +17,9 @@ void CTaskMgr::Tick()
 	{
 		switch (m_vecTask[i].eType)
 		{
-		case TASK_TYPE::CREATE_OBJET:
+		case TASK_TYPE::ADD_OBJET:
 		{
+			// Param1 : 
 			CGameObject* pObj = (CGameObject*)m_vecTask[i].iParam1;
 			LAYER_TYPE	eLayerType = (LAYER_TYPE)m_vecTask[i].iParam2;
 

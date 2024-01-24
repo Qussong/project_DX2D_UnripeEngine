@@ -99,13 +99,25 @@ DirectX 2D Engine
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CLevel) GetLayer() 함수 추가 -> 특정 Layer의 주소값 반환<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CLevel) AddObject() 함수 보완 -> 인자로 넣어주는 레이어 구분값을 int형에서 열거형 클래스로 변경<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CLayer) CLayer 객체 생성시 생성자에 반드시 Layer 타입을 넣도록 수정<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CLayer) Layer 객체 등록함수 수정 및 보완 (AddObject() -> RegisterObject()) -> 자식 객체도 부모객체와 동일 레이어에 함께 등록<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CLayer) RemoveObject() 함수 추가 -> 레이어에서 객체 제거 가능, 부모객체 또는 자식 객체를 가지고 있는 객체를 레이어에서 제거시 자식 객체도 함께 제거<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CLayer) Layer 객체 등록함수 수정 및 보완<br>
 
 **_24/01/24_** :<br>
+```
+[ GameObject 렌더링 과정 ] 
+
+    Begin() -> Tick() -> FinalTick() -> Render()
+
+- FinalTick() 과정에서 해당 객체가 소속된 Layer의 Object 관리 멤버(m_vecObj)에 삽입된다.
+- Layer의 Render() 과정을통해 해당 Layer에 소속된 객체들의 Render()가 호출된다.
+- 자식 객체의 경우 부모객체에 의해서 Begin()/Tick()/FinalTick()가 호출되며, 부모객체와 마찬가지로 Layer에 의해 Render()가 호출된다.
+```
 &nbsp;&nbsp;- CTaskMgr 클래스 추가 (Tick() 함수 구현중)<br>
 &nbsp;&nbsp;- func.cpp) GamePlayStatic::SpawnGameObject() 구현 (CLevel::AddObject() 함수 대체)<br>
-&nbsp;&nbsp;- <br>
+&nbsp;&nbsp;- 계층 구조에 따른 렌더링 과정 전체적으로 수정 및 보완 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CGameObject) 렌더링을 위해 FinalTick() 과정에서 해당 객체를 소속된 Layer의 m_vecObject에 삽입 해주는 코드 추가<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CLevel) Clear() 함수 추가 -> 이전 프레임에서 Render를 위해 Layer의 m_vecObject에 추가된 GameObject 객체들 clear<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＋ CLevel) AddObject() 함수 보완 -> 프래그(bool) 값을 넣어줌으로써 인자로 들어온 객체가 Layer에 추가될 때, 자식 객체도 함께 해당 레이어에 소속될지에 대한 설정을 할 수 있다. (기본값 = false)<br>
+<!-- &nbsp;&nbsp;- <br> -->
 
 <!-- &nbsp;&nbsp;- 충돌체 클래스 추가<br> -->
 <!-- &nbsp;&nbsp;- Circle-Circle/Circle-Rect/Rect-Rect 충돌 구현<br> -->

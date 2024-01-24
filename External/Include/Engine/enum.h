@@ -148,7 +148,7 @@ enum class SS_TYPE
 
 enum class LAYER_TYPE
 {
-	NONE,
+	UNREGISTER = -1,
 
 	LAYER_0,
 	LAYER_1,
@@ -167,7 +167,7 @@ enum class ADD_DEL_FLAG
 enum class TASK_TYPE
 {
 	// p1: GameObject, p2 : LayerType
-	CREATE_OBJET,
+	ADD_OBJET,
 
 	DELETE_OBJECT,
 	ADD_CHILD,

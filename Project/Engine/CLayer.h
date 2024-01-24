@@ -16,15 +16,13 @@ private:
 	vector<CGameObject*>	m_vecObject;	// 해당 레이어에 속한 모든객체 저장
 
 public:
-	void RegisterObject(CGameObject* _obj); // 해당 레이어에 특정 객체 추가
-	void RemoveObject(CGameObject* _obj);	// 해당 레이어에서 특정 객체 제거
-
-private:
-	void EraseFromGroup(CGameObject* _target, vector<CGameObject*> _group);	// m_vecParent, m_vecObject 로 부터 타겟(_target)객체 제거
-	void DoubleCheck(CGameObject* _obj);	// m_vecParent, m_vecObject 에 이미 존재하는지 확인
-	void CheckChildAndChangeLayer(CGameObject* _obj,
-								ADD_DEL_FLAG _flag = ADD_DEL_FLAG::DEL,
-								LAYER_TYPE _layerType = LAYER_TYPE::NONE);
+	// 해당 레이어에 인자로 들어온 객체 추가
+	void AddObject(CGameObject* _obj, bool _isChildMove);
+	// 해당 레이어에서 인자로 들어온 객체 제거
+	void RemoveObject(CGameObject* _obj);
+	
+	vector<CGameObject*>& GetLayerObject() { return m_vecObject; }
+	void RegisterObject(CGameObject* _obj) { m_vecObject.push_back(_obj); }
 
 public:
 	void Begin();

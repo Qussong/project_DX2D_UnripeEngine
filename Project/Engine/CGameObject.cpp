@@ -5,6 +5,7 @@ CGameObject::CGameObject()
 	: m_arrBasicComp{}
 	, m_pRenderComp(nullptr)
 	, m_pParent(nullptr)
+	, m_eLayerType(LAYER_TYPE::UNREGISTER)
 {
 	SetName(L"GameObject");
 }
@@ -123,10 +124,14 @@ void CGameObject::FinalTick()
 		child->FinalTick();
 	}
 
+	// Render 를 위해 객체가 소속된 Layer의 m_vecObject에 해당 객체 추가
+	CLayer* pCurLayer = M_LEVEL->GetCurrentLevel()->GetLayer(m_eLayerType);
+	pCurLayer->RegisterObject(this);
 }
 
 void CGameObject::Render()
 {
+	// Layer의 Render 를 타고 들어온다.
 	if (nullptr != m_pRenderComp)
 	{
 		m_pRenderComp->Render();
@@ -185,7 +190,7 @@ CMeshRender* CGameObject::MeshRender()
 	return dynamic_cast<CMeshRender*>(m_pRenderComp);
 }
 
-void CGameObject::Independent()
+void CGameObject::DisconnectWithParent()
 {
 	vector<CGameObject*> brothers = m_pParent->m_vecChild;
 	vector<CGameObject*>::iterator iter = brothers.begin();
@@ -205,12 +210,23 @@ void CGameObject::Independent()
 	_exit(EXIT_FAILURE);
 }
 
+void CGameObject::DisconnectWithLayer()
+{
+	// 소속된 레이어가 없을 경우 함수 종료
+	if (LAYER_TYPE::UNREGISTER == m_eLayerType)
+		return;
+
+	CLevel* pCurLevel = M_LEVEL->GetCurrentLevel();
+	CLayer* pCurLayer = pCurLevel->GetLayer(m_eLayerType);
+	pCurLayer->RemoveObject(this);
+}
+
 void CGameObject::AddChild(CGameObject* _child)
 {
 	// 부모객체가 존재하는 경우 부모객체와의 연결을 끊어줌
 	if (nullptr != _child->m_pParent)
 	{
-		_child->Independent();
+		_child->DisconnectWithParent();
 		_child->m_pParent = nullptr;
 	}
 	

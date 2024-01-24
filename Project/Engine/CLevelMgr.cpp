@@ -93,11 +93,12 @@ void CLevelMgr::Init()
 
 void CLevelMgr::Tick()
 {
-	if (nullptr != m_pCurLevel)
-	{
-		m_pCurLevel->Tick();
-		FinalTick();
-	}
+	if (nullptr == m_pCurLevel)
+		return;
+
+	m_pCurLevel->Clear();
+	m_pCurLevel->Tick();
+	m_pCurLevel->FinalTick();
 
 	// test
 	Test();
@@ -129,6 +130,8 @@ void CLevelMgr::Test()
 	{
 		LAYER_TYPE type = LAYER_TYPE::LAYER_1;
 		CLayer* layer = m_pCurLevel->GetLayer(type);
-		layer->RegisterObject(m_pTestObjet);
+
+		//layer->AddObject(m_pTestObjet);		// 자식객체는 본인의 레이어 유지
+		layer->AddObject(m_pTestObjet, true);	// 자식객체도 부모객체의 레이어 따라감
 	}
 }

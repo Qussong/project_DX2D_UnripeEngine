@@ -4,7 +4,7 @@
 void GamePlayStatic::SpawnGameObject(CGameObject* _target, LAYER_TYPE _layerType)
 {
 	tTask task = {};
-	task.eType = TASK_TYPE::CREATE_OBJET;
+	task.eType = TASK_TYPE::ADD_OBJET;
 	task.iParam1 = (DWORD_PTR)_target; 
 	task.iParam2 = (DWORD_PTR)_layerType;
 

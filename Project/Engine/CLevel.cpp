@@ -13,16 +13,25 @@ CLevel::CLevel()
 
 CLevel::~CLevel()
 {
-	for (size_t i = 0; i < LAYER_MAX; i++)
+	size_t layerCnt = LAYER_MAX;
+	for (size_t i = 0; i < layerCnt; i++)
 	{
 		delete m_arrLayer[i];
 		m_arrLayer[i] = nullptr;
 	}
 }
 
-void CLevel::AddObject(CGameObject* _obj, LAYER_TYPE _layerType)
+void CLevel::Clear()
 {
-	m_arrLayer[(UINT)_layerType]->RegisterObject(_obj);
+	for (UINT i = 0; i < LAYER_MAX; ++i)
+	{
+		m_arrLayer[i]->GetLayerObject().clear();
+	}
+}
+
+void CLevel::AddObject(CGameObject* _obj, LAYER_TYPE _layerType, bool _isChildMove)
+{
+	m_arrLayer[(UINT)_layerType]->AddObject(_obj, _isChildMove);
 }
 
 void CLevel::Begin()
