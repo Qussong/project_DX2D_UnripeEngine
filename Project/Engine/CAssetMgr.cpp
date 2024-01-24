@@ -177,3 +177,20 @@ CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRela
 
 	return pTex;
 }
+
+template<typename T>
+inline ASSET_TYPE CAssetMgr::GetAssetType()
+{
+	const type_info& info = typeid(T);
+
+	ASSET_TYPE type = ASSET_TYPE::END;
+
+	if (&typeid(CMesh) == &info)
+		type = ASSET_TYPE::MESH;
+	else if (&typeid(CGraphicShader) == &info)
+		type = ASSET_TYPE::GRAPHIC_SHADER;
+	else if (&typeid(CTexture) == &info)
+		type = ASSET_TYPE::TEXTURE;
+
+	return type;
+}

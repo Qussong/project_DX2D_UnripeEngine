@@ -170,3 +170,12 @@ enum class TASK_TYPE
 
 	END,
 };
+
+enum class SRT_TYPE
+{
+	SCALE,
+	ROTATE,
+	POS,
+
+	END,
+};

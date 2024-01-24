@@ -29,6 +29,9 @@ public:
 	virtual void FinalTick() override;
 	virtual void UpdateData() override;
 
+private:
+	Vec3 WorldSRT(SRT_TYPE _type);
+
 public:
 	// local
 	void SetLocalPos(Vec3 _pos) { m_v3LocalPostion = _pos; }
@@ -39,12 +42,15 @@ public:
 	void SetWorldMatrix(Matrix _mat) { m_matWorld = _mat; }
 
 	// local
-	Vec3 GetLocalPos() { return m_v3LocalPostion; }
 	Vec3 GetLocalScale() { return m_v3LocalScale; }
 	Vec3 GetLocalRotation() { return m_v3LocalRotation; }
+	Vec3 GetLocalPos() { return m_v3LocalPostion; }
 	Vec3 GetLocalDirection(DIR_TYPE _dir) { return m_arrLocalDir[(uint32)_dir]; }
 
 	// world
+	Vec3 GetWorldScale();
+	Vec3 GetWorldRotation();
+	Vec3 GetWorldPos();
 	Vec3 GetWorldDirection(DIR_TYPE _dir) { return m_arrWorldDir[(uint32)_dir]; }
 	Matrix GetWorldMatrix() { return m_matWorld; }
 

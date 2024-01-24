@@ -11,10 +11,6 @@ public:
 
 private:
 	float	m_fSpeed;
-	Vec2	m_v2Dir;
-
-public:
-	void SetDir(Vec2 _dir) { m_v2Dir = _dir; }
 
 public:
 	virtual void Begin() override {}

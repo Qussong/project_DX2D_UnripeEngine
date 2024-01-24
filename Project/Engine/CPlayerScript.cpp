@@ -25,14 +25,6 @@ void CPlayerScript::Tick()
 	Vec3 v3Rot = transform->GetLocalRotation();
 	Vec3 v3Pos = transform->GetLocalPos();
 
-	// World ÁÂÇ¥
-	Vec3 v3WorldScale = {};
-	Vec3 v3WorldRot = {};
-	Vec3 v3WorldPos = {};
-	Quaternion quatRot = {};
-	matWorld.Decompose(v3WorldScale, quatRot, v3WorldPos);
-	v3WorldRot = transform->ToEulerAngles(quatRot);
-
 	// Position
 	if (KEY_STATE::PRESSED == M_KEY->GetKeyState(KEY::LEFT))
 	{
@@ -107,27 +99,19 @@ void CPlayerScript::Tick()
 			<< "/Z " << (int)(v3Rot[2] * 180) << "¨¬" << endl;
 	}
 
-	if (KEY_STATE::TAP == M_KEY->GetKeyState(KEY::LBTN))
+	if (KEY_STATE::TAP == M_KEY->GetKeyState(KEY::SPACE))
 	{
-		Vec2 v2MousePos = M_KEY->GetMouseCurPos();
-		v2MousePos -= (Vec2(GRAPHICS->GetResolution().x / 2, GRAPHICS->GetResolution().y / 2));
-		Vec2 v2Dir = v2MousePos - Vec2(v3WorldPos.x, v3WorldPos.y);
-		v2Dir.Normalize();
-
 		CGameObject* pObj = nullptr;
 
 		pObj = new CGameObject;
 		pObj->SetName(L"Missile");
 		pObj->AddComponent(new CTransform);
 		pObj->AddComponent(new CMeshRender);
-
-		CMissileScript* missile = new CMissileScript;
-		missile->SetDir(v2Dir);
-		pObj->AddComponent(missile);
+		pObj->AddComponent(new CMissileScript);
 
 		Vec3 v3PlayerPos = GetOwner()->Transform()->GetLocalPos();
 		pObj->Transform()->SetLocalPos(v3PlayerPos);
-		pObj->Transform()->SetLocalScale(Vec3(10.f, 10.f, 1.f));
+		pObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
 
 		pObj->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"RectMesh"));
 		pObj->MeshRender()->SetGraphicShader(CAssetMgr::GetInst()->FindAsset<CGraphicShader>(L"2D_DefaultShader"));

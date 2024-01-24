@@ -92,6 +92,38 @@ void CTransform::UpdateData()
 	pCB->UpdateData(static_cast<uint32>(CB_TYPE::TRANSFORM));
 }
 
+Vec3 CTransform::WorldSRT(SRT_TYPE _type)
+{
+	Vec3 v3WorldScale = {};
+	Vec3 v3WorldRot = {};
+	Vec3 v3WorldPos = {};
+	Quaternion quatRot = {};
+	m_matWorld.Decompose(v3WorldScale, quatRot, v3WorldPos);
+	v3WorldRot = ToEulerAngles(quatRot);
+
+	if (SRT_TYPE::SCALE == _type)
+		return v3WorldScale;
+	if (SRT_TYPE::ROTATE == _type)
+		return v3WorldRot;
+	if (SRT_TYPE::POS == _type)
+		return v3WorldPos;
+}
+
+Vec3 CTransform::GetWorldScale()
+{
+	return WorldSRT(SRT_TYPE::SCALE);
+}
+
+Vec3 CTransform::GetWorldRotation()
+{
+	return WorldSRT(SRT_TYPE::ROTATE);
+}
+
+Vec3 CTransform::GetWorldPos()
+{
+	return WorldSRT(SRT_TYPE::POS);
+}
+
 Vec3 CTransform::ToEulerAngles(Quaternion q)
 {
 	Vec3 angles;

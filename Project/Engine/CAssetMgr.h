@@ -33,23 +33,6 @@ public:
 };
 
 template<typename T>
-inline ASSET_TYPE CAssetMgr::GetAssetType()
-{
-	const type_info& info = typeid(T);
-
-	ASSET_TYPE type = ASSET_TYPE::END;
-
-	if (&typeid(CMesh) == &info)
-		type = ASSET_TYPE::MESH;
-	else if (&typeid(CGraphicShader) == &info)
-		type = ASSET_TYPE::GRAPHIC_SHADER;
-	else if (&typeid(CTexture) == &info)
-		type = ASSET_TYPE::TEXTURE;
-
-	return type;
-}
-
-template<typename T>
 inline void CAssetMgr::AddAsset(const wstring& _key, T* _asset)
 {
 	ASSET_TYPE type = GetAssetType<T>();
