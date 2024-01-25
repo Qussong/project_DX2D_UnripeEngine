@@ -94,6 +94,8 @@ void CTransform::UpdateData()
 
 Vec3 CTransform::WorldSRT(SRT_TYPE _type)
 {
+	Vec3 result = { 0.f, 0.f, 0.f };
+
 	Vec3 v3WorldScale = {};
 	Vec3 v3WorldRot = {};
 	Vec3 v3WorldPos = {};
@@ -101,12 +103,23 @@ Vec3 CTransform::WorldSRT(SRT_TYPE _type)
 	m_matWorld.Decompose(v3WorldScale, quatRot, v3WorldPos);
 	v3WorldRot = ToEulerAngles(quatRot);
 
-	if (SRT_TYPE::SCALE == _type)
-		return v3WorldScale;
-	if (SRT_TYPE::ROTATE == _type)
-		return v3WorldRot;
-	if (SRT_TYPE::POS == _type)
-		return v3WorldPos;
+	switch (_type)
+	{
+	case SRT_TYPE::SCALE:
+		result = v3WorldScale;
+		break;
+	case SRT_TYPE::ROTATE:
+		result = v3WorldRot;
+		break;
+	case SRT_TYPE::POS:
+		result = v3WorldPos;
+		break;
+	default:
+		// error
+		break;
+	}
+
+	return result;
 }
 
 Vec3 CTransform::GetWorldScale()
@@ -131,17 +144,17 @@ Vec3 CTransform::ToEulerAngles(Quaternion q)
 	// roll (x-axis rotation)
 	double sinr_cosp = 2 * (q.w * q.x + q.y * q.z);
 	double cosr_cosp = 1 - 2 * (q.x * q.x + q.y * q.y);
-	angles.x = std::atan2(sinr_cosp, cosr_cosp);
+	angles.x = std::atan2((float)sinr_cosp, (float)cosr_cosp);
 
 	// pitch (y-axis rotation)
 	double sinp = std::sqrt(1 + 2 * (q.w * q.y - q.x * q.z));
 	double cosp = std::sqrt(1 - 2 * (q.w * q.y - q.x * q.z));
-	angles.y = 2 * std::atan2(sinp, cosp) - 3.14159f / 2;
+	angles.y = 2 * std::atan2((float)sinp, (float)cosp) - 3.14159f / 2;
 
 	// yaw (z-axis rotation)
 	double siny_cosp = 2 * (q.w * q.z + q.x * q.y);
 	double cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z);
-	angles.z = std::atan2(siny_cosp, cosy_cosp);
+	angles.z = std::atan2((float)siny_cosp, (float)cosy_cosp);
 
 	return angles;
 }

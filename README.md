@@ -148,13 +148,8 @@ DirectX 2D Engine
 &nbsp;&nbsp;- test) 재질 전용 상수버퍼에 1의 값이 들어가있으면 Pixel Shader에서 이미지에 흰색칠하기<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/test_material.png" width=500><br>
 
-
-<!-- &nbsp;&nbsp;- <br> -->
-
-<!-- &nbsp;&nbsp;- 충돌체 클래스 추가<br> -->
-<!-- &nbsp;&nbsp;- Circle-Circle/Circle-Rect/Rect-Rect 충돌 구현<br> -->
-<!-- &nbsp;&nbsp;- Material 클래스 추가<br> -->
-<!-- &nbsp;&nbsp;- Animation 구현<br> -->
-<!-- &nbsp;&nbsp;- Postprocess 클래스 추가<br> -->
+**_24/01/26_** :<br>
+&nbsp;&nbsp;- Asset 전용 스마트 포인터 클래스(Ptr) 추가 <br>
+&nbsp;&nbsp;- <br>
 
 <!-- &nbsp;&nbsp;- <br> -->

@@ -79,9 +79,6 @@
     <ClInclude Include="singleton.h">
       <Filter>01.Header\etc</Filter>
     </ClInclude>
-    <ClInclude Include="func.h">
-      <Filter>01.Header\etc</Filter>
-    </ClInclude>
     <ClInclude Include="enum.h">
       <Filter>01.Header\etc</Filter>
     </ClInclude>
@@ -132,6 +129,12 @@
     </ClInclude>
     <ClInclude Include="CMaterial.h">
       <Filter>05.Asset\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>01.Header\etc\func</Filter>
+    </ClInclude>
+    <ClInclude Include="Ptr.h">
+      <Filter>01.Header\etc\Ptr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -222,9 +225,6 @@
     <ClCompile Include="CTaskMgr.cpp">
       <Filter>04.Manager\Task</Filter>
     </ClCompile>
-    <ClCompile Include="func.cpp">
-      <Filter>01.Header\etc</Filter>
-    </ClCompile>
     <ClCompile Include="CMissileScript.cpp">
       <Filter>09.Script\Missile</Filter>
     </ClCompile>
@@ -233,6 +233,9 @@
     </ClCompile>
     <ClCompile Include="CMaterial.cpp">
       <Filter>05.Asset\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>01.Header\etc\func</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -349,6 +352,12 @@
     </Filter>
     <Filter Include="05.Asset\Material">
       <UniqueIdentifier>{383f6b96-fa20-4533-86cb-f34b40d84ad6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Header\etc\func">
+      <UniqueIdentifier>{d9c3f664-3f31-4192-9b06-778647a76aac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Header\etc\Ptr">
+      <UniqueIdentifier>{bc69c63b-eccb-4f8c-ad90-495e15c7a490}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

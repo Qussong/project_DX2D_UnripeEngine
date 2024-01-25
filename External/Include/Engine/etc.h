@@ -7,3 +7,4 @@
 #include "struct.h"
 #include "enum.h"
 #include "func.h"
+#include "Ptr.h"

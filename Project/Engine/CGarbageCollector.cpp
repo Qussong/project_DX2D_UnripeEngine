@@ -13,7 +13,7 @@ CGarbageCollector::~CGarbageCollector()
 
 void CGarbageCollector::Tick()
 {
-	int32 size = m_vecEntity.size();
+	size_t size = m_vecEntity.size();
 	if (m_iMaxCapacity < size)
 	{
 		Lazy::DelVector(m_vecEntity);

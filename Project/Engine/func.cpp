@@ -32,7 +32,7 @@ void GamePlayStatic::DestroyGameObject(CGameObject* _target)
 template<typename T>
 void Lazy::DelVector(vector<T>&_vec)
 {
-	int32 length = _vec.size();
+	size_t length = _vec.size();
 	for (size_t i = 0; i < length; i++)
 	{
 		if (nullptr == _vec[i])
