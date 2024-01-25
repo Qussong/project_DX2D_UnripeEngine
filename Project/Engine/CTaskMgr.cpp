@@ -22,18 +22,17 @@ void CTaskMgr::SubObject(size_t _idx)
 {
 	CGameObject* pTarget = (CGameObject*)m_vecTask[_idx].iParam1;
 
+	// 타겟 객체와 밑에 달린 자식들까지 모두 Dead 상태로 만들어줌
 	list<CGameObject*> queue;
 	queue.push_back(pTarget);
-
-	// 레이어에 입력되는 오브젝트 포함, 그 밑에 달린 자식들까지 모두 확인
 	while (!queue.empty())
 	{
 		CGameObject* pObj = queue.front();
 		queue.pop_front();
 
 		pObj->SetDead(true);
-		vector<CGameObject*> children = pObj->GetChild();
 
+		vector<CGameObject*> children = pObj->GetChild();
 		for (size_t i = 0; i < children.size(); ++i)
 		{
 			queue.push_back(children[i]);

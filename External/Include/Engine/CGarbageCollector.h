@@ -1,7 +1,7 @@
 #pragma once
 
 class CGarbageCollector
-	: CSingleton<CGarbageCollector>
+	: public CSingleton<CGarbageCollector>
 {
 	SINGLETON(CGarbageCollector);
 
@@ -10,7 +10,9 @@ private:
 	uint32				m_iMaxCapacity;
 
 public:
-	void Tick();
 	void Add(CEntity* _entity);
+
+public:
+	void Tick();
 };
 

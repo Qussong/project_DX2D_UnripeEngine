@@ -101,22 +101,24 @@ void CPlayerScript::Tick()
 
 	if (KEY_STATE::TAP == M_KEY->GetKeyState(KEY::SPACE))
 	{
-		CGameObject* pObj = nullptr;
+		GamePlayStatic::DestroyGameObject(GetOwner());
 
-		pObj = new CGameObject;
-		pObj->SetName(L"Missile");
-		pObj->AddComponent(new CTransform);
-		pObj->AddComponent(new CMeshRender);
-		pObj->AddComponent(new CMissileScript);
+		//CGameObject* pObj = nullptr;
 
-		Vec3 v3PlayerPos = GetOwner()->Transform()->GetLocalPos();
-		pObj->Transform()->SetLocalPos(v3PlayerPos);
-		pObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
+		//pObj = new CGameObject;
+		//pObj->SetName(L"Missile");
+		//pObj->AddComponent(new CTransform);
+		//pObj->AddComponent(new CMeshRender);
+		//pObj->AddComponent(new CMissileScript);
 
-		pObj->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"RectMesh"));
-		pObj->MeshRender()->SetGraphicShader(CAssetMgr::GetInst()->FindAsset<CGraphicShader>(L"2D_DefaultShader"));
+		//Vec3 v3PlayerPos = GetOwner()->Transform()->GetLocalPos();
+		//pObj->Transform()->SetLocalPos(v3PlayerPos);
+		//pObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
 
-		GamePlayStatic::SpawnGameObject(pObj, LAYER_TYPE::LAYER_0);
+		//pObj->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"RectMesh"));
+		//pObj->MeshRender()->SetGraphicShader(CAssetMgr::GetInst()->FindAsset<CGraphicShader>(L"2D_DefaultShader"));
+
+		//GamePlayStatic::SpawnGameObject(pObj, LAYER_TYPE::LAYER_0);
 	}
 
 	transform->SetLocalPos(v3Pos);

@@ -16,5 +16,6 @@
 #define		M_ASSET		CAssetMgr::GetInst()
 #define		M_LEVEL		CLevelMgr::GetInst()
 #define		M_TASK		CTaskMgr::GetInst()
+#define		M_GC		CGarbageCollector::GetInst()
 
 #define		DT			M_TIME->DeltaTime()

@@ -16,9 +16,9 @@ private:
 	vector<CGameObject*>	m_vecObject;	// 해당 레이어에 속한 모든객체 저장
 
 public:
-	// 해당 레이어에 인자로 들어온 객체 추가
+	// 인자로 들어온 객체 해당 레이어에 추가
 	void AddObject(CGameObject* _obj, bool _isChildMove);
-	// 해당 레이어에서 인자로 들어온 객체 제거
+	// 인자로 들어온 객체 해당 레이어에서 제거
 	void RemoveObject(CGameObject* _obj);
 	
 	vector<CGameObject*>& GetLayerObject() { return m_vecObject; }

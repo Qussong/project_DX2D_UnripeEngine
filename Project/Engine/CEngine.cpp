@@ -46,6 +46,7 @@ void CEngine::Progress()
 	Tick();
 	Render();
 
+	M_GC->Tick();
 	M_TASK->Tick();
 }
 

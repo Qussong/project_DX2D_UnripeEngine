@@ -148,10 +148,29 @@ void CLayer::Tick()
 
 void CLayer::FinalTick()
 {
-	size_t size = m_vecParent.size();
-	for (size_t i = 0; i < size; ++i)
+
+
+	vector<CGameObject*>::iterator iter = m_vecParent.begin();
+
+	for (; iter != m_vecParent.end();)
 	{
-		m_vecParent[i]->FinalTick();
+		CGameObject* pObj = *iter;
+		pObj->FinalTick();
+
+		// Parent 객체가 Dead 상태이면 m_vecParent 에서 제거한다.
+		// m_vecParent에 들어있지 않다면 Parent 객체의 FinalTick()에 의해서 
+		// Child 객체가 m_vecObject에 들어가는 과정이 사라지기에
+		// Parent 객체뿐만아니라 Child 객체도 Render() 과정을 거치지 못한다.
+		if (pObj->IsDead())
+		{
+			// Garbage Collector에 넣어줌
+			M_GC->Add(pObj);
+			iter = m_vecParent.erase(iter);
+		}
+		else
+		{
+			++iter;
+		}
 	}
 }
 

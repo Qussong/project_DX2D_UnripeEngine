@@ -21,6 +21,17 @@ CLevel::~CLevel()
 	}
 }
 
+CLayer* CLevel::GetLayer(LAYER_TYPE _layerType)
+{
+	if (LAYER_TYPE::UNREGISTER == _layerType)
+	{
+		MessageBoxA(nullptr, "Call the Invalid Layer.\n(LAYER_TYPE::UNREGISTER) ", "Call Error", MB_OK);
+		return nullptr;
+	}
+
+	return m_arrLayer[(UINT)_layerType];
+}
+
 void CLevel::Clear()
 {
 	for (UINT i = 0; i < LAYER_MAX; ++i)

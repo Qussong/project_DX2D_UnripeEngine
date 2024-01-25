@@ -58,7 +58,7 @@ public:
 	vector<CGameObject*>& GetChild() { return m_vecChild; }
 
 	void SetDead(bool _flag) { m_bDead = _flag; }
-	bool GetDead() { return m_bDead; }
+	bool IsDead() { return m_bDead; }
 
 public:
 	LAYER_TYPE	GetLayer() { return m_eLayerType; }
