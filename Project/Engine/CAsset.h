@@ -32,14 +32,13 @@ private:
 	int32 GetRefCount() { return m_iRefCnt; }
 	ASSET_TYPE GetAssetType() { return m_eType; }
 
-private:
-	void AddRef() { ++m_iRefCnt; }
 	void Release()
 	{
 		--m_iRefCnt;
 		if (0 >= m_iRefCnt)
 			delete this;
 	}
+
 
 	friend CAssetMgr;
 
