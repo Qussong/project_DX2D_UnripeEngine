@@ -1,2 +1,0 @@
-DirectXTex.lib
-DirectXTex_d.lib
