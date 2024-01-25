@@ -2,6 +2,12 @@
 
 class CGameObject;
 
+namespace Lazy
+{
+	template <typename T>
+	void DelVector(vector<T>& _vec);
+}
+
 namespace GamePlayStatic
 {
 	void SpawnGameObject(CGameObject* _target, LAYER_TYPE _layerType);

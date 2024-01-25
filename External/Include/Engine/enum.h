@@ -163,7 +163,9 @@ enum class TASK_TYPE
 	// p1: GameObject, p2 : LayerType
 	ADD_OBJET,
 
-	DELETE_OBJECT,
+	// p1 : GameObject, p2 : NULL
+	SUB_OBJECT,
+
 	ADD_CHILD,
 	DISCONNECT_PARENT,
 	LEVEL_CHANGE,

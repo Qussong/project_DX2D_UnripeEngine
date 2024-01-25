@@ -4,7 +4,8 @@ class CGameObject;
 
 namespace Lazy
 {
-	void DelVector(vector<CEntity>& _vec);
+	template <typename T>
+	void DelVector(vector<T>& _vec);
 }
 
 namespace GamePlayStatic

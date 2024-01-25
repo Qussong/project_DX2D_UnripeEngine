@@ -9,6 +9,38 @@ CTaskMgr::~CTaskMgr()
 {
 }
 
+void CTaskMgr::AddObject(size_t _idx)
+{
+	CGameObject* pObj = (CGameObject*)m_vecTask[_idx].iParam1;
+	LAYER_TYPE	eLayerType = (LAYER_TYPE)m_vecTask[_idx].iParam2;
+
+	CLevel* pCurLevel = M_LEVEL->GetCurrentLevel();
+	pCurLevel->AddObject(pObj, eLayerType);
+}
+
+void CTaskMgr::SubObject(size_t _idx)
+{
+	CGameObject* pTarget = (CGameObject*)m_vecTask[_idx].iParam1;
+
+	list<CGameObject*> queue;
+	queue.push_back(pTarget);
+
+	// 레이어에 입력되는 오브젝트 포함, 그 밑에 달린 자식들까지 모두 확인
+	while (!queue.empty())
+	{
+		CGameObject* pObj = queue.front();
+		queue.pop_front();
+
+		pObj->SetDead(true);
+		vector<CGameObject*> children = pObj->GetChild();
+
+		for (size_t i = 0; i < children.size(); ++i)
+		{
+			queue.push_back(children[i]);
+		}
+	}
+}
+
 void CTaskMgr::Tick()
 {
 	size_t taskCnt = m_vecTask.size();
@@ -18,19 +50,10 @@ void CTaskMgr::Tick()
 		switch (m_vecTask[i].eType)
 		{
 		case TASK_TYPE::ADD_OBJET:
-		{
-			// Param1 : 
-			CGameObject* pObj = (CGameObject*)m_vecTask[i].iParam1;
-			LAYER_TYPE	eLayerType = (LAYER_TYPE)m_vecTask[i].iParam2;
-
-			CLevel* pCurLevel = M_LEVEL->GetCurrentLevel();
-			pCurLevel->AddObject(pObj, eLayerType);
-		}
+			AddObject(i);
 			break;
-		case TASK_TYPE::DELETE_OBJECT:
-		{
-
-		}
+		case TASK_TYPE::SUB_OBJECT:
+			SubObject(i);
 			break;
 		case TASK_TYPE::ADD_CHILD:
 		{

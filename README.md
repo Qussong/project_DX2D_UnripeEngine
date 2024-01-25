@@ -129,7 +129,9 @@ DirectX 2D Engine
 
 ```
 &nbsp;&nbsp;- GarbageCollector 클래스 추가<br>
-&nbsp;&nbsp;- <br>
+
+**_24/01/25_** :<br>
+&nbsp;&nbsp;- CGarbageCollector 클래스 추가<br>
 &nbsp;&nbsp;- <br>
 
 

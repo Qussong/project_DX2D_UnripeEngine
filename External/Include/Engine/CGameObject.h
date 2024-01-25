@@ -30,6 +30,8 @@ private:
 
 	LAYER_TYPE				m_eLayerType;	// 소속된 Layer Index
 
+	bool					m_bDead;		// 해당 플래그 값을 기반으로 TaskMgr 에서 객체 관리
+
 public:
 	void Begin();
 	void Tick();
@@ -54,6 +56,9 @@ public:
 	void AddChild(CGameObject* _child);						// 자식 객체 추가
 
 	vector<CGameObject*>& GetChild() { return m_vecChild; }
+
+	void SetDead(bool _flag) { m_bDead = _flag; }
+	bool GetDead() { return m_bDead; }
 
 public:
 	LAYER_TYPE	GetLayer() { return m_eLayerType; }

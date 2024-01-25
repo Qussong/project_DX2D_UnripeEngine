@@ -7,6 +7,7 @@ class CGarbageCollector
 
 private:
 	vector<CEntity*>	m_vecEntity;
+	uint32				m_iMaxCapacity;
 
 public:
 	void Tick();

@@ -2,19 +2,21 @@
 #include "CGarbageCollector.h"
 
 CGarbageCollector::CGarbageCollector()
+	: m_iMaxCapacity(100)
 {
 }
 
 CGarbageCollector::~CGarbageCollector()
 {
+	Lazy::DelVector(m_vecEntity);
 }
 
 void CGarbageCollector::Tick()
 {
 	int32 size = m_vecEntity.size();
-	if (100 < size)
+	if (m_iMaxCapacity < size)
 	{
-
+		Lazy::DelVector(m_vecEntity);
 	}
 }
 

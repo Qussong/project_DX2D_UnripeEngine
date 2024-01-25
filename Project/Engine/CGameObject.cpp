@@ -6,6 +6,7 @@ CGameObject::CGameObject()
 	, m_pRenderComp(nullptr)
 	, m_pParent(nullptr)
 	, m_eLayerType(LAYER_TYPE::UNREGISTER)
+	, m_bDead(false)
 {
 	SetName(L"GameObject");
 }
