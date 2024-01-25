@@ -128,6 +128,10 @@ DirectX 2D Engine
 - CLevel) AddObject() 함수 보완 -> 프래그(bool) 값을 넣어줌으로써 인자로 들어온 객체가 Layer에 추가될 때, 자식 객체도 함께 해당 레이어에 소속될지에 대한 설정을 할 수 있다. (기본값 = false)
 
 ```
+&nbsp;&nbsp;- GarbageCollector 클래스 추가<br>
+&nbsp;&nbsp;- <br>
+&nbsp;&nbsp;- <br>
+
 
 <!-- &nbsp;&nbsp;- <br> -->
 

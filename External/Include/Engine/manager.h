@@ -6,3 +6,4 @@
 #include "CAssetMgr.h"
 #include "CLevelMgr.h"
 #include "CTaskMgr.h"
+#include "CGarbageCollector.h"
