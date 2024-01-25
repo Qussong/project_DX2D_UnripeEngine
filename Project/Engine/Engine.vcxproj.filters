@@ -363,5 +363,8 @@
     <FxCompile Include="std2d.fx">
       <Filter>Shader</Filter>
     </FxCompile>
+    <FxCompile Include="value.fx">
+      <Filter>Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
