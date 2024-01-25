@@ -2,7 +2,7 @@
 #include "CComponent.h"
 
 class CMesh;
-class CGraphicShader;
+class CMaterial;
 
 class CRenderComponent :
     public CComponent
@@ -14,17 +14,21 @@ public:
     virtual ~CRenderComponent();
 
 private:
-    CMesh*              m_Mesh;
-    CGraphicShader*     m_Shader;
+    CMesh*              m_pMesh;
+    CMaterial*          m_pMaterial;
 
 public:
-    void SetMesh(CMesh* _mesh) { m_Mesh = _mesh; }
-    void SetGraphicShader(CGraphicShader* _shader) { m_Shader = _shader; }
+    void SetMesh(CMesh* _mesh) { m_pMesh = _mesh; }
+    void SetMaterial(CMaterial* _material) { m_pMaterial = _material; }
 
-    CMesh* GetMesh() { return m_Mesh; }
-    CGraphicShader* GetGraphicShader() { return m_Shader; }
+    CMesh* GetMesh() { return m_pMesh; }
+    CMaterial* GetMaterial() { return m_pMaterial; }
 
 public:
+    virtual void Begin() override {};
+    virtual void Tick() override {};
+    virtual void FinalTick() override {};
+    virtual void UpdateData() override {};
     virtual void Render() = 0;
 };
 

@@ -43,51 +43,44 @@ void CLevelMgr::Init()
 
 	// Parent
 	{
-		m_pTestObjet = new CGameObject;
-		m_pTestObjet->SetName(L"ParentObj_Rec");
-		m_pTestObjet->AddComponent(new CTransform);
-		m_pTestObjet->AddComponent(new CMeshRender);
-		m_pTestObjet->AddComponent(new CPlayerScript);
+		m_pTestObj = new CGameObject;
+		m_pTestObj->SetName(L"ParentObj_Rec");
+		m_pTestObj->AddComponent(new CTransform);
+		m_pTestObj->AddComponent(new CMeshRender);
+		m_pTestObj->AddComponent(new CPlayerScript);
 
-		m_pTestObjet->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
-		m_pTestObjet->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
+		m_pTestObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
+		m_pTestObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
 
-		m_pTestObjet->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		m_pTestObjet->MeshRender()->SetGraphicShader(M_ASSET->FindAsset<CGraphicShader>(L"2D_DefaultShader"));
+		m_pTestObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+		m_pTestObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial"));
+		m_pTestObj->MeshRender()->GetMaterial()->m_tConst.iArr[0] = 1;
 
-		// Child1
-		{
-			CGameObject* pChildObj = new CGameObject;
-			pChildObj->SetName(L"ChildObj_Rec");
-			pChildObj->AddComponent(new CTransform);
-			pChildObj->AddComponent(new CMeshRender);
-
-			pChildObj->Transform()->SetLocalPos(Vec3(100.f, 0.f, 0.f));
-			pChildObj->Transform()->SetLocalScale(Vec3(50.f, 50.f, 1.f));
-
-			pChildObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-			pChildObj->MeshRender()->SetGraphicShader(M_ASSET->FindAsset<CGraphicShader>(L"2D_DefaultShader"));
-			
-			m_pTestObjet->AddChild(pChildObj);
-
-			// Child2
-			{
-				CGameObject* pChildObj2 = new CGameObject;
-				pChildObj2->SetName(L"ChildObj2_Rec");
-				pChildObj2->AddComponent(new CTransform);
-				pChildObj2->AddComponent(new CMeshRender);
-
-				pChildObj2->Transform()->SetLocalPos(Vec3(50.f, 0.f, 0.f));
-				pChildObj2->Transform()->SetLocalScale(Vec3(25.f, 25.f, 1.f));
-
-				pChildObj2->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-				pChildObj2->MeshRender()->SetGraphicShader(M_ASSET->FindAsset<CGraphicShader>(L"2D_DefaultShader"));
-
-				pChildObj->AddChild(pChildObj2);
-			}
-		}
-		//m_pCurLevel->AddObject(m_pTestObjet, LAYER_TYPE::LAYER_0);
-		GamePlayStatic::SpawnGameObject(m_pTestObjet, LAYER_TYPE::LAYER_0);
+		//// Child1
+		//{
+		//	CGameObject* pChildObj = new CGameObject;
+		//	pChildObj->SetName(L"ChildObj_Rec");
+		//	pChildObj->AddComponent(new CTransform);
+		//	pChildObj->AddComponent(new CMeshRender);
+		//	pChildObj->Transform()->SetLocalPos(Vec3(100.f, 0.f, 0.f));
+		//	pChildObj->Transform()->SetLocalScale(Vec3(50.f, 50.f, 1.f));
+		//	pChildObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+		//	pChildObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial"));
+		//	m_pTestObj->AddChild(pChildObj);
+		//	// Child2
+		//	{
+		//		CGameObject* pChildObj2 = new CGameObject;
+		//		pChildObj2->SetName(L"ChildObj2_Rec");
+		//		pChildObj2->AddComponent(new CTransform);
+		//		pChildObj2->AddComponent(new CMeshRender);
+		//		pChildObj2->Transform()->SetLocalPos(Vec3(50.f, 0.f, 0.f));
+		//		pChildObj2->Transform()->SetLocalScale(Vec3(25.f, 25.f, 1.f));
+		//		pChildObj2->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+		//		pChildObj2->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial"));
+		//		pChildObj->AddChild(pChildObj2);
+		//	}
+		//}
+		GamePlayStatic::SpawnGameObject(m_pTestObj, LAYER_TYPE::LAYER_0);
 	}
 }
 
@@ -121,17 +114,15 @@ void CLevelMgr::Test()
 {
 	if (KEY_STATE::TAP == M_KEY->GetKeyState(KEY::C))
 	{
-		LAYER_TYPE type = m_pTestObjet->GetLayer();
+		LAYER_TYPE type = m_pTestObj->GetLayer();
 		CLayer* layer = m_pCurLevel->GetLayer(type);
-		layer->RemoveObject(m_pTestObjet);
+		layer->RemoveObject(m_pTestObj);
 	}
 
 	if (KEY_STATE::TAP == M_KEY->GetKeyState(KEY::V))
 	{
 		LAYER_TYPE type = LAYER_TYPE::LAYER_1;
 		CLayer* layer = m_pCurLevel->GetLayer(type);
-
-		//layer->AddObject(m_pTestObjet);		// 자식객체는 본인의 레이어 유지
-		layer->AddObject(m_pTestObjet, true);	// 자식객체도 부모객체의 레이어 따라감
+		layer->AddObject(m_pTestObj, true);	// 자식객체도 부모객체의 레이어 따라감
 	}
 }

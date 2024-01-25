@@ -25,6 +25,7 @@ void CAssetMgr::Init()
 {
 	Mesh();		// Mesh 持失
 	Shader();	// shader 持失
+	Material();	// Material 持失
 }
 
 void CAssetMgr::Mesh()
@@ -126,7 +127,7 @@ void CAssetMgr::Mesh()
 
 void CAssetMgr::Shader()
 {
-	// Default Shader
+	// Default Shader(2D_DefaultShader)
 	{
 		CGraphicShader* pShader = new CGraphicShader;
 		pShader->VertexShader(L"std2d.fx", "VS_Std2D");
@@ -134,11 +135,10 @@ void CAssetMgr::Shader()
 		pShader->SetRSType(RS_TYPE::CULL_NONE);	// default = CULL_BACK
 		pShader->SetDSType(DS_TYPE::LESS);		// default = LESS
 		pShader->SetBSType(BS_TYPE::DEFAULT);	// default = DEFAULT
-
 		AddAsset(L"2D_DefaultShader", pShader);
 	}
 
-	// WireFrame Shader
+	// WireFrame Shader(2D_WireframeShader)
 	{
 		CGraphicShader* pShader = new CGraphicShader;
 		pShader->VertexShader(L"std2d.fx", "VS_Std2D");
@@ -146,8 +146,25 @@ void CAssetMgr::Shader()
 		pShader->SetRSType(RS_TYPE::WIRE_FRAME);	
 		pShader->SetDSType(DS_TYPE::LESS);		
 		pShader->SetBSType(BS_TYPE::DEFAULT);	
-
 		AddAsset(L"2D_WireframeShader", pShader);
+	}
+}
+
+void CAssetMgr::Material()
+{
+	// Default Material
+	{
+		CMaterial* pMaterial = new CMaterial;
+		
+		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
+		AddAsset(L"DefaultMaterial", pMaterial);
+	}
+
+	// WireFrame Material
+	{
+		CMaterial* pMaterial = new CMaterial;
+		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_WireframeShader"));
+		AddAsset(L"WireframeMaterial", pMaterial);
 	}
 }
 
@@ -191,6 +208,8 @@ inline ASSET_TYPE CAssetMgr::GetAssetType()
 		type = ASSET_TYPE::GRAPHIC_SHADER;
 	else if (&typeid(CTexture) == &info)
 		type = ASSET_TYPE::TEXTURE;
+	else if (&typeid(CMaterial) == &info)
+		type = ASSET_TYPE::MATERIAL;
 
 	return type;
 }

@@ -49,3 +49,4 @@ using namespace DirectX;
 #include "CLevel.h"
 #include "CLayer.h"
 #include "CTexture.h"
+#include "CMaterial.h"

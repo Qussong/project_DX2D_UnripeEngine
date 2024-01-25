@@ -23,6 +23,4 @@ public:
 public:
 	int		Init(HWND _hWnd, uint32 _width, uint32 _height);
 	void	Progress();
-	void	Tick();
-	void	Render();
 };

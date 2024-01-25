@@ -1,9 +1,10 @@
 #include "pch.h"
 #include "CConstantBuffer.h"
 
-CConstantBuffer::CConstantBuffer()
+CConstantBuffer::CConstantBuffer(CB_TYPE _type)
 	: m_elementSize(0)
 	, m_elementCnt(0)
+	, m_eType(_type)
 {
 	SetName(L"ConstantBuffer");
 }
@@ -19,12 +20,12 @@ void CConstantBuffer::Create(UINT _size, UINT _cnt)
 
 	D3D11_BUFFER_DESC desc = {};
 	{
-		desc.ByteWidth = m_elementSize * m_elementCnt;
+		desc.ByteWidth = m_elementSize * m_elementCnt;	// 상수버퍼 총 크기
 		desc.Usage = D3D11_USAGE_DYNAMIC;
 		desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 		desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 		desc.MiscFlags = 0;
-		desc.StructureByteStride = m_elementSize;
+		desc.StructureByteStride = m_elementSize;		// 상수버퍼 요소 하나 크기
 	}
 
 	HRESULT hr = DEVICE->CreateBuffer(&desc, nullptr, m_CB.GetAddressOf());
@@ -49,8 +50,8 @@ void CConstantBuffer::SetData(void* _src, UINT _cnt)
 	CONTEXT->Unmap(m_CB.Get(), 0);
 }
 
-void CConstantBuffer::UpdateData(UINT _registerNum)
+void CConstantBuffer::UpdateData()
 {
-	CONTEXT->VSSetConstantBuffers(_registerNum, 1, m_CB.GetAddressOf());
-	CONTEXT->PSSetConstantBuffers(_registerNum, 1, m_CB.GetAddressOf());
+	CONTEXT->VSSetConstantBuffers((UINT)m_eType, 1, m_CB.GetAddressOf());
+	CONTEXT->PSSetConstantBuffers((UINT)m_eType, 1, m_CB.GetAddressOf());
 }

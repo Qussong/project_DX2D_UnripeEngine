@@ -19,6 +19,7 @@ private:
 	void*					m_pVtxSysMem;
 	void*					m_pIdxSysMem;
 
+
 public:
 	void Create(void* _vtx, uint32 _vtxCnt, void* _idx, uint32 _idxCnt);
 	virtual void UpdateData() override;

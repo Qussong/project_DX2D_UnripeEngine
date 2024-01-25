@@ -87,8 +87,8 @@ enum class DIR_TYPE
 enum class CB_TYPE
 {
 	TRANSFORM,
-	MATERIAL_CONST,
-	GLOBAL_DATA,
+	MATERIAL,
+	GLOBAL,
 	ANIMATION,
 
 	END,
@@ -173,11 +173,30 @@ enum class TASK_TYPE
 	END,
 };
 
+// Transform) World Matrix -> Vec3 Scale/Rot/Pos
 enum class SRT_TYPE
 {
 	SCALE,
 	ROTATE,
 	POS,
+
+	END,
+};
+
+enum class TEX_PARAM
+{
+	TEX_0,
+	TEX_1,
+	TEX_2,
+	TEX_3,
+	TEX_4,
+	TEX_5,
+
+	TEXCUBE_0,
+	TEXCUBE_1,
+
+	TEXARR_0,
+	TEXARR_1,
 
 	END,
 };

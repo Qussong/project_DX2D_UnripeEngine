@@ -14,7 +14,7 @@ public:
 	CLevel* GetCurrentLevel() { return m_pCurLevel; }
 	
 	// test
-	CGameObject* m_pTestObjet = nullptr;
+	CGameObject* m_pTestObj = nullptr;
 	void Test();
 
 public:

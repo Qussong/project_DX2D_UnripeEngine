@@ -132,7 +132,21 @@ DirectX 2D Engine
 
 **_24/01/25_** :<br>
 &nbsp;&nbsp;- CGarbageCollector 클래스 추가<br>
-&nbsp;&nbsp;- <br>
+&nbsp;&nbsp;- CTaskMgr) GameObject 객체 제거 구현 (TASK_TYPE::SUB_OBJECT)<br>
+&nbsp;&nbsp;- CMaterial 클래스 추가<br>
+```
+[관련 작업]
+
+- CGraphics) CreateConstBuffer() 에서 Material용 상수버퍼 추가생성 (CB_TYPE::MATERIAL_CONST)
+- CConstantBufer) 상수버퍼 생성자 수정 -> 생성시 해당하는 상수버퍼 타입(CB_TYPE)을 인자로 넣어줘야함 
+- CConstantBufer) UpdateData() 함수에 데이터를 넘겨줄 레지스터의 번호를 인자로 넘겨주지 않아도 됨
+- CAssetMgr) CMaterial 객체 생성 및 AssetMgr의 m_mapAsset에 저장
+- CRenderComponent, CMeshRender) Shader->Material로 대체됨에 따라 기존의 Shader 관련 객체와 함수를 Material 에 맞게 수정
+- CLevelMgr) 임시 Player 객체에 Shader 대신 Material 추가, Material 전용 상수버퍼에 값 추가
+
+```
+&nbsp;&nbsp;- test) 재질 전용 상수버퍼에 1의 값이 들어가있으면 Pixel Shader에서 이미지에 흰색칠하기<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/test_material.png" width=500><br>
 
 
 <!-- &nbsp;&nbsp;- <br> -->

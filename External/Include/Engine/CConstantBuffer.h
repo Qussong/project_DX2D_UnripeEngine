@@ -7,7 +7,7 @@ class CConstantBuffer :
     using Super = CEntity;
 
 public:
-    CConstantBuffer();
+    CConstantBuffer(CB_TYPE _type);
     virtual ~CConstantBuffer();
 
 private:
@@ -16,10 +16,12 @@ private:
     UINT	                m_elementSize;
     UINT	                m_elementCnt;
 
+    CB_TYPE                 m_eType;
+
 public:
     void Create(UINT _size, UINT _cnt);
     void SetData(void* _src, UINT _cnt = 0);    // Binding
-    void UpdateData(UINT _registerNum);
+    void UpdateData();
 };
 
 // 상수버퍼 대응 구조체 변수

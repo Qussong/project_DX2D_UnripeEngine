@@ -36,19 +36,19 @@ public:
 	ComPtr<ID3D11BlendState>		GetBSState(BS_TYPE _Type)	{ return m_arrBS[(UINT)_Type]; }
 
 private:
-	void SetWindow();
-	void DeviceAndSwapChain();
-	void RenderTargetView();
-	void DepthStencilView();
-	void CostantBuffer();
-	int	RasterizerState();
-	int	DepthStencilState();
-	int	BlendState();
-	int SamplerState();
+	void	SetWindow();
+	void	DeviceAndSwapChain();
+	void	RenderTargetView();
+	void	DepthStencilView();
+	void	CostantBuffer();
+	int		RasterizerState();
+	int		DepthStencilState();
+	int		BlendState();
+	int		SamplerState();
 
 public:
-	int Init(HWND _hWnd, float _width, float _height);
-	void RenderBegin();
-	void RenderEnd();
+	int		Init(HWND _hWnd, float _width, float _height);
+	void	RenderBegin();
+	void	RenderEnd();
 
 };

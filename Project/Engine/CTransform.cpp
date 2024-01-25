@@ -89,7 +89,7 @@ void CTransform::UpdateData()
 	// 0번 Register 에 바인딩
 	CConstantBuffer* pCB = GRAPHICS->GetCB(CB_TYPE::TRANSFORM);
 	pCB->SetData(&g_tTransform);
-	pCB->UpdateData(static_cast<uint32>(CB_TYPE::TRANSFORM));
+	pCB->UpdateData();
 }
 
 Vec3 CTransform::WorldSRT(SRT_TYPE _type)

@@ -130,6 +130,9 @@
     <ClInclude Include="CGarbageCollector.h">
       <Filter>04.Manager\GarbageCollector</Filter>
     </ClInclude>
+    <ClInclude Include="CMaterial.h">
+      <Filter>05.Asset\Material</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -227,6 +230,9 @@
     </ClCompile>
     <ClCompile Include="CGarbageCollector.cpp">
       <Filter>04.Manager\GarbageCollector</Filter>
+    </ClCompile>
+    <ClCompile Include="CMaterial.cpp">
+      <Filter>05.Asset\Material</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -340,6 +346,9 @@
     </Filter>
     <Filter Include="04.Manager\GarbageCollector">
       <UniqueIdentifier>{39f456ab-9f8c-4f6d-9446-ae513d0baa78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Asset\Material">
+      <UniqueIdentifier>{383f6b96-fa20-4533-86cb-f34b40d84ad6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

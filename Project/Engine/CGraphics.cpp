@@ -207,9 +207,16 @@ void CGraphics::CostantBuffer()
 {
 	// Transform
 	{
-		CConstantBuffer* pCB = new CConstantBuffer;
+		CConstantBuffer* pCB = new CConstantBuffer(CB_TYPE::TRANSFORM);
 		pCB->Create(sizeof(tTransform), 1);
 		m_arrCB[(UINT)CB_TYPE::TRANSFORM] = pCB;
+	}
+
+	// Material
+	{
+		CConstantBuffer* pCB = new CConstantBuffer(CB_TYPE::MATERIAL);
+		pCB->Create(sizeof(tMaterial), 1);
+		m_arrCB[(UINT)CB_TYPE::MATERIAL] = pCB;
 	}
 }
 

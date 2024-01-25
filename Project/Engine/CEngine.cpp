@@ -43,25 +43,18 @@ int CEngine::Init(HWND _hWnd, uint32 _width, uint32 _height)
 
 void CEngine::Progress()
 {
-	Tick();
-	Render();
-
-	M_GC->Tick();
-	M_TASK->Tick();
-}
-
-void CEngine::Tick()
-{
-	// manager
+	// Manager
 	M_TIME->Tick();
 	M_KEY->Tick();
 	M_LEVEL->Tick();
-}
 
-void CEngine::Render()
-{
+	// Render Set
 	GRAPHICS->RenderBegin();
-
-	// Rendering Pipeline
+	// Pipeline
 	M_LEVEL->Render();
+	// Render End -> ImGui 뒤에 위치
+
+	// Task
+	M_GC->Tick();
+	M_TASK->Tick();
 }
