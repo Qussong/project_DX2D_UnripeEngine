@@ -1,0 +1,32 @@
+[ 수업진도 ]
+
+1. 계층 구조 (부모 자식 오브젝트 연결) - clear
+
+2. 생성 삭제(TaskMgr) - clear
+
+3. Material - clear
+
+<--- Ptr 클래스 추가 및 적용 - ing
+
+4. DebugShape Render
+
+5. Collision
+
+6. Sprite Animation
+
+6. Structured Buffer
+
+7. Light2D
+
+8. PostProcess
+
+9. ImGui Tool
+
+10. Compute Shader
+
+11. ParticleSystem
+
+
+
+
+
