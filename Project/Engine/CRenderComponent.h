@@ -14,15 +14,15 @@ public:
     virtual ~CRenderComponent();
 
 private:
-    CMesh*              m_pMesh;
-    CMaterial*          m_pMaterial;
+    Ptr<CMesh>              m_pMesh;
+    Ptr<CMaterial>          m_pMaterial;
 
 public:
-    void SetMesh(CMesh* _mesh) { m_pMesh = _mesh; }
-    void SetMaterial(CMaterial* _material) { m_pMaterial = _material; }
+    void SetMesh(Ptr<CMesh> _mesh)              { m_pMesh = _mesh; }
+    void SetMaterial(Ptr<CMaterial> _material)  { m_pMaterial = _material; }
 
-    CMesh* GetMesh() { return m_pMesh; }
-    CMaterial* GetMaterial() { return m_pMaterial; }
+    Ptr<CMesh>      GetMesh()       { return m_pMesh; }
+    Ptr<CMaterial>  GetMaterial()   { return m_pMaterial; }
 
 public:
     virtual void Begin() override {};

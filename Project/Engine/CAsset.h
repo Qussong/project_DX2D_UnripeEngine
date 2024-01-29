@@ -12,7 +12,7 @@ public:
 private:
 	wstring				m_strKey;
 	wstring				m_strRelativePath;
-	int32				m_iRefCnt;
+	int32				m_iRefCnt;	// 스마트 포인터 참조 카운터(Ptr)
 	const ASSET_TYPE	m_eType;
 
 public:
@@ -38,7 +38,6 @@ private:
 		if (0 >= m_iRefCnt)
 			delete this;
 	}
-
 
 	friend CAssetMgr;
 

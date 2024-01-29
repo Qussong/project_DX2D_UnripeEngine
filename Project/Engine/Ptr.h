@@ -13,20 +13,20 @@ public:
 		: m_pAsset(_asset)
 	{
 		if (nullptr != m_pAsset)
-			m_pAsset->AddRef();
+			m_pAsset->AddRefCnt();
 	}
 
 	Ptr(const Ptr<T>& _other)
 		: m_pAsset(_other.m_pAsset)
 	{
 		if (nullptr != m_pAsset)
-			m_pAsset->AddRef();
+			m_pAsset->AddRefCnt();
 	}
 
 	~Ptr()
 	{
 		if (nullptr != m_pAsset)
-			m_pAsset->Release();
+			m_pAsset->SubRefCnt();
 	}
 
 private:
@@ -35,31 +35,31 @@ private:
 public:
 	// 함수 선언의 const : 함수 내부에서 멤버변수(m_pAsset)의 변경 불가능
 	// 리턴 자료형의 const : 외부에서 반환값
-	const T* Get() const { return m_pAsset; }
-	const T** GetAddress() const { return &m_pAsset; }
-	const T* operator->() const { return m_pAsset; }
+	T* Get() const { return m_pAsset; }
+	T** GetAddress() const { return *m_pAsset; }
+	T* operator->() const { return m_pAsset; }
 
 public:
 	void operator=(T* _asset)
 	{
 		if (nullptr != m_pAsset)
-			m_pAsset->Release();
+			m_pAsset->SubRefCnt();
 
 		m_pAsset = _asset;
 
 		if (nullptr != m_pAsset)
-			m_pAsset->AddRef();
+			m_pAsset->AddRefCnt();
 	}
 
-	void operator=(const Ptr& _ptr)
+	void operator=(const Ptr<T>& _ptr)
 	{
 		if (nullptr != m_pAsset)
-			m_pAsset->Release();
+			m_pAsset->SubRefCnt();
 		
 		m_pAsset = _ptr.m_pAsset;
 
 		if (nullptr != m_pAsset)
-			m_pAsset->AddRef();
+			m_pAsset->AddRefCnt();
 	}
 
 	bool operator==(const T* _other)

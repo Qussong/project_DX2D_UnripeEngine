@@ -30,6 +30,7 @@ private:
 
 public:
 	virtual void UpdateData() override;
+	virtual int Load(const wstring& _strFilePath) override { return E_FAIL; };
 
 public:
 	void SetTopology(D3D11_PRIMITIVE_TOPOLOGY _topology) { m_Topology = _topology; }

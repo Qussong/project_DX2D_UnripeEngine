@@ -10,7 +10,7 @@ class CAssetMgr
 	SINGLETON(CAssetMgr);
 
 private:
-	map<wstring, CAsset*> m_mapAsset[(UINT)ASSET_TYPE::END];
+	map<wstring, Ptr<CAsset>> m_mapAsset[(UINT)ASSET_TYPE::END];
 
 public:
 	void Init();
@@ -24,21 +24,25 @@ private:
 	ASSET_TYPE GetAssetType();
 
 public:
-	CTexture* LoadTexture(const wstring& _strKey, const wstring& _strRelativePath = L"");
-
-	template<typename T>
+	template <typename T>
 	void AddAsset(const wstring& _key, T* _asset);
 
-	template<typename T>
-	T* FindAsset(const wstring& _key);
+	template <typename T>
+	Ptr<T> FindAsset(const wstring& _key);
+
+	template <typename T>
+	Ptr<T> Load(const wstring& _key, const wstring& _strRelativePath);
+
+	Ptr<CTexture> LoadTexture(const wstring& _strKey, const wstring& _strRelativePath = L"");
 };
 
-template<typename T>
+template <typename T>
 inline void CAssetMgr::AddAsset(const wstring& _key, T* _asset)
 {
 	ASSET_TYPE type = GetAssetType<T>();
 
-	map<wstring, CAsset*>::iterator iter = m_mapAsset[(UINT)type].find(_key);
+	map<wstring, Ptr<CAsset>>::iterator iter = m_mapAsset[(UINT)type].find(_key);
+
 	// 이미 m_mapAsset에 해당하는 키 값으로 Asset이 저장되어 있는경우
 	if (m_mapAsset[(UINT)type].end() != iter)
 	{
@@ -54,23 +58,48 @@ inline void CAssetMgr::AddAsset(const wstring& _key, T* _asset)
 	{
 		m_mapAsset[(UINT)type].insert(make_pair(_key, _asset));
 	}
-
 }
 
-template<typename T>
-inline T* CAssetMgr::FindAsset(const wstring& _key)
+template <typename T>
+inline Ptr<T> CAssetMgr::FindAsset(const wstring& _key)
 {
 	// Asset Type : MESH, MESHDATA, TEXTURE, MATERIAL,
 	//				SOUND, COMPUTE_SHADER, GRAPHIC_SHADER
 	ASSET_TYPE type = GetAssetType<T>();
 
-	map<wstring, CAsset*>::iterator iter = m_mapAsset[(UINT)type].find(_key);
+	map<wstring, Ptr<CAsset>>::iterator iter = m_mapAsset[(UINT)type].find(_key);
 
 	if (m_mapAsset[(UINT)type].end() == iter)
+		return nullptr;
+
+	return (T*)iter->second.Get();
+}
+
+template<typename T>
+inline Ptr<T> CAssetMgr::Load(const wstring& _key, const wstring& _strRelativePath)
+{
+	Ptr<T> pAsset = nullptr;
+	pAsset = FindAsset<T>(_key);
+
+	// 입력한 Key 값으로 이미 다른 Asset 존재할 경우
+	if (nullptr != pAsset)
+		return pAsset;
+
+	pAsset = new T;
+	wstring strFilePath = M_PATH->GetResourcetPath();
+	strFilePath += _strRelativePath;
+
+	HRESULT hr = pAsset->Load(strFilePath);
+	if (FAILED(hr))
 	{
+		MessageBoxA(nullptr, "Load Asset Failed", "Asset Error", MB_OK);
+		pAsset = nullptr;
 		return nullptr;
 	}
 
-	T* asset = (T*)iter->second;
-	return asset;
+	pAsset->SetAssetKey(_key);
+	pAsset->SetRelativePath(_strRelativePath);
+	AddAsset<T>(_key, pAsset.Get());
+
+	return pAsset;
 }

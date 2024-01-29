@@ -14,5 +14,6 @@ protected:
 
 public:
 	virtual void UpdateData() override {};
+	virtual int Load(const wstring& _strFilePath) override { return E_FAIL; };
 };
 

@@ -21,8 +21,11 @@ private:
 
 
 public:
-	void Create(void* _vtx, uint32 _vtxCnt, void* _idx, uint32 _idxCnt);
 	virtual void UpdateData() override;
+	virtual int Load(const wstring& _strFilePath) override { return E_FAIL; };
+
+public:
+	void Create(void* _vtx, uint32 _vtxCnt, void* _idx, uint32 _idxCnt);
 	void Render();
 };
 

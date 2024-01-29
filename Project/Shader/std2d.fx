@@ -41,8 +41,8 @@ float4 PS_Std2D(VS_OUT _in) : SV_Target
     if (v4Color.a < 0.1f)
         discard;
     
-    if (1 == g_int_0)
-        v4Color = float4(1.f, 1.f, 1.f, 1.f);
+    //if (1 == g_int_0)
+    //    v4Color = float4(1.f, 1.f, 1.f, 1.f);
 
     return v4Color;
 }

@@ -22,7 +22,7 @@ void CLevelMgr::Init()
 
 	// Load Image
 	{
-		CTexture* pTex = M_ASSET->LoadTexture(L"bird", L"bird.png");
+		Ptr<CTexture> pTex = M_ASSET->LoadTexture(L"bird", L"bird.png").Get();
 		pTex->SetName(L"bird");
 		if (nullptr != pTex)
 		{
@@ -52,8 +52,8 @@ void CLevelMgr::Init()
 		m_pTestObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
 		m_pTestObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
 
-		m_pTestObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		m_pTestObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial"));
+		m_pTestObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh").Get());
+		m_pTestObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial").Get());
 		m_pTestObj->MeshRender()->GetMaterial()->m_tConst.iArr[0] = 1;
 
 		//// Child1

@@ -7,18 +7,18 @@ CAssetMgr::CAssetMgr()
 
 CAssetMgr::~CAssetMgr()
 {
-	for (size_t i = 0; i < (UINT)ASSET_TYPE::END; ++i)
-	{
-		for (pair<wstring, CAsset*> pair : m_mapAsset[i])
-		{
-			if (nullptr != pair.second)
-			{
-				delete pair.second;
-				pair.second = nullptr;
-			}
-		}
-		m_mapAsset[i].clear();
-	}
+	//for (size_t i = 0; i < (UINT)ASSET_TYPE::END; ++i)
+	//{
+	//	for (pair<wstring, Ptr<CAsset>> pair : m_mapAsset[i])
+	//	{
+	//		if (nullptr != pair.second)
+	//		{
+	//			delete pair.second;
+	//			pair.second = nullptr;
+	//		}
+	//	}
+	//	m_mapAsset[i].clear();
+	//}
 }
 
 void CAssetMgr::Init()
@@ -168,35 +168,8 @@ void CAssetMgr::Material()
 	}
 }
 
-CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelativePath)
-{
-	CTexture* pTex = FindAsset<CTexture>(_strKey);
-
-	// 이력한 Key 값으로 이미 다른 Texture 존재할 경우
-	if (nullptr != pTex)
-		return pTex;
-
-	wstring strFilePath = M_PATH->GetResourcetPath();
-	strFilePath += _strRelativePath;
-
-	pTex = new CTexture;
-	if (FAILED(pTex->Load(strFilePath)))
-	{
-		MessageBoxA(nullptr, "Texture Load Failed", "Asset Error", MB_OK);
-		delete pTex;
-		pTex = nullptr;
-		return nullptr;
-	}
-
-	pTex->SetAssetKey(_strKey);
-	pTex->SetRelativePath(_strRelativePath);
-	AddAsset(_strKey, pTex);
-
-	return pTex;
-}
-
 template<typename T>
-inline ASSET_TYPE CAssetMgr::GetAssetType()
+ASSET_TYPE CAssetMgr::GetAssetType()
 {
 	const type_info& info = typeid(T);
 
@@ -212,4 +185,30 @@ inline ASSET_TYPE CAssetMgr::GetAssetType()
 		type = ASSET_TYPE::MATERIAL;
 
 	return type;
+}
+
+Ptr<CTexture> CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelativePath)
+{
+	CTexture* pTex = FindAsset<CTexture>(_strKey).Get();
+
+	// 입력한 Key 값으로 이미 다른 Texture 존재할 경우
+	if (nullptr != pTex)
+		return pTex;
+
+	wstring strFilePath = M_PATH->GetResourcetPath();
+	strFilePath += _strRelativePath;
+
+	pTex = new CTexture;
+	if (FAILED(pTex->Load(strFilePath)))
+	{
+		MessageBoxA(nullptr, "Texture Load Failed", "Asset Error", MB_OK);
+		pTex = nullptr;
+		return nullptr;
+	}
+
+	pTex->SetAssetKey(_strKey);
+	pTex->SetRelativePath(_strRelativePath);
+	AddAsset(_strKey, pTex);
+
+	return pTex;
 }

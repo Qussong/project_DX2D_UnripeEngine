@@ -12,7 +12,7 @@ public:
 private:
 	wstring				m_strKey;
 	wstring				m_strRelativePath;
-	int32				m_iRefCnt;
+	int32				m_iRefCnt;	// 스마트 포인터 참조 카운터(Ptr)
 	const ASSET_TYPE	m_eType;
 
 public:
@@ -32,8 +32,6 @@ private:
 	int32 GetRefCount() { return m_iRefCnt; }
 	ASSET_TYPE GetAssetType() { return m_eType; }
 
-private:
-	void AddRef() { ++m_iRefCnt; }
 	void Release()
 	{
 		--m_iRefCnt;
