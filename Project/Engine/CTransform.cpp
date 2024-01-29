@@ -84,11 +84,11 @@ void CTransform::FinalTick()
 
 void CTransform::UpdateData()
 {
-	g_tTransform.matWorld = m_matWorld;
+	g_tTransformConst.matWorld = m_matWorld;
 
 	// 0번 Register 에 바인딩
 	CConstantBuffer* pCB = GRAPHICS->GetCB(CB_TYPE::TRANSFORM);
-	pCB->SetData(&g_tTransform);
+	pCB->SetData(&g_tTransformConst);
 	pCB->UpdateData();
 }
 

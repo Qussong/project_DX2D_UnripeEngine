@@ -12,6 +12,7 @@ cbuffer TRANSFORM : register(b0) // b = (constant) buffer
 // Material 상수버퍼
 cbuffer MATERIAL : register(b1)
 {
+    // [scalar 값 전달]
     int g_int_0;
     int g_int_1;
     int g_int_2;
@@ -36,11 +37,39 @@ cbuffer MATERIAL : register(b1)
     row_major matrix g_mat_1;
     row_major matrix g_mat_2;
     row_major matrix g_mat_3;
+    
+    // [texture 존재여부]
+    // TEX_PARAM::TEX_0 ~ TEX_5
+    int g_btex_0;
+    int g_btex_1;
+    int g_btex_2;
+    int g_btex_3;
+    int g_btex_4;
+    int g_btex_5;
+    
+    // TEX_PARAM::TEXCUBE_0, TEXCUBE_1
+    int g_btexcube_0;
+    int g_btexcube_1;
+    
+    // TEX_PARAM::TEXARR_0, TEXARR_1
+    int g_btexarr_0;
+    int g_btexarr_1;
 }
 
-Texture2D TEXTURE : register(t0);
+Texture2D       TEXTURE_0   : register(t0);
+Texture2D       TEXTURE_1   : register(t1);
+Texture2D       TEXTURE_2   : register(t2);
+Texture2D       TEXTURE_3   : register(t3);
+Texture2D       TEXTURE_4   : register(t4);
+Texture2D       TEXTURE_5   : register(t5);
 
-SamplerState SAMPLER_0 : register(s0); // ANISOTROPIC
-SamplerState SAMPLER_1 : register(s1); // POINT
+TextureCube     TEXCUBE_0   : register(t6);
+TextureCube     TEXCUBE_1   : register(t7);
+
+Texture2DArray  TEXARR_0    : register(t8);
+Texture2DArray  TEXARR_1    : register(t9);
+
+SamplerState    SAMPLER_0   : register(s0); // ANISOTROPIC
+SamplerState    SAMPLER_1   : register(s1); // POINT
 
 #endif

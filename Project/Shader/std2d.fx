@@ -36,13 +36,19 @@ VS_OUT VS_Std2D(VS_IN _in)
 
 float4 PS_Std2D(VS_OUT _in) : SV_Target
 {
-    float4 v4Color = TEXTURE.Sample(SAMPLER_1, _in.vUV);
+    float4 v4Color = float4(1.f, 1.f, 1.f, 1.f);
+    
+    if (g_btex_0)
+        v4Color = TEXTURE_0.Sample(SAMPLER_1, _in.vUV);
+    
+    if (g_btex_1)
+        v4Color = TEXTURE_1.Sample(SAMPLER_1, _in.vUV);
+    
+    if (g_float_0 >= 1.0f)
+        v4Color += float4(0.5f, 0.f, 0.f, 0.f);
     
     if (v4Color.a < 0.1f)
-        discard;
-    
-    //if (1 == g_int_0)
-    //    v4Color = float4(1.f, 1.f, 1.f, 1.f);
+            discard; // clip(-1);
 
     return v4Color;
 }

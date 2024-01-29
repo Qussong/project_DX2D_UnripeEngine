@@ -22,12 +22,9 @@ void CLevelMgr::Init()
 
 	// Load Image
 	{
-		Ptr<CTexture> pTex = M_ASSET->LoadTexture(L"bird", L"bird.png").Get();
-		pTex->SetName(L"bird");
-		if (nullptr != pTex)
-		{
-			pTex->UpdateData(0);	// t0 레지스터에 바인딩
-		}
+		Ptr<CTexture> pTex = nullptr;
+		pTex = M_ASSET->LoadTexture(L"bluebird_hit", L"bluebird_hit.png");
+		pTex = M_ASSET->LoadTexture(L"penguin_hit", L"penguin_hit.png");
 	}
 
 	// Camera
@@ -52,34 +49,32 @@ void CLevelMgr::Init()
 		m_pTestObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
 		m_pTestObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
 
-		m_pTestObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh").Get());
-		m_pTestObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial").Get());
-		m_pTestObj->MeshRender()->GetMaterial()->m_tConst.iArr[0] = 1;
+		m_pTestObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+		m_pTestObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial"));
+		// texture
+		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"bluebird_hit");
+		m_pTestObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
+		// scalar
+		m_pTestObj->MeshRender()->GetMaterial()->SetScalarParam(SCALAR_PARAM::FLOAT_0, 1.f);
 
-		//// Child1
-		//{
-		//	CGameObject* pChildObj = new CGameObject;
-		//	pChildObj->SetName(L"ChildObj_Rec");
-		//	pChildObj->AddComponent(new CTransform);
-		//	pChildObj->AddComponent(new CMeshRender);
-		//	pChildObj->Transform()->SetLocalPos(Vec3(100.f, 0.f, 0.f));
-		//	pChildObj->Transform()->SetLocalScale(Vec3(50.f, 50.f, 1.f));
-		//	pChildObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		//	pChildObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial"));
-		//	m_pTestObj->AddChild(pChildObj);
-		//	// Child2
-		//	{
-		//		CGameObject* pChildObj2 = new CGameObject;
-		//		pChildObj2->SetName(L"ChildObj2_Rec");
-		//		pChildObj2->AddComponent(new CTransform);
-		//		pChildObj2->AddComponent(new CMeshRender);
-		//		pChildObj2->Transform()->SetLocalPos(Vec3(50.f, 0.f, 0.f));
-		//		pChildObj2->Transform()->SetLocalScale(Vec3(25.f, 25.f, 1.f));
-		//		pChildObj2->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		//		pChildObj2->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial"));
-		//		pChildObj->AddChild(pChildObj2);
-		//	}
-		//}
+		// Child
+		{
+			CGameObject* pChild = new CGameObject;
+			pChild->SetName(L"ChildObj_Rec");
+			pChild->AddComponent(new CTransform);
+			pChild->AddComponent(new CMeshRender);
+
+			pChild->Transform()->SetLocalPos(Vec3(50.f, 0.f, 0.f));
+			pChild->Transform()->SetLocalScale(Vec3(50.f, 50.f, 1.f));
+
+			pChild->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+			pChild->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"ChildMaterial"));
+			// texture
+			Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"penguin_hit");
+			pChild->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
+
+			m_pTestObj->AddChild(pChild);
+		}
 		GamePlayStatic::SpawnGameObject(m_pTestObj, LAYER_TYPE::LAYER_0);
 	}
 }

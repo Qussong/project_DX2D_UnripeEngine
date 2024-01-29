@@ -150,6 +150,13 @@ DirectX 2D Engine
 
 **_24/01/26_** :<br>
 &nbsp;&nbsp;- Asset 전용 스마트 포인터 클래스(Ptr) 추가 <br>
+
+**_24/01/29_** :<br>
+&nbsp;&nbsp;- 스마트 포인터 Asset 관련 클래스에 적용<br>
+&nbsp;&nbsp;- enum) SCALAR_PARAM 열거형 클래스 추가<br>
+&nbsp;&nbsp;- CMaterial) SetScalarParam(), SetTexParam() 함수로 스칼라 값과 이미지 정보 세팅 후 UpdateData() 과정을 통해 GPU로 넘겨줌<br>
+
+**_24/01/30_** :<br>
 &nbsp;&nbsp;- <br>
 
 <!-- &nbsp;&nbsp;- <br> -->

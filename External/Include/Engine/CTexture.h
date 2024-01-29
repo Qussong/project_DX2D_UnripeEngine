@@ -24,5 +24,8 @@ public:
 	virtual void UpdateData() override {};
 	virtual void UpdateData(uint32 _iRegisterNum);	// overload
 	virtual int Load(const wstring& _strFilePath) override;
+	
+public:
+	static void Clear(uint32 _iRegisterNum);
 };
 

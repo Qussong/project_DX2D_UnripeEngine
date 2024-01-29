@@ -40,9 +40,13 @@ struct tTask
 // 상수버퍼(CB_TYPE::MATERIAL) 대응 구조체
 struct tMaterial
 {
-	int32		iArr[4];	//  4Byte * 4 =  16Byte
-	float		fArr[4];	//  4Byte * 4 =  16Byte
-	Vec2		v2Arr[4];	//  8Byte * 4 =  32Byte
-	Vec4		v4Arr[4];	// 16Byte * 4 =  64Byte
-	Matrix		matArr[4];	// 64Byte * 4 = 256Byte
+	int32		iArr[4];
+	float		fArr[4];
+	Vec2		v2Arr[4];
+	Vec4		v4Arr[4];
+	Matrix		matArr[4];
+
+	int32		bTex[(int32)TEX_PARAM::END];
+
+	int32		iPadding[2];
 };

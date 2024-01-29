@@ -1,3 +1,3 @@
 #include "pch.h"
 
-tTransform g_tTransform = {};
+tTransform g_tTransformConst = {};

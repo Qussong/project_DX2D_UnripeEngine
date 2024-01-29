@@ -7,18 +7,6 @@ CAssetMgr::CAssetMgr()
 
 CAssetMgr::~CAssetMgr()
 {
-	//for (size_t i = 0; i < (UINT)ASSET_TYPE::END; ++i)
-	//{
-	//	for (pair<wstring, Ptr<CAsset>> pair : m_mapAsset[i])
-	//	{
-	//		if (nullptr != pair.second)
-	//		{
-	//			delete pair.second;
-	//			pair.second = nullptr;
-	//		}
-	//	}
-	//	m_mapAsset[i].clear();
-	//}
 }
 
 void CAssetMgr::Init()
@@ -155,9 +143,15 @@ void CAssetMgr::Material()
 	// Default Material
 	{
 		CMaterial* pMaterial = new CMaterial;
-		
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
 		AddAsset(L"DefaultMaterial", pMaterial);
+	}
+
+	// Child Material
+	{
+		CMaterial* pMaterial = new CMaterial;
+		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
+		AddAsset(L"ChildMaterial", pMaterial);
 	}
 
 	// WireFrame Material
@@ -206,6 +200,7 @@ Ptr<CTexture> CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _str
 		return nullptr;
 	}
 
+	pTex->SetName(_strKey);
 	pTex->SetAssetKey(_strKey);
 	pTex->SetRelativePath(_strRelativePath);
 	AddAsset(_strKey, pTex);

@@ -74,6 +74,6 @@ void CCamera::FinalTick()
 	ProjectionMatrix();
 
 	// 상수버퍼 대응 구조체 값 세팅
-	g_tTransform.matView = m_matView;
-	g_tTransform.matProj = m_matProj;
+	g_tTransformConst.matView = m_matView;
+	g_tTransformConst.matProj = m_matProj;
 }

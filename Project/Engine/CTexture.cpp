@@ -66,3 +66,14 @@ void CTexture::UpdateData(uint32 _iRegisterNum)
 	//CONTEXT->GSSetShaderResources(_iRegisterNum, 1, m_SRV.GetAddressOf());
 	CONTEXT->PSSetShaderResources(_iRegisterNum, 1, m_SRV.GetAddressOf());
 }
+
+void CTexture::Clear(uint32 _iRegisterNum)
+{
+	ID3D11ShaderResourceView* pSRV = nullptr;
+
+	CONTEXT->VSSetShaderResources(_iRegisterNum, 1, &pSRV);
+	//CONTEXT->HSSetShaderResources(_iRegisterNum, 1, &pSRV);
+	//CONTEXT->DSSetShaderResources(_iRegisterNum, 1, &pSRV);
+	//CONTEXT->GSSetShaderResources(_iRegisterNum, 1, &pSRV);
+	CONTEXT->PSSetShaderResources(_iRegisterNum, 1, &pSRV);
+}

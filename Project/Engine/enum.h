@@ -183,6 +183,7 @@ enum class SRT_TYPE
 	END,
 };
 
+// Material 상수버퍼
 enum class TEX_PARAM
 {
 	TEX_0,
@@ -199,4 +200,32 @@ enum class TEX_PARAM
 	TEXARR_1,
 
 	END,
+};
+
+enum class SCALAR_PARAM
+{
+	INT_0,		// 0
+	INT_1,
+	INT_2,
+	INT_3,	
+
+	FLOAT_0,	// 4
+	FLOAT_1,
+	FLOAT_2,
+	FLOAT_3,
+
+	VEC2_0,		// 8
+	VEC2_1,
+	VEC2_2,
+	VEC2_3,
+
+	VEC4_0,		// 12
+	VEC4_1,
+	VEC4_2,
+	VEC4_3,
+
+	MAT_0,		// 16
+	MAT_1,
+	MAT_2,
+	MAT_3,
 };
