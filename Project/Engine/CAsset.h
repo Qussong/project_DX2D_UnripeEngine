@@ -27,7 +27,12 @@ private:
 	void SetRelativePath(const wstring& _path) { m_strRelativePath = _path; }
 
 	void AddRefCnt() { ++m_iRefCnt; }
-	void SubRefCnt() { --m_iRefCnt; }
+	void SubRefCnt() /*{ --m_iRefCnt; }*/
+	{
+		--m_iRefCnt;
+		if (0 >= m_iRefCnt)
+			delete this;
+	}
 
 	int32 GetRefCount() { return m_iRefCnt; }
 	ASSET_TYPE GetAssetType() { return m_eType; }

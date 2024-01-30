@@ -183,7 +183,8 @@ ASSET_TYPE CAssetMgr::GetAssetType()
 
 Ptr<CTexture> CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelativePath)
 {
-	CTexture* pTex = FindAsset<CTexture>(_strKey).Get();
+	CTexture* pTex = nullptr;
+	pTex = FindAsset<CTexture>(_strKey).Get();
 
 	// 입력한 Key 값으로 이미 다른 Texture 존재할 경우
 	if (nullptr != pTex)
