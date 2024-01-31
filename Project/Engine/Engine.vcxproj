@@ -223,6 +223,7 @@ call EngineCopy.bat</Command>
     <ClCompile Include="CLayer.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />
+    <ClCompile Include="CLevelMgr_Init.cpp" />
     <ClCompile Include="CMaterial.cpp" />
     <ClCompile Include="CMesh.cpp" />
     <ClCompile Include="CMeshRender.cpp" />

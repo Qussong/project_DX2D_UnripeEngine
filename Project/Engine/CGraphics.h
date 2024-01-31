@@ -8,8 +8,6 @@ class CGraphics
 private:
 	HWND		m_hWnd;
 	Vec2		m_v2Resolution;
-
-	float		m_arrClearColor[4];
 	bool		m_bStandByMode;
 
 private:

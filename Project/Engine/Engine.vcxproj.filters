@@ -237,6 +237,9 @@
     <ClCompile Include="func.cpp">
       <Filter>01.Header\etc\func</Filter>
     </ClCompile>
+    <ClCompile Include="CLevelMgr_Init.cpp">
+      <Filter>04.Manager\Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="00.Default">

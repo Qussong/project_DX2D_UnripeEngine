@@ -4,7 +4,6 @@
 CGraphics::CGraphics()
 	: m_hWnd(nullptr)
 	, m_v2Resolution{}
-	, m_arrClearColor{}
 	, m_bStandByMode(false)
 	, m_arrCB{}
 	, m_arrRS{}
@@ -70,7 +69,8 @@ int CGraphics::Init(HWND _hWnd, float _width, float _height)
 void CGraphics::RenderBegin()
 {
 	CONTEXT->OMSetRenderTargets(1, m_RenderTargetView.GetAddressOf(), m_DepthStencilView.Get());
-	CONTEXT->ClearRenderTargetView(m_RenderTargetView.Get(), m_arrClearColor);		// ·»´õ Å¸°Ù Å¬¸®¾î (clearColor)
+	Vec4 v4Color = { 0.7f, 0.7f, 0.7f, 1.f };
+	CONTEXT->ClearRenderTargetView(m_RenderTargetView.Get(), v4Color);		// ·»´õ Å¸°Ù Å¬¸®¾î (clearColor)
 	CONTEXT->ClearDepthStencilView(m_DepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, (UINT8)0);
 	
 	D3D11_VIEWPORT	viewport = {};
