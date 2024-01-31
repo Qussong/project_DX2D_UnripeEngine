@@ -7,3 +7,4 @@
 #include "CLevelMgr.h"
 #include "CTaskMgr.h"
 #include "CGarbageCollector.h"
+#include "CRenderMgr.h"

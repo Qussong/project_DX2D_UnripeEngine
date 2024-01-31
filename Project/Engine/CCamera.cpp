@@ -68,6 +68,37 @@ void CCamera::ProjectionMatrix()
 	}
 }
 
+void CCamera::SetPriority(int32 _priority)
+{
+	m_iPriority = _priority;
+	M_RENDER->RegisterCamera(this, _priority);
+}
+
+void CCamera::LayerCheckByType(LAYER_TYPE _layer, bool _bCheck)
+{
+	m_arrLayerCheck[(int32)_layer] = _bCheck;
+}
+
+void CCamera::LayerCheckByName(const wstring& _layerName, bool _bCheck)
+{
+	CLevel* pCurLevel = M_LEVEL->GetCurrentLevel();
+	CLayer* pLayer = pCurLevel->GetLayer(_layerName);
+	
+	if (nullptr == pLayer)
+		return;
+
+	LAYER_TYPE layerType = pLayer->GetLayerType();
+	LayerCheckByType(layerType, _bCheck);
+}
+
+void CCamera::LayerCheckAll(bool _bCheck)
+{
+	for (size_t i = 0; i < LAYER_MAX; ++i)
+	{
+		// 레이어 받아서 전부 _bCheck 로 변경 (하던중)
+	}
+}
+
 void CCamera::FinalTick()
 {
 	ViewMatrix();
@@ -76,4 +107,8 @@ void CCamera::FinalTick()
 	// 상수버퍼 대응 구조체 값 세팅
 	g_tTransformConst.matView = m_matView;
 	g_tTransformConst.matProj = m_matProj;
+}
+
+void CCamera::Render()
+{
 }

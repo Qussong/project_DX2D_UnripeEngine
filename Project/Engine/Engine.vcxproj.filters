@@ -136,6 +136,9 @@
     <ClInclude Include="Ptr.h">
       <Filter>01.Header\etc\Ptr</Filter>
     </ClInclude>
+    <ClInclude Include="CRenderMgr.h">
+      <Filter>04.Manager\Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -239,6 +242,9 @@
     </ClCompile>
     <ClCompile Include="CLevelMgr_Init.cpp">
       <Filter>04.Manager\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CRenderMgr.cpp">
+      <Filter>04.Manager\Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -361,6 +367,9 @@
     </Filter>
     <Filter Include="01.Header\etc\Ptr">
       <UniqueIdentifier>{bc69c63b-eccb-4f8c-ad90-495e15c7a490}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Manager\Render">
+      <UniqueIdentifier>{84b21adf-da8d-4f41-b506-c98863af55d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

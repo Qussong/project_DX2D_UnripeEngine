@@ -18,29 +18,40 @@ private:
 	// 직교투영 Orthographic
 	float		m_fScale;		// 직교투영 배율
 
-	// 공용
+	// 공용	Common
 	Vec2		m_v2Resolution;	// 해상도
 	float		m_fAspectRatio;	// 종횡비
 	float		m_fNear;		// 투영 최소 거리
 	float		m_fFar;			// 투영 최대 거리
 
+	// 변환행렬 Result
 	Matrix		m_matView;		// View 변환 행렬
 	Matrix		m_matProj;		// Projection 변환 행렬
 	
+private:
+	int32		m_iPriority;				// 카메라의 우선순위
+	bool		m_arrLayerCheck[LAYER_MAX];	// 카메라가 Render할 Layer (true만 Render)
+
 private:
 	void ViewMatrix();			// View 변환 행렬 계산
 	void ProjectionMatrix();	// Projection 변환 행렬 계산
 
 public:
-	PROJ_TYPE GetProjectionType() { return m_eProjType; }
-	void SetProjectionType(PROJ_TYPE _type) { m_eProjType = _type; }
+	// Getter
+	PROJ_TYPE	GetProjectionType() { return m_eProjType; }
+	float		GetFOV() { return m_fFOV; }
+	float		GetScale() { return m_fScale; }
 
-	float GetFOV() { return m_fFOV; }
-	void SetFOV(float _fov) { m_fFOV = _fov; }
+	// Setter
+	void		SetProjectionType(PROJ_TYPE _type) { m_eProjType = _type; }
+	void		SetFOV(float _fov) { m_fFOV = _fov; }
+	void		SetScale(float _scale) { m_fScale = _scale; }
 
-	float GetScale() { return m_fScale; }
-	void SetScale(float _scale) { m_fScale = _scale; }
-
+public:
+	void		SetPriority(int32 _priority);
+	void		LayerCheckByType(LAYER_TYPE _layer, bool _bCheck);
+	void		LayerCheckByName(const wstring& _layerName, bool _bCheck);
+	void		LayerCheckAll(bool _bCheck = true);
 
 public:
 	virtual void Begin() override {};
@@ -48,6 +59,7 @@ public:
 	virtual void FinalTick() override;
 	virtual void UpdateData() override {};
 
-
+public:
+	virtual void Render();
 };
 

@@ -32,6 +32,21 @@ CLayer* CLevel::GetLayer(LAYER_TYPE _layerType)
 	return m_arrLayer[(UINT)_layerType];
 }
 
+CLayer* CLevel::GetLayer(const wstring& _layerName)
+{
+	for (size_t i = 0; i < LAYER_MAX; ++i)
+	{
+		const wstring strLayerName = m_arrLayer[i]->GetName();
+		if (_layerName == strLayerName)
+		{
+			return m_arrLayer[i];
+		}
+	}
+
+	MessageBoxA(nullptr, "Search Invalid Layer", "Layer Error", MB_OK);
+	return nullptr;
+}
+
 void CLevel::Clear()
 {
 	for (UINT i = 0; i < LAYER_MAX; ++i)

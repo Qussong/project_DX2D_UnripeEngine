@@ -23,7 +23,6 @@ private:
 	ComPtr<ID3D11SamplerState>		m_arrSS[(UINT)SS_TYPE::END];
 
 public:
-
 	ID3D11Device*					GetDevice()					{ return m_Device.Get(); }
 	ID3D11DeviceContext*			GetContext()				{ return m_Context.Get(); }
 	IDXGISwapChain*					GetSwapChain()				{ return m_SwapChain.Get(); }
@@ -43,6 +42,9 @@ private:
 	int		DepthStencilState();
 	int		BlendState();
 	int		SamplerState();
+
+public:
+	void	ClearRenderTarget(Vec4 _color);
 
 public:
 	int		Init(HWND _hWnd, float _width, float _height);

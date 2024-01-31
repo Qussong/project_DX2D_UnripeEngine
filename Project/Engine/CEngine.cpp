@@ -36,6 +36,9 @@ int CEngine::Init(HWND _hWnd, uint32 _width, uint32 _height)
 	M_PATH->Init();
 	M_KEY->Init();
 	M_ASSET->Init();
+
+	M_RENDER->Init();
+
 	M_LEVEL->Init();
 
 	return S_OK;
@@ -48,6 +51,7 @@ void CEngine::Progress()
 	M_KEY->Tick();
 	M_LEVEL->Tick();
 
+	M_RENDER->Tick();
 	// Render Set
 	GRAPHICS->RenderBegin();
 	// Pipeline

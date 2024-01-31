@@ -17,5 +17,6 @@
 #define		M_LEVEL		CLevelMgr::GetInst()
 #define		M_TASK		CTaskMgr::GetInst()
 #define		M_GC		CGarbageCollector::GetInst()
+#define		M_RENDER	CRenderMgr::GetInst()
 
 #define		DT			M_TIME->DeltaTime()
