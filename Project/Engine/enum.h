@@ -231,3 +231,14 @@ enum class SCALAR_PARAM
 	MAT_2,
 	MAT_3,
 };
+
+enum class DEBUG_SHAPE
+{
+	RECT,
+	CIRCLE,
+
+	CUBE,
+	SPHERE,
+
+	END,
+};

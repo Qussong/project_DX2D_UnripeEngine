@@ -23,6 +23,7 @@ struct tTransform
 	Matrix matWorld;
 	Matrix matView;
 	Matrix matProj;
+	Matrix matWVP;
 };
 
 // TaskMgr 클래스 전용 데이터
@@ -40,13 +41,21 @@ struct tTask
 // 상수버퍼(CB_TYPE::MATERIAL) 대응 구조체
 struct tMaterial
 {
-	int32		iArr[4];
-	float		fArr[4];
-	Vec2		v2Arr[4];
-	Vec4		v4Arr[4];
-	Matrix		matArr[4];
+	int32		iArr[4];	// 정수 데이터
+	float		fArr[4];	// 실수 데이터
+	Vec2		v2Arr[4];	// Vec2 데이터
+	Vec4		v4Arr[4];	// Vec4 데이터
+	Matrix		matArr[4];	// Matrix 데이터
+	int32		bTex[(int32)TEX_PARAM::END];	// Texture 존재 여부
 
-	int32		bTex[(int32)TEX_PARAM::END];
+	int32		iPadding[2];	// 16Byte 단위 맞추는 용도
+};
 
-	int32		iPadding[2];
+struct tDebugShapeInfo
+{
+	DEBUG_SHAPE		eShape;
+	Vec3			v3Color;
+	Matrix			matWorld;
+	float			fDuration;
+	bool			bDepthTest;
 };

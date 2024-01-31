@@ -136,6 +136,17 @@ void CAssetMgr::Shader()
 		pShader->SetBSType(BS_TYPE::DEFAULT);	
 		AddAsset(L"2D_WireframeShader", pShader);
 	}
+
+	// Debug Shader(2D_DebugShader)
+	{
+		CGraphicShader* pShader = new CGraphicShader;
+		pShader->VertexShader(L"debug2d.fx", "VS_DebugShape");
+		pShader->PixelShader(L"debug2d.fx", "PS_DebugShape");
+		pShader->SetRSType(RS_TYPE::CULL_NONE);
+		pShader->SetDSType(DS_TYPE::LESS);
+		pShader->SetBSType(BS_TYPE::DEFAULT);
+		AddAsset(L"2D_DebugShader", pShader);
+	}
 }
 
 void CAssetMgr::Material()
@@ -159,6 +170,13 @@ void CAssetMgr::Material()
 		CMaterial* pMaterial = new CMaterial;
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_WireframeShader"));
 		AddAsset(L"WireframeMaterial", pMaterial);
+	}
+
+	// Debug Material
+	{
+		CMaterial* pMaterial = new CMaterial;
+		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DebugShader"));
+		AddAsset(L"DebugMaterial", pMaterial);
 	}
 }
 

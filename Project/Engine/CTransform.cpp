@@ -85,6 +85,9 @@ void CTransform::FinalTick()
 void CTransform::UpdateData()
 {
 	g_tTransformConst.matWorld = m_matWorld;
+	g_tTransformConst.matWVP = g_tTransformConst.matWorld 
+								* g_tTransformConst.matView
+								* g_tTransformConst.matProj;
 
 	// 0번 Register 에 바인딩
 	CConstantBuffer* pCB = GRAPHICS->GetCB(CB_TYPE::TRANSFORM);

@@ -38,9 +38,11 @@ private:
 
 public:
 	// Getter
-	PROJ_TYPE	GetProjectionType() { return m_eProjType; }
-	float		GetFOV() { return m_fFOV; }
-	float		GetScale() { return m_fScale; }
+	PROJ_TYPE		GetProjectionType() { return m_eProjType; }
+	float			GetFOV() { return m_fFOV; }
+	float			GetScale() { return m_fScale; }
+	const Matrix	GetViewMatrix() { return m_matView; }
+	const Matrix	GetProjMatrix() { return m_matProj; }
 
 	// Setter
 	void		SetProjectionType(PROJ_TYPE _type) { m_eProjType = _type; }

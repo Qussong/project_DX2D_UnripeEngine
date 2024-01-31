@@ -12,6 +12,13 @@ namespace GamePlayStatic
 {
 	void SpawnGameObject(CGameObject* _target, LAYER_TYPE _layerType);
 	void DestroyGameObject(CGameObject* _target);
+
+	void DrawDebugRect(const Matrix& _worldMat, Vec3 _color, bool _depthTest, float _duration = 0.f);
+	void DrawDebugRect(Vec3 _worldPos, Vec3 _worldScale, Vec3 _worldRot, Vec3 _color, bool _depthTest, float _duration = 0.f);
+
+	//void DrawDebugCircle();
+	//void DrawDebugCube();
+	//void DrawDebugSphere();
 }
 
 template<typename T, UINT SIZE>

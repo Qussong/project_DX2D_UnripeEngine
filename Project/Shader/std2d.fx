@@ -48,7 +48,10 @@ float4 PS_Std2D(VS_OUT _in) : SV_Target
         v4Color += float4(0.5f, 0.f, 0.f, 0.f);
     
     if (v4Color.a < 0.1f)
-            discard; // clip(-1);
+    {
+        //v4Color = float4(1.f, 1.f, 1.f, 1.f);
+        discard; // clip(-1);
+    }
 
     return v4Color;
 }

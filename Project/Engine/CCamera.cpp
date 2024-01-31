@@ -106,14 +106,14 @@ void CCamera::FinalTick()
 {
 	ViewMatrix();
 	ProjectionMatrix();
-
-	// 상수버퍼 대응 구조체 값 세팅
-	g_tTransformConst.matView = m_matView;
-	g_tTransformConst.matProj = m_matProj;
 }
 
 void CCamera::Render()
 {
+	// 상수버퍼 대응 구조체 값 세팅
+	g_tTransformConst.matView = m_matView;
+	g_tTransformConst.matProj = m_matProj;
+
 	CLevel* pCurLevel = M_LEVEL->GetCurrentLevel();
 
 	// 카메라가 인식하도록 설정된 Layer 만 Render

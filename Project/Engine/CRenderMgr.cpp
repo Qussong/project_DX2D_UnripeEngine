@@ -2,11 +2,14 @@
 #include "CRenderMgr.h"
 
 CRenderMgr::CRenderMgr()
+	: m_pDebugObj(nullptr)
 {
 }
 
 CRenderMgr::~CRenderMgr()
 {
+	if (nullptr != m_pDebugObj)
+		delete m_pDebugObj;
 }
 
 void CRenderMgr::RegisterCamera(CCamera* _cam, int32 _idx)
@@ -33,6 +36,9 @@ void CRenderMgr::RegisterCamera(CCamera* _cam, int32 _idx)
 
 void CRenderMgr::Init()
 {
+	m_pDebugObj = new CGameObject;
+	m_pDebugObj->AddComponent(new CTransform);
+	m_pDebugObj->AddComponent(new CMeshRender);
 }
 
 void CRenderMgr::Tick()
@@ -58,4 +64,38 @@ void CRenderMgr::Render()
 
 void CRenderMgr::Render_Debug()
 {
+	g_tTransformConst.matView = m_vecCamera[0]->GetViewMatrix();
+	g_tTransformConst.matProj = m_vecCamera[0]->GetProjMatrix();
+
+	list<tDebugShapeInfo>::iterator iter = m_listDebugShapeInfo.begin();
+	for (; iter != m_listDebugShapeInfo.end(); ++iter)
+	{
+		tDebugShapeInfo info = *iter;
+
+		// Transform 설정
+		m_pDebugObj->Transform()->SetWorldMatrix(info.matWorld);
+		m_pDebugObj->Transform()->UpdateData();
+
+		// Mesh 설정
+		DEBUG_SHAPE tDebugShape = info.eShape;
+		switch (tDebugShape)
+		{
+		case DEBUG_SHAPE::RECT:
+		{
+			m_pDebugObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+		}
+		break;
+		case DEBUG_SHAPE::CIRCLE:
+		{
+			m_pDebugObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"CircleMesh"));
+		}
+		break;
+		}
+
+		// Material 설정
+		m_pDebugObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DebugMaterial"));
+
+		// Render
+		m_pDebugObj->Render();
+	}
 }
