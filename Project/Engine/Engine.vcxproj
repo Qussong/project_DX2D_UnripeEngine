@@ -165,6 +165,7 @@ call EngineCopy.bat</Command>
     <ClInclude Include="CAssetMgr.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CCameraScript.h" />
+    <ClInclude Include="CCollider2D.h" />
     <ClInclude Include="CComponent.h" />
     <ClInclude Include="CConstantBuffer.h" />
     <ClInclude Include="CEngine.h" />
@@ -212,6 +213,7 @@ call EngineCopy.bat</Command>
     <ClCompile Include="CAssetMgr.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CCameraScript.cpp" />
+    <ClCompile Include="CCollider2D.cpp" />
     <ClCompile Include="CComponent.cpp" />
     <ClCompile Include="CConstantBuffer.cpp" />
     <ClCompile Include="CEngine.cpp" />

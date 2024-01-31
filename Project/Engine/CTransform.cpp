@@ -8,7 +8,7 @@ CTransform::CTransform()
 	, m_v3LocalRotation(Vec3(0.f, 0.f, 0.f))
 	, m_arrLocalDir{}
 	, m_matWorld {}
-	, m_isAffectScale(false)
+	, m_bAbsolute(false)
 {
 	SetName(L"Transform");
 }
@@ -57,13 +57,8 @@ void CTransform::FinalTick()
 		const Matrix& matParentSRT = pParentTransComp->GetWorldMatrix();
 
 		// WorldMatrix
-		// 부모 객체로부터 Scale 영향을 받을경우
-		if (m_isAffectScale)
-		{
-			m_matWorld *= matParentSRT;
-		}
 		// 부모 객체로부터 Scale 영향을 받지 않을경우
-		else
+		if (m_bAbsolute)
 		{
 			Vec3 v3ParentScale = pParentTransComp->GetLocalScale();
 			Vec3 v3ParentScaleInv = Vec3(1.f / v3ParentScale.x, 1.f / v3ParentScale.y, 1.f / v3ParentScale.z);
@@ -71,6 +66,11 @@ void CTransform::FinalTick()
 
 			Matrix matParentRT = matParnetScaleInv * matParentSRT;
 			m_matWorld *= matParentRT;
+		}
+		// 부모 객체로부터 Scale 영향을 받을경우
+		else
+		{
+			m_matWorld *= matParentSRT;
 		}
 
 		// Direction
@@ -125,17 +125,17 @@ Vec3 CTransform::WorldSRT(SRT_TYPE _type)
 	return result;
 }
 
-Vec3 CTransform::GetWorldScale()
+const Vec3 CTransform::GetWorldScale()
 {
 	return WorldSRT(SRT_TYPE::SCALE);
 }
 
-Vec3 CTransform::GetWorldRotation()
+const Vec3 CTransform::GetWorldRotation()
 {
 	return WorldSRT(SRT_TYPE::ROTATE);
 }
 
-Vec3 CTransform::GetWorldPos()
+const Vec3 CTransform::GetWorldPos()
 {
 	return WorldSRT(SRT_TYPE::POS);
 }

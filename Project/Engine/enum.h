@@ -242,3 +242,11 @@ enum class DEBUG_SHAPE
 
 	END,
 };
+
+enum class COLLIDER2D_TYPE
+{
+	RECT,
+	CIRCLE,
+
+	END,
+};

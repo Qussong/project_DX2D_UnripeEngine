@@ -55,6 +55,9 @@ struct tDebugShapeInfo
 {
 	DEBUG_SHAPE		eShape;
 	Vec3			v3Color;
+	Vec3			v3WorldPos;
+	Vec3			v3WorldScale;
+	Vec3			v3WorldRot;
 	Matrix			matWorld;
 	float			fDuration;
 	bool			bDepthTest;

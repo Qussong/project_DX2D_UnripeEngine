@@ -10,3 +10,4 @@
 #include "CPlayerScript.h"
 #include "CCameraScript.h"
 #include "CMissileScript.h"
+#include "CCollider2D.h"

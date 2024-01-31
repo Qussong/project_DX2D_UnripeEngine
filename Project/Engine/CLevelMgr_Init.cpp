@@ -80,11 +80,11 @@ void CLevelMgr::Init()
 	}
 
 	// Debug
-	{
-		Vec3 v3Pos = { 0.f, 0.f, 0.f };
-		Vec3 v3Scale = { 100.f, 100.f, 1.f };
-		Vec3 v3Rot = { 0.f, 0.f, 0.f };
-		Vec3 v3Color = { 1.f, 0.f, .5f };
-		GamePlayStatic::DrawDebugRect(v3Pos, v3Scale, v3Rot, v3Color, true, 20);
-	}
+	//{
+	//	Vec3 v3Pos = { 0.f, 0.f, 0.f };
+	//	Vec3 v3Scale = { 100.f, 100.f, 1.f };
+	//	Vec3 v3Rot = { 0.f, 0.f, 0.f };
+	//	Vec3 v3Color = { 1.f, 0.f, .5f };
+	//	GamePlayStatic::DrawDebugRect(v3Pos, v3Scale, v3Rot, v3Color, true, 20);
+	//}
 }

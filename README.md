@@ -160,6 +160,7 @@ DirectX 2D Engine
 &nbsp;&nbsp;- CRenderMgr 클래스 추가 (Camera 기반 Render 구조로 변경)<br>
 &nbsp;&nbsp;- CRenderMgr) Debug용 Rect 임시 구현 (추가 구현 예정)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/DebugShape_temp.png" width=500><br>
+&nbsp;&nbsp;- CCollider2D 클래스 추가 (적용시키는 코드 추가 구현 예정)<br>
 
 <!-- **_24/02/01_** :<br> -->
 <!-- &nbsp;&nbsp;- <br> -->

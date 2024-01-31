@@ -20,8 +20,7 @@ private:
 	// world
 	Vec3	m_arrWorldDir[(UINT)DIR_TYPE::END];	// WorldDir
 	Matrix	m_matWorld;							// WorldMatrix
-
-	bool	m_isAffectScale;					// 부모객체로부터 Scale 영향(true = 받음, false = 안받음)
+	bool	m_bAbsolute;						// 부모객체로부터 Scale 영향(기본 값 : false = 받음)
 
 public:
 	virtual void Begin() override {};
@@ -31,29 +30,24 @@ public:
 
 private:
 	Vec3 WorldSRT(SRT_TYPE _type);
+	Vec3 ToEulerAngles(Quaternion q);
 
 public:
-	// local
+	// Getter
+	const Vec3		GetLocalScale() { return m_v3LocalScale; }
+	const Vec3		GetLocalRotation() { return m_v3LocalRotation; }
+	const Vec3		GetLocalPos() { return m_v3LocalPostion; }
+	const Vec3		GetLocalDirection(DIR_TYPE _dir) { return m_arrLocalDir[(uint32)_dir]; }
+	const Vec3		GetWorldScale();
+	const Vec3		GetWorldRotation();
+	const Vec3		GetWorldPos();
+	const Vec3		GetWorldDirection(DIR_TYPE _dir) { return m_arrWorldDir[(uint32)_dir]; }
+	const Matrix	GetWorldMatrix() { return m_matWorld; }
+
+	// Setter
 	void SetLocalPos(Vec3 _pos) { m_v3LocalPostion = _pos; }
 	void SetLocalScale(Vec3 _scale) { m_v3LocalScale = _scale; }
 	void SetLocalRotation(Vec3 _rotate) { m_v3LocalRotation = _rotate; }
-	
-	// world
 	void SetWorldMatrix(Matrix _mat) { m_matWorld = _mat; }
-
-	// local
-	Vec3 GetLocalScale() { return m_v3LocalScale; }
-	Vec3 GetLocalRotation() { return m_v3LocalRotation; }
-	Vec3 GetLocalPos() { return m_v3LocalPostion; }
-	Vec3 GetLocalDirection(DIR_TYPE _dir) { return m_arrLocalDir[(uint32)_dir]; }
-
-	// world
-	Vec3 GetWorldScale();
-	Vec3 GetWorldRotation();
-	Vec3 GetWorldPos();
-	Vec3 GetWorldDirection(DIR_TYPE _dir) { return m_arrWorldDir[(uint32)_dir]; }
-	Matrix GetWorldMatrix() { return m_matWorld; }
-
-	void SetAffectScale(bool _flag) { m_isAffectScale = _flag; }
-	Vec3 ToEulerAngles(Quaternion q);
+	void SetAffectScale(bool _flag) { m_bAbsolute = _flag; }
 };

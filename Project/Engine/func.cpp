@@ -49,10 +49,33 @@ void GamePlayStatic::DrawDebugRect(Vec3 _worldPos, Vec3 _worldScale, Vec3 _world
 	{
 		info.eShape = DEBUG_SHAPE::RECT;
 		info.v3Color = _color;
+		info.v3WorldPos = _worldPos;
+		info.v3WorldScale = _worldScale;
+		info.v3WorldRot = _worldRot;
 		info.matWorld = 
-			XMMatrixScaling(_worldScale.x, _worldScale.y, _worldScale.z)
-			* XMMatrixRotationX(_worldRot.x) * XMMatrixRotationY(_worldRot.y) * XMMatrixRotationZ(_worldRot.z) 
-			* XMMatrixTranslation(_worldPos.x, _worldPos.y, _worldPos.z);
+			XMMatrixScaling(info.v3WorldScale.x, info.v3WorldScale.y, info.v3WorldScale.z)
+			* XMMatrixRotationX(info.v3WorldRot.x) * XMMatrixRotationY(info.v3WorldRot.y) * XMMatrixRotationZ(info.v3WorldRot.z)
+			* XMMatrixTranslation(info.v3WorldPos.x, info.v3WorldPos.y, info.v3WorldPos.z);
+		info.fDuration = _depthTest;
+		info.bDepthTest = _duration;
+	}
+
+	M_RENDER->AddDebugShapeInfo(info);
+}
+
+void GamePlayStatic::DrawDebugCircle(Vec3 _worldPos, float _radius, Vec3 _color, bool _depthTest, float _duration)
+{
+	tDebugShapeInfo info = {};
+	{
+		info.eShape = DEBUG_SHAPE::CIRCLE;
+		info.v3Color = _color;
+		info.v3WorldPos = _worldPos;
+		info.v3WorldScale = Vec3(_radius, _radius, 1.f);
+		info.v3WorldRot = Vec3(0.f, 0.f, 0.f);
+		info.matWorld = 
+			XMMatrixScaling(info.v3WorldScale.x, info.v3WorldScale.y, info.v3WorldScale.z)
+			* XMMatrixRotationX(info.v3WorldRot.x) * XMMatrixRotationY(info.v3WorldRot.y) * XMMatrixRotationZ(info.v3WorldRot.z)
+			* XMMatrixTranslation(info.v3WorldPos.x, info.v3WorldPos.y, info.v3WorldPos.z);
 		info.fDuration = _depthTest;
 		info.bDepthTest = _duration;
 	}
