@@ -37,6 +37,7 @@ void CRenderMgr::Init()
 
 void CRenderMgr::Tick()
 {
+	GRAPHICS->RenderBegin();
 	Vec4 v4Color = { 0.75f, 0.72f, 0.7f, 1.f };
 	GRAPHICS->ClearRenderTarget(v4Color);
 
@@ -51,7 +52,7 @@ void CRenderMgr::Render()
 	size_t camCnt = m_vecCamera.size();
 	for (size_t i = 0; i < camCnt; ++i)
 	{
-		//m_vecCamera[i].Render();
+		m_vecCamera[i]->Render();
 	}
 }
 

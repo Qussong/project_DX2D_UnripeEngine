@@ -156,7 +156,9 @@ DirectX 2D Engine
 &nbsp;&nbsp;- enum) SCALAR_PARAM 열거형 클래스 추가<br>
 &nbsp;&nbsp;- CMaterial) SetScalarParam(), SetTexParam() 함수로 스칼라 값과 이미지 정보 세팅 후 UpdateData() 과정을 통해 GPU로 넘겨줌<br>
 
-**_24/01/30_** :<br>
+**_24/01/31_** :<br>
+&nbsp;&nbsp;- CRenderMgr 클래스 추가 (Camera 기반 Render 구조로 변경)<br>
+&nbsp;&nbsp;- <br>
 &nbsp;&nbsp;- <br>
 
 <!-- &nbsp;&nbsp;- <br> -->

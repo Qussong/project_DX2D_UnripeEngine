@@ -147,11 +147,11 @@ void CAssetMgr::Material()
 		AddAsset(L"DefaultMaterial", pMaterial);
 	}
 
-	// Child Material
+	// UI Material
 	{
 		CMaterial* pMaterial = new CMaterial;
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
-		AddAsset(L"ChildMaterial", pMaterial);
+		AddAsset(L"UIMaterial", pMaterial);
 	}
 
 	// WireFrame Material

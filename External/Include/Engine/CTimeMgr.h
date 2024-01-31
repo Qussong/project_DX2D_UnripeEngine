@@ -10,7 +10,7 @@ private:
 	LARGE_INTEGER	m_lPrevCnt;
 	LARGE_INTEGER	m_lCurCnt;
 	float			m_fDeltaTime;
-	float			m_fAccTime;	// Accumulated : 穿利等, 阶牢
+	float			m_fAccTime;		// Accumulated : 穿利等, 阶牢
 	int32			m_iFrameCnt;
 	int32			m_iFPS;
 

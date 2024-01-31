@@ -69,10 +69,7 @@ int CGraphics::Init(HWND _hWnd, float _width, float _height)
 void CGraphics::RenderBegin()
 {
 	CONTEXT->OMSetRenderTargets(1, m_RenderTargetView.GetAddressOf(), m_DepthStencilView.Get());
-	//Vec4 v4Color = { 0.75f, 0.72f, 0.7f, 1.f };
-	//ClearRenderTarget(v4Color);
-	CONTEXT->ClearDepthStencilView(m_DepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, (UINT8)0);
-	
+
 	D3D11_VIEWPORT	viewport = {};
 	{
 		viewport.TopLeftX = 0.f;
@@ -447,4 +444,5 @@ int CGraphics::SamplerState()
 void CGraphics::ClearRenderTarget(Vec4 _color)
 {
 	CONTEXT->ClearRenderTargetView(m_RenderTargetView.Get(), _color);		// ·»´õ Å¸°Ù Å¬¸®¾î (clearColor)
+	CONTEXT->ClearDepthStencilView(m_DepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, (UINT8)0);
 }

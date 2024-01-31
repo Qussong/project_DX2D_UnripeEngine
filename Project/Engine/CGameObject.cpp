@@ -132,7 +132,7 @@ void CGameObject::FinalTick()
 
 void CGameObject::Render()
 {
-	// Layer의 Render 를 타고 들어온다.
+	// CCamera의 Render 를 타고 들어온다.
 	if (nullptr != m_pRenderComp)
 	{
 		m_pRenderComp->Render();

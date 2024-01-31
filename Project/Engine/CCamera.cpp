@@ -70,7 +70,9 @@ void CCamera::ProjectionMatrix()
 
 void CCamera::SetPriority(int32 _priority)
 {
+	// 우선순위 저장
 	m_iPriority = _priority;
+	// Render Manger에 카메라 등록
 	M_RENDER->RegisterCamera(this, _priority);
 }
 
@@ -93,9 +95,10 @@ void CCamera::LayerCheckByName(const wstring& _layerName, bool _bCheck)
 
 void CCamera::LayerCheckAll(bool _bCheck)
 {
+	// 레이어 받아서 전부 _bCheck 로 변경
 	for (size_t i = 0; i < LAYER_MAX; ++i)
 	{
-		// 레이어 받아서 전부 _bCheck 로 변경 (하던중)
+		LayerCheckByType((LAYER_TYPE)i, _bCheck);
 	}
 }
 
@@ -111,4 +114,21 @@ void CCamera::FinalTick()
 
 void CCamera::Render()
 {
+	CLevel* pCurLevel = M_LEVEL->GetCurrentLevel();
+
+	// 카메라가 인식하도록 설정된 Layer 만 Render
+	for (size_t i = 0; i < LAYER_MAX; i++)
+	{
+		if (false == m_arrLayerCheck[i])
+			continue;
+
+		CLayer* pLayer = pCurLevel->GetLayer((LAYER_TYPE)i);
+		const vector<CGameObject*>& vecObjects = pLayer->GetLayerObjects();
+
+		size_t objCnt = vecObjects.size();
+		for (size_t i = 0; i < objCnt; ++i)
+		{
+			vecObjects[i]->Render();
+		}
+	}
 }

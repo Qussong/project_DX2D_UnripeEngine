@@ -36,9 +36,7 @@ int CEngine::Init(HWND _hWnd, uint32 _width, uint32 _height)
 	M_PATH->Init();
 	M_KEY->Init();
 	M_ASSET->Init();
-
 	M_RENDER->Init();
-
 	M_LEVEL->Init();
 
 	return S_OK;
@@ -46,17 +44,13 @@ int CEngine::Init(HWND _hWnd, uint32 _width, uint32 _height)
 
 void CEngine::Progress()
 {
-	// Manager
+	// Update
 	M_TIME->Tick();
 	M_KEY->Tick();
 	M_LEVEL->Tick();
 
+	// Render
 	M_RENDER->Tick();
-	// Render Set
-	GRAPHICS->RenderBegin();
-	// Pipeline
-	M_LEVEL->Render();
-	// Render End -> ImGui 뒤에 위치
 
 	// Task
 	M_GC->Tick();

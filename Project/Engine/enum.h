@@ -150,10 +150,12 @@ enum class LAYER_TYPE
 {
 	UNREGISTER = -1,
 
-	LAYER_0,
-	LAYER_1,
-	LAYER_2,
-	LAYER_3,
+	DEFAULT,	// 0
+	BACKGROUND,	// 1
+	TILE,		// 2
+	PLAYER,		// 3
+	MONSTER,	// 4
+	UI,			// 5
 	
 	END,
 };

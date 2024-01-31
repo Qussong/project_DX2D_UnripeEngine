@@ -26,6 +26,5 @@ public:
 	void Begin();
 	void Tick();
 	void FinalTick();
-	void Render();
 };
 

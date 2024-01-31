@@ -4,24 +4,7 @@
 CLayer::CLayer(LAYER_TYPE _type)
 	: m_eLayerType(_type)
 {
-	switch (_type)
-	{
-	case LAYER_TYPE::LAYER_0:
-		SetName(L"LAYER_0");
-		break;
-	case LAYER_TYPE::LAYER_1:
-		SetName(L"LAYER_1");
-		break;
-	case LAYER_TYPE::LAYER_2:
-		SetName(L"LAYER_2");
-		break;
-	case LAYER_TYPE::LAYER_3:
-		SetName(L"LAYER_3");
-		break;
-	default:
-		SetName(L"LAYER_UnKnown");
-		break;
-	}
+	SetName(L"UnknownLayer");
 }
 
 CLayer::~CLayer()
@@ -171,15 +154,5 @@ void CLayer::FinalTick()
 		{
 			++iter;
 		}
-	}
-}
-
-void CLayer::Render()
-{
-	// Layer에 속한 부모, 자식 객체의 Render 를 전부 돌려준다.
-	size_t size = m_vecObject.size();
-	for (size_t i = 0; i < size; ++i)
-	{
-		m_vecObject[i]->Render();
 	}
 }

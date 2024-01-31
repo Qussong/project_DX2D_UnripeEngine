@@ -4,6 +4,8 @@
 CLevel::CLevel()
 	: m_arrLayer{}
 {
+	SetName(L"Level");
+
 	// Level 에 속한 Layer 생성
 	for (size_t i = 0; i < LAYER_MAX; ++i)
 	{
@@ -51,7 +53,7 @@ void CLevel::Clear()
 {
 	for (UINT i = 0; i < LAYER_MAX; ++i)
 	{
-		m_arrLayer[i]->GetLayerObject().clear();
+		m_arrLayer[i]->GetLayerObjects().clear();
 	}
 }
 
@@ -81,13 +83,5 @@ void CLevel::FinalTick()
 	for (int i = 0; i < LAYER_MAX; ++i)
 	{
 		m_arrLayer[i]->FinalTick();
-	}
-}
-
-void CLevel::Render()
-{
-	for (int i = 0; i < LAYER_MAX; ++i)
-	{
-		m_arrLayer[i]->Render();
 	}
 }
