@@ -56,22 +56,18 @@ void CTaskMgr::Tick()
 			break;
 		case TASK_TYPE::ADD_CHILD:
 		{
-
 		}
 			break;
 		case TASK_TYPE::DISCONNECT_PARENT:
 		{
-
 		}
 			break;
 		case TASK_TYPE::LEVEL_CHANGE:
 		{
-
 		}
 			break;
 		default:
 		{
-
 		}
 			break;
 		}

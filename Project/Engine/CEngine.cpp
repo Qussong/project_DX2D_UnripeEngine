@@ -35,9 +35,10 @@ int CEngine::Init(HWND _hWnd, uint32 _width, uint32 _height)
 	M_TIME->Init();
 	M_PATH->Init();
 	M_KEY->Init();
-	M_ASSET->Init();
-	M_RENDER->Init();
-	M_LEVEL->Init();
+
+	M_ASSET->Init();	// Mesh, Shader, Material, Texture 积己
+	M_RENDER->Init();	// 叼滚弊 按眉 积己
+	M_LEVEL->Init();	// 阿辆 按眉 积己
 
 	return S_OK;
 }
@@ -45,14 +46,14 @@ int CEngine::Init(HWND _hWnd, uint32 _width, uint32 _height)
 void CEngine::Progress()
 {
 	// Update
-	M_TIME->Tick();
-	M_KEY->Tick();
-	M_LEVEL->Tick();
-
+	M_TIME->Tick();		
+	M_KEY->Tick();		
+	M_LEVEL->Tick();	
+	
 	// Render
-	M_RENDER->Tick();
+	M_RENDER->Tick();	
 
 	// Task
-	M_GC->Tick();
-	M_TASK->Tick();
+	M_GC->Tick();		
+	M_TASK->Tick();		
 }

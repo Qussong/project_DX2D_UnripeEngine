@@ -14,6 +14,7 @@ void CAssetMgr::Init()
 	Mesh();		// Mesh 持失
 	Shader();	// shader 持失
 	Material();	// Material 持失
+	Texture();	// Texture 持失
 }
 
 void CAssetMgr::Mesh()
@@ -202,6 +203,13 @@ void CAssetMgr::Material()
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DebugShader"));
 		AddAsset(L"DebugMaterial", pMaterial);
 	}
+}
+
+void CAssetMgr::Texture()
+{
+	Ptr<CTexture> pTex = nullptr;
+	pTex = LoadTexture(L"bluebird_hit", L"bluebird_hit.png");
+	pTex = LoadTexture(L"penguin_hit", L"penguin_hit.png");
 }
 
 template<typename T>

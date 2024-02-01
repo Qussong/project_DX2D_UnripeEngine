@@ -19,6 +19,7 @@ private:
 	void Mesh();
 	void Shader();
 	void Material();
+	void Texture();
 
 	template<typename T>
 	ASSET_TYPE GetAssetType();

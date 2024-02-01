@@ -31,13 +31,6 @@ void CLevelMgr::Init()
 		m_pCurLevel->AddObject(pCamObj, LAYER_TYPE::DEFAULT);
 	}
 
-	// Load Image
-	{
-		Ptr<CTexture> pTex = nullptr;
-		pTex = M_ASSET->LoadTexture(L"bluebird_hit", L"bluebird_hit.png");
-		pTex = M_ASSET->LoadTexture(L"penguin_hit", L"penguin_hit.png");
-	}
-
 	// PlayerObj
 	{
 		m_pTestObj = new CGameObject;
