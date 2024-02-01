@@ -83,6 +83,20 @@ void GamePlayStatic::DrawDebugCircle(Vec3 _worldPos, float _radius, Vec3 _color,
 	M_RENDER->AddDebugShapeInfo(info);
 }
 
+void GamePlayStatic::DrawDebugCircle(const Matrix& _worldMat, Vec3 _color, bool _depthTest, float _duration)
+{
+	tDebugShapeInfo info = {};
+	{
+		info.eShape = DEBUG_SHAPE::CIRCLE;
+		info.v3Color = _color;
+		info.matWorld = _worldMat;
+		info.fDuration = _depthTest;
+		info.bDepthTest = _duration;
+	}
+
+	M_RENDER->AddDebugShapeInfo(info);
+}
+
 template<typename T>
 void Lazy::DelVector(vector<T>&_vec)
 {

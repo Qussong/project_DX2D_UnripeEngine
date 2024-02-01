@@ -130,6 +130,7 @@ void CAssetMgr::Mesh()
 		{
 			vecIdx.push_back(i);
 		}
+		vecIdx.push_back(1);
 
 		CMesh* pCircleDbgMesh = new CMesh;
 		pCircleDbgMesh->Create(vecCircle.data(), (uint32)vtxCnt, vecIdx.data(), (uint32)vecIdx.size());
@@ -190,6 +191,13 @@ void CAssetMgr::Material()
 		AddAsset(L"UIMaterial", pMaterial);
 	}
 
+	// Monster Material
+	{
+		CMaterial* pMaterial = new CMaterial;
+		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
+		AddAsset(L"MonsterMaterial", pMaterial);
+	}
+
 	// WireFrame Material
 	{
 		CMaterial* pMaterial = new CMaterial;
@@ -208,6 +216,7 @@ void CAssetMgr::Material()
 void CAssetMgr::Texture()
 {
 	Ptr<CTexture> pTex = nullptr;
+	pTex = LoadTexture(L"test", L"test.png");
 	pTex = LoadTexture(L"bluebird_hit", L"bluebird_hit.png");
 	pTex = LoadTexture(L"penguin_hit", L"penguin_hit.png");
 }

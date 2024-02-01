@@ -49,7 +49,8 @@ void CEngine::Progress()
 	M_TIME->Tick();		
 	M_KEY->Tick();		
 	M_LEVEL->Tick();	
-	
+	M_COLLISION->Tick();
+
 	// Render
 	M_RENDER->Tick();	
 

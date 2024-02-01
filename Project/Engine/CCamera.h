@@ -51,8 +51,8 @@ public:
 
 public:
 	void		SetPriority(int32 _priority);
-	void		LayerCheckByType(LAYER_TYPE _layer, bool _bCheck);
-	void		LayerCheckByName(const wstring& _layerName, bool _bCheck);
+	void		LayerCheck(LAYER_TYPE _layer, bool _bCheck);			// 카메라 레이어 인식 여부 설정
+	void		LayerCheck(const wstring& _layerName, bool _bCheck);	// 카메라 레이어 인식 여부 설정
 	void		LayerCheckAll(bool _bCheck = true);
 
 public:

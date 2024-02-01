@@ -142,6 +142,9 @@
     <ClInclude Include="CCollider2D.h">
       <Filter>07.Component\Collider2D</Filter>
     </ClInclude>
+    <ClInclude Include="CCollisionMgr.h">
+      <Filter>04.Manager\Collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -251,6 +254,9 @@
     </ClCompile>
     <ClCompile Include="CCollider2D.cpp">
       <Filter>07.Component\Collider2D</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollisionMgr.cpp">
+      <Filter>04.Manager\Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -379,6 +385,9 @@
     </Filter>
     <Filter Include="07.Component\Collider2D">
       <UniqueIdentifier>{eb5217a7-58cb-43be-8932-d28b3c5ee6a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Manager\Collision">
+      <UniqueIdentifier>{9cca8512-3e4f-4b56-b9b0-9375320149fe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -76,12 +76,12 @@ void CCamera::SetPriority(int32 _priority)
 	M_RENDER->RegisterCamera(this, _priority);
 }
 
-void CCamera::LayerCheckByType(LAYER_TYPE _layer, bool _bCheck)
+void CCamera::LayerCheck(LAYER_TYPE _layer, bool _bCheck)
 {
 	m_arrLayerCheck[(int32)_layer] = _bCheck;
 }
 
-void CCamera::LayerCheckByName(const wstring& _layerName, bool _bCheck)
+void CCamera::LayerCheck(const wstring& _layerName, bool _bCheck)
 {
 	CLevel* pCurLevel = M_LEVEL->GetCurrentLevel();
 	CLayer* pLayer = pCurLevel->GetLayer(_layerName);
@@ -90,7 +90,7 @@ void CCamera::LayerCheckByName(const wstring& _layerName, bool _bCheck)
 		return;
 
 	LAYER_TYPE layerType = pLayer->GetLayerType();
-	LayerCheckByType(layerType, _bCheck);
+	LayerCheck(layerType, _bCheck);
 }
 
 void CCamera::LayerCheckAll(bool _bCheck)
@@ -98,7 +98,7 @@ void CCamera::LayerCheckAll(bool _bCheck)
 	// 레이어 받아서 전부 _bCheck 로 변경
 	for (size_t i = 0; i < LAYER_MAX; ++i)
 	{
-		LayerCheckByType((LAYER_TYPE)i, _bCheck);
+		LayerCheck((LAYER_TYPE)i, _bCheck);
 	}
 }
 

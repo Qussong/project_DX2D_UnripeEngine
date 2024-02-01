@@ -23,6 +23,7 @@ public:
 	Vec2 GetOffsetPos() { return Vec2(m_v3OffsetPos.x, m_v3OffsetPos.y); }
 	Vec2 GetOffsetScale() { return Vec2(m_v3OffsetScale.x, m_v3OffsetScale.y); }
 	COLLIDER2D_TYPE GetColliderType() { return m_eType; }
+	Matrix& GetColliderWorldMat() { return m_matColWorld; }
 
 	// Setter
 	void SetAbsolute(bool _absolute) { m_bAbsolute = _absolute; }
@@ -31,6 +32,11 @@ public:
 	void SetOffsetScale(Vec2 _scale) { m_v3OffsetScale = Vec3(_scale.x, _scale.y, 1.f); }
 	void SetOffsetScale(Vec3 _scale) { m_v3OffsetScale = _scale; }
 	void SetColliderType(COLLIDER2D_TYPE _type) { m_eType = _type; }
+
+public:
+	void BeginOverlap(CCollider2D* _other);
+	void Overlap(CCollider2D* _other);
+	void EndOverlap(CCollider2D* _other);
 
 public:
 	virtual void Begin() override {}

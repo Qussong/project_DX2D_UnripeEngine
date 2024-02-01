@@ -15,6 +15,20 @@ CCollider2D::~CCollider2D()
 {
 }
 
+void CCollider2D::BeginOverlap(CCollider2D* _other)
+{
+	++m_iCollisionCnt;
+}
+
+void CCollider2D::Overlap(CCollider2D* _other)
+{
+}
+
+void CCollider2D::EndOverlap(CCollider2D* _other)
+{
+	--m_iCollisionCnt;
+}
+
 void CCollider2D::FinalTick()
 {
 	// 충돌체의 월드 행렬 계산
@@ -41,14 +55,30 @@ void CCollider2D::FinalTick()
 		m_matColWorld *= matOwnerWorld;
 	}
 
-	// 충돌중이면 Red
+	// 충돌체의 World Matrix 에서 Scale, Rotation, Position 분리
+	Vec3		v3Scale = {};		// scale
+	Quaternion	quatRot = {};	// rotation
+	Vec3		v3Pos = {};			// position
+	m_matColWorld.Decompose(v3Scale, quatRot, v3Pos);
+
+	// 충돌하고 있지 않으면 Green
 	if (0 == m_iCollisionCnt)
 	{
-		GamePlayStatic::DrawDebugRect(m_matColWorld, Vec3(0.f, 1.f, 0.f));
+		// RECT
+		if (m_eType == COLLIDER2D_TYPE::RECT)
+			GamePlayStatic::DrawDebugRect(m_matColWorld, Vec3(0.f, 1.f, 0.f));
+		// CIRCLE
+		else if (m_eType == COLLIDER2D_TYPE::CIRCLE)
+			GamePlayStatic::DrawDebugCircle(v3Pos, v3Scale.x, Vec3(0.f, 1.f, 0.f));
 	}
-	// 충돌하고 있지 않으면 Green
+	// 충돌중이면 Red
 	else
 	{
-		GamePlayStatic::DrawDebugRect(m_matColWorld, Vec3(1.f, 0.f, 0.f));
+		// RECT
+		if (m_eType == COLLIDER2D_TYPE::RECT)
+			GamePlayStatic::DrawDebugRect(m_matColWorld, Vec3(1.f, 0.f, 0.f));
+		// CIRCLE
+		else if (m_eType == COLLIDER2D_TYPE::CIRCLE)
+			GamePlayStatic::DrawDebugCircle(v3Pos, v3Scale.x, Vec3(1.f, 0.f, 0.f));
 	}
 }

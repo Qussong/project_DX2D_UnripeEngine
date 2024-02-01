@@ -38,16 +38,18 @@ float4 PS_Std2D(VS_OUT _in) : SV_Target
 {
     float4 v4Color = float4(1.f, 1.f, 1.f, 1.f);
     
+    // 0번 Texture 샘플링
     if (g_btex_0)
         v4Color = TEXTURE_0.Sample(SAMPLER_1, _in.vUV);
     
+    // 알파값 0.1f 이하 Render 안함
     if (v4Color.a < 0.1f)
         discard; // clip(-1);
 
+    // Player Highlight
     if(g_int_0)
         v4Color.r += 1.f;
     
     return v4Color;
 }
-
 #endif

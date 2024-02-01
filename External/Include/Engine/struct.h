@@ -66,3 +66,13 @@ struct tDebugShapeInfo
 
 	bool			bDepthTest;	
 };
+
+union CollisionID
+{
+	struct
+	{
+		UINT iLeftID;
+		UINT iRightID;
+	};
+	UINT_PTR iID;
+};

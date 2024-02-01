@@ -8,3 +8,4 @@
 #include "CTaskMgr.h"
 #include "CGarbageCollector.h"
 #include "CRenderMgr.h"
+#include "CCollisionMgr.h"

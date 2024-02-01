@@ -167,6 +167,8 @@ DirectX 2D Engine
 &nbsp;&nbsp;- CAssetMgr) Debug Shader 설정 수정(Topology, DepthStencilState)<br>
 &nbsp;&nbsp;- 확대정도에 따라 DebugMesh의 굵기가 달라지던 문제 해결<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/Collider2D.png" width=300><br>
-&nbsp;&nbsp;- <br>
+&nbsp;&nbsp;- CCollisionMgr 클래스 추가 (기능 : 충돌체 충돌 관리)<br>
+&nbsp;&nbsp;- CCollisionMgr) RECT-RECT, RECT-CIRCLE, CIRCLE-CIRCLE 충돌 구현(RECT-CIRCLE 충돌 보완필요)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/CollisionMgr.png" width=400><br>
 
 <!-- &nbsp;&nbsp;- <br> -->
