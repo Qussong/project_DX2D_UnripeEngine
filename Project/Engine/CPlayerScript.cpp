@@ -101,24 +101,21 @@ void CPlayerScript::Tick()
 
 	if (KEY_STATE::TAP == M_KEY->GetKeyState(KEY::SPACE))
 	{
-		GamePlayStatic::DestroyGameObject(GetOwner());
+		//GamePlayStatic::DestroyGameObject(GetOwner());
 
-		//CGameObject* pObj = nullptr;
-
-		//pObj = new CGameObject;
-		//pObj->SetName(L"Missile");
-		//pObj->AddComponent(new CTransform);
-		//pObj->AddComponent(new CMeshRender);
-		//pObj->AddComponent(new CMissileScript);
-
-		//Vec3 v3PlayerPos = GetOwner()->Transform()->GetLocalPos();
-		//pObj->Transform()->SetLocalPos(v3PlayerPos);
-		//pObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
-
-		//pObj->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"RectMesh"));
-		//pObj->MeshRender()->SetGraphicShader(CAssetMgr::GetInst()->FindAsset<CGraphicShader>(L"2D_DefaultShader"));
-
-		//GamePlayStatic::SpawnGameObject(pObj, LAYER_TYPE::LAYER_0);
+		Ptr<CMaterial> pMtrl = GetOwner()->MeshRender()->GetMaterial();
+		if (nullptr != pMtrl)
+		{
+			pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 1);
+		}
+	}
+	else if(KEY_STATE::RELEASED == M_KEY->GetKeyState(KEY::SPACE))
+	{
+		Ptr<CMaterial> pMtrl = GetOwner()->MeshRender()->GetMaterial();
+		if (nullptr != pMtrl)
+		{
+			pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
+		}
 	}
 
 	transform->SetLocalPos(v3Pos);
