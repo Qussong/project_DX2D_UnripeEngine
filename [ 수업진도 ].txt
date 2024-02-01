@@ -6,11 +6,9 @@
 
 3. Material - clear
 
-<--- Ptr 클래스 추가 및 적용 - ing
+4. DebugShape Render - ing
 
-4. DebugShape Render
-
-5. Collision
+5. Collision 
 
 6. Sprite Animation
 

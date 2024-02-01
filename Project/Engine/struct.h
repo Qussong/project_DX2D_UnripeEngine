@@ -55,10 +55,14 @@ struct tDebugShapeInfo
 {
 	DEBUG_SHAPE		eShape;
 	Vec3			v3Color;
+
 	Vec3			v3WorldPos;
 	Vec3			v3WorldScale;
 	Vec3			v3WorldRot;
 	Matrix			matWorld;
-	float			fDuration;
-	bool			bDepthTest;
+
+	float			fLifeTime;	// 렌더 유지시간
+	float			fDuration;	// 렌더링된 시간
+
+	bool			bDepthTest;	
 };

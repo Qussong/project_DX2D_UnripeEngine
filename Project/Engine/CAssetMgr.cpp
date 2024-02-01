@@ -61,6 +61,17 @@ void CAssetMgr::Mesh()
 		CMesh* pRectMesh = new CMesh;
 		pRectMesh->Create(arrRect, 4, arrIdx, 6);
 		AddAsset(L"RectMesh", pRectMesh);
+
+		// Debug (Topology : LineStrip)
+		arrIdx[0] = 0;
+		arrIdx[1] = 1;
+		arrIdx[2] = 2;
+		arrIdx[3] = 3;
+		arrIdx[4] = 0;
+		
+		CMesh* pRectDbgMesh = new CMesh;
+		pRectDbgMesh->Create(arrRect, 4, arrIdx, 5);
+		AddAsset(L"RectMesh_Debug", pRectDbgMesh);
 	}
 
 	// Circle Mesh
@@ -110,6 +121,18 @@ void CAssetMgr::Mesh()
 			vecIdx.data(),
 			(uint32)vecIdx.size());
 		AddAsset(L"CircleMesh", pCircleMesh);
+
+		// Debug
+		vecIdx.clear();
+		size_t vtxCnt = vecCircle.size();
+		for (size_t i = 1; i < vtxCnt; ++i)
+		{
+			vecIdx.push_back(i);
+		}
+
+		CMesh* pCircleDbgMesh = new CMesh;
+		pCircleDbgMesh->Create(vecCircle.data(), (uint32)vtxCnt, vecIdx.data(), (uint32)vecIdx.size());
+		AddAsset(L"CircleMesh_Debug", pCircleDbgMesh);
 	}
 }
 
@@ -142,8 +165,9 @@ void CAssetMgr::Shader()
 		CGraphicShader* pShader = new CGraphicShader;
 		pShader->VertexShader(L"debug2d.fx", "VS_DebugShape");
 		pShader->PixelShader(L"debug2d.fx", "PS_DebugShape");
+		pShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);
 		pShader->SetRSType(RS_TYPE::CULL_NONE);
-		pShader->SetDSType(DS_TYPE::LESS);
+		pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
 		pShader->SetBSType(BS_TYPE::DEFAULT);
 		AddAsset(L"2D_DebugShader", pShader);
 	}

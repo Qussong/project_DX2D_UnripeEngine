@@ -68,7 +68,7 @@ void CRenderMgr::Render_Debug()
 	g_tTransformConst.matProj = m_vecCamera[0]->GetProjMatrix();
 
 	list<tDebugShapeInfo>::iterator iter = m_listDebugShapeInfo.begin();
-	for (; iter != m_listDebugShapeInfo.end(); ++iter)
+	for (; iter != m_listDebugShapeInfo.end(); )
 	{
 		tDebugShapeInfo info = *iter;
 
@@ -82,20 +82,36 @@ void CRenderMgr::Render_Debug()
 		{
 		case DEBUG_SHAPE::RECT:
 		{
-			m_pDebugObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+			m_pDebugObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh_Debug"));
 		}
 		break;
 		case DEBUG_SHAPE::CIRCLE:
 		{
-			m_pDebugObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"CircleMesh"));
+			m_pDebugObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"CircleMesh_Debug"));
 		}
 		break;
 		}
 
 		// Material 설정
 		m_pDebugObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DebugMaterial"));
+		Vec4 v4DebugColor = { info.v3Color, 1.f };
+		m_pDebugObj->MeshRender()->GetMaterial()->SetScalarParam(SCALAR_PARAM::VEC4_0, v4DebugColor);
 
 		// Render
 		m_pDebugObj->Render();
+
+		// 유지 시간
+		info.fLifeTime += DT;
+		// 수명이 지난 경우 
+		if (info.fDuration <= info.fLifeTime)
+		{
+			// 해당 디버그 객체를 컨테이너목록에서 지운다.
+			iter = m_listDebugShapeInfo.erase(iter);
+		}
+		// 수명이 남은 경우
+		else
+		{
+			++iter;
+		}
 	}
 }

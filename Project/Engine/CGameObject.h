@@ -45,6 +45,7 @@ public:
 	CTransform*		Transform() { return static_cast<CTransform*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::TRANSFORM]); }
 	CMeshRender*	MeshRender();
 	CCamera*		Camera() { return static_cast<CCamera*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::CAMERA]); }
+	CCollider2D*	Collider2D() { return static_cast<CCollider2D*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::COLLIDER2D]); }
 
 public:
 	CGameObject* GetParent() { return m_pParent; }			// ºÎ¸ð°´Ã¼ Getter

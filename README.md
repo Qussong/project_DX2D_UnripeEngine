@@ -85,11 +85,11 @@ DirectX 2D Engine
 &nbsp;&nbsp;- CTexture 클래스 추가<br>
 &nbsp;&nbsp;- CAssetMgr) Texture Load 함수 구현 (LoadTexture())<br>
 &nbsp;&nbsp;- CLevelMgr) Texture 출력 간단구현<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_texture_simple.png" width=500><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/print_texture_simple.png" width=300><br>
 
 **_24/01/23_** :<br>
 &nbsp;&nbsp;- CGraphics) SamplerState 추가(type : ANISOTROPIC, POINT)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/samplerstate.png" width=500><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/samplerstate.png" width=300><br>
 &nbsp;&nbsp;- CGameObject) 부모/자식 계층 관계 설계<br>
 &nbsp;&nbsp;- CTransform) World/Local 좌표 설계<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/parent&child.png" width=500><br>
@@ -162,7 +162,11 @@ DirectX 2D Engine
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/DebugShape_temp.png" width=500><br>
 &nbsp;&nbsp;- CCollider2D 클래스 추가 (적용시키는 코드 추가 구현 예정)<br>
 
-<!-- **_24/02/01_** :<br> -->
-<!-- &nbsp;&nbsp;- <br> -->
+**_24/02/01_** :<br>
+&nbsp;&nbsp;- CAssetMgr) Debug 전용 Mesh(RectMesh_Debug, CircleMesh_Debug) 생성 <br>
+&nbsp;&nbsp;- CAssetMgr) Debug Shader 설정 수정(Topology, DepthStencilState)<br>
+&nbsp;&nbsp;- 확대정도에 따라 DebugMesh의 굵기가 달라지던 문제 해결<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/Collider2D.png" width=300><br>
+&nbsp;&nbsp;- <br>
 
 <!-- &nbsp;&nbsp;- <br> -->

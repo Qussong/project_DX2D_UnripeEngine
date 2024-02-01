@@ -45,9 +45,22 @@ void CLevelMgr::Init()
 		m_pTestObj->AddComponent(new CTransform);
 		m_pTestObj->AddComponent(new CMeshRender);
 		m_pTestObj->AddComponent(new CPlayerScript);
+		m_pTestObj->AddComponent(new CCollider2D);
 		// basicComp
 		m_pTestObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
 		m_pTestObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
+		// Debug - Owner Scale 영향 받음
+		{
+			m_pTestObj->Collider2D()->SetAbsolute(true);	// true = 부모 Scale 영향 안받음
+			m_pTestObj->Collider2D()->SetOffsetScale(Vec2(50.f, 50.f));
+			m_pTestObj->Collider2D()->SetOffsetPos(Vec2(6.f, 3.f));
+		}
+		// Debug - Owner Scale 영향 안받음
+		//{
+		//	m_pTestObj->Collider2D()->SetAbsolute(false);	// false = 부모 Scale 영향 받음
+		//	m_pTestObj->Collider2D()->SetOffsetScale(Vec2(.5f, .5f));
+		//	m_pTestObj->Collider2D()->SetOffsetPos(Vec2(0.f, 0.f));
+		//}
 		// render
 		m_pTestObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		m_pTestObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial"));
@@ -78,13 +91,4 @@ void CLevelMgr::Init()
 
 		GamePlayStatic::SpawnGameObject(pUIObj, LAYER_TYPE::UI);
 	}
-
-	// Debug
-	//{
-	//	Vec3 v3Pos = { 0.f, 0.f, 0.f };
-	//	Vec3 v3Scale = { 100.f, 100.f, 1.f };
-	//	Vec3 v3Rot = { 0.f, 0.f, 0.f };
-	//	Vec3 v3Color = { 1.f, 0.f, .5f };
-	//	GamePlayStatic::DrawDebugRect(v3Pos, v3Scale, v3Rot, v3Color, true, 20);
-	//}
 }

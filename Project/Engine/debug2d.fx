@@ -30,15 +30,7 @@ float4 PS_DebugShape(VS_OUT _in) : SV_Target
 {
     float4 vOutColor = (float4) 0.f;
     
-    if (g_fThickness <= _in.vUV.x
-        && _in.vUV.x <= (1.f - g_fThickness)
-        && g_fThickness <= _in.vUV.y
-        && _in.vUV.y <= (1.f - g_fThickness))
-    {
-        discard;
-    }
-    
-    vOutColor = float4(.7f, 0.f, 0.5f, 1.f);
+    vOutColor = g_vec4_0;
     
     return vOutColor;
 }
