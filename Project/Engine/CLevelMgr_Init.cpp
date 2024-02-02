@@ -51,7 +51,7 @@ void CLevelMgr::Init()
 		m_pTestObj->Collider2D()->SetAbsolute(true);	// true = 부모 Scale 영향 안받음
 		m_pTestObj->Collider2D()->SetOffsetScale(Vec2(50.f, 50.f));
 		m_pTestObj->Collider2D()->SetOffsetPos(Vec2(6.f, 3.f));
-		m_pTestObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::CIRCLE);
+		m_pTestObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::RECT);
 		// renderComp
 		m_pTestObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		m_pTestObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial"));

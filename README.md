@@ -173,7 +173,7 @@ DirectX 2D Engine
 
 **_24/02/02_** :<br>
 &nbsp;&nbsp;- CCollisionMgr) OBB 충돌연산 코드 모듈화(ObbRectRect, ObbCircleRect, ObbCircleCircle)<br>
-&nbsp;&nbsp;- <br>
+&nbsp;&nbsp;- CCollisionMgr) RECT-CIRCLE 충돌 문제 해결<br>
 
 
 <!-- &nbsp;&nbsp;- <br> -->

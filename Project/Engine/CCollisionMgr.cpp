@@ -153,162 +153,148 @@ bool CCollisionMgr::CollisionBtwCollider(CCollider2D* _left, CCollider2D* _right
 
 bool CCollisionMgr::ObbRectRect(const Matrix& _matRect1, const Matrix& _matRect2)
 {
-	bool result = true;
+	// Rect Local
+	// 0 -- 1
+	// |    |
+	// 3 -- 2
+	static Vec3 arrRect[4] = { Vec3(-0.5f, 0.5f, 0.f)
+								, Vec3(0.5f, 0.5f, 0.f)
+								, Vec3(0.5f, -0.5f, 0.f)
+								, Vec3(-0.5f, -0.5f, 0.f) };
+	Vec3 arrProj[4] = {};
+	// 0 -→ 1
+	// ↓    |
+	// 3 -- 2
+	arrProj[0] = XMVector3TransformCoord(arrRect[1], _matRect1) - XMVector3TransformCoord(arrRect[0], _matRect1);
+	arrProj[1] = XMVector3TransformCoord(arrRect[3], _matRect1) - XMVector3TransformCoord(arrRect[0], _matRect1);
 
+	arrProj[2] = XMVector3TransformCoord(arrRect[1], _matRect2) - XMVector3TransformCoord(arrRect[0], _matRect2);
+	arrProj[3] = XMVector3TransformCoord(arrRect[3], _matRect2) - XMVector3TransformCoord(arrRect[0], _matRect2);
+
+	Vec3 vCenter = XMVector3TransformCoord(Vec3(0.f, 0.f, 0.f), _matRect2) - XMVector3TransformCoord(Vec3(0.f, 0.f, 0.f), _matRect1);
+
+	// i 번째 투영축으로 4개의 표면벡터를 투영시킨다.
+	for (int i = 0; i < 4; ++i)
 	{
-		// Rect Local
-		// 0 -- 1
-		// |    |
-		// 3 -- 2
-		static Vec3 arrRect[4] = { Vec3(-0.5f, 0.5f, 0.f)
-								  , Vec3(0.5f, 0.5f, 0.f)
-								  , Vec3(0.5f, -0.5f, 0.f)
-								  , Vec3(-0.5f, -0.5f, 0.f) };
-		Vec3 arrProj[4] = {};
-		// 0 -→ 1
-		// ↓    |
-		// 3 -- 2
-		arrProj[0] = XMVector3TransformCoord(arrRect[1], _matRect1) - XMVector3TransformCoord(arrRect[0], _matRect1);
-		arrProj[1] = XMVector3TransformCoord(arrRect[3], _matRect1) - XMVector3TransformCoord(arrRect[0], _matRect1);
+		// i 번째 표면백터를 투영축으로 삼는다
+		Vec3 vProj = arrProj[i];
 
-		arrProj[2] = XMVector3TransformCoord(arrRect[1], _matRect2) - XMVector3TransformCoord(arrRect[0], _matRect2);
-		arrProj[3] = XMVector3TransformCoord(arrRect[3], _matRect2) - XMVector3TransformCoord(arrRect[0], _matRect2);
+		// 단위벡터로 만들어서 내적할 경우 투영된 길이를 구할 수 있게 한다.
+		vProj.Normalize();
 
-		Vec3 vCenter = XMVector3TransformCoord(Vec3(0.f, 0.f, 0.f), _matRect2) - XMVector3TransformCoord(Vec3(0.f, 0.f, 0.f), _matRect1);
+		// 투영된 길이를 누적시킬 변수
+		float ProjAcc = 0.f;
 
-		// i 번째 투영축으로 4개의 표면벡터를 투영시킨다.
-		for (int i = 0; i < 4; ++i)
+		// 반복문 돌면서 4개의 표면벡터를 지정된 투영축으로 투영시켜서 길이를 누적받는다.
+		for (int j = 0; j < 4; ++j)
 		{
-			// i 번째 표면백터를 투영축으로 삼는다
-			Vec3 vProj = arrProj[i];
+			ProjAcc += abs(vProj.Dot(arrProj[j]));
+		}
 
-			// 단위벡터로 만들어서 내적할 경우 투영된 길이를 구할 수 있게 한다.
-			vProj.Normalize();
+		// 투영된 길이의 절반씩 합친 길이가 필요하기 때문에 전체 합친길이를 2 로 나눈다
+		ProjAcc /= 2.f;
 
-			// 투영된 길이를 누적시킬 변수
-			float ProjAcc = 0.f;
+		// 두 충돌체의 중심을 이은 벡터도 투영시킨다.
+		float fCenterDist = abs(vProj.Dot(vCenter));
 
-			// 반복문 돌면서 4개의 표면벡터를 지정된 투영축으로 투영시켜서 길이를 누적받는다.
-			for (int j = 0; j < 4; ++j)
-			{
-				ProjAcc += abs(vProj.Dot(arrProj[j]));
-			}
-
-			// 투영된 길이의 절반씩 합친 길이가 필요하기 때문에 전체 합친길이를 2 로 나눈다
-			ProjAcc /= 2.f;
-
-			// 두 충돌체의 중심을 이은 벡터도 투영시킨다.
-			float fCenterDist = abs(vProj.Dot(vCenter));
-
-			// 중심을 이은 벡터를 투영시킨 길이가, 표면을 투영시킨 길이의 절반보다 크다면 
-			// 둘을 분리시킬 수 있다.
-			if (ProjAcc < fCenterDist)
-			{
-				// 비 충돌 상태
-				result = false;
-			}
+		// 중심을 이은 벡터를 투영시킨 길이가, 표면을 투영시킨 길이의 절반보다 크다면 
+		// 둘을 분리시킬 수 있다.
+		if (ProjAcc < fCenterDist)
+		{
+			return false;	// 비 충돌 상태
 		}
 	}
 
-	return result;
+	return true;	// 충돌 상태
 }
 
 bool CCollisionMgr::ObbCircleCircle(const Matrix& _matCircle1, const Matrix& _matCircle2)
 {
-	bool result = true;
+	Matrix		left = _matCircle1;
+	Matrix		right = _matCircle2;
 
+	Vec3		scaleL;
+	Quaternion	rotL;
+	Vec3		posL;
+
+	Vec3		scaleR;
+	Quaternion	rotR;
+	Vec3		posR;
+
+	left.Decompose(scaleL, rotL, posL);
+	right.Decompose(scaleR, rotR, posR);
+
+	float fCenter = sqrt(pow((posR.x - posL.x), 2) + pow((posR.y - posL.y), 2));
+	float fLeftRadius = 0.5f * scaleL.x;
+	float fRightRadius = 0.5f * scaleR.x;
+
+	if (fCenter > fLeftRadius + fRightRadius)
 	{
-		Matrix		left = _matCircle1;
-		Matrix		right = _matCircle2;
-
-		Vec3		scaleL;
-		Quaternion	rotL;
-		Vec3		posL;
-
-		Vec3		scaleR;
-		Quaternion	rotR;
-		Vec3		posR;
-
-		left.Decompose(scaleL, rotL, posL);
-		right.Decompose(scaleR, rotR, posR);
-
-		float fCenter = sqrt(pow((posR.x - posL.x), 2) + pow((posR.y - posL.y), 2));
-		float fLeftRadius = 0.5f * scaleL.x;
-		float fRightRadius = 0.5f * scaleR.x;
-
-		if (fCenter > fLeftRadius + fRightRadius)
-		{
-			// 비 충돌 상태
-			result = false;
-		}
+		return false;	// 비 충돌 상태
 	}
 
-	return result;
+	return true;	// 충돌 상태
 }
 
 bool CCollisionMgr::ObbRectCircle(const Matrix& _matRect, const Matrix& _matCircle)
 {
-	bool result = true;
+	// Circle World
+	Matrix		mCircle = _matCircle;
+	Vec3		scale;
+	Quaternion	rot;
+	Vec3		pos;
+	mCircle.Decompose(scale, rot, pos);
 
+	// Rect Local
+	static Vec3 arrRect[4] = { Vec3(-0.5f, 0.5f, 0.f)
+								, Vec3(0.5f, 0.5f, 0.f)
+								, Vec3(0.5f, -0.5f, 0.f)
+								, Vec3(-0.5f, -0.5f, 0.f) };
+
+	// 투영벡터
+	Vec3 arrProj[3] = {};
+	arrProj[0] = XMVector3TransformCoord(arrRect[1], _matRect) - XMVector3TransformCoord(arrRect[0], _matRect);
+	arrProj[1] = XMVector3TransformCoord(arrRect[3], _matRect) - XMVector3TransformCoord(arrRect[0], _matRect);
+
+	Vec3 vCenter = XMVector3TransformCoord(Vec3(0.f, 0.f, 0.f), _matCircle) - XMVector3TransformCoord(Vec3(0.f, 0.f, 0.f), _matRect);
+	arrProj[2] = vCenter;
+
+	// i 번째 투영축으로 2개의 표면벡터를 투영시킨다.
+	for (int i = 0; i < 3; ++i)
 	{
-		// Circle World
-		Matrix		mCircle = _matCircle;
-		Vec3		scale;
-		Quaternion	rot;
-		Vec3		pos;
-		mCircle.Decompose(scale, rot, pos);
+		// i 번째 표면백터를 투영축으로 삼는다
+		Vec3 vProj = arrProj[i];
 
-		// Rect Local
-		static Vec3 arrRect[4] = { Vec3(-0.5f, 0.5f, 0.f)
-								  , Vec3(0.5f, 0.5f, 0.f)
-								  , Vec3(0.5f, -0.5f, 0.f)
-								  , Vec3(-0.5f, -0.5f, 0.f) };
+		// 단위벡터로 만들어서 내적할 경우 투영된 길이를 구할 수 있게 한다.
+		vProj.Normalize();
 
-		// 투영벡터
-		Vec3 arrProj[2] = {};
-		arrProj[0] = XMVector3TransformCoord(arrRect[1], _matRect) - XMVector3TransformCoord(arrRect[0], _matRect);
-		arrProj[1] = XMVector3TransformCoord(arrRect[3], _matRect) - XMVector3TransformCoord(arrRect[0], _matRect);
+		// 투영된 길이를 누적시킬 변수
+		float ProjAcc = 0.f;
 
-		Vec3 vCenter = XMVector3TransformCoord(Vec3(0.f, 0.f, 0.f), _matCircle) - XMVector3TransformCoord(Vec3(0.f, 0.f, 0.f), _matRect);
+		// 원의 지름을 투영된 길이에 누적
+		ProjAcc += (1.f * scale.x);
 
-		// i 번째 투영축으로 2개의 표면벡터를 투영시킨다.
-		for (int i = 0; i < 2; ++i)
+		// 반복문 돌면서 Rect의 2개의 표면벡터를 지정된 투영축으로 투영시켜서 길이를 누적받는다.
+		for (int j = 0; j < 2; ++j)
 		{
-			// i 번째 표면백터를 투영축으로 삼는다
-			Vec3 vProj = arrProj[i];
+			ProjAcc += abs(vProj.Dot(arrProj[j]));
+		}
 
-			// 단위벡터로 만들어서 내적할 경우 투영된 길이를 구할 수 있게 한다.
-			vProj.Normalize();
+		// 투영된 길이의 절반씩 합친 길이가 필요하기 때문에 전체 합친길이를 2 로 나눈다
+		ProjAcc /= 2.f;
 
-			// 투영된 길이를 누적시킬 변수
-			float ProjAcc = 0.f;
+		// 두 충돌체의 중심을 이은 벡터도 투영시킨다.
+		float fCenterDist = abs(vProj.Dot(vCenter));
 
-			// 원의 지름을 투영된 길이에 누적
-			ProjAcc += (1.f * scale.x);
-
-			// 반복문 돌면서 4개의 표면벡터를 지정된 투영축으로 투영시켜서 길이를 누적받는다.
-			for (int j = 0; j < 2; ++j)
-			{
-				ProjAcc += abs(vProj.Dot(arrProj[j]));
-			}
-
-			// 투영된 길이의 절반씩 합친 길이가 필요하기 때문에 전체 합친길이를 2 로 나눈다
-			ProjAcc /= 2.f;
-
-			// 두 충돌체의 중심을 이은 벡터도 투영시킨다.
-			float fCenterDist = abs(vProj.Dot(vCenter));
-
-			// 중심을 이은 벡터를 투영시킨 길이가, 표면을 투영시킨 길이의 절반보다 크다면 
-			// 둘을 분리시킬 수 있다.
-			if (ProjAcc < fCenterDist)
-			{
-				// 비 충돌 상태
-				result = false;
-			}
+		// 중심을 이은 벡터를 투영시킨 길이가, 표면을 투영시킨 길이의 절반보다 크다면 
+		// 둘을 분리시킬 수 있다.
+		if (ProjAcc < fCenterDist)
+		{
+			return false; // 비 충돌 상태
 		}
 	}
 
-	return result;
+	return true;	// 충돌 상태
 }
 
 void CCollisionMgr::LayerCheck(LAYER_TYPE _left, LAYER_TYPE _right)
