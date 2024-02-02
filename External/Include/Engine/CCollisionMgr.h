@@ -13,6 +13,11 @@ private:
 	void CollisionBtwLayer(UINT _left, UINT _right);	
 	bool CollisionBtwCollider(CCollider2D* _left, CCollider2D* _right);	// true = 충돌, false = 비충돌
 
+	// OBB
+	bool ObbRectRect(const Matrix& _matRect1, const Matrix& _matRect2);
+	bool ObbCircleCircle(const Matrix& _matCircle1, const Matrix& _matCircle2);
+	bool ObbRectCircle(const Matrix& _matRect, const Matrix& _matCircle);
+
 public:
 	void LayerCheck(LAYER_TYPE _left, LAYER_TYPE _right);								// 충돌설정
 	void LayerCheck(const wstring& _leftLayerName, const wstring& _rightLayerName);		// 충돌설정

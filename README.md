@@ -171,4 +171,9 @@ DirectX 2D Engine
 &nbsp;&nbsp;- CCollisionMgr) RECT-RECT, RECT-CIRCLE, CIRCLE-CIRCLE 충돌 구현(RECT-CIRCLE 충돌 보완필요)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/CollisionMgr.png" width=400><br>
 
+**_24/02/02_** :<br>
+&nbsp;&nbsp;- CCollisionMgr) OBB 충돌연산 코드 모듈화(ObbRectRect, ObbCircleRect, ObbCircleCircle)<br>
+&nbsp;&nbsp;- <br>
+
+
 <!-- &nbsp;&nbsp;- <br> -->
