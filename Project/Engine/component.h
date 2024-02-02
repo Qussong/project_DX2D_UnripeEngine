@@ -5,9 +5,11 @@
 #include "CRenderComponent.h"
 #include "CMeshRender.h"
 #include "CCamera.h"
+#include "CCollider2D.h"
+#include "CAnimator2D.h"
+#include "CAnimation.h"
 
 #include "CScript.h"
 #include "CPlayerScript.h"
 #include "CCameraScript.h"
 #include "CMissileScript.h"
-#include "CCollider2D.h"

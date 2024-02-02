@@ -76,3 +76,11 @@ union CollisionID
 	};
 	UINT_PTR iID;
 };
+
+struct tAnimFrame
+{
+	Vec2	v2LeftTop;
+	Vec2	v2SliceSize;
+	Vec2	v2Offset;
+	float	fDuration;
+};
