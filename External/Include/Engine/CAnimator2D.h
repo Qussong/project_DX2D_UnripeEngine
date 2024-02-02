@@ -18,11 +18,11 @@ private:
 	bool						m_bRepeat;
 
 public:
-	// 애니메이션 생성
+	// CAnimation->Create() 호출로 애니메이션 생성후 m_mapAnimation에 저장
 	void Create(const wstring& _aniName, 
 				Ptr<CTexture> _atlas, 
 				int32 _frameCnt, 
-				Vec2 _leftTop, 
+				Vec2 _leftTop,	// Texture 상에서 애니메이션이 시작될 LeftTop
 				Vec2 _sliceSize, 
 				Vec2 _offset, 
 				float _fps);

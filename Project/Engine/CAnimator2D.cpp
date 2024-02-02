@@ -19,16 +19,8 @@ void CAnimator2D::Create(const wstring& _aniName, Ptr<CTexture> _atlas, int32 _f
 		return;
 	}
 
-	tAnimFrame frameInfo = {};
-	{
-		frameInfo.v2LeftTop = _leftTop;
-		frameInfo.v2SliceSize = _sliceSize;
-		frameInfo.v2Offset = _offset;
-		frameInfo.fDuration = _fps;
-	}
-
 	pAni = new CAnimation;
-	pAni->Create(this, _atlas, _frameCnt, frameInfo);
+	pAni->FrameSet(this, _atlas, _frameCnt, _leftTop, _sliceSize, _offset, _fps);
 	m_mapAnimation.insert(make_pair(_aniName, pAni));
 }
 

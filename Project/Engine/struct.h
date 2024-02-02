@@ -77,10 +77,20 @@ union CollisionID
 	UINT_PTR iID;
 };
 
-struct tAnimFrame
+struct tAniFrmInfo
 {
 	Vec2	v2LeftTop;
 	Vec2	v2SliceSize;
 	Vec2	v2Offset;
 	float	fDuration;
+};
+
+// 상수버퍼(CB_TYPE::ANI_2D) 대응 구조체
+struct tAnimation2D
+{
+	Vec2	v2LeftTop;
+	Vec2	v2SliceSize;
+	Vec2	v2Offset;
+	int32	iUseAni2D;
+	int32	iPadding;
 };

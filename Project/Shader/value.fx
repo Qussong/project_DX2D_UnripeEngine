@@ -57,20 +57,32 @@ cbuffer MATERIAL : register(b1)
     int g_btexarr_1;
 }
 
-Texture2D       TEXTURE_0   : register(t0);
-Texture2D       TEXTURE_1   : register(t1);
-Texture2D       TEXTURE_2   : register(t2);
-Texture2D       TEXTURE_3   : register(t3);
-Texture2D       TEXTURE_4   : register(t4);
-Texture2D       TEXTURE_5   : register(t5);
+// Animation 상수버퍼
+cbuffer ANIM_DATA2D : register(b2)
+{
+    float2  g_v2LeftTop;
+    float2  g_v2SliceSize;
+    float2  g_v2Offset;
+    int     g_iUseAnim2D;
+    int     iPadding;
+}
 
-TextureCube     TEXCUBE_0   : register(t6);
-TextureCube     TEXCUBE_1   : register(t7);
+Texture2D       TEXTURE_0       : register(t0);
+Texture2D       TEXTURE_1       : register(t1);
+Texture2D       TEXTURE_2       : register(t2);
+Texture2D       TEXTURE_3       : register(t3);
+Texture2D       TEXTURE_4       : register(t4);
+Texture2D       TEXTURE_5       : register(t5);
 
-Texture2DArray  TEXARR_0    : register(t8);
-Texture2DArray  TEXARR_1    : register(t9);
+TextureCube     TEXCUBE_0       : register(t6);
+TextureCube     TEXCUBE_1       : register(t7);
 
-SamplerState    SAMPLER_0   : register(s0); // ANISOTROPIC
-SamplerState    SAMPLER_1   : register(s1); // POINT
+Texture2DArray  TEXARR_0        : register(t8);
+Texture2DArray  TEXARR_1        : register(t9);
+
+Texture2D       TEX_ANIM2D_0    : register(t10);
+
+SamplerState    SAMPLER_0       : register(s0); // ANISOTROPIC
+SamplerState    SAMPLER_1       : register(s1); // POINT
 
 #endif

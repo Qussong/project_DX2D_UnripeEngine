@@ -21,8 +21,12 @@ private:
 	ComPtr<ID3D11UnorderedAccessView>	m_UAV;		// GPGPU(Gernal Purpose GPU), ComputeShader, 읽기/쓰기 동시가능 (Unordered Register(u) 바인딩)
 
 public:
+	UINT GetWidth() { return m_tDesc.Width; }
+	UINT GetHeight() { return m_tDesc.Height; }
+
+public:
 	virtual void UpdateData() override {};
-	virtual void UpdateData(uint32 _iRegisterNum);	// overload
+	void UpdateData(uint32 _iRegisterNum);	// overload
 	virtual int Load(const wstring& _strFilePath) override;
 	
 public:

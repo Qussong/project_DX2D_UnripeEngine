@@ -215,6 +215,13 @@ void CGraphics::CostantBuffer()
 		pCB->Create(sizeof(tMaterial), 1);
 		m_arrCB[(UINT)CB_TYPE::MATERIAL] = pCB;
 	}
+
+	// Animation2D
+	{
+		CConstantBuffer* pCB = new CConstantBuffer(CB_TYPE::ANI_2D);
+		pCB->Create(sizeof(tAnimation2D), 1);
+		m_arrCB[(UINT)CB_TYPE::ANI_2D] = pCB;
+	}
 }
 
 int CGraphics::RasterizerState()

@@ -89,7 +89,7 @@ enum class CB_TYPE
 	TRANSFORM,
 	MATERIAL,
 	GLOBAL,
-	ANIMATION,
+	ANI_2D,
 
 	END,
 };
