@@ -32,7 +32,23 @@ void CLevelMgr::Init()
 
 		pCamObj->Camera()->SetPriority(0);
 		pCamObj->Camera()->LayerCheckAll(/*true*/);
-		//pCamObj->Camera()->LayerCheck(L"UILayer", false);
+		pCamObj->Camera()->LayerCheck(L"UILayer", false);
+
+		m_pCurLevel->AddObject(pCamObj, LAYER_TYPE::DEFAULT);
+	}
+
+	// UI Camera
+	{
+		CGameObject* pCamObj = new CGameObject;
+		pCamObj->SetName(L"UICamera");
+		pCamObj->AddComponent(new CTransform);
+		pCamObj->AddComponent(new CCamera);
+
+		pCamObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 0.f));
+		pCamObj->Transform()->SetLocalRotation(Vec3(0.f, 0.f, 0.f));
+
+		pCamObj->Camera()->SetPriority(1);
+		pCamObj->Camera()->LayerCheck(L"UILayer", true);
 
 		m_pCurLevel->AddObject(pCamObj, LAYER_TYPE::DEFAULT);
 	}
@@ -97,21 +113,21 @@ void CLevelMgr::Init()
 	}
 
 	// UIObj
-	//{
-	//	CGameObject* pUIObj = new CGameObject;
-	//	pUIObj->SetName(L"UI");
-	//	pUIObj->AddComponent(new CTransform);
-	//	pUIObj->AddComponent(new CMeshRender);
-	//	// basicComp
-	//	pUIObj->Transform()->SetLocalPos(Vec3(-550.f, 300.f, 500.f));
-	//	pUIObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
-	//	// renderComp
-	//	pUIObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-	//	pUIObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"UIMaterial"));
-	//	// texture
-	//	Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"penguin_hit");
-	//	pUIObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
+	{
+		CGameObject* pUIObj = new CGameObject;
+		pUIObj->SetName(L"UI");
+		pUIObj->AddComponent(new CTransform);
+		pUIObj->AddComponent(new CMeshRender);
+		// basicComp
+		pUIObj->Transform()->SetLocalPos(Vec3(-550.f, 300.f, 500.f));
+		pUIObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
+		// renderComp
+		pUIObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+		pUIObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"UIMaterial"));
+		// texture
+		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"penguin_hit");
+		pUIObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
 
-	//	GamePlayStatic::SpawnGameObject(pUIObj, LAYER_TYPE::UI);
-	//}
+		GamePlayStatic::SpawnGameObject(pUIObj, LAYER_TYPE::UI);
+	}
 }
