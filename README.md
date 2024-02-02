@@ -180,6 +180,7 @@ DirectX 2D Engine
 &nbsp;&nbsp;- CAnimation,CAnimator2D) Animation 기능 구현 및 Player,Monster 객체에 적용<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/Qussong/project_DX2D_UnripeEngine/assets/89381041/fec0d2f5-25ce-4df9-9274-33f90eaafc29" width=400><br>
 &nbsp;&nbsp;- CLevelMgr) UICam객체 생성 -> MainCam이 움직여도 UICam에 의해 Render 되는 객체들은 화면상 고정됨<br>
-
+&nbsp;&nbsp;- Cross_Debug Mesh 추가 및 GamePlayStatic::DrawDebugCross() 구현으로 중심점위치 CrossMesh로 표시<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/Center_CrossMesh.png" width=400><br>
 
 <!-- &nbsp;&nbsp;- <br> -->

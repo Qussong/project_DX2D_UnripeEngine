@@ -3,6 +3,7 @@
 
 CRenderMgr::CRenderMgr()
 	: m_pDebugObj(nullptr)
+	, m_bDebugCheck(false)
 {
 }
 
@@ -47,8 +48,8 @@ void CRenderMgr::Tick()
 	Vec4 v4Color = { 0.75f, 0.72f, 0.7f, 1.f };
 	GRAPHICS->ClearRenderTarget(v4Color);
 
-	Render();					// 카메라 기준 Render
-	Render_Debug();
+	Render();					// 카메라 기준 일반 객체 Render
+	Render_Debug();				// 카메라 기준 Debug 객체 Render
 
 	//GRAPHICS->RenderEnd();	// ImGui::Progress 뒤에 위치
 }
@@ -77,19 +78,19 @@ void CRenderMgr::Render_Debug()
 		m_pDebugObj->Transform()->UpdateData();
 
 		// Mesh 설정
-		DEBUG_SHAPE tDebugShape = info.eShape;
-		switch (tDebugShape)
+		switch (info.eShape)
 		{
 		case DEBUG_SHAPE::RECT:
-		{
 			m_pDebugObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh_Debug"));
-		}
-		break;
+			break;
 		case DEBUG_SHAPE::CIRCLE:
-		{
 			m_pDebugObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"CircleMesh_Debug"));
-		}
-		break;
+			break;
+		case DEBUG_SHAPE::CROSS:
+			m_pDebugObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"CrossMesh_Debug"));
+			break;
+		default:
+			break;
 		}
 
 		// Material 설정
@@ -97,21 +98,27 @@ void CRenderMgr::Render_Debug()
 		Vec4 v4DebugColor = { info.v3Color, 1.f };
 		m_pDebugObj->MeshRender()->GetMaterial()->SetScalarParam(SCALAR_PARAM::VEC4_0, v4DebugColor);
 
+		// DEBUG_SHAPE::CROSS 인 경우 Topology 변경
+		Ptr<CGraphicShader> shader = m_pDebugObj->MeshRender()->GetMaterial()->GetShader();
+		D3D11_PRIMITIVE_TOPOLOGY prevTopology  = shader->GetTopology();
+		if (DEBUG_SHAPE::CROSS == info.eShape)
+			shader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_LINELIST);
+
 		// Render
 		m_pDebugObj->Render();
 
-		// 유지 시간
+		// DEBUG_SHAPE::CROSS 인 경우 Render가 끝났기에 변경되었던 Topology 복구
+		if (DEBUG_SHAPE::CROSS == info.eShape)
+			shader->SetTopology(prevTopology);
+
+		// 유지 시간 체크 (보완 필요함)
+		// 현재 수명 0 때문에 1프레임 출력후 바로 사라짐, 또한 매 프레임마다 하나씩 추가됨
 		info.fLifeTime += DT;
 		// 수명이 지난 경우 
 		if (info.fDuration <= info.fLifeTime)
-		{
-			// 해당 디버그 객체를 컨테이너목록에서 지운다.
 			iter = m_listDebugShapeInfo.erase(iter);
-		}
 		// 수명이 남은 경우
 		else
-		{
 			++iter;
-		}
 	}
 }

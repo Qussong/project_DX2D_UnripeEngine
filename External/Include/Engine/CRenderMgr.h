@@ -11,15 +11,14 @@ private:	// Render
 private:	// Debug
 	list<tDebugShapeInfo>	m_listDebugShapeInfo;
 	CGameObject*			m_pDebugObj;
+	bool					m_bDebugCheck;	// Debug °´Ã¼ Render ¿©ºÎ
 
 public:
 	void RegisterCamera(CCamera* _cam, int32 _idx);
-
-public:
-	void AddDebugShapeInfo(const tDebugShapeInfo& _info)
-	{
-		m_listDebugShapeInfo.push_back(_info);
-	}
+	void AddDebugShapeInfo(const tDebugShapeInfo& _info) { m_listDebugShapeInfo.push_back(_info); }
+	
+	void SetDebugCheck(bool _flag) { m_bDebugCheck = _flag; }
+	bool IsDebugCheck() { return m_bDebugCheck; }
 	
 public:
 	void Init();

@@ -77,12 +77,9 @@ void CAssetMgr::Mesh()
 
 	// Circle Mesh
 	{
-		vector<Vtx> vecCircle;
-		vector<UINT> vecIdx;
-
-		// 정점 정보 입력
-		// 중심점
-		Vtx center;
+		vector<Vtx>		vecCircle;
+		vector<UINT>	vecIdx;
+		Vtx				center;	// 중심점
 		center.v3Pos = Vec3(0.f, 0.f, 0.f);
 		center.v4Color = Vec4(0.5f, 0.f, 0.5f, 1.f);
 		center.v2UV = Vec2(0.5f, 0.5f);
@@ -135,6 +132,40 @@ void CAssetMgr::Mesh()
 		CMesh* pCircleDbgMesh = new CMesh;
 		pCircleDbgMesh->Create(vecCircle.data(), (uint32)vtxCnt, vecIdx.data(), (uint32)vecIdx.size());
 		AddAsset(L"CircleMesh_Debug", pCircleDbgMesh);
+	}
+
+	// Cross Mesh
+	{
+		vector<Vtx>		vecVtx;
+		vector<UINT>	vecIdx;
+		Vtx				point;
+
+		// 정점 정보 입력
+		{
+			point.v3Pos = Vec3(0.f, 0.5f, 0.f);
+			point.v4Color = Vec4(0.f, 1.f, 0.f, 1.f);
+			point.v2UV = Vec2(0.f, 0.f);
+			vecVtx.push_back(point);
+
+			point.v3Pos = Vec3(0.f, -0.5f, 0.f);
+			vecVtx.push_back(point);
+
+			point.v3Pos = Vec3(-0.5f, 0.f, 0.f);
+			vecVtx.push_back(point);
+
+			point.v3Pos = Vec3(0.5f, 0.f, 0.f);
+			vecVtx.push_back(point);
+		}
+
+		// 인덱스 정보 입력
+		{
+			vecIdx.push_back(0); vecIdx.push_back(1);
+			vecIdx.push_back(2); vecIdx.push_back(3);
+		}
+
+		CMesh* pMesh = new CMesh;
+		pMesh->Create(vecVtx.data(), (UINT)vecVtx.size(), vecIdx.data(), (UINT)vecIdx.size());
+		AddAsset(L"CrossMesh_Debug", pMesh);
 	}
 }
 

@@ -33,7 +33,10 @@ public:
 	virtual int Load(const wstring& _strFilePath) override { return E_FAIL; };
 
 public:
+	D3D11_PRIMITIVE_TOPOLOGY GetTopology() { return m_Topology; }
 	void SetTopology(D3D11_PRIMITIVE_TOPOLOGY _topology) { m_Topology = _topology; }
+
+public:
 	// Vertex Shader »ý¼º
 	void VertexShader(const wstring& _fileName,
 						const string& _function,

@@ -36,8 +36,8 @@ void GamePlayStatic::DrawDebugRect(const Matrix& _worldMat, Vec3 _color, bool _d
 		info.eShape = DEBUG_SHAPE::RECT;
 		info.v3Color = _color;
 		info.matWorld = _worldMat;
-		info.fDuration = _depthTest;
-		info.bDepthTest = _duration;
+		info.fDuration = _duration;
+		info.bDepthTest = _depthTest;
 	}
 
 	M_RENDER->AddDebugShapeInfo(info);
@@ -56,8 +56,8 @@ void GamePlayStatic::DrawDebugRect(Vec3 _worldPos, Vec3 _worldScale, Vec3 _world
 			XMMatrixScaling(info.v3WorldScale.x, info.v3WorldScale.y, info.v3WorldScale.z)
 			* XMMatrixRotationX(info.v3WorldRot.x) * XMMatrixRotationY(info.v3WorldRot.y) * XMMatrixRotationZ(info.v3WorldRot.z)
 			* XMMatrixTranslation(info.v3WorldPos.x, info.v3WorldPos.y, info.v3WorldPos.z);
-		info.fDuration = _depthTest;
-		info.bDepthTest = _duration;
+		info.fDuration = _duration;
+		info.bDepthTest = _depthTest;
 	}
 
 	M_RENDER->AddDebugShapeInfo(info);
@@ -76,8 +76,8 @@ void GamePlayStatic::DrawDebugCircle(Vec3 _worldPos, float _radius, Vec3 _color,
 			XMMatrixScaling(info.v3WorldScale.x, info.v3WorldScale.y, info.v3WorldScale.z)
 			* XMMatrixRotationX(info.v3WorldRot.x) * XMMatrixRotationY(info.v3WorldRot.y) * XMMatrixRotationZ(info.v3WorldRot.z)
 			* XMMatrixTranslation(info.v3WorldPos.x, info.v3WorldPos.y, info.v3WorldPos.z);
-		info.fDuration = _depthTest;
-		info.bDepthTest = _duration;
+		info.fDuration = _duration;
+		info.bDepthTest = _depthTest;
 	}
 
 	M_RENDER->AddDebugShapeInfo(info);
@@ -90,8 +90,28 @@ void GamePlayStatic::DrawDebugCircle(const Matrix& _worldMat, Vec3 _color, bool 
 		info.eShape = DEBUG_SHAPE::CIRCLE;
 		info.v3Color = _color;
 		info.matWorld = _worldMat;
-		info.fDuration = _depthTest;
-		info.bDepthTest = _duration;
+		info.fDuration = _duration;
+		info.bDepthTest = _depthTest;
+	}
+
+	M_RENDER->AddDebugShapeInfo(info);
+}
+
+void GamePlayStatic::DrawDebugCross(Vec3 _worldPos, float _scale, Vec3 _color, bool _depthTest, float _duration)
+{
+	tDebugShapeInfo info = {};
+	{
+		info.eShape = DEBUG_SHAPE::CROSS;
+		info.v3Color = _color;
+		info.v3WorldPos = _worldPos;
+		info.v3WorldScale = Vec3(_scale, _scale, _scale);
+		info.v3WorldRot = Vec3(0.f, 0.f, 0.f);
+		info.matWorld =
+			XMMatrixScaling(info.v3WorldScale.x, info.v3WorldScale.y, info.v3WorldScale.z)
+			* XMMatrixRotationX(info.v3WorldRot.x) * XMMatrixRotationY(info.v3WorldRot.y) * XMMatrixRotationZ(info.v3WorldRot.z)
+			* XMMatrixTranslation(info.v3WorldPos.x, info.v3WorldPos.y, info.v3WorldPos.z);
+		info.fDuration = _duration;
+		info.bDepthTest = _depthTest;
 	}
 
 	M_RENDER->AddDebugShapeInfo(info);

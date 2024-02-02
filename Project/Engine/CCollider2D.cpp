@@ -31,6 +31,9 @@ void CCollider2D::EndOverlap(CCollider2D* _other)
 
 void CCollider2D::FinalTick()
 {
+	if (!M_RENDER->IsDebugCheck())
+		return;
+
 	// 충돌체의 월드 행렬 계산
 	Matrix matLocalScale = XMMatrixScaling(m_v3OffsetScale.x, m_v3OffsetScale.y, m_v3OffsetScale.z);
 	Matrix matLocalPos = XMMatrixTranslation(m_v3OffsetPos.x, m_v3OffsetPos.y, m_v3OffsetPos.z);

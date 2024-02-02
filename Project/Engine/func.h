@@ -22,6 +22,8 @@ namespace GamePlayStatic
 	void DrawDebugCircle(Vec3 _worldPos, float _radius, Vec3 _color, bool _depthTest = false, float _duration = 0.f);
 	void DrawDebugCircle(const Matrix& _worldMat, Vec3 _color, bool _depthTest = false, float _duration = 0.f);
 
+	void DrawDebugCross(Vec3 _worldPos, float _scale, Vec3 _color, bool _depthTest = false, float _duration = 0.f);
+
 	//void DrawDebugCube();
 	//void DrawDebugSphere();
 }

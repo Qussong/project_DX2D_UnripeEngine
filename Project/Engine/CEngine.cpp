@@ -21,6 +21,14 @@ CEngine::~CEngine()
 	}
 }
 
+void CEngine::DebugRenderCheck()
+{
+	if (KEY_STATE::TAP == M_KEY->GetKeyState(KEY::O))
+	{
+		M_RENDER->IsDebugCheck() ? M_RENDER->SetDebugCheck(false) : M_RENDER->SetDebugCheck(true);
+	}
+}
+
 int CEngine::Init(HWND _hWnd, uint32 _width, uint32 _height)
 {
 	// member init
@@ -61,4 +69,7 @@ void CEngine::Progress()
 
 	// Task
 	M_TASK->Tick();		
+
+	// Debug
+	DebugRenderCheck();
 }

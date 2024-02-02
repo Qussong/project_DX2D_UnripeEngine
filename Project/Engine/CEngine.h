@@ -17,6 +17,9 @@ private:
 private:
 	vector<CGameObject*>	m_vecObj;
 
+private:
+	void	DebugRenderCheck();	// Debug °´Ã¼ Render ½ºÀ§Ä¡(Key : O)
+
 public:
 	HWND	GetWindowHandle() { return m_hWnd; }
 
