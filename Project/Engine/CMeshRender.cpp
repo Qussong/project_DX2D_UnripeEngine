@@ -13,6 +13,12 @@ CMeshRender::~CMeshRender()
 
 void CMeshRender::UpdateData()
 {
+	CAnimator2D* pAni2D = GetOwner()->Animator2D();
+	if (nullptr != pAni2D)
+		pAni2D->UpdateData();
+	else
+		pAni2D->Clear();
+
 	GetMesh()->UpdateData();
 	GetMaterial()->UpdateData();
 

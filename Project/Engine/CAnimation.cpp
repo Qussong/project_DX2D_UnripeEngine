@@ -20,18 +20,22 @@ void CAnimation::FrameSet(CAnimator2D* _animator, Ptr<CTexture> _atlas, uint32 _
 
 	for (size_t i = 0; i < _frameCnt; ++i)
 	{
-		Vec2 v2CurFrmLefTop = Vec2();
+		Vec2 v2CurFrmSliceSize = Vec2(_sliceSize.x / (float)_atlas->GetWidth()
+										, _sliceSize.y / (float)_atlas->GetHeight());
+		Vec2 v2CurFrmLefTop = Vec2(_leftTop.x / (float)_atlas->GetWidth() + v2CurFrmSliceSize.x * i
+									, _leftTop.y / (float)_atlas->GetHeight());
+		Vec2 v2CurFrmOffset = Vec2(_offset.x / (float)_atlas->GetWidth()
+									, _offset.y / (float)_atlas->GetHeight());
 
-		// 값 채울것
-		tAniFrmInfo info = {};
+		tAniFrmInfo frameInfo = {};
 		{
-			info.v2LeftTop;
-			info.v2SliceSize = _sliceSize;
-			info.v2Offset = _offset;
-			info.fDuration = 1.f / _fps;
+			frameInfo.v2LeftTop = v2CurFrmLefTop;
+			frameInfo.v2SliceSize = v2CurFrmSliceSize;
+			frameInfo.v2Offset = v2CurFrmOffset;
+			frameInfo.fDuration = 1.f / _fps;
 		}
 
-		m_vecFrmInfo.push_back(info);
+		m_vecFrmInfo.push_back(frameInfo);
 	}
 }
 
@@ -42,7 +46,7 @@ void CAnimation::FinalTick()
 	if (m_vecFrmInfo[m_iCurFrmIdx].fDuration < m_fCurFrmPlayTime)
 	{
 		++m_iCurFrmIdx;
-		m_fCurFrmPlayTime = 0;
+		m_fCurFrmPlayTime = 0.f;
 
 		// 현재 프레임이 애니메이션 프레임개수를 넘은경우 첫 프레임으로 돌아간다
 		int32 iFrameCnt = m_vecFrmInfo.size();
@@ -60,13 +64,13 @@ void CAnimation::UpdateData()
 		data.v2LeftTop = m_vecFrmInfo[m_iCurFrmIdx].v2LeftTop;
 		data.v2SliceSize = m_vecFrmInfo[m_iCurFrmIdx].v2SliceSize;
 		data.v2Offset = m_vecFrmInfo[m_iCurFrmIdx].v2Offset;
-		data.iUseAni2D = 1;
+		data.iUseAni2D = 1;	
 		//data.iPadding;
 	}
 	pCB->SetData(&data);
 	pCB->UpdateData();
 
-	// 애니메이션에 사용하는 아틀라스 이미지를 t10에 바인딩
+	// 애니메이션이 사용하는 아틀라스 이미지를 t10에 바인딩
 	m_AtlasTex->UpdateData(10);
 }
 
@@ -74,7 +78,6 @@ void CAnimation::Clear()
 {
 	static CConstantBuffer* pCB = GRAPHICS->GetCB(CB_TYPE::ANI_2D);
 	tAnimation2D data = {};
-	//data.iUseAni2D = 0;
 
 	pCB->SetData(&data);
 	pCB->UpdateData();

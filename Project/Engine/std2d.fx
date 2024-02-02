@@ -38,13 +38,24 @@ float4 PS_Std2D(VS_OUT _in) : SV_Target
 {
     float4 v4Color = float4(1.f, 1.f, 1.f, 1.f);
     
-    // 0번 Texture 샘플링
-    if (g_btex_0)
-        v4Color = TEXTURE_0.Sample(SAMPLER_1, _in.vUV);
+    // 애니메이션 사용하는 경우
+    if(g_iUseAnim2D)
+    {
+        // 10번 Texture 샘플링(Animation)
+        float2 vUV = g_v2LeftTop + (g_v2SliceSize * _in.vUV);
+        v4Color = TEX_ANIM2D_0.Sample(SAMPLER_1, vUV);
+    }
+    // 애니메이션 사용하지 않는 경우
+    else
+    {
+        // 0번 Texture 샘플링(Texture)
+        if (g_btex_0)
+            v4Color = TEXTURE_0.Sample(SAMPLER_1, _in.vUV);
+    }
     
     // 알파값 0.1f 이하 Render 안함
-    if (v4Color.a < 0.1f)
-        discard; // clip(-1);
+        if (v4Color.a < 0.1f)
+            discard; // clip(-1);
 
     // Player Highlight
     if(g_int_0)

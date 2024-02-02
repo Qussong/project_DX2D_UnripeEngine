@@ -45,6 +45,7 @@ void CLevelMgr::Init()
 		m_pTestObj->AddComponent(new CMeshRender);
 		m_pTestObj->AddComponent(new CPlayerScript);
 		m_pTestObj->AddComponent(new CCollider2D);
+		m_pTestObj->AddComponent(new CAnimator2D);
 		// basicComp
 		m_pTestObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
 		m_pTestObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
@@ -58,6 +59,10 @@ void CLevelMgr::Init()
 		// texture
 		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"bluebird_hit");
 		m_pTestObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
+		// animation
+		Ptr<CTexture> pAtlasTex = M_ASSET->FindAsset<CTexture>(L"bluebird_jump_atlas");
+		m_pTestObj->Animator2D()->Create(L"bluebird_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), 10);
+		m_pTestObj->Animator2D()->Play(L"bluebird_jump_ani");
 
 		GamePlayStatic::SpawnGameObject(m_pTestObj, LAYER_TYPE::PLAYER);
 	}
@@ -69,8 +74,9 @@ void CLevelMgr::Init()
 		pMonsterObj->AddComponent(new CTransform);
 		pMonsterObj->AddComponent(new CMeshRender);
 		pMonsterObj->AddComponent(new CCollider2D);
+		pMonsterObj->AddComponent(new CAnimator2D);
 		// basicComp_Transform, Collider
-		pMonsterObj->Transform()->SetLocalPos(Vec3(100.f, 50.f, 500.f));
+		pMonsterObj->Transform()->SetLocalPos(Vec3(100.f, 0.f, 500.f));
 		pMonsterObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
 		pMonsterObj->Collider2D()->SetAbsolute(true);	// true = 부모 Scale 영향 안받음
 		pMonsterObj->Collider2D()->SetOffsetScale(Vec2(50.f, 50.f));
@@ -82,29 +88,10 @@ void CLevelMgr::Init()
 		// texture
 		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"penguin_hit");
 		pMonsterObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
-
-		GamePlayStatic::SpawnGameObject(pMonsterObj, LAYER_TYPE::MONSTER);
-	}
-
-	// MonsterObj
-	{
-		CGameObject* pMonsterObj = new CGameObject;
-		pMonsterObj->SetName(L"MonsterObj");
-		pMonsterObj->AddComponent(new CTransform);
-		pMonsterObj->AddComponent(new CMeshRender);
-		pMonsterObj->AddComponent(new CCollider2D);
-		// basicComp_Transform, Collider
-		pMonsterObj->Transform()->SetLocalPos(Vec3(100.f, -50.f, 500.f));
-		pMonsterObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
-		pMonsterObj->Collider2D()->SetAbsolute(true);	// true = 부모 Scale 영향 안받음
-		pMonsterObj->Collider2D()->SetOffsetScale(Vec2(50.f, 50.f));
-		pMonsterObj->Collider2D()->SetOffsetPos(Vec2(6.f, 3.f));
-		// renderComp
-		pMonsterObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		pMonsterObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"MonsterMaterial"));
-		// texture
-		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"penguin_hit");
-		pMonsterObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
+		// animation
+		Ptr<CTexture> pAtlasTex = M_ASSET->FindAsset<CTexture>(L"penguin_jump_atlas");
+		pMonsterObj->Animator2D()->Create(L"penguin_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), 10);
+		pMonsterObj->Animator2D()->Play(L"penguin_jump_ani");
 
 		GamePlayStatic::SpawnGameObject(pMonsterObj, LAYER_TYPE::MONSTER);
 	}
@@ -122,7 +109,7 @@ void CLevelMgr::Init()
 	//	pUIObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 	//	pUIObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"UIMaterial"));
 	//	// texture
-	//	Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"test");
+	//	Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"penguin_hit");
 	//	pUIObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
 
 	//	GamePlayStatic::SpawnGameObject(pUIObj, LAYER_TYPE::UI);

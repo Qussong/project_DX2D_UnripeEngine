@@ -45,16 +45,20 @@ int CEngine::Init(HWND _hWnd, uint32 _width, uint32 _height)
 
 void CEngine::Progress()
 {
-	// Update
+	// Manger Update
 	M_TIME->Tick();		
-	M_KEY->Tick();		
-	M_LEVEL->Tick();	
+	M_KEY->Tick();	
+
+	// Level Update
+	M_LEVEL->Tick();
 	M_COLLISION->Tick();
 
 	// Render
 	M_RENDER->Tick();	
 
+	// GC
+	M_GC->Tick();
+
 	// Task
-	M_GC->Tick();		
 	M_TASK->Tick();		
 }

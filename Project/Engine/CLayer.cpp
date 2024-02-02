@@ -132,7 +132,6 @@ void CLayer::Tick()
 void CLayer::FinalTick()
 {
 	vector<CGameObject*>::iterator iter = m_vecParent.begin();
-
 	for (; iter != m_vecParent.end();)
 	{
 		CGameObject* pObj = *iter;

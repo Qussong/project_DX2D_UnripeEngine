@@ -47,7 +47,7 @@ void CRenderMgr::Tick()
 	Vec4 v4Color = { 0.75f, 0.72f, 0.7f, 1.f };
 	GRAPHICS->ClearRenderTarget(v4Color);
 
-	Render();
+	Render();					// 카메라 기준 Render
 	Render_Debug();
 
 	//GRAPHICS->RenderEnd();	// ImGui::Progress 뒤에 위치

@@ -80,7 +80,7 @@ TextureCube     TEXCUBE_1       : register(t7);
 Texture2DArray  TEXARR_0        : register(t8);
 Texture2DArray  TEXARR_1        : register(t9);
 
-Texture2D       TEX_ANIM2D_0    : register(t10);
+Texture2D       TEX_ANIM2D_0    : register(t10);    // Animation에 사용될 Atlas Texture 저장
 
 SamplerState    SAMPLER_0       : register(s0); // ANISOTROPIC
 SamplerState    SAMPLER_1       : register(s1); // POINT

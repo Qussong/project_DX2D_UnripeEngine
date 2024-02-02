@@ -6,6 +6,9 @@ namespace Lazy
 {
 	template <typename T>
 	void DelVector(vector<T>& _vec);
+
+	template <typename T1, typename T2>
+	void DelMap(map<T1, T2>& _map);
 }
 
 namespace GamePlayStatic

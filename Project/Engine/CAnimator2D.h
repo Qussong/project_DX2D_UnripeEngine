@@ -28,10 +28,14 @@ public:
 				float _fps);
 	// 저장된 애니메이션 탐색
 	CAnimation* FindAnimation(const wstring& _aniName);	
+	// b2 레지스터에 바인딩된 재생중인 애니메이션의 현재 프레임에대한 정보 초기화
+	void Clear();
+	// m_pCurAnimation(현재 재생중인 애니메이션) 지정
+	void Play(const wstring& _aniName);	
 
 public:
 	virtual void Begin() override {};
 	virtual void Tick() override {};
 	virtual void FinalTick() override;
-	virtual void UpdateData() override {};
+	virtual void UpdateData() override;
 };

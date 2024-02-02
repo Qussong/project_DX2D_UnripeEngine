@@ -177,6 +177,8 @@ DirectX 2D Engine
 &nbsp;&nbsp;- CAnimator2D 클래스 추가<br>
 &nbsp;&nbsp;- CAnimation 클래스 추가<br>
 &nbsp;&nbsp;- CGameObject) Destroy 함수 추가<br>
+&nbsp;&nbsp;- CAnimation,CAnimator2D) Animation 기능 구현 및 Player,Monster 객체에 적용<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="![GIFMaker_me](https://github.com/Qussong/project_DX2D_UnripeEngine/assets/89381041/cf9b81aa-ea19-4e0b-bc29-e891039395ad)" width=400><br>
 
 
 <!-- &nbsp;&nbsp;- <br> -->

@@ -107,4 +107,15 @@ void Lazy::DelVector(vector<T>&_vec)
 			return;
 		delete _vec[i];
 	}
+	_vec.clear();
+}
+
+template<typename T1, typename T2>
+void Lazy::DelMap(map<T1, T2>& _map)
+{
+	for (auto& pair : _map)
+	{
+		delete pair.second;
+	}
+	_map.clear();
 }

@@ -216,9 +216,12 @@ void CAssetMgr::Material()
 void CAssetMgr::Texture()
 {
 	Ptr<CTexture> pTex = nullptr;
-	pTex = LoadTexture(L"test", L"test.png");
+	// Texture
 	pTex = LoadTexture(L"bluebird_hit", L"bluebird_hit.png");
 	pTex = LoadTexture(L"penguin_hit", L"penguin_hit.png");
+	// Animation Texture
+	pTex = LoadTexture(L"bluebird_jump_atlas", L"bluebird_jump.png");
+	pTex = LoadTexture(L"penguin_jump_atlas", L"penguin_jump.png");
 }
 
 template<typename T>

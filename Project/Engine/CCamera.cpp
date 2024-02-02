@@ -116,9 +116,9 @@ void CCamera::Render()
 
 	CLevel* pCurLevel = M_LEVEL->GetCurrentLevel();
 
-	// 카메라가 인식하도록 설정된 Layer 만 Render
 	for (size_t i = 0; i < LAYER_MAX; i++)
 	{
+		// 카메라가 인식하도록 설정된 Layer가 아니면 무시
 		if (false == m_arrLayerCheck[i])
 			continue;
 
@@ -126,9 +126,9 @@ void CCamera::Render()
 		const vector<CGameObject*>& vecObjects = pLayer->GetLayerObjects();
 
 		size_t objCnt = vecObjects.size();
-		for (size_t i = 0; i < objCnt; ++i)
+		for (size_t k = 0; k < objCnt; ++k)
 		{
-			vecObjects[i]->Render();
+			vecObjects[k]->Render();
 		}
 	}
 }

@@ -91,6 +91,6 @@ struct tAnimation2D
 	Vec2	v2LeftTop;
 	Vec2	v2SliceSize;
 	Vec2	v2Offset;
-	int32	iUseAni2D;
-	int32	iPadding;
+	int32	iUseAni2D;	// 애니메이션 사용여부( 0 = false, 1 = true)
+	int32	iPadding;	// 16Byte 단위 맞춰주는 용도
 };
