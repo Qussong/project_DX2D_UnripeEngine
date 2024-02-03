@@ -20,7 +20,7 @@ int32 CStructuredBuffer::Create(UINT _elementSize, UINT _elementCnt, SB_TYPE _ty
 	// 구조화버퍼 생성
 	{
 		// 구조화 버퍼의 크기가 16단위인지 확인
-		if (!(_elementSize % 16))
+		if (_elementSize % 16)
 		{
 			MessageBoxA(nullptr, "Structured Buffer Size Incorrect", "CStructuredBuffer Error", MB_OK);
 			_exit(EXIT_FAILURE);
@@ -38,12 +38,25 @@ int32 CStructuredBuffer::Create(UINT _elementSize, UINT _elementCnt, SB_TYPE _ty
 			tDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
 			tDesc.StructureByteStride = m_iElementSize;
 		}
-		hr = DEVICE->CreateBuffer(&tDesc, nullptr, m_SB.GetAddressOf());
-		if (FAILED(hr))
+
+		// 넘겨줄 데이터가 없는 경우
+		if (nullptr == _sysMem)
 		{
-			MessageBoxA(nullptr, "Create StructuredBuffer Failed", "CStructuredBuffer Error", MB_OK);
-			return E_FAIL;
+			hr = DEVICE->CreateBuffer(&tDesc, nullptr, m_SB.GetAddressOf());
 		}
+		// 넘겨줄 데이터가 있는 경우
+		else
+		{
+			D3D11_SUBRESOURCE_DATA tSub = {};
+			tSub.pSysMem = _sysMem;
+			hr = DEVICE->CreateBuffer(&tDesc, &tSub, m_SB.GetAddressOf());
+		}
+	}
+
+	if (FAILED(hr))
+	{
+		MessageBoxA(nullptr, "Create StructuredBuffer Failed", "CStructuredBuffer Error", MB_OK);
+		return E_FAIL;
 	}
 
 	// Shader Resource View 생성
@@ -53,12 +66,13 @@ int32 CStructuredBuffer::Create(UINT _elementSize, UINT _elementCnt, SB_TYPE _ty
 			tDesc.ViewDimension = D3D11_SRV_DIMENSION_BUFFER;
 			tDesc.Buffer.NumElements = _elementCnt;
 		}
-		hr = DEVICE->CreateShaderResourceView(m_SB.Get(), & tDesc, m_SRV.GetAddressOf());
-		if (FAILED(hr))
-		{
-			MessageBoxA(nullptr, "Create ShaderResourceView Failed", "CStructuredBuffer Error", MB_OK);
-			return E_FAIL;
-		}
+		hr = DEVICE->CreateShaderResourceView(m_SB.Get(), &tDesc, m_SRV.GetAddressOf());
+	}
+
+	if (FAILED(hr))
+	{
+		MessageBoxA(nullptr, "Create ShaderResourceView Failed", "CStructuredBuffer Error", MB_OK);
+		return E_FAIL;
 	}
 
 	return hr;

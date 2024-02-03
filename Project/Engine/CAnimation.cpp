@@ -52,7 +52,7 @@ void CAnimation::FinalTick()
 		m_fCurFrmPlayTime = 0.f;
 
 		// 현재 프레임이 애니메이션 프레임개수를 넘은경우 첫 프레임으로 돌아간다
-		int32 iFrameCnt = m_vecFrmInfo.size();
+		int32 iFrameCnt = (int32)m_vecFrmInfo.size();
 		if (iFrameCnt <= m_iCurFrmIdx)
 			m_iCurFrmIdx = 0;
 	}

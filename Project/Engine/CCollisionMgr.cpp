@@ -224,7 +224,7 @@ bool CCollisionMgr::ObbCircleCircle(const Matrix& _matCircle1, const Matrix& _ma
 	left.Decompose(scaleL, rotL, posL);
 	right.Decompose(scaleR, rotR, posR);
 
-	float fCenter = sqrt(pow((posR.x - posL.x), 2) + pow((posR.y - posL.y), 2));
+	float fCenter = (float)sqrt(pow((posR.x - posL.x), 2) + pow((posR.y - posL.y), 2));
 	float fLeftRadius = 0.5f * scaleL.x;
 	float fRightRadius = 0.5f * scaleR.x;
 
@@ -344,7 +344,7 @@ void CCollisionMgr::Tick()
 				continue;
 
 			// left, right 레이어의 충돌 설정이 true인 경우
-			CollisionBtwLayer(left, right);
+			CollisionBtwLayer((UINT)left, (UINT)right);
 		}
 	}
 }

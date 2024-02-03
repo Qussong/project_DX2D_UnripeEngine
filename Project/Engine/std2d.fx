@@ -70,12 +70,15 @@ float4 PS_Std2D(VS_OUT _in) : SV_Target
     }
     
     // 알파값 0.1f 이하 Render 안함
-        if (v4Color.a < 0.1f)
-            discard; // clip(-1);
+    if (v4Color.a < 0.1f)
+        discard; // clip(-1);
 
     // Player Highlight
     if(g_int_0)
         v4Color.r += 1.f;
+    
+    // 구조화 버퍼 테스트
+    v4Color = SB_BUFFER[1];
     
     return v4Color;
 }

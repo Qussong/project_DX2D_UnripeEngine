@@ -1,5 +1,7 @@
 #pragma once
 
+class CStructuredBuffer;
+
 class CRenderMgr
 	: public CSingleton<CRenderMgr>
 {
@@ -12,6 +14,9 @@ private:	// Debug
 	list<tDebugShapeInfo>	m_listDebugShapeInfo;
 	CGameObject*			m_pDebugObj;
 	bool					m_bDebugCheck;	// Debug °´Ã¼ Render ¿©ºÎ
+
+private:
+	CStructuredBuffer*		m_pLight2DBuffer;
 
 public:
 	void RegisterCamera(CCamera* _cam, int32 _idx);

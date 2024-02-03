@@ -125,7 +125,7 @@ void CAssetMgr::Mesh()
 		size_t vtxCnt = vecCircle.size();
 		for (size_t i = 1; i < vtxCnt; ++i)
 		{
-			vecIdx.push_back(i);
+			vecIdx.push_back((UINT)i);
 		}
 		vecIdx.push_back(1);
 

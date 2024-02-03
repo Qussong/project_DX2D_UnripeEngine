@@ -186,7 +186,7 @@ DirectX 2D Engine
 **_24/02/03_** :<br>
 &nbsp;&nbsp;- Animation에 Background 개념 추가 (O key : DebugObj Render On/Off)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/Background.png" width=400><br>
-&nbsp;&nbsp;- 구조화버퍼(CStructBuffer) 클래스 추가<br>
+&nbsp;&nbsp;- 구조화버퍼(CStructBuffer) 클래스 추가 및 테스트<br>
 <!-- &nbsp;&nbsp;- <br> -->
 <!-- &nbsp;&nbsp;- <br> -->
 

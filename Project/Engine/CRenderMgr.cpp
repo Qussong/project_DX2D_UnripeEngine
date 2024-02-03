@@ -4,6 +4,7 @@
 CRenderMgr::CRenderMgr()
 	: m_pDebugObj(nullptr)
 	, m_bDebugCheck(false)
+	, m_pLight2DBuffer(nullptr)
 {
 }
 
@@ -11,11 +12,14 @@ CRenderMgr::~CRenderMgr()
 {
 	if (nullptr != m_pDebugObj)
 		delete m_pDebugObj;
+
+	if (nullptr != m_pLight2DBuffer)
+		delete m_pLight2DBuffer;
 }
 
 void CRenderMgr::RegisterCamera(CCamera* _cam, int32 _idx)
 {
-	int32 iCamCnt = m_vecCamera.size();
+	int32 iCamCnt = (int32)m_vecCamera.size();
 	int32 iPriority = _idx + 1;
 
 	// 등록된 카메라들보다 우선순위가 뒤에 있을 경우 카메라 컨테이너의 수용공간을 늘린다.
@@ -37,9 +41,21 @@ void CRenderMgr::RegisterCamera(CCamera* _cam, int32 _idx)
 
 void CRenderMgr::Init()
 {
+	// DebugObj
 	m_pDebugObj = new CGameObject;
 	m_pDebugObj->AddComponent(new CTransform);
 	m_pDebugObj->AddComponent(new CMeshRender);
+
+	// Light
+	Vec4 arr[3] =
+	{
+		Vec4(1.f, 0.f, 0.f, 1.f),
+		Vec4(0.f, 1.f, 0.f, 1.f),
+		Vec4(0.f, 0.f, 1.f, 1.f),
+	};
+	m_pLight2DBuffer = new CStructuredBuffer;
+	m_pLight2DBuffer->Create(sizeof(Vec4), sizeof(arr) / sizeof(Vec4), SB_TYPE::READ_ONLY, arr);
+	m_pLight2DBuffer->UpdateData(14);
 }
 
 void CRenderMgr::Tick()
