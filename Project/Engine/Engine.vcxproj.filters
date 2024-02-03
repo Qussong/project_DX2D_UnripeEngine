@@ -151,6 +151,9 @@
     <ClInclude Include="CAnimation.h">
       <Filter>07.Component\Animator2D</Filter>
     </ClInclude>
+    <ClInclude Include="CStructuredBuffer.h">
+      <Filter>03.Graphics\StructuredBuffer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -269,6 +272,9 @@
     </ClCompile>
     <ClCompile Include="CAnimation.cpp">
       <Filter>07.Component\Animator2D</Filter>
+    </ClCompile>
+    <ClCompile Include="CStructuredBuffer.cpp">
+      <Filter>03.Graphics\StructuredBuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -403,6 +409,9 @@
     </Filter>
     <Filter Include="07.Component\Animator2D">
       <UniqueIdentifier>{80a360c9-dc52-46ae-a1d7-a9d6cc1c5ce0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Graphics\StructuredBuffer">
+      <UniqueIdentifier>{a14cc542-5a05-43d3-9c7b-0649cbc1bc9d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
