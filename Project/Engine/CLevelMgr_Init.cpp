@@ -67,7 +67,7 @@ void CLevelMgr::Init()
 		m_pTestObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
 		m_pTestObj->Collider2D()->SetAbsolute(true);	// true = 부모 Scale 영향 안받음
 		m_pTestObj->Collider2D()->SetOffsetScale(Vec2(50.f, 50.f));
-		m_pTestObj->Collider2D()->SetOffsetPos(Vec2(6.f, 3.f));
+		m_pTestObj->Collider2D()->SetOffsetPos(Vec2(0.f, 0.f));
 		m_pTestObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::RECT);
 		// renderComp
 		m_pTestObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
@@ -77,7 +77,7 @@ void CLevelMgr::Init()
 		m_pTestObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
 		// animation
 		Ptr<CTexture> pAtlasTex = M_ASSET->FindAsset<CTexture>(L"bluebird_jump_atlas");
-		m_pTestObj->Animator2D()->Create(L"bluebird_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), 10);
+		m_pTestObj->Animator2D()->Create(L"bluebird_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), Vec2(50.f ,50.f), 10);
 		m_pTestObj->Animator2D()->Play(L"bluebird_jump_ani");
 
 		GamePlayStatic::SpawnGameObject(m_pTestObj, LAYER_TYPE::PLAYER);
@@ -96,7 +96,7 @@ void CLevelMgr::Init()
 		pMonsterObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
 		pMonsterObj->Collider2D()->SetAbsolute(true);	// true = 부모 Scale 영향 안받음
 		pMonsterObj->Collider2D()->SetOffsetScale(Vec2(50.f, 50.f));
-		pMonsterObj->Collider2D()->SetOffsetPos(Vec2(6.f, 3.f));
+		pMonsterObj->Collider2D()->SetOffsetPos(Vec2(0.f, 0.f));
 		pMonsterObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::CIRCLE);
 		// renderComp
 		pMonsterObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
@@ -106,7 +106,7 @@ void CLevelMgr::Init()
 		pMonsterObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
 		// animation
 		Ptr<CTexture> pAtlasTex = M_ASSET->FindAsset<CTexture>(L"penguin_jump_atlas");
-		pMonsterObj->Animator2D()->Create(L"penguin_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), 10);
+		pMonsterObj->Animator2D()->Create(L"penguin_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), Vec2(50.f, 50.f), 10);
 		pMonsterObj->Animator2D()->Play(L"penguin_jump_ani");
 
 		GamePlayStatic::SpawnGameObject(pMonsterObj, LAYER_TYPE::MONSTER);

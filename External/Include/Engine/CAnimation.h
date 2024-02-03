@@ -28,6 +28,7 @@ public:
 				Vec2 _leftTop,	
 				Vec2 _sliceSize,
 				Vec2 _offset,
+				Vec2 _background,
 				float _fps);
 
 public:

@@ -183,4 +183,8 @@ DirectX 2D Engine
 &nbsp;&nbsp;- Cross_Debug Mesh 추가 및 GamePlayStatic::DrawDebugCross() 구현으로 중심점위치 CrossMesh로 표시<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/Center_CrossMesh.png" width=400><br>
 
+**_24/02/03_** :<br>
+&nbsp;&nbsp;- Animation에 Background 개념 추가 (O키 입력시 Debug객체 Render됨)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/Background.png" width=400><br>
+
 <!-- &nbsp;&nbsp;- <br> -->

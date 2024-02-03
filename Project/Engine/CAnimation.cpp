@@ -13,25 +13,28 @@ CAnimation::~CAnimation()
 {
 }
 
-void CAnimation::FrameSet(CAnimator2D* _animator, Ptr<CTexture> _atlas, uint32 _frameCnt, Vec2 _leftTop, Vec2 _sliceSize, Vec2 _offset, float _fps)
+void CAnimation::FrameSet(CAnimator2D* _animator, Ptr<CTexture> _atlas, uint32 _frameCnt, Vec2 _leftTop, Vec2 _sliceSize, Vec2 _offset, Vec2 _background, float _fps)
 {
 	m_pAnimator = _animator;
 	m_AtlasTex = _atlas;
 
 	for (size_t i = 0; i < _frameCnt; ++i)
 	{
-		Vec2 v2CurFrmSliceSize = Vec2(_sliceSize.x / (float)_atlas->GetWidth()
-										, _sliceSize.y / (float)_atlas->GetHeight());
-		Vec2 v2CurFrmLefTop = Vec2(_leftTop.x / (float)_atlas->GetWidth() + v2CurFrmSliceSize.x * i
-									, _leftTop.y / (float)_atlas->GetHeight());
-		Vec2 v2CurFrmOffset = Vec2(_offset.x / (float)_atlas->GetWidth()
-									, _offset.y / (float)_atlas->GetHeight());
+		Vec2 v2CurFrmSliceSize = Vec2(_sliceSize.x / (float)_atlas->GetWidth(),
+										_sliceSize.y / (float)_atlas->GetHeight());
+		Vec2 v2CurFrmLefTop = Vec2(_leftTop.x / (float)_atlas->GetWidth() + v2CurFrmSliceSize.x * i,
+									_leftTop.y / (float)_atlas->GetHeight());
+		Vec2 v2CurFrmOffset = Vec2(_offset.x / (float)_atlas->GetWidth(),
+									_offset.y / (float)_atlas->GetHeight());
+		Vec2 v2CurFrmBackground = Vec2(_background.x / (float)_atlas->GetWidth(),
+										_background.y / (float)_atlas->GetHeight());
 
 		tAniFrmInfo frameInfo = {};
 		{
 			frameInfo.v2LeftTop = v2CurFrmLefTop;
 			frameInfo.v2SliceSize = v2CurFrmSliceSize;
 			frameInfo.v2Offset = v2CurFrmOffset;
+			frameInfo.v2Background = v2CurFrmBackground;
 			frameInfo.fDuration = 1.f / _fps;
 		}
 
@@ -64,8 +67,9 @@ void CAnimation::UpdateData()
 		data.v2LeftTop = m_vecFrmInfo[m_iCurFrmIdx].v2LeftTop;
 		data.v2SliceSize = m_vecFrmInfo[m_iCurFrmIdx].v2SliceSize;
 		data.v2Offset = m_vecFrmInfo[m_iCurFrmIdx].v2Offset;
+		data.v2Background = m_vecFrmInfo[m_iCurFrmIdx].v2Background;
 		data.iUseAni2D = 1;	
-		//data.iPadding;
+		data.iDebugCheck = M_RENDER->IsDebugCheck();	// 1 = true, 0 = false
 	}
 	pCB->SetData(&data);
 	pCB->UpdateData();

@@ -41,9 +41,25 @@ float4 PS_Std2D(VS_OUT _in) : SV_Target
     // 애니메이션 사용하는 경우
     if(g_iUseAnim2D)
     {
-        // 10번 Texture 샘플링(Animation)
-        float2 vUV = g_v2LeftTop + (g_v2SliceSize * _in.vUV);
-        v4Color = TEX_ANIM2D_0.Sample(SAMPLER_1, vUV);
+        float2 v2BackgroundLeftTop = g_v2LeftTop + (g_v2SliceSize / 2.f) - (g_v2Background / 2.f);
+        v2BackgroundLeftTop -= g_v2Offset;
+        float2 vUV = v2BackgroundLeftTop + (g_v2Background * _in.vUV);
+        
+        if (vUV.x < g_v2LeftTop.x
+            || (g_v2LeftTop.x + g_v2SliceSize.x) < vUV.x
+            || vUV.y < g_v2LeftTop.y
+            || (g_v2LeftTop.y + g_v2SliceSize.y) < vUV.y)
+        {
+            if(g_iDebugCheck)
+                v4Color = float4(.5f, .7f, .5f, 1.f);
+            else
+                discard;
+        }
+        else
+        {
+            // 10번 Texture 샘플링(Animation)
+            v4Color = TEX_ANIM2D_0.Sample(SAMPLER_1, vUV);
+        }
     }
     // 애니메이션 사용하지 않는 경우
     else

@@ -62,9 +62,11 @@ cbuffer ANIM_DATA2D : register(b2)
 {
     float2  g_v2LeftTop;
     float2  g_v2SliceSize;
+    float2  g_v2Background;
     float2  g_v2Offset;
     int     g_iUseAnim2D;
-    int     iPadding;
+    int     g_iDebugCheck;
+    float2  v2Padding;
 }
 
 Texture2D       TEXTURE_0       : register(t0);

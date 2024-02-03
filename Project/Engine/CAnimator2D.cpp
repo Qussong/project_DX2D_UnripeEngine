@@ -14,7 +14,8 @@ CAnimator2D::~CAnimator2D()
 	Lazy::DelMap(m_mapAnimation);
 }
 
-void CAnimator2D::Create(const wstring& _aniName, Ptr<CTexture> _atlas, int32 _frameCnt, Vec2 _leftTop, Vec2 _sliceSize, Vec2 _offset,  float _fps)
+void CAnimator2D::Create(const wstring& _aniName, Ptr<CTexture> _atlas, int32 _frameCnt
+						, Vec2 _leftTop, Vec2 _sliceSize, Vec2 _offset, Vec2 _background, float _fps)
 {
 	CAnimation* pAni = FindAnimation(_aniName);
 	if (nullptr != pAni)
@@ -25,7 +26,7 @@ void CAnimator2D::Create(const wstring& _aniName, Ptr<CTexture> _atlas, int32 _f
 
 	pAni = new CAnimation;
 	pAni->SetName(_aniName);
-	pAni->FrameSet(this, _atlas, _frameCnt, _leftTop, _sliceSize, _offset, _fps);
+	pAni->FrameSet(this, _atlas, _frameCnt, _leftTop, _sliceSize, _offset, _background, _fps);
 	m_mapAnimation.insert(make_pair(_aniName, pAni));
 }
 

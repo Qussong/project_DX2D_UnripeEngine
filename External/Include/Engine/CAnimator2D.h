@@ -25,6 +25,7 @@ public:
 				Vec2 _leftTop,	// Texture 상에서 애니메이션이 시작될 LeftTop
 				Vec2 _sliceSize, 
 				Vec2 _offset, 
+				Vec2 _background,
 				float _fps);
 	// 저장된 애니메이션 탐색
 	CAnimation* FindAnimation(const wstring& _aniName);	
