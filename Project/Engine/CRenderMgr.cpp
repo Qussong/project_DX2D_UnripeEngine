@@ -53,9 +53,15 @@ void CRenderMgr::Init()
 		Vec4(0.f, 1.f, 0.f, 1.f),
 		Vec4(0.f, 0.f, 1.f, 1.f),
 	};
+
 	m_pLight2DBuffer = new CStructuredBuffer;
-	m_pLight2DBuffer->Create(sizeof(Vec4), sizeof(arr) / sizeof(Vec4), SB_TYPE::READ_ONLY, arr);
+	m_pLight2DBuffer->Create(sizeof(Vec4), 2, SB_TYPE::READ_ONLY, true);
+	m_pLight2DBuffer->SetData(arr, 3);
 	m_pLight2DBuffer->UpdateData(14);
+
+	// test
+	Vec4 arrTest[3] = {};
+	m_pLight2DBuffer->GetData(arrTest, 3);
 }
 
 void CRenderMgr::Tick()

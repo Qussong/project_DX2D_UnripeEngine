@@ -186,8 +186,10 @@ DirectX 2D Engine
 **_24/02/03_** :<br>
 &nbsp;&nbsp;- Animation에 Background 개념 추가 (O key : DebugObj Render On/Off)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/Background.png" width=400><br>
-&nbsp;&nbsp;- 구조화버퍼(CStructBuffer) 클래스 추가 및 테스트<br>
-<!-- &nbsp;&nbsp;- <br> -->
-<!-- &nbsp;&nbsp;- <br> -->
+&nbsp;&nbsp;- 구조화버퍼(CStructuredBuffer) 클래스 추가 및 테스트<br>
+
+**_24/02/04_** :<br>
+&nbsp;&nbsp;- CStructuredBuffer) 읽기/쓰기용 버퍼 추가(m_SB_Read, m_SB_Write)<br>
+&nbsp;&nbsp;- CStructuredBuffer) 구조화 버퍼 데이터 Read/Write 기능 구현 (GPU로부터 데이터 읽어오는 기능 구현)<br>
 
 <!-- &nbsp;&nbsp;- <br> -->
