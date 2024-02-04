@@ -192,4 +192,8 @@ DirectX 2D Engine
 &nbsp;&nbsp;- CStructuredBuffer) 읽기/쓰기용 버퍼 추가(m_SB_Read, m_SB_Write)<br>
 &nbsp;&nbsp;- CStructuredBuffer) 구조화 버퍼 데이터 Read/Write 기능 구현 (GPU로부터 데이터 읽어오는 기능 구현)<br>
 
+**_24/02/05_** :<br>
+&nbsp;&nbsp;- CLight2D 클래스 추가, <br>
+&nbsp;&nbsp;- CRenderMgr) Light2D 객체 추가 함수 추가 (RegisterLight2D())<br>
+
 <!-- &nbsp;&nbsp;- <br> -->

@@ -98,3 +98,21 @@ struct tAnimation2D
 	int32	iDebugCheck;
 	Vec2	v2Padding;	// 16Byte 단위 맞춰주는 용도
 };
+
+// Light2D 객체 정보
+struct tLightInfo
+{
+	Vec4	v4Color;		// 빛의 색상 : 광원의 순수 색상
+	Vec4	v4Specular;		// 반사광 : 광원이 물체 표면에 반사된 색상
+	Vec4	v4Ambient;		// 환경광(주변광) : 광원에 의해 보장되는 최소 밝기
+
+	Vec3	v3WorldPos;		// 광원의 위치
+	Vec3	v3WorldDir;		// 광원이 향하는 방향
+	
+	float	fRadius;		// 광원의 영향 반경, 거리정보
+	float	fAngle;			// 광원의 범위 각도
+
+	int32	iLightType;		// enum class LIGHT_TYPE
+
+	Vec3	v3Padding;
+};

@@ -15,16 +15,23 @@ private:	// Debug
 	CGameObject*			m_pDebugObj;
 	bool					m_bDebugCheck;	// Debug 객체 Render 여부
 
-private:
+private:	// Light2D
 	CStructuredBuffer*		m_pLight2DBuffer;
+	vector<CLight2D*>		m_vecLight2D;
+
+public:
+	// Getter
+	bool IsDebugCheck() { return m_bDebugCheck; }
+	
+	// Setter
+	void SetDebugCheck(bool _flag) { m_bDebugCheck = _flag; }
 
 public:
 	void RegisterCamera(CCamera* _cam, int32 _idx);
 	void AddDebugShapeInfo(const tDebugShapeInfo& _info) { m_listDebugShapeInfo.push_back(_info); }
 	
-	void SetDebugCheck(bool _flag) { m_bDebugCheck = _flag; }
-	bool IsDebugCheck() { return m_bDebugCheck; }
-	
+	void RegisterLight2D(CLight2D* _lightObj) { m_vecLight2D.push_back(_lightObj); }
+
 public:
 	void Init();
 	void Tick();
@@ -32,4 +39,6 @@ public:
 private:
 	void Render();
 	void Render_Debug();
+	void UpdateData();	// 리소스 바인딩
+	void Clear();		// 리소스 클리어
 };

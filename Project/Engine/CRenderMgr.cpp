@@ -17,51 +17,17 @@ CRenderMgr::~CRenderMgr()
 		delete m_pLight2DBuffer;
 }
 
-void CRenderMgr::RegisterCamera(CCamera* _cam, int32 _idx)
-{
-	int32 iCamCnt = (int32)m_vecCamera.size();
-	int32 iPriority = _idx + 1;
-
-	// 등록된 카메라들보다 우선순위가 뒤에 있을 경우 카메라 컨테이너의 수용공간을 늘린다.
-	if (iCamCnt <= iPriority)
-	{
-		m_vecCamera.resize(iPriority);
-	}
-
-	// 동일한 우선순위의 카메라가 이미 존재할경우 종료
-	if (nullptr != m_vecCamera[_idx])
-	{
-		MessageBoxA(nullptr, "Already Exist Another Camera", "Priority Error", MB_OK);
-		_exit(EXIT_FAILURE);
-	}
-
-	// _idx 위치에 _cam 위치시키기
-	m_vecCamera[_idx] = _cam;
-}
-
 void CRenderMgr::Init()
 {
-	// DebugObj
+	// Debug
 	m_pDebugObj = new CGameObject;
 	m_pDebugObj->AddComponent(new CTransform);
 	m_pDebugObj->AddComponent(new CMeshRender);
 
 	// Light
-	Vec4 arr[3] =
-	{
-		Vec4(1.f, 0.f, 0.f, 1.f),
-		Vec4(0.f, 1.f, 0.f, 1.f),
-		Vec4(0.f, 0.f, 1.f, 1.f),
-	};
-
 	m_pLight2DBuffer = new CStructuredBuffer;
-	m_pLight2DBuffer->Create(sizeof(Vec4), 2, SB_TYPE::READ_ONLY, true);
-	m_pLight2DBuffer->SetData(arr, 3);
-	m_pLight2DBuffer->UpdateData(14);
+	m_pLight2DBuffer->Create(sizeof(tLightInfo), LIGHT_MAX_CNT, SB_TYPE::READ_ONLY, true);
 
-	// test
-	Vec4 arrTest[3] = {};
-	m_pLight2DBuffer->GetData(arrTest, 3);
 }
 
 void CRenderMgr::Tick()
@@ -143,4 +109,34 @@ void CRenderMgr::Render_Debug()
 		else
 			++iter;
 	}
+}
+
+void CRenderMgr::RegisterCamera(CCamera* _cam, int32 _idx)
+{
+	int32 iCamCnt = (int32)m_vecCamera.size();
+	int32 iPriority = _idx + 1;
+
+	// 등록된 카메라들보다 우선순위가 뒤에 있을 경우 카메라 컨테이너의 수용공간을 늘린다.
+	if (iCamCnt <= iPriority)
+	{
+		m_vecCamera.resize(iPriority);
+	}
+
+	// 동일한 우선순위의 카메라가 이미 존재할경우 종료
+	if (nullptr != m_vecCamera[_idx])
+	{
+		MessageBoxA(nullptr, "Already Exist Another Camera", "Priority Error", MB_OK);
+		_exit(EXIT_FAILURE);
+	}
+
+	// _idx 위치에 _cam 위치시키기
+	m_vecCamera[_idx] = _cam;
+}
+
+void CRenderMgr::UpdateData()
+{
+}
+
+void CRenderMgr::Clear()
+{
 }

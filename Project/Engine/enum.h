@@ -260,3 +260,13 @@ enum class SB_TYPE
 
 	END,
 };
+
+// Light2D의 광원 타입
+enum class LIGHT_TYPE
+{
+	DIRECTIONAL,
+	POINT,
+	SPOT,
+
+	END,
+};

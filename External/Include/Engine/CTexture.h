@@ -23,13 +23,13 @@ private:
 public:
 	UINT GetWidth() { return m_tDesc.Width; }
 	UINT GetHeight() { return m_tDesc.Height; }
+	
+public:
+	virtual int Load(const wstring& _strFilePath) override;
+	static void Clear(uint32 _iRegisterNum);
 
 public:
 	virtual void UpdateData() override {};
 	void UpdateData(uint32 _iRegisterNum);	// overload
-	virtual int Load(const wstring& _strFilePath) override;
-	
-public:
-	static void Clear(uint32 _iRegisterNum);
 };
 

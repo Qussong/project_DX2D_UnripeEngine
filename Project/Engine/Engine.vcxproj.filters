@@ -154,6 +154,9 @@
     <ClInclude Include="CStructuredBuffer.h">
       <Filter>03.Graphics\StructuredBuffer</Filter>
     </ClInclude>
+    <ClInclude Include="CLight2D.h">
+      <Filter>07.Component\Light2D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -275,6 +278,9 @@
     </ClCompile>
     <ClCompile Include="CStructuredBuffer.cpp">
       <Filter>03.Graphics\StructuredBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="CLight2D.cpp">
+      <Filter>07.Component\Light2D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -412,6 +418,9 @@
     </Filter>
     <Filter Include="03.Graphics\StructuredBuffer">
       <UniqueIdentifier>{a14cc542-5a05-43d3-9c7b-0649cbc1bc9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Component\Light2D">
+      <UniqueIdentifier>{7a7d4b30-2ff2-45a0-a581-7c2def863655}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

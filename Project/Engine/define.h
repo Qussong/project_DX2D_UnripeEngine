@@ -21,3 +21,5 @@
 #define		M_COLLISION		CCollisionMgr::GetInst()
 
 #define		DT				M_TIME->DeltaTime()
+
+#define		LIGHT_MAX_CNT	10

@@ -8,6 +8,7 @@
 #include "CCollider2D.h"
 #include "CAnimator2D.h"
 #include "CAnimation.h"
+#include "CLight2D.h"
 
 #include "CScript.h"
 #include "CPlayerScript.h"
