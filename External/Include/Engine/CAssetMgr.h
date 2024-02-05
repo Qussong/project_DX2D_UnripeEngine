@@ -19,7 +19,7 @@ private:
 	void Mesh();
 	void Shader();
 	void Material();
-	void Texture();
+	void Texture();		// 공용이미지 로드
 
 	template<typename T>
 	ASSET_TYPE GetAssetType();

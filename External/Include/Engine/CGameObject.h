@@ -61,8 +61,26 @@ public:
 	void Destroy();					// 자기자신 제거
 
 public:
+	const vector<CScript*>& GetScripts() { return m_vecScript; }
+	template <typename T>
+	T* GetScript();
+
+public:
 	void Begin();
 	void Tick();
 	void FinalTick();
 	void Render();
 };
+
+template<typename T>
+inline T* CGameObject::GetScript()
+{
+	size_t iScriptCnt = m_vecScript.size();
+	for (size_t i = 0; i < iScriptCnt; ++i)
+	{
+		if (dynamic_cast<T*>(m_vecScript[i]))
+			return static_cast<T*>(m_vecScript[i]);
+	}
+
+	return nullptr;
+}

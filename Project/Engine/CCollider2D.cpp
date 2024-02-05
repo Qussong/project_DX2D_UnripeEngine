@@ -18,15 +18,35 @@ CCollider2D::~CCollider2D()
 void CCollider2D::BeginOverlap(CCollider2D* _other)
 {
 	++m_iCollisionCnt;
+
+	const vector<CScript*>& vecScript = GetOwner()->GetScripts();
+	size_t iScriptCnt = vecScript.size();
+	for (size_t i = 0; i < iScriptCnt; ++i)
+	{
+		vecScript[i]->BeginOverlap(this, _other->GetOwner(), _other);
+	}
 }
 
 void CCollider2D::Overlap(CCollider2D* _other)
 {
+	const vector<CScript*>& vecScript = GetOwner()->GetScripts();
+	size_t iScriptCnt = vecScript.size();
+	for (size_t i = 0; i < iScriptCnt; ++i)
+	{
+		vecScript[i]->Overlap(this, _other->GetOwner(), _other);
+	}
 }
 
 void CCollider2D::EndOverlap(CCollider2D* _other)
 {
 	--m_iCollisionCnt;
+
+	const vector<CScript*>& vecScript = GetOwner()->GetScripts();
+	size_t iScriptCnt = vecScript.size();
+	for (size_t i = 0; i < iScriptCnt; ++i)
+	{
+		vecScript[i]->EndOverlap(this, _other->GetOwner(), _other);
+	}
 }
 
 void CCollider2D::FinalTick()

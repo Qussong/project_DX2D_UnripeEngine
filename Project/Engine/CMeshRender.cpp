@@ -25,11 +25,11 @@ void CMeshRender::FinalTick()
 
 void CMeshRender::UpdateData()
 {
-	CAnimator2D* pAni2D = GetOwner()->Animator2D();
-	if (nullptr != pAni2D)
-		pAni2D->UpdateData();
+	CAnimator2D* pAnimator = GetOwner()->Animator2D();
+	if (nullptr != pAnimator)
+		pAnimator->UpdateData();
 	else
-		pAni2D->Clear();
+		pAnimator->Clear();
 
 	GetMesh()->UpdateData();
 	GetMaterial()->UpdateData();

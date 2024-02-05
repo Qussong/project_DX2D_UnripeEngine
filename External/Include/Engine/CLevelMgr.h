@@ -8,13 +8,12 @@ class CLevelMgr
 	SINGLETON(CLevelMgr);
 
 private:
-	CLevel*		m_pCurLevel;
+	vector<CLevel*> m_vecLevel;
+	CLevel*			m_pCurLevel;
 
 public:
 	CLevel* GetCurrentLevel() { return m_pCurLevel; }
 	
-	CGameObject* m_pTestObj = nullptr;
-
 public:
 	void Init();
 	void Tick();

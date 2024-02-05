@@ -191,9 +191,13 @@ void CGameObject::Tick()
 		m_pRenderComp->Tick();
 	}
 
-	for (CScript* script : m_vecScript)
+	//for (CScript* script : m_vecScript)
+	//{
+	//	script->Tick();
+	//}
+	for (size_t i = 0; i < m_vecScript.size(); ++i)
 	{
-		script->Tick();
+		m_vecScript[i]->Tick();
 	}
 
 	for (CGameObject* child : m_vecChild)

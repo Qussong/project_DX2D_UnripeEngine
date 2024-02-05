@@ -256,11 +256,10 @@ void CAssetMgr::Texture()
 	Ptr<CTexture> pTex = nullptr;
 
 	// Texture
-	pTex = LoadTexture(L"bluebird_hit", L"Test\\bluebird_hit.png");
-	pTex = LoadTexture(L"penguin_hit", L"Test\\penguin_hit.png");
 	pTex = LoadTexture(L"cloud", L"Test\\cloud.png");
 	pTex = LoadTexture(L"flower", L"Test\\flower.png");
-
+	pTex = LoadTexture(L"bluebird_hit", L"Test\\bluebird_hit.png");
+	pTex = LoadTexture(L"penguin_hit", L"Test\\penguin_hit.png");
 	// Animation Texture
 	pTex = LoadTexture(L"bluebird_jump_atlas", L"Test\\bluebird_jump.png");
 	pTex = LoadTexture(L"penguin_jump_atlas", L"Test\\penguin_jump.png");

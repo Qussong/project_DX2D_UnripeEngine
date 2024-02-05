@@ -145,7 +145,6 @@ void CRenderMgr::Binding()
 		// 갱신된 광원들의 정보를 구조화버퍼에 세팅해준다.
 		m_pLight2DBuffer->SetData(vecLight2DInfo.data(), vecLight2DInfo.size());
 		m_pLight2DBuffer->UpdateData(11);
-
 		vecLight2DInfo.clear();
 	}
 }

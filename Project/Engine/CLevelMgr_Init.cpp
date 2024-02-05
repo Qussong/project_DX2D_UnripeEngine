@@ -3,16 +3,7 @@
 void CLevelMgr::Init()
 {
 	// 초기 레벨 구성하기
-	{
-		m_pCurLevel = new CLevel;
-		m_pCurLevel->GetLayer(LAYER_TYPE::DEFAULT)->SetName(L"DefaultLayer");
-		m_pCurLevel->GetLayer(LAYER_TYPE::BACKGROUND)->SetName(L"BackgroundLayer");
-		m_pCurLevel->GetLayer(LAYER_TYPE::TILE)->SetName(L"TileLayer");
-		m_pCurLevel->GetLayer(LAYER_TYPE::PLAYER)->SetName(L"PlayerLayer");
-		m_pCurLevel->GetLayer(LAYER_TYPE::MONSTER)->SetName(L"MonsterLayer");
-		m_pCurLevel->GetLayer(LAYER_TYPE::LIGHT2D)->SetName(L"LightLayer");
-		m_pCurLevel->GetLayer(LAYER_TYPE::UI)->SetName(L"UILayer");
-	}
+	m_pCurLevel = new CLevel;
 
 	// 충돌 설정
 	{
@@ -56,32 +47,32 @@ void CLevelMgr::Init()
 
 	// PlayerObj
 	{
-		m_pTestObj = new CGameObject;
-		m_pTestObj->SetName(L"PlayerObj");
-		m_pTestObj->AddComponent(new CTransform);
-		m_pTestObj->AddComponent(new CMeshRender);
-		m_pTestObj->AddComponent(new CPlayerScript);
-		m_pTestObj->AddComponent(new CCollider2D);
-		m_pTestObj->AddComponent(new CAnimator2D);
+		CGameObject* pPlayerObj = new CGameObject;
+		pPlayerObj->SetName(L"PlayerObj");
+		pPlayerObj->AddComponent(new CTransform);
+		pPlayerObj->AddComponent(new CMeshRender);
+		pPlayerObj->AddComponent(new CPlayerScript);
+		pPlayerObj->AddComponent(new CCollider2D);
+		pPlayerObj->AddComponent(new CAnimator2D);
 		// basicComp
-		m_pTestObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
-		m_pTestObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
-		m_pTestObj->Collider2D()->SetAbsolute(true);	// true = 부모 Scale 영향 안받음
-		m_pTestObj->Collider2D()->SetOffsetScale(Vec2(50.f, 50.f));
-		m_pTestObj->Collider2D()->SetOffsetPos(Vec2(0.f, 0.f));
-		m_pTestObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::RECT);
+		pPlayerObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
+		pPlayerObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
+		pPlayerObj->Collider2D()->SetAbsolute(true);	// true = 부모 Scale 영향 안받음
+		pPlayerObj->Collider2D()->SetOffsetScale(Vec2(50.f, 50.f));
+		pPlayerObj->Collider2D()->SetOffsetPos(Vec2(0.f, 0.f));
+		pPlayerObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::RECT);
 		// renderComp
-		m_pTestObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		m_pTestObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial"));
+		pPlayerObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+		pPlayerObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial"));
 		// texture
 		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"bluebird_hit");
-		m_pTestObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
+		pPlayerObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
 		// animation
 		Ptr<CTexture> pAtlasTex = M_ASSET->FindAsset<CTexture>(L"bluebird_jump_atlas");
-		m_pTestObj->Animator2D()->Create(L"bluebird_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), Vec2(50.f, 50.f), 10);
-		m_pTestObj->Animator2D()->Play(L"bluebird_jump_ani", true);
+		pPlayerObj->Animator2D()->Create(L"bluebird_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), Vec2(50.f, 50.f), 10);
+		pPlayerObj->Animator2D()->Play(L"bluebird_jump_ani", true);
 
-		GamePlayStatic::SpawnGameObject(m_pTestObj, LAYER_TYPE::PLAYER);
+		GamePlayStatic::SpawnGameObject(pPlayerObj, LAYER_TYPE::PLAYER);
 	}
 
 	// MonsterObj
@@ -98,7 +89,7 @@ void CLevelMgr::Init()
 		pMonsterObj->Collider2D()->SetAbsolute(true);	// true = 부모 Scale 영향 안받음
 		pMonsterObj->Collider2D()->SetOffsetScale(Vec2(50.f, 50.f));
 		pMonsterObj->Collider2D()->SetOffsetPos(Vec2(0.f, 0.f));
-		pMonsterObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::CIRCLE);
+		pMonsterObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::RECT);
 		// renderComp
 		pMonsterObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		pMonsterObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"MonsterMaterial"));
@@ -144,7 +135,7 @@ void CLevelMgr::Init()
 		pLightObj->Light2D()->SetLightColor(Vec3(1.f, 0.f, 0.f));
 		pLightObj->Light2D()->SetRaius(150.f);
 
-		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
+		//GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
 	}
 
 	// LightObj_POINT2
@@ -160,7 +151,7 @@ void CLevelMgr::Init()
 		pLightObj->Light2D()->SetLightColor(Vec3(0.f, 1.f, 0.f));
 		pLightObj->Light2D()->SetRaius(150.f);
 
-		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
+		//GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
 	}
 
 	// LightObj_POINT3
@@ -176,7 +167,7 @@ void CLevelMgr::Init()
 		pLightObj->Light2D()->SetLightColor(Vec3(0.f, 0.f, 1.f));
 		pLightObj->Light2D()->SetRaius(150.f);
 
-		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
+		//GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
 	}
 
 	// LightObj_DIRECTIONAL

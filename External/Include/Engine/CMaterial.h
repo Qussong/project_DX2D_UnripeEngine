@@ -23,8 +23,8 @@ public:
 	Ptr<CGraphicShader> GetShader() { return m_pShader; }
 
 	template<typename T>
-	void SetScalarParam(SCALAR_PARAM _eParamType, const T& _value);
-	void SetTexParam(TEX_PARAM _eParam, Ptr<CTexture> _pTex);
+	void SetScalarParam(SCALAR_PARAM _eParamType, const T& _value);	// 원하는 곳에 Scalar 값 세팅
+	void SetTexParam(TEX_PARAM _eParam, Ptr<CTexture> _pTex);		// 원하는 곳에 Texture 세팅
 };
 
 template<typename T>

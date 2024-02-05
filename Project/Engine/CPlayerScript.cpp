@@ -11,6 +11,20 @@ CPlayerScript::~CPlayerScript()
 {
 }
 
+void CPlayerScript::Texture()
+{
+}
+
+void CPlayerScript::Animation()
+{
+}
+
+void CPlayerScript::Begin()
+{
+	Texture();
+	Animation();
+}
+
 void CPlayerScript::Tick()
 {
 	CGameObject* owner = GetOwner();
@@ -101,8 +115,6 @@ void CPlayerScript::Tick()
 
 	if (KEY_STATE::TAP == M_KEY->GetKeyState(KEY::SPACE))
 	{
-		//GamePlayStatic::DestroyGameObject(GetOwner());
-
 		Ptr<CMaterial> pMtrl = GetOwner()->MeshRender()->GetMaterial();
 		if (nullptr != pMtrl)
 		{
@@ -120,4 +132,19 @@ void CPlayerScript::Tick()
 
 	transform->SetLocalPos(v3Pos);
 	transform->SetLocalRotation(v3Rot);
+}
+
+void CPlayerScript::BeginOverlap(CCollider2D* _collider, CGameObject* _otherObj, CCollider2D* _otherCollider)
+{
+	int a = 0;
+	//_otherObj->Destroy();
+}
+
+void CPlayerScript::Overlap(CCollider2D* _collider, CGameObject* _otherObj, CCollider2D* _otherCollider)
+{
+}
+
+void CPlayerScript::EndOverlap(CCollider2D* _collider, CGameObject* _otherObj, CCollider2D* _otherCollider)
+{
+	int a = 0;
 }
