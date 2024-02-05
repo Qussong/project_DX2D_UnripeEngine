@@ -35,6 +35,7 @@ using namespace DirectX;
 // Custom
 #include "etc.h"		// 각종 헤더
 #include "struct.h"		// 구조체
+#include "extern.h"		// 전역변수
 #include "CEngine.h"	// 엔진
 #include "component.h"	// 컴포넌트
 #include "manager.h"	// 매니저

@@ -12,10 +12,8 @@ public:
 
 private:
     ComPtr<ID3D11Buffer>	m_CB;   // ConstantBuffer
-
     UINT	                m_elementSize;
     UINT	                m_elementCnt;
-
     CB_TYPE                 m_eType;
 
 public:
@@ -23,6 +21,3 @@ public:
     void SetData(void* _src, UINT _cnt = 0);    // Binding
     void UpdateData();
 };
-
-// 상수버퍼 대응 구조체 변수
-extern tTransform g_tTransformConst;

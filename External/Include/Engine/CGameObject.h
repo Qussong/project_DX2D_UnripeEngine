@@ -53,6 +53,7 @@ public:
 	CCamera*		Camera() { return static_cast<CCamera*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::CAMERA]); }
 	CCollider2D*	Collider2D() { return static_cast<CCollider2D*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::COLLIDER2D]); }
 	CAnimator2D*	Animator2D() { return static_cast<CAnimator2D*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::ANIMATOR2D]); }
+	CLight2D*		Light2D() { return static_cast<CLight2D*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::LIGHT2D]); }
 
 public:
 	void DisconnectWithParent();	// 부모 객체로부터 독립

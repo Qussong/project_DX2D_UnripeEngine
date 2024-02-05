@@ -46,6 +46,10 @@ void CTimeMgr::Tick()
 		m_iFrameCnt = 0;
 	}
 	++m_iFrameCnt;
+
+	// 글로벌 변수의 멤버(DeltaTime, AccTime) 갱신
+	g_tGlobalConst.iDT = m_fDeltaTime;
+	g_tGlobalConst.fAccTime += m_fDeltaTime;
 }
 
 void CTimeMgr::PrintFPS()

@@ -157,6 +157,9 @@
     <ClInclude Include="CLight2D.h">
       <Filter>07.Component\Light2D</Filter>
     </ClInclude>
+    <ClInclude Include="extern.h">
+      <Filter>01.Header\etc\extern</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -237,9 +240,6 @@
     <ClCompile Include="CCameraScript.cpp">
       <Filter>09.Script\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="extern.cpp">
-      <Filter>01.Header\etc</Filter>
-    </ClCompile>
     <ClCompile Include="CTexture.cpp">
       <Filter>05.Asset\Texture</Filter>
     </ClCompile>
@@ -281,6 +281,12 @@
     </ClCompile>
     <ClCompile Include="CLight2D.cpp">
       <Filter>07.Component\Light2D</Filter>
+    </ClCompile>
+    <ClCompile Include="extern.cpp">
+      <Filter>01.Header\etc\extern</Filter>
+    </ClCompile>
+    <ClCompile Include="CRenderMgr_Init.cpp">
+      <Filter>04.Manager\Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -422,6 +428,9 @@
     <Filter Include="07.Component\Light2D">
       <UniqueIdentifier>{7a7d4b30-2ff2-45a0-a581-7c2def863655}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Header\etc\extern">
+      <UniqueIdentifier>{73b6748d-34df-4ff7-b894-04ef0eea5d51}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -439,6 +448,12 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="debug2d.fx">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="struct.fx">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="func.fx">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>

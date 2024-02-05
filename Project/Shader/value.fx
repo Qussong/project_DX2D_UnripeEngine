@@ -1,6 +1,10 @@
 #ifndef _VALUE
 #define _VALUE
 
+#include "struct.fx"
+
+#define     PI      3.141592f
+
 // Transform 상수버퍼
 cbuffer TRANSFORM : register(b0) // b = (constant) buffer
 {
@@ -58,16 +62,30 @@ cbuffer MATERIAL : register(b1)
 }
 
 // Animation 상수버퍼
-cbuffer ANIM_DATA2D : register(b2)
+cbuffer ANIM2D_DATA : register(b2)
 {
     float2  g_v2LeftTop;
     float2  g_v2SliceSize;
     float2  g_v2Background;
     float2  g_v2Offset;
     int     g_iUseAnim2D;
-    int     g_iDebugCheck;
-    float2  v2Padding;
+    
+    float3  v3Padding;
 }
+
+// 공용 변수
+cbuffer GLOBAL_DATA : register(b3)
+{
+    float2  g_v2RenderResolution;   // 해상도
+    float   g_fDeltaTime;           // 델타타임
+    float   g_fAccTime;             // 누적시간 (Accumulate : 누적)
+    int     g_iLight2DCnt;          // 2D 광원 개수
+    int     g_iLight3DCnt;          // 3D 광원 개수
+    int     g_iDebugCheck;          // Debug Render On/Off
+    
+    int     padding;
+}
+
 
 Texture2D       TEXTURE_0       : register(t0);
 Texture2D       TEXTURE_1       : register(t1);
@@ -84,7 +102,8 @@ Texture2DArray  TEXARR_1        : register(t9);
 
 Texture2D       TEX_ANIM2D_0    : register(t10);    // Animation용 Atlas Texture
 
-StructuredBuffer<float4> SB_BUFFER : register(t14); // 구조화 버퍼
+StructuredBuffer<tLightInfo> LIGHT2D : register(t11);   // 구조화 버퍼, Light2D
+StructuredBuffer<tLightInfo> LIGHT3D : register(t12);   // 구조화 버퍼, Light3D
 
 SamplerState    SAMPLER_0       : register(s0); // ANISOTROPIC
 SamplerState    SAMPLER_1       : register(s1); // POINT

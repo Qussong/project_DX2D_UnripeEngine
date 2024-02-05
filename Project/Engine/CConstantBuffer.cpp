@@ -39,11 +39,9 @@ void CConstantBuffer::Create(UINT _size, UINT _cnt)
 void CConstantBuffer::SetData(void* _src, UINT _cnt)
 {
 	if (0 == _cnt)
-	{
 		_cnt = m_elementCnt;
-	}
 
-	// Binding , CPU -> GPU 
+	// CPU -> GPU (Binding)
 	D3D11_MAPPED_SUBRESOURCE tSub = {};
 	CONTEXT->Map(m_CB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &tSub);
 	memcpy(tSub.pData, _src, m_elementSize * _cnt);

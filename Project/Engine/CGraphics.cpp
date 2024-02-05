@@ -32,6 +32,9 @@ int CGraphics::Init(HWND _hWnd, float _width, float _height)
 	m_v2Resolution.x = _width;
 	m_v2Resolution.y = _height;
 
+	// 전역 데이터(tGlobalData)에 렌더링 해상도 기록
+	g_tGlobalConst.v2RenderResolution = m_v2Resolution;
+
 	SetWindow();
 
 	DeviceAndSwapChain();
@@ -218,9 +221,16 @@ void CGraphics::CostantBuffer()
 
 	// Animation2D
 	{
-		CConstantBuffer* pCB = new CConstantBuffer(CB_TYPE::ANI_2D);
+		CConstantBuffer* pCB = new CConstantBuffer(CB_TYPE::ANI2D);
 		pCB->Create(sizeof(tAnimation2D), 1);
-		m_arrCB[(UINT)CB_TYPE::ANI_2D] = pCB;
+		m_arrCB[(UINT)CB_TYPE::ANI2D] = pCB;
+	}
+
+	// Gloabl
+	{
+		CConstantBuffer* pCB = new CConstantBuffer(CB_TYPE::GLOBAL);
+		pCB->Create(sizeof(tGlobalData), 1);
+		m_arrCB[(UINT)CB_TYPE::GLOBAL] = pCB;
 	}
 }
 

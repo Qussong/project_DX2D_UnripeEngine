@@ -173,5 +173,3 @@ void CStructuredBuffer::UpdateData(UINT _registerNum)
 	//CONTEXT->GSSetShaderResources(_registerNum, 1, m_SRV.GetAddressOf());
 	CONTEXT->PSSetShaderResources(_registerNum, 1, m_SRV.GetAddressOf());
 }
-
-

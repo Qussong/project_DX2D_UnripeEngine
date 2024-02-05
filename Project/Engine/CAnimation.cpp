@@ -61,7 +61,7 @@ void CAnimation::FinalTick()
 void CAnimation::UpdateData()
 {
 	// 현재 프레임에 대한 정보를 상수버퍼로 옮기고 b2 레지스터로(CB_TYPE::ANI_2D) 바인딩
-	static CConstantBuffer* pCB = GRAPHICS->GetCB(CB_TYPE::ANI_2D);
+	static CConstantBuffer* pCB = GRAPHICS->GetCB(CB_TYPE::ANI2D);
 	tAnimation2D data = {};
 	{
 		data.v2LeftTop = m_vecFrmInfo[m_iCurFrmIdx].v2LeftTop;
@@ -69,7 +69,7 @@ void CAnimation::UpdateData()
 		data.v2Offset = m_vecFrmInfo[m_iCurFrmIdx].v2Offset;
 		data.v2Background = m_vecFrmInfo[m_iCurFrmIdx].v2Background;
 		data.iUseAni2D = 1;	
-		data.iDebugCheck = M_RENDER->IsDebugCheck();	// 1 = true, 0 = false
+		//data.iDebugCheck = M_RENDER->IsDebugCheck();	// 1 = true, 0 = false
 	}
 	pCB->SetData(&data);
 	pCB->UpdateData();
@@ -80,7 +80,7 @@ void CAnimation::UpdateData()
 
 void CAnimation::Clear()
 {
-	static CConstantBuffer* pCB = GRAPHICS->GetCB(CB_TYPE::ANI_2D);
+	static CConstantBuffer* pCB = GRAPHICS->GetCB(CB_TYPE::ANI2D);
 	tAnimation2D data = {};
 
 	pCB->SetData(&data);

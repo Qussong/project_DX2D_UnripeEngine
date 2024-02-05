@@ -10,6 +10,7 @@ void CLevelMgr::Init()
 		m_pCurLevel->GetLayer(LAYER_TYPE::TILE)->SetName(L"TileLayer");
 		m_pCurLevel->GetLayer(LAYER_TYPE::PLAYER)->SetName(L"PlayerLayer");
 		m_pCurLevel->GetLayer(LAYER_TYPE::MONSTER)->SetName(L"MonsterLayer");
+		m_pCurLevel->GetLayer(LAYER_TYPE::LIGHT2D)->SetName(L"LightLayer");
 		m_pCurLevel->GetLayer(LAYER_TYPE::UI)->SetName(L"UILayer");
 	}
 
@@ -77,7 +78,7 @@ void CLevelMgr::Init()
 		m_pTestObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
 		// animation
 		Ptr<CTexture> pAtlasTex = M_ASSET->FindAsset<CTexture>(L"bluebird_jump_atlas");
-		m_pTestObj->Animator2D()->Create(L"bluebird_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), Vec2(50.f ,50.f), 10);
+		m_pTestObj->Animator2D()->Create(L"bluebird_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), Vec2(50.f, 50.f), 10);
 		m_pTestObj->Animator2D()->Play(L"bluebird_jump_ani");
 
 		GamePlayStatic::SpawnGameObject(m_pTestObj, LAYER_TYPE::PLAYER);
@@ -110,6 +111,89 @@ void CLevelMgr::Init()
 		pMonsterObj->Animator2D()->Play(L"penguin_jump_ani");
 
 		GamePlayStatic::SpawnGameObject(pMonsterObj, LAYER_TYPE::MONSTER);
+	}
+
+	// Background
+	{
+		CGameObject* pBackObj = new CGameObject;
+		pBackObj->SetName(L"Background");
+		pBackObj->AddComponent(new CTransform);
+		pBackObj->AddComponent(new CMeshRender);
+		// basic Comp
+		pBackObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 600.f));
+		pBackObj->Transform()->SetLocalScale(Vec3(500.f, 500.f, 1.f));
+		pBackObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+		pBackObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"BackgroundMaterial"));
+		// texture
+		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"flower");
+		pBackObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
+
+		GamePlayStatic::SpawnGameObject(pBackObj, LAYER_TYPE::BACKGROUND);
+	}
+
+
+	// LightObj_POINT
+	{
+		CGameObject* pLightObj = new CGameObject;
+		pLightObj->SetName(L"Light_Point1");
+		pLightObj->AddComponent(new CTransform);
+		pLightObj->AddComponent(new CMeshRender);
+		pLightObj->AddComponent(new CLight2D);
+		// basicComp
+		pLightObj->Transform()->SetLocalPos(Vec3(-50.f, -50.f, 500.f));
+		pLightObj->Light2D()->SetLightType(LIGHT_TYPE::POINT);
+		pLightObj->Light2D()->SetLightColor(Vec3(1.f, 0.f, 0.f));
+		pLightObj->Light2D()->SetRaius(150.f);
+
+		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
+	}
+
+	// LightObj_POINT
+	{
+		CGameObject* pLightObj = new CGameObject;
+		pLightObj->SetName(L"Light_Point2");
+		pLightObj->AddComponent(new CTransform);
+		pLightObj->AddComponent(new CMeshRender);
+		pLightObj->AddComponent(new CLight2D);
+		// basicComp
+		pLightObj->Transform()->SetLocalPos(Vec3(50.f, -50.f, 500.f));
+		pLightObj->Light2D()->SetLightType(LIGHT_TYPE::POINT);
+		pLightObj->Light2D()->SetLightColor(Vec3(0.f, 1.f, 0.f));
+		pLightObj->Light2D()->SetRaius(150.f);
+
+		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
+	}
+
+	// LightObj_POINT
+	{
+		CGameObject* pLightObj = new CGameObject;
+		pLightObj->SetName(L"Light_Point2");
+		pLightObj->AddComponent(new CTransform);
+		pLightObj->AddComponent(new CMeshRender);
+		pLightObj->AddComponent(new CLight2D);
+		// basicComp
+		pLightObj->Transform()->SetLocalPos(Vec3(0.f, 70.f, 500.f));
+		pLightObj->Light2D()->SetLightType(LIGHT_TYPE::POINT);
+		pLightObj->Light2D()->SetLightColor(Vec3(0.f, 0.f, 1.f));
+		pLightObj->Light2D()->SetRaius(150.f);
+
+		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
+	}
+
+	// LightObj_DIRECTIONAL
+	{
+		CGameObject* pLightObj = new CGameObject;
+		pLightObj->SetName(L"Light_Directional");
+		pLightObj->AddComponent(new CTransform);
+		pLightObj->AddComponent(new CMeshRender);
+		pLightObj->AddComponent(new CLight2D);
+		// basicComp
+		pLightObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
+		pLightObj->Light2D()->SetLightType(LIGHT_TYPE::DIRECTIONAL);
+		pLightObj->Light2D()->SetLightColor(Vec4(1.f, 1.f, 1.f, 0.f));
+		pLightObj->Light2D()->SetAmbient(Vec4(0.3f, 0.3f, 0.3f, 0.3f));
+
+		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
 	}
 
 	// UIObj

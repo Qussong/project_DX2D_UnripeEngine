@@ -17,27 +17,18 @@ CRenderMgr::~CRenderMgr()
 		delete m_pLight2DBuffer;
 }
 
-void CRenderMgr::Init()
-{
-	// Debug
-	m_pDebugObj = new CGameObject;
-	m_pDebugObj->AddComponent(new CTransform);
-	m_pDebugObj->AddComponent(new CMeshRender);
-
-	// Light
-	m_pLight2DBuffer = new CStructuredBuffer;
-	m_pLight2DBuffer->Create(sizeof(tLightInfo), LIGHT_MAX_CNT, SB_TYPE::READ_ONLY, true);
-
-}
-
 void CRenderMgr::Tick()
 {
 	GRAPHICS->RenderBegin();
-	Vec4 v4Color = { 0.75f, 0.72f, 0.7f, 1.f };
-	GRAPHICS->ClearRenderTarget(v4Color);
+	Vec4 v4ClearColor = { 0.f, 0.f, 0.f, 1.f };
+	GRAPHICS->ClearRenderTarget(v4ClearColor);
 
-	Render();					// 카메라 기준 일반 객체 Render
-	Render_Debug();				// 카메라 기준 Debug 객체 Render
+	Binding();			// 리소스 바인딩
+
+	Render();			// 카메라 기준 일반 객체 Render
+	Render_Debug();		// 카메라 기준 Debug 객체 Render
+
+	Clear();			// 리소스 클리어
 
 	//GRAPHICS->RenderEnd();	// ImGui::Progress 뒤에 위치
 }
@@ -133,10 +124,33 @@ void CRenderMgr::RegisterCamera(CCamera* _cam, int32 _idx)
 	m_vecCamera[_idx] = _cam;
 }
 
-void CRenderMgr::UpdateData()
+void CRenderMgr::Binding()
 {
+	// 전역 데이터 업데이트
+	{
+		g_tGlobalConst.iLight2DCnt = (int32)m_vecLight2D.size();
+		static CConstantBuffer* pCB = GRAPHICS->GetCB(CB_TYPE::GLOBAL);
+		pCB->SetData(&g_tGlobalConst);
+		pCB->UpdateData();
+	}
+
+	// 2D 광원 정보(tLightInfo) 업데이트
+	{
+		static vector<tLight2D> vecLight2DInfo;
+		for (size_t i = 0; i < m_vecLight2D.size(); ++i)
+		{
+			const tLight2D& info = m_vecLight2D[i]->GetLightInfo();
+			vecLight2DInfo.push_back(info);
+		}
+		// 갱신된 광원들의 정보를 구조화버퍼에 세팅해준다.
+		m_pLight2DBuffer->SetData(vecLight2DInfo.data(), vecLight2DInfo.size());
+		m_pLight2DBuffer->UpdateData(11);
+
+		vecLight2DInfo.clear();
+	}
 }
 
 void CRenderMgr::Clear()
 {
+	m_vecLight2D.clear();
 }

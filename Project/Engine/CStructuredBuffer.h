@@ -36,6 +36,5 @@ public:
 				 bool _sysMemMove = false,
 				 void* _sysMem = nullptr);
 	void UpdateData(UINT _registerNum);
-	
 };
 

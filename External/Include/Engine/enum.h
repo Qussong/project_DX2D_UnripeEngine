@@ -86,10 +86,10 @@ enum class DIR_TYPE
 
 enum class CB_TYPE
 {
-	TRANSFORM,
-	MATERIAL,
-	ANI_2D,
-	GLOBAL,
+	TRANSFORM,	// 0
+	MATERIAL,	// 1
+	ANI2D,		// 2
+	GLOBAL,		// 3
 
 	END,
 };
@@ -155,7 +155,8 @@ enum class LAYER_TYPE
 	TILE,		// 2
 	PLAYER,		// 3
 	MONSTER,	// 4
-	UI,			// 5
+	LIGHT2D,	// 5
+	UI,			// 6
 	
 	END,
 };

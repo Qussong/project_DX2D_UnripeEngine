@@ -39,6 +39,6 @@ public:
 private:
 	void Render();
 	void Render_Debug();
-	void UpdateData();	// 리소스 바인딩
+	void Binding();		// 리소스 바인딩(리소스 : 글로벌,광원)
 	void Clear();		// 리소스 클리어
 };

@@ -176,9 +176,9 @@ void CAssetMgr::Shader()
 		CGraphicShader* pShader = new CGraphicShader;
 		pShader->VertexShader(L"std2d.fx", "VS_Std2D");
 		pShader->PixelShader(L"std2d.fx", "PS_Std2D");
-		pShader->SetRSType(RS_TYPE::CULL_NONE);	// default = CULL_BACK
-		pShader->SetDSType(DS_TYPE::LESS);		// default = LESS
-		pShader->SetBSType(BS_TYPE::DEFAULT);	// default = DEFAULT
+		pShader->SetRSType(RS_TYPE::CULL_NONE);		// default = CULL_BACK
+		pShader->SetDSType(DS_TYPE::LESS);			// default = LESS
+		pShader->SetBSType(BS_TYPE::ALPHA_BLEND);	// default = DEFAULT
 		AddAsset(L"2D_DefaultShader", pShader);
 	}
 
@@ -242,17 +242,28 @@ void CAssetMgr::Material()
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DebugShader"));
 		AddAsset(L"DebugMaterial", pMaterial);
 	}
+
+	// Background Material
+	{
+		CMaterial* pMaterial = new CMaterial;
+		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
+		AddAsset(L"BackgroundMaterial", pMaterial);
+	}
 }
 
 void CAssetMgr::Texture()
 {
 	Ptr<CTexture> pTex = nullptr;
+
 	// Texture
-	pTex = LoadTexture(L"bluebird_hit", L"bluebird_hit.png");
-	pTex = LoadTexture(L"penguin_hit", L"penguin_hit.png");
+	pTex = LoadTexture(L"bluebird_hit", L"Test\\bluebird_hit.png");
+	pTex = LoadTexture(L"penguin_hit", L"Test\\penguin_hit.png");
+	pTex = LoadTexture(L"cloud", L"Test\\cloud.png");
+	pTex = LoadTexture(L"flower", L"Test\\flower.png");
+
 	// Animation Texture
-	pTex = LoadTexture(L"bluebird_jump_atlas", L"bluebird_jump.png");
-	pTex = LoadTexture(L"penguin_jump_atlas", L"penguin_jump.png");
+	pTex = LoadTexture(L"bluebird_jump_atlas", L"Test\\bluebird_jump.png");
+	pTex = LoadTexture(L"penguin_jump_atlas", L"Test\\penguin_jump.png");
 }
 
 template<typename T>
