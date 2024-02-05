@@ -17,12 +17,11 @@ private:
 	int32				m_iCurFrmIdx;		// 재생되고 있는 애니메이션의 현재 장면의 인덱스(프레임)
 	bool				m_bFinish;			// 애니메이션 재생 완료 여부
 	Ptr<CTexture>		m_AtlasTex;			// 애니메이션에 사용되는 아틀라스 이미지
-
-	float				m_fCurFrmPlayTime;	// 현재 프레임 플레이 누적시간
+	float				m_fAccTime;			// 현재 프레임 누적재생 시간
 
 public:
 	// 애니메이션 생성
-	void FrameSet(CAnimator2D* _animator, 
+	void Create(CAnimator2D* _animator, 
 				Ptr<CTexture> _atlas,
 				uint32 _frameCnt,
 				Vec2 _leftTop,	
@@ -30,6 +29,9 @@ public:
 				Vec2 _offset,
 				Vec2 _background,
 				float _fps);
+	void Reset();	// 애니메이션 초기화
+	bool IsFinish() { return m_bFinish; }
+
 
 public:
 	void FinalTick();

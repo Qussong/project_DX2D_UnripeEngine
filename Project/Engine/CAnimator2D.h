@@ -32,7 +32,7 @@ public:
 	// b2 레지스터에 바인딩된 재생중인 애니메이션의 현재 프레임에대한 정보 초기화
 	void Clear();
 	// m_pCurAnimation(현재 재생중인 애니메이션) 지정
-	void Play(const wstring& _aniName);	
+	void Play(const wstring& _aniName, bool _repeat = true);	
 
 public:
 	virtual void Begin() override {};

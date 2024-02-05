@@ -79,7 +79,7 @@ void CLevelMgr::Init()
 		// animation
 		Ptr<CTexture> pAtlasTex = M_ASSET->FindAsset<CTexture>(L"bluebird_jump_atlas");
 		m_pTestObj->Animator2D()->Create(L"bluebird_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), Vec2(50.f, 50.f), 10);
-		m_pTestObj->Animator2D()->Play(L"bluebird_jump_ani");
+		m_pTestObj->Animator2D()->Play(L"bluebird_jump_ani", true);
 
 		GamePlayStatic::SpawnGameObject(m_pTestObj, LAYER_TYPE::PLAYER);
 	}
@@ -108,7 +108,7 @@ void CLevelMgr::Init()
 		// animation
 		Ptr<CTexture> pAtlasTex = M_ASSET->FindAsset<CTexture>(L"penguin_jump_atlas");
 		pMonsterObj->Animator2D()->Create(L"penguin_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), Vec2(50.f, 50.f), 10);
-		pMonsterObj->Animator2D()->Play(L"penguin_jump_ani");
+		pMonsterObj->Animator2D()->Play(L"penguin_jump_ani", false);
 
 		GamePlayStatic::SpawnGameObject(pMonsterObj, LAYER_TYPE::MONSTER);
 	}
@@ -131,8 +131,7 @@ void CLevelMgr::Init()
 		GamePlayStatic::SpawnGameObject(pBackObj, LAYER_TYPE::BACKGROUND);
 	}
 
-
-	// LightObj_POINT
+	// LightObj_POINT1
 	{
 		CGameObject* pLightObj = new CGameObject;
 		pLightObj->SetName(L"Light_Point1");
@@ -148,7 +147,7 @@ void CLevelMgr::Init()
 		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
 	}
 
-	// LightObj_POINT
+	// LightObj_POINT2
 	{
 		CGameObject* pLightObj = new CGameObject;
 		pLightObj->SetName(L"Light_Point2");
@@ -164,7 +163,7 @@ void CLevelMgr::Init()
 		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
 	}
 
-	// LightObj_POINT
+	// LightObj_POINT3
 	{
 		CGameObject* pLightObj = new CGameObject;
 		pLightObj->SetName(L"Light_Point2");
@@ -190,7 +189,6 @@ void CLevelMgr::Init()
 		// basicComp
 		pLightObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
 		pLightObj->Light2D()->SetLightType(LIGHT_TYPE::DIRECTIONAL);
-		pLightObj->Light2D()->SetLightColor(Vec4(1.f, 1.f, 1.f, 0.f));
 		pLightObj->Light2D()->SetAmbient(Vec4(0.3f, 0.3f, 0.3f, 0.3f));
 
 		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);

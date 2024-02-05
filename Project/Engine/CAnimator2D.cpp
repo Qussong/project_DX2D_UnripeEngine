@@ -26,7 +26,7 @@ void CAnimator2D::Create(const wstring& _aniName, Ptr<CTexture> _atlas, int32 _f
 
 	pAni = new CAnimation;
 	pAni->SetName(_aniName);
-	pAni->FrameSet(this, _atlas, _frameCnt, _leftTop, _sliceSize, _offset, _background, _fps);
+	pAni->Create(this, _atlas, _frameCnt, _leftTop, _sliceSize, _offset, _background, _fps);
 	m_mapAnimation.insert(make_pair(_aniName, pAni));
 }
 
@@ -46,7 +46,7 @@ void CAnimator2D::Clear()
 	CAnimation::Clear();
 }
 
-void CAnimator2D::Play(const wstring& _aniName)
+void CAnimator2D::Play(const wstring& _aniName, bool _repeat)
 {
 	CAnimation* pAni = FindAnimation(_aniName);
 
@@ -57,10 +57,22 @@ void CAnimator2D::Play(const wstring& _aniName)
 	}
 
 	m_pCurAnimation = pAni;
+	m_bRepeat = _repeat;
+	m_pCurAnimation->Reset();	// 애니메이션 초기화(프레임 = 0, 완료여부 = false, 프레임누적시간 = 0)
 }
 
 void CAnimator2D::FinalTick()
 {
+	// 지정된 애니메이션이 없다면 함수 종료
+	if (nullptr == m_pCurAnimation)
+		return;
+
+	// 애니메이션이 재생완료되었고, 반복재생해야하는 경우
+	if (m_pCurAnimation->IsFinish() && m_bRepeat)
+	{
+		m_pCurAnimation->Reset();
+	}
+
 	m_pCurAnimation->FinalTick();	// 애니메이션 프레임 진행(재생)
 }
 

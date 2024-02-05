@@ -203,6 +203,6 @@ DirectX 2D Engine
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/Point.png" width=500><br>
 &nbsp;&nbsp;&nbsp;&nbsp; ▽ Directional + Point Light<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/Direc_Point.png" width=500><br>
-<!-- &nbsp;&nbsp;- <br> -->
+&nbsp;&nbsp;- CAnimator2D, CAnimation) 애니메이션 반복재생 여부 설정가능하도록 수정<br>
 <!-- &nbsp;&nbsp;- <br> -->
 <!-- &nbsp;&nbsp;- <br> -->
