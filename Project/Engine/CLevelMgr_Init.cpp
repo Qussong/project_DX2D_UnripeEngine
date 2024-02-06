@@ -18,14 +18,13 @@ void CLevelMgr::Init()
 		pCamObj->AddComponent(new CTransform);
 		pCamObj->AddComponent(new CCamera);
 		pCamObj->AddComponent(new CCameraScript);
-
+		// BasicComp
 		pCamObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 0.f));
 		pCamObj->Transform()->SetLocalRotation(Vec3(0.f, 0.f, 0.f));
-
 		pCamObj->Camera()->SetPriority(0);
 		pCamObj->Camera()->LayerCheckAll(/*true*/);
 		pCamObj->Camera()->LayerCheck(L"UILayer", false);
-
+		
 		m_pCurLevel->AddObject(pCamObj, LAYER_TYPE::DEFAULT);
 	}
 
@@ -35,10 +34,9 @@ void CLevelMgr::Init()
 		pCamObj->SetName(L"UICamera");
 		pCamObj->AddComponent(new CTransform);
 		pCamObj->AddComponent(new CCamera);
-
+		// BasicComp
 		pCamObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 0.f));
 		pCamObj->Transform()->SetLocalRotation(Vec3(0.f, 0.f, 0.f));
-
 		pCamObj->Camera()->SetPriority(1);
 		pCamObj->Camera()->LayerCheck(L"UILayer", true);
 
@@ -54,23 +52,16 @@ void CLevelMgr::Init()
 		pPlayerObj->AddComponent(new CPlayerScript);
 		pPlayerObj->AddComponent(new CCollider2D);
 		pPlayerObj->AddComponent(new CAnimator2D);
-		// basicComp
+		// BasicComp
 		pPlayerObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
 		pPlayerObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
 		pPlayerObj->Collider2D()->SetAbsolute(true);	// true = 부모 Scale 영향 안받음
 		pPlayerObj->Collider2D()->SetOffsetScale(Vec2(30.f, 30.f));
 		pPlayerObj->Collider2D()->SetOffsetPos(Vec2(0.f, 0.f));
 		pPlayerObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::CIRCLE);
-		// renderComp
+		// RenderComp
 		pPlayerObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		pPlayerObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial"));
-		// texture
-		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"bluebird_hit");
-		pPlayerObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
-		// animation
-		//Ptr<CTexture> pAtlasTex = M_ASSET->FindAsset<CTexture>(L"bluebird_jump_atlas");
-		//pPlayerObj->Animator2D()->Create(L"bluebird_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), Vec2(50.f, 50.f), 10);
-		//pPlayerObj->Animator2D()->Play(L"bluebird_jump_ani", true);
 
 		GamePlayStatic::SpawnGameObject(pPlayerObj, LAYER_TYPE::PLAYER);
 	}
@@ -83,14 +74,14 @@ void CLevelMgr::Init()
 		pMonsterObj->AddComponent(new CMeshRender);
 		pMonsterObj->AddComponent(new CCollider2D);
 		pMonsterObj->AddComponent(new CAnimator2D);
-		// basicComp_Transform, Collider
+		// BasicComp
 		pMonsterObj->Transform()->SetLocalPos(Vec3(100.f, 0.f, 500.f));
 		pMonsterObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
 		pMonsterObj->Collider2D()->SetAbsolute(true);	// true = 부모 Scale 영향 안받음
 		pMonsterObj->Collider2D()->SetOffsetScale(Vec2(30.f, 30.f));
 		pMonsterObj->Collider2D()->SetOffsetPos(Vec2(0.f, 0.f));
 		pMonsterObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::CIRCLE);
-		// renderComp
+		// RenderComp
 		pMonsterObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		pMonsterObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"MonsterMaterial"));
 		// texture
@@ -99,7 +90,7 @@ void CLevelMgr::Init()
 		// animation
 		Ptr<CTexture> pAtlasTex = M_ASSET->FindAsset<CTexture>(L"penguin_jump_atlas");
 		pMonsterObj->Animator2D()->Create(L"penguin_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), Vec2(50.f, 50.f), 10);
-		pMonsterObj->Animator2D()->Play(L"penguin_jump_ani", false);
+		pMonsterObj->Animator2D()->Play(L"penguin_jump_ani", true);
 
 		GamePlayStatic::SpawnGameObject(pMonsterObj, LAYER_TYPE::MONSTER);
 	}
@@ -110,7 +101,7 @@ void CLevelMgr::Init()
 		pBackObj->SetName(L"Background");
 		pBackObj->AddComponent(new CTransform);
 		pBackObj->AddComponent(new CMeshRender);
-		// basic Comp
+		// BasicComp
 		pBackObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 600.f));
 		pBackObj->Transform()->SetLocalScale(Vec3(500.f, 500.f, 1.f));
 		pBackObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));

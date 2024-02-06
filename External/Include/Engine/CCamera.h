@@ -33,8 +33,11 @@ private:
 	bool		m_arrLayerCheck[LAYER_MAX];	// 카메라가 Render할 Layer (true만 Render)
 
 private:
-	void ViewMatrix();			// View 변환 행렬 계산
-	void ProjectionMatrix();	// Projection 변환 행렬 계산
+	// 물체 분류
+	vector<CGameObject*> m_vecOpacue;			// 불투명
+	vector<CGameObject*> m_vecMask;				// 반투명
+	vector<CGameObject*> m_vecTransparent;		// 투명
+	vector<CGameObject*> m_vecPostProcess;		// 후처리
 
 public:
 	// Getter
@@ -49,6 +52,10 @@ public:
 	void		SetFOV(float _fov) { m_fFOV = _fov; }
 	void		SetScale(float _scale) { m_fScale = _scale; }
 
+private:
+	void		ViewMatrix();			// View 변환 행렬 계산
+	void		ProjectionMatrix();	// Projection 변환 행렬 계산
+
 public:
 	void		SetPriority(int32 _priority);
 	void		LayerCheck(LAYER_TYPE _layer, bool _bCheck);			// 카메라 레이어 인식 여부 설정
@@ -61,6 +68,10 @@ public:
 	virtual void FinalTick() override;
 	virtual void UpdateData() override {};
 
+public:
+	void		 SortObject();
+private:
+	void		 Render(vector<CGameObject*>& _vecObj);
 public:
 	virtual void Render();
 };

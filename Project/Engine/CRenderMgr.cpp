@@ -38,6 +38,7 @@ void CRenderMgr::Render()
 	size_t camCnt = m_vecCamera.size();
 	for (size_t i = 0; i < camCnt; ++i)
 	{
+		m_vecCamera[i]->SortObject();
 		m_vecCamera[i]->Render();
 	}
 }

@@ -7,6 +7,7 @@ CGraphicShader::CGraphicShader()
 	, m_eRSType(RS_TYPE::CULL_BACK)
 	, m_eDSType(DS_TYPE::LESS)
 	, m_eBSType(BS_TYPE::DEFAULT)
+	, m_eDomain(SHADER_DOMAIN::DOMAIN_MASK)
 {
 	SetName(L"GraphicShader");
 }

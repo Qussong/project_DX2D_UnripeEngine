@@ -14,7 +14,12 @@ CPlayerScript::~CPlayerScript()
 void CPlayerScript::Texture()
 {
 	Ptr<CTexture> pTex = nullptr;
+	pTex = M_ASSET->LoadTexture(L"bluebird_hit", L"Test\\bluebird_hit.png");
 	pTex = M_ASSET->LoadTexture(L"bluebird_jump_atlas", L"Test\\bluebird_jump.png");
+
+	// Setting
+	pTex = M_ASSET->FindAsset<CTexture>(L"bluebird_hit");
+	GetOwner()->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
 }
 
 void CPlayerScript::Animation()

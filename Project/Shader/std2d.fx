@@ -67,7 +67,6 @@ float4 PS_Std2D(VS_OUT _in) : SV_Target
                 v4Color = TEX_ANIM2D_0.Sample(SAMPLER_1, vUV);
             }
         }
-        
         // 애니메이션 사용하지 않는 경우
         else
         {
@@ -96,4 +95,59 @@ float4 PS_Std2D(VS_OUT _in) : SV_Target
     
     return v4Color;
 }
+
+float4 PS_Std2D_Effect(VS_OUT _in) : SV_Target
+{
+    float4 v4Color = float4(1.f, 1.f, 1.f, 1.f);
+    
+    if (g_btex_0 || g_iUseAnim2D)
+    {
+        // 애니메이션 사용하는 경우
+        if (g_iUseAnim2D)
+        {
+            float2 v2BackgroundLeftTop = g_v2LeftTop + (g_v2SliceSize / 2.f) - (g_v2Background / 2.f);
+            v2BackgroundLeftTop -= g_v2Offset;
+            float2 vUV = v2BackgroundLeftTop + (g_v2Background * _in.vUV);
+        
+            if (vUV.x < g_v2LeftTop.x
+            || (g_v2LeftTop.x + g_v2SliceSize.x) < vUV.x
+            || vUV.y < g_v2LeftTop.y
+            || (g_v2LeftTop.y + g_v2SliceSize.y) < vUV.y)
+            {
+                if (g_iDebugCheck)
+                    v4Color = float4(.5f, .7f, .5f, 1.f);
+                else
+                    discard;
+            }
+            else
+            {
+                // 10번 Texture 샘플링(Animation)
+                v4Color = TEX_ANIM2D_0.Sample(SAMPLER_1, vUV);
+            }
+        }
+        // 애니메이션 사용하지 않는 경우
+        else
+        {
+            // 0번 Texture 샘플링(Texture)
+            if (g_btex_0)
+                v4Color = TEXTURE_0.Sample(SAMPLER_1, _in.vUV);
+        }
+            
+        // Player Highlight
+        if (g_int_0)
+            v4Color.r += 1.f;
+    }
+    
+    // 광원처리
+    tLightColorInfo tLightColor = (tLightColorInfo) 0.f;
+    for (int idx = 0; idx < g_iLight2DCnt; ++idx)
+    {
+        CalLight2D(_in.vWorldPos, idx, tLightColor);
+    }
+    
+    v4Color.rgb *= (tLightColor.v4Color.rgb + tLightColor.v4Ambient.rgb);
+    
+    return v4Color;
+}
+
 #endif

@@ -41,7 +41,7 @@
       <Filter>Entity</Filter>
     </ClInclude>
     <ClInclude Include="CGraphicShader.h">
-      <Filter>05.Asset\Shader\CGraphicShader</Filter>
+      <Filter>05.Asset\Shader\GraphicShader</Filter>
     </ClInclude>
     <ClInclude Include="CConstantBuffer.h">
       <Filter>03.Graphics\ConstantBuffer</Filter>
@@ -196,7 +196,7 @@
       <Filter>Entity</Filter>
     </ClCompile>
     <ClCompile Include="CGraphicShader.cpp">
-      <Filter>05.Asset\Shader\CGraphicShader</Filter>
+      <Filter>05.Asset\Shader\GraphicShader</Filter>
     </ClCompile>
     <ClCompile Include="CConstantBuffer.cpp">
       <Filter>03.Graphics\ConstantBuffer</Filter>
@@ -338,9 +338,6 @@
     <Filter Include="Entity">
       <UniqueIdentifier>{396c5459-cbe6-4fb1-9121-7b05d7711d72}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05.Asset\Shader\CGraphicShader">
-      <UniqueIdentifier>{9bce500b-0b8f-46ab-a648-eccfd8d28160}</UniqueIdentifier>
-    </Filter>
     <Filter Include="06.GameObject">
       <UniqueIdentifier>{03911c28-869e-4951-8820-ab5b1bed5200}</UniqueIdentifier>
     </Filter>
@@ -430,6 +427,9 @@
     </Filter>
     <Filter Include="01.Header\etc\extern">
       <UniqueIdentifier>{73b6748d-34df-4ff7-b894-04ef0eea5d51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Asset\Shader\GraphicShader">
+      <UniqueIdentifier>{9bce500b-0b8f-46ab-a648-eccfd8d28160}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

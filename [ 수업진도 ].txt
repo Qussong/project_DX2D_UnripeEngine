@@ -6,19 +6,19 @@
 
 3. Material - clear
 
-4. DebugShape Render - ing
+4. DebugShape Render - clear
 
-5. Collision 
+5. Collision - clear
 
-6. Sprite Animation
+6. Sprite Animation  - clear
 
-6. Structured Buffer
+6. Structured Buffer  - clear
 
-7. Light2D
+7. Light2D  - clear
 
-8. PostProcess
+8. PostProcess - ing
 
-9. ImGui Tool
+9. ImGui Tool - ing
 
 10. Compute Shader
 

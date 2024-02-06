@@ -56,12 +56,14 @@ public:
 public:
 	void			AddComponent(CComponent* _comp);
 	//CComponent*	GetComponent(COMPONENT_TYPE _type) { return m_arrBasicComp[(uint32)_type]; }	// 없어도 될것 같아서 임시 주석
-	CTransform*		Transform() { return static_cast<CTransform*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::TRANSFORM]); }
-	CMeshRender*	MeshRender();
-	CCamera*		Camera() { return static_cast<CCamera*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::CAMERA]); }
-	CCollider2D*	Collider2D() { return static_cast<CCollider2D*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::COLLIDER2D]); }
-	CAnimator2D*	Animator2D() { return static_cast<CAnimator2D*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::ANIMATOR2D]); }
-	CLight2D*		Light2D() { return static_cast<CLight2D*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::LIGHT2D]); }
+
+	CTransform*			Transform() { return static_cast<CTransform*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::TRANSFORM]); }
+	CRenderComponent*	RenderComp() { return m_pRenderComp; }
+	CMeshRender*		MeshRender();
+	CCamera*			Camera() { return static_cast<CCamera*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::CAMERA]); }
+	CCollider2D*		Collider2D() { return static_cast<CCollider2D*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::COLLIDER2D]); }
+	CAnimator2D*		Animator2D() { return static_cast<CAnimator2D*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::ANIMATOR2D]); }
+	CLight2D*			Light2D() { return static_cast<CLight2D*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::LIGHT2D]); }
 
 public:
 	void DisconnectWithParent();	// 부모 객체로부터 독립

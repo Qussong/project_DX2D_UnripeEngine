@@ -108,27 +108,79 @@ void CCamera::FinalTick()
 	ProjectionMatrix();
 }
 
-void CCamera::Render()
+void CCamera::SortObject()
 {
-	// 상수버퍼 대응 구조체 값 세팅
-	g_tTransformConst.matView = m_matView;
-	g_tTransformConst.matProj = m_matProj;
-
 	CLevel* pCurLevel = M_LEVEL->GetCurrentLevel();
-
 	for (size_t i = 0; i < LAYER_MAX; i++)
 	{
 		// 카메라가 인식하도록 설정된 Layer가 아니면 무시
 		if (false == m_arrLayerCheck[i])
 			continue;
 
+		// 레이어 
 		CLayer* pLayer = pCurLevel->GetLayer((LAYER_TYPE)i);
+		// 레이어에 속한 객체
 		const vector<CGameObject*>& vecObjects = pLayer->GetLayerObjects();
-
+		// 객체 구분
 		size_t objCnt = vecObjects.size();
 		for (size_t k = 0; k < objCnt; ++k)
 		{
-			vecObjects[k]->Render();
+			CGameObject* pTarget = vecObjects[k];
+			// Mesh, Material, Shader 유무 확인 -> 하나라도 비어있는 경우 Render 안함
+			if (!(pTarget->RenderComp()
+				  && pTarget->RenderComp()->GetMesh().Get()
+				  && pTarget->RenderComp()->GetMaterial().Get()
+				  && pTarget->RenderComp()->GetMaterial()->GetShader().Get()))
+			{
+				continue;
+			}
+
+			// Domain 기준으로 구분하여 컨테이너에 넣어주기
+			SHADER_DOMAIN eDomain = pTarget->RenderComp()->GetMaterial()->GetShader()->GetDomain();
+			switch (eDomain)
+			{
+			case SHADER_DOMAIN::DOMAIN_OPAQUE:
+				m_vecOpacue.push_back(pTarget);
+				break;
+			case SHADER_DOMAIN::DOMAIN_MASK:
+				m_vecMask.push_back(pTarget);
+				break;
+			case SHADER_DOMAIN::DOMAIN_TRANSPARENT:
+				m_vecTransparent.push_back(pTarget);
+				break;
+			case SHADER_DOMAIN::DOMAIN_POSTPROCESS:
+				m_vecPostProcess.push_back(pTarget);
+				break;
+			case SHADER_DOMAIN::DOMAIN_DEBUG:
+				// nothing
+				break;
+			default:
+				// nothing
+				break;
+			}
 		}
 	}
+}
+
+void CCamera::Render(vector<CGameObject*>& _vecObj)
+{
+	size_t iObjCnt = _vecObj.size();
+	for (size_t i = 0; i < iObjCnt; ++i)
+	{
+		_vecObj[i]->Render();
+	}
+	_vecObj.clear();
+}
+
+void CCamera::Render()
+{
+	// 상수버퍼 대응 구조체 값 세팅
+	g_tTransformConst.matView = m_matView;
+	g_tTransformConst.matProj = m_matProj;
+
+	// Domain 순서대로 Render
+	Render(m_vecOpacue);
+	Render(m_vecMask);
+	Render(m_vecTransparent);
+	Render(m_vecPostProcess);
 }

@@ -176,21 +176,25 @@ void CAssetMgr::Shader()
 		CGraphicShader* pShader = new CGraphicShader;
 		pShader->VertexShader(L"std2d.fx", "VS_Std2D");
 		pShader->PixelShader(L"std2d.fx", "PS_Std2D");
-		pShader->SetRSType(RS_TYPE::CULL_NONE);		// default = CULL_BACK
-		pShader->SetDSType(DS_TYPE::LESS);			// default = LESS
-		pShader->SetBSType(BS_TYPE::ALPHA_BLEND);	// default = DEFAULT
+		pShader->SetRSType(RS_TYPE::CULL_NONE);				// default = CULL_BACK
+		pShader->SetDSType(DS_TYPE::LESS);					// default = LESS
+		pShader->SetBSType(BS_TYPE::DEFAULT);				// default = DEFAULT
+		pShader->SetDomain(SHADER_DOMAIN::DOMAIN_MASK);		// default = DOMAIN_MASK
+
 		AddAsset(L"2D_DefaultShader", pShader);
 	}
 
-	// WireFrame Shader(2D_WireframeShader)
+	// Effect Shader(2D_EffectShader)
 	{
 		CGraphicShader* pShader = new CGraphicShader;
 		pShader->VertexShader(L"std2d.fx", "VS_Std2D");
-		pShader->PixelShader(L"std2d.fx", "PS_Std2D");
-		pShader->SetRSType(RS_TYPE::WIRE_FRAME);	
-		pShader->SetDSType(DS_TYPE::LESS);		
-		pShader->SetBSType(BS_TYPE::DEFAULT);	
-		AddAsset(L"2D_WireframeShader", pShader);
+		pShader->PixelShader(L"std2d.fx", "PS_Std2D_Effect");
+		pShader->SetRSType(RS_TYPE::CULL_NONE);
+		pShader->SetDSType(DS_TYPE::NO_TEST);
+		pShader->SetBSType(BS_TYPE::ALPHA_BLEND);
+		pShader->SetDomain(SHADER_DOMAIN::DOMAIN_TRANSPARENT);
+
+		AddAsset(L"2D_EffectShader", pShader);
 	}
 
 	// Debug Shader(2D_DebugShader)
@@ -202,6 +206,8 @@ void CAssetMgr::Shader()
 		pShader->SetRSType(RS_TYPE::CULL_NONE);
 		pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
 		pShader->SetBSType(BS_TYPE::DEFAULT);
+		pShader->SetDomain(SHADER_DOMAIN::DOMAIN_DEBUG);
+
 		AddAsset(L"2D_DebugShader", pShader);
 	}
 }
@@ -212,14 +218,8 @@ void CAssetMgr::Material()
 	{
 		CMaterial* pMaterial = new CMaterial;
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
+		//pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_EffectShader"));
 		AddAsset(L"DefaultMaterial", pMaterial);
-	}
-
-	// UI Material
-	{
-		CMaterial* pMaterial = new CMaterial;
-		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
-		AddAsset(L"UIMaterial", pMaterial);
 	}
 
 	// Monster Material
@@ -229,11 +229,18 @@ void CAssetMgr::Material()
 		AddAsset(L"MonsterMaterial", pMaterial);
 	}
 
-	// WireFrame Material
+	// Background Material
 	{
 		CMaterial* pMaterial = new CMaterial;
-		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_WireframeShader"));
-		AddAsset(L"WireframeMaterial", pMaterial);
+		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
+		AddAsset(L"BackgroundMaterial", pMaterial);
+	}
+
+	// UI Material
+	{
+		CMaterial* pMaterial = new CMaterial;
+		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
+		AddAsset(L"UIMaterial", pMaterial);
 	}
 
 	// Debug Material
@@ -241,13 +248,6 @@ void CAssetMgr::Material()
 		CMaterial* pMaterial = new CMaterial;
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DebugShader"));
 		AddAsset(L"DebugMaterial", pMaterial);
-	}
-
-	// Background Material
-	{
-		CMaterial* pMaterial = new CMaterial;
-		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
-		AddAsset(L"BackgroundMaterial", pMaterial);
 	}
 }
 
@@ -258,7 +258,6 @@ void CAssetMgr::Texture()
 	// Texture
 	pTex = LoadTexture(L"cloud", L"Test\\cloud.png");
 	pTex = LoadTexture(L"flower", L"Test\\flower.png");
-	pTex = LoadTexture(L"bluebird_hit", L"Test\\bluebird_hit.png");
 	pTex = LoadTexture(L"penguin_hit", L"Test\\penguin_hit.png");
 	// Animation Texture
 	//pTex = LoadTexture(L"bluebird_jump_atlas", L"Test\\bluebird_jump.png");

@@ -271,3 +271,14 @@ enum class LIGHT_TYPE
 
 	END,
 };
+
+enum class SHADER_DOMAIN
+{
+	DOMAIN_OPAQUE,		// 불투명
+	DOMAIN_MASK,		// 반투명 (TRANSLUCENT)
+	DOMAIN_TRANSPARENT,	// 투명
+	DOMAIN_POSTPROCESS,	// 후처리
+	DOMAIN_DEBUG,		// 디버그
+
+	END,
+};

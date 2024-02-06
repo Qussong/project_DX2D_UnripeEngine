@@ -23,6 +23,17 @@ private:
 	DS_TYPE                     m_eDSType;	// DepthStencil State
 	BS_TYPE                     m_eBSType;	// Blend State
 
+	SHADER_DOMAIN				m_eDomain;	// Shader Domain (Shader 구분기준)
+
+public:
+	// Getter
+	D3D11_PRIMITIVE_TOPOLOGY GetTopology() { return m_Topology; }
+	SHADER_DOMAIN GetDomain() { return m_eDomain; }
+
+	// Setter
+	void SetTopology(D3D11_PRIMITIVE_TOPOLOGY _topology) { m_Topology = _topology; }
+	void SetDomain(SHADER_DOMAIN _domain) { m_eDomain = _domain; }
+
 private:
 	// Layout 생성
 	// Layout 생성시 VSBlob 에 대한 정보가 필요하다.
@@ -31,10 +42,6 @@ private:
 public:
 	virtual void UpdateData() override;
 	virtual int Load(const wstring& _strFilePath) override { return E_FAIL; };
-
-public:
-	D3D11_PRIMITIVE_TOPOLOGY GetTopology() { return m_Topology; }
-	void SetTopology(D3D11_PRIMITIVE_TOPOLOGY _topology) { m_Topology = _topology; }
 
 public:
 	// Vertex Shader 생성
