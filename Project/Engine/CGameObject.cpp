@@ -7,6 +7,8 @@ CGameObject::CGameObject()
 	, m_pParent(nullptr)
 	, m_eLayerType(LAYER_TYPE::UNREGISTER)
 	, m_bDead(false)
+	, m_bLevel(false)
+	, m_bAsset(false)
 {
 	SetName(L"GameObject");
 }

@@ -261,7 +261,7 @@ void CAssetMgr::Texture()
 	pTex = LoadTexture(L"bluebird_hit", L"Test\\bluebird_hit.png");
 	pTex = LoadTexture(L"penguin_hit", L"Test\\penguin_hit.png");
 	// Animation Texture
-	pTex = LoadTexture(L"bluebird_jump_atlas", L"Test\\bluebird_jump.png");
+	//pTex = LoadTexture(L"bluebird_jump_atlas", L"Test\\bluebird_jump.png");
 	pTex = LoadTexture(L"penguin_jump_atlas", L"Test\\penguin_jump.png");
 }
 

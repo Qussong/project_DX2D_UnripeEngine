@@ -45,6 +45,9 @@ void CLayer::AddObject(CGameObject* _obj, bool _isChildMove)
 		CGameObject* pObj = que.front();
 		que.pop_front();
 
+		// 객체의 레벨 소속여부 설정(특정 레벨에 소속됨)
+		pObj->SetBelongLevel(true);
+
 		vector<CGameObject*> children = pObj->GetChild();
 		for (size_t i = 0; i < children.size(); ++i)
 		{

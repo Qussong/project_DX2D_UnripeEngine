@@ -8,6 +8,7 @@ class CMeshRender;
 class CCamera;
 class Collider2D;
 class CAnimator2D;
+class CLevel;
 
 class CGameObject
 	: public CEntity
@@ -32,18 +33,25 @@ private:
 	LAYER_TYPE				m_eLayerType;	// 소속된 Layer Index
 	bool					m_bDead;		// 해당 플래그 값을 기반으로 TaskMgr 에서 객체 관리
 
+	bool					m_bLevel;	// 소속된 레벨 존재여부 확인
+	bool					m_bAsset;	// 관련 리소스 로드여부 확인(false : 로드안됨, true : 로드완료)
+
 public:
 	// Getter
 	CGameObject*			GetParent() { return m_pParent; }
 	bool					IsDead() { return m_bDead; }
 	vector<CGameObject*>&	GetChild() { return m_vecChild; }
 	LAYER_TYPE				GetLayer() { return m_eLayerType; }
+	bool					IsBelongLevel() { return m_bLevel; }
+	bool					IsLoadAsset() { return m_bAsset; }
 
 	// Setter
 	void					SetParent(CGameObject* _obj) { m_pParent = _obj; }
 	void					SetDead(bool _flag) { m_bDead = _flag; }
 	void					AddChild(CGameObject* _child);	// 자식 객체 추가
 	void					SetLayer(LAYER_TYPE _type) { m_eLayerType = _type; }
+	void					SetBelongLevel(bool _flag) { m_bLevel = _flag; }
+	void					SetLoadAsset(bool _flag) { m_bAsset = _flag; }
 
 public:
 	void			AddComponent(CComponent* _comp);

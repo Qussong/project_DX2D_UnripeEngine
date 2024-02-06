@@ -68,9 +68,9 @@ void CLevelMgr::Init()
 		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"bluebird_hit");
 		pPlayerObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
 		// animation
-		Ptr<CTexture> pAtlasTex = M_ASSET->FindAsset<CTexture>(L"bluebird_jump_atlas");
-		pPlayerObj->Animator2D()->Create(L"bluebird_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), Vec2(50.f, 50.f), 10);
-		pPlayerObj->Animator2D()->Play(L"bluebird_jump_ani", true);
+		//Ptr<CTexture> pAtlasTex = M_ASSET->FindAsset<CTexture>(L"bluebird_jump_atlas");
+		//pPlayerObj->Animator2D()->Create(L"bluebird_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), Vec2(50.f, 50.f), 10);
+		//pPlayerObj->Animator2D()->Play(L"bluebird_jump_ani", true);
 
 		GamePlayStatic::SpawnGameObject(pPlayerObj, LAYER_TYPE::PLAYER);
 	}

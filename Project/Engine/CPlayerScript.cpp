@@ -13,16 +13,27 @@ CPlayerScript::~CPlayerScript()
 
 void CPlayerScript::Texture()
 {
+	Ptr<CTexture> pTex = nullptr;
+	pTex = M_ASSET->LoadTexture(L"bluebird_jump_atlas", L"Test\\bluebird_jump.png");
 }
 
 void CPlayerScript::Animation()
 {
+	Ptr<CTexture> pAtlasTex = M_ASSET->FindAsset<CTexture>(L"bluebird_jump_atlas");
+	GetOwner()->Animator2D()->Create(L"bluebird_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), Vec2(50.f, 50.f), 10);
+	GetOwner()->Animator2D()->Play(L"bluebird_jump_ani", true);
 }
 
 void CPlayerScript::Begin()
 {
-	Texture();
-	Animation();
+	if (GetOwner()->IsBelongLevel()
+		&& !GetOwner()->IsLoadAsset())
+	{
+		Texture();
+		Animation();
+
+		GetOwner()->SetLoadAsset(true);
+	}
 }
 
 void CPlayerScript::Tick()

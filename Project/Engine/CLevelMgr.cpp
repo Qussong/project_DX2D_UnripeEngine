@@ -24,6 +24,7 @@ void CLevelMgr::Tick()
 	m_pCurLevel->Clear();		
 	// 현재 Level의 각 Layer의 m_vecParent 컨테이너의 객체들의 Tick() 호출
 	// GameObject의 Component, ChildObj 의 Tick() 호출
+	m_pCurLevel->Begin();
 	m_pCurLevel->Tick();	
 	// 현재 Level의 각 Layer의 m_vecParent 컨테이너의 객체들의 FinalTick() 호출
 	// FinalTick() 호출 후 Dead 상태가 되면 m_vecParent 컨테이너에서 빠지고, GC에 추가된다.
