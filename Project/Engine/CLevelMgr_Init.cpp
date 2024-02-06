@@ -58,9 +58,9 @@ void CLevelMgr::Init()
 		pPlayerObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
 		pPlayerObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
 		pPlayerObj->Collider2D()->SetAbsolute(true);	// true = 부모 Scale 영향 안받음
-		pPlayerObj->Collider2D()->SetOffsetScale(Vec2(50.f, 50.f));
+		pPlayerObj->Collider2D()->SetOffsetScale(Vec2(30.f, 30.f));
 		pPlayerObj->Collider2D()->SetOffsetPos(Vec2(0.f, 0.f));
-		pPlayerObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::RECT);
+		pPlayerObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::CIRCLE);
 		// renderComp
 		pPlayerObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		pPlayerObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial"));
@@ -87,9 +87,9 @@ void CLevelMgr::Init()
 		pMonsterObj->Transform()->SetLocalPos(Vec3(100.f, 0.f, 500.f));
 		pMonsterObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
 		pMonsterObj->Collider2D()->SetAbsolute(true);	// true = 부모 Scale 영향 안받음
-		pMonsterObj->Collider2D()->SetOffsetScale(Vec2(50.f, 50.f));
+		pMonsterObj->Collider2D()->SetOffsetScale(Vec2(30.f, 30.f));
 		pMonsterObj->Collider2D()->SetOffsetPos(Vec2(0.f, 0.f));
-		pMonsterObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::RECT);
+		pMonsterObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::CIRCLE);
 		// renderComp
 		pMonsterObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		pMonsterObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"MonsterMaterial"));
