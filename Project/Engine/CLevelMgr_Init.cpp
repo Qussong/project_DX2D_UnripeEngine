@@ -135,7 +135,7 @@ void CLevelMgr::Init()
 		pLightObj->Light2D()->SetLightColor(Vec3(1.f, 0.f, 0.f));
 		pLightObj->Light2D()->SetRaius(150.f);
 
-		//GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
+		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
 	}
 
 	// LightObj_POINT2
@@ -151,7 +151,7 @@ void CLevelMgr::Init()
 		pLightObj->Light2D()->SetLightColor(Vec3(0.f, 1.f, 0.f));
 		pLightObj->Light2D()->SetRaius(150.f);
 
-		//GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
+		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
 	}
 
 	// LightObj_POINT3
@@ -167,7 +167,7 @@ void CLevelMgr::Init()
 		pLightObj->Light2D()->SetLightColor(Vec3(0.f, 0.f, 1.f));
 		pLightObj->Light2D()->SetRaius(150.f);
 
-		//GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
+		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
 	}
 
 	// LightObj_DIRECTIONAL

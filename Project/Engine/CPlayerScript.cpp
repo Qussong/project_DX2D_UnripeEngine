@@ -136,15 +136,27 @@ void CPlayerScript::Tick()
 
 void CPlayerScript::BeginOverlap(CCollider2D* _collider, CGameObject* _otherObj, CCollider2D* _otherCollider)
 {
-	int a = 0;
+	//int a = 0;
 	//_otherObj->Destroy();
+
 }
 
 void CPlayerScript::Overlap(CCollider2D* _collider, CGameObject* _otherObj, CCollider2D* _otherCollider)
 {
+	Ptr<CMaterial> pMtrl = GetOwner()->MeshRender()->GetMaterial();
+	if (nullptr != pMtrl)
+	{
+		pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 1);
+	}
 }
 
 void CPlayerScript::EndOverlap(CCollider2D* _collider, CGameObject* _otherObj, CCollider2D* _otherCollider)
 {
-	int a = 0;
+	//int a = 0;
+
+	Ptr<CMaterial> pMtrl = GetOwner()->MeshRender()->GetMaterial();
+	if (nullptr != pMtrl)
+	{
+		pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
+	}
 }
