@@ -21,19 +21,19 @@ int CTexture::Load(const wstring& _strFilePath)
 	// DDS
 	if (!wcscmp(szExt, L".dds") || !wcscmp(szExt, L".DDS"))	// wcscmp()는 같으면 0(false)를 반환
 	{
-		hr = LoadFromDDSFile(_strFilePath.c_str(), DDS_FLAGS_NONE, nullptr, m_Image);
+		hr = LoadFromDDSFile(_strFilePath.c_str(), DDS_FLAGS_NONE, nullptr, m_Texture);
 	}
 	// TGA
 	else if (!wcscmp(szExt, L".tga") || !wcscmp(szExt, L".TGA"))
 	{
-		hr = LoadFromTGAFile(_strFilePath.c_str(), TGA_FLAGS_NONE, nullptr, m_Image);
+		hr = LoadFromTGAFile(_strFilePath.c_str(), TGA_FLAGS_NONE, nullptr, m_Texture);
 	}
 	// PNG, BMP, JPEG
 	else
 	{
 		// WIC = Windows Imaging Component
 		// Loads BMP, PNG, GIF, TIFF, JPEG, and JPEG-XR / HD Photo images
-		hr = LoadFromWICFile(_strFilePath.c_str(), WIC_FLAGS_NONE, nullptr, m_Image);
+		hr = LoadFromWICFile(_strFilePath.c_str(), WIC_FLAGS_NONE, nullptr, m_Texture);
 	}
 
 	if (FAILED(hr))
@@ -44,9 +44,9 @@ int CTexture::Load(const wstring& _strFilePath)
 
 	// Shader Resource View 생성
 	CreateShaderResourceView(DEVICE,
-							m_Image.GetImages(),
-							m_Image.GetImageCount(),
-							m_Image.GetMetadata(),
+							m_Texture.GetImages(),
+							m_Texture.GetImageCount(),
+							m_Texture.GetMetadata(),
 							m_SRV.GetAddressOf());
 
 	// 생성된 Resource View로 부터 ID3D11Texture2D 객체를 얻어온다.
@@ -56,6 +56,11 @@ int CTexture::Load(const wstring& _strFilePath)
 	m_Tex2D->GetDesc(&m_tDesc);
 
 	return S_OK;
+}
+
+void CTexture::Create(UINT _width, UINT _height, DXGI_FORMAT _format, D3D11_USAGE _usage)
+{
+
 }
 
 void CTexture::Clear(uint32 _iRegisterNum)

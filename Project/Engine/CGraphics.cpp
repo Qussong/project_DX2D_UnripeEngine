@@ -160,12 +160,10 @@ void CGraphics::DeviceAndSwapChain()
 
 void CGraphics::RenderTargetView()
 {
-	ComPtr<ID3D11Texture2D> renderTarget;	// = back buffer
-
 	// render target texture
-	m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)renderTarget.GetAddressOf());
+	m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)m_RenderTarget.GetAddressOf());
 	// render target view
-	HRESULT hr = m_Device->CreateRenderTargetView(renderTarget.Get(), nullptr, m_RenderTargetView.GetAddressOf());
+	HRESULT hr = m_Device->CreateRenderTargetView(m_RenderTarget.Get(), nullptr, m_RenderTargetView.GetAddressOf());
 	
 	if (FAILED(hr))
 	{
