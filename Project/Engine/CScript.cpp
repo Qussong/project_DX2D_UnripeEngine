@@ -10,3 +10,15 @@ CScript::CScript()
 CScript::~CScript()
 {
 }
+
+void CScript::Begin()
+{
+	if (GetOwner()->IsBelongLevel()
+		&& !GetOwner()->IsLoadAsset())
+	{
+		Texture();
+		Animation();
+
+		GetOwner()->SetLoadAsset(true);
+	}
+}

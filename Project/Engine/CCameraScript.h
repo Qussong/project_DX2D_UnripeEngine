@@ -13,7 +13,6 @@ private:
 	float	m_fWheelSpeed;
 
 private:
-	virtual void Begin() override {}
 	virtual void Tick() override;
 };
 

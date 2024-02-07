@@ -74,6 +74,7 @@ void CLevelMgr::Init()
 		pMonsterObj->AddComponent(new CMeshRender);
 		pMonsterObj->AddComponent(new CCollider2D);
 		pMonsterObj->AddComponent(new CAnimator2D);
+		pMonsterObj->AddComponent(new CTestMonsterScript);
 		// BasicComp
 		pMonsterObj->Transform()->SetLocalPos(Vec3(100.f, 0.f, 500.f));
 		pMonsterObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
@@ -84,13 +85,6 @@ void CLevelMgr::Init()
 		// RenderComp
 		pMonsterObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		pMonsterObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"MonsterMaterial"));
-		// texture
-		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"penguin_hit");
-		pMonsterObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
-		// animation
-		Ptr<CTexture> pAtlasTex = M_ASSET->FindAsset<CTexture>(L"penguin_jump_atlas");
-		pMonsterObj->Animator2D()->Create(L"penguin_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), Vec2(50.f, 50.f), 10);
-		pMonsterObj->Animator2D()->Play(L"penguin_jump_ani", true);
 
 		GamePlayStatic::SpawnGameObject(pMonsterObj, LAYER_TYPE::MONSTER);
 	}
@@ -183,13 +177,13 @@ void CLevelMgr::Init()
 		pUIObj->AddComponent(new CTransform);
 		pUIObj->AddComponent(new CMeshRender);
 		// basicComp
-		pUIObj->Transform()->SetLocalPos(Vec3(-550.f, 300.f, 500.f));
-		pUIObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
+		pUIObj->Transform()->SetLocalPos(Vec3(-600.f, 300.f, 500.f));
+		pUIObj->Transform()->SetLocalScale(Vec3(55.f, 50.f, 1.f));
 		// renderComp
 		pUIObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		pUIObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"UIMaterial"));
 		// texture
-		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"penguin_hit");
+		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"bluebird");
 		pUIObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
 
 		GamePlayStatic::SpawnGameObject(pUIObj, LAYER_TYPE::UI);

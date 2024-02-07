@@ -13,7 +13,6 @@ private:
 	float	m_fSpeed;
 
 public:
-	virtual void Begin() override {}
 	virtual void Tick() override;
 };
 

@@ -18,8 +18,8 @@ private:
     virtual void Animation() {} // Animation »ý¼º
 
 public:
-    virtual void Begin() override {};
-    virtual void Tick() override {};
+    virtual void Begin() final;
+    virtual void Tick() = 0;
     virtual void FinalTick() final {}
     virtual void UpdateData() final {}
 

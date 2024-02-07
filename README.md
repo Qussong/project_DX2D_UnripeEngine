@@ -209,9 +209,11 @@ DirectX 2D Engine
 **_24/02/06_** :<br>
 &nbsp;&nbsp; - CScript) 스크립트에서 사용할 Texture 로드, Animation 생성가능<br>
 &nbsp;&nbsp; - CShader) 도메인 개념 추가하여 이를 기준으로 쉐이더 구분 (OPAQUE, MASK, TRANSPARENT, POSTPROCESS, DEBUG)<br>
-&nbsp;&nbsp; - CCamera) 도메인을 기준으로 객체를 분류한 후, 관련 도메인들끼리 따로 Render 과정을 거침<br>
-<!-- &nbsp;&nbsp; - <br> -->
+&nbsp;&nbsp; - CCamera) 도메인을 기준으로 객체를 분류한 후, 관련 도메인들끼리 따로 Render<br>
 
 
+**_24/02/07_** :<br>
+&nbsp;&nbsp; - CMonsterScript 생성<br>
+&nbsp;&nbsp; - Script를 사용하는 GameObject의 Texture 및 Animation 생성및 설정은 Script에서 되도록 코드 수정<br>
 
 <!-- &nbsp;&nbsp;- <br> -->

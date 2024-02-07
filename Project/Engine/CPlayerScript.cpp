@@ -17,7 +17,7 @@ void CPlayerScript::Texture()
 	pTex = M_ASSET->LoadTexture(L"bluebird_hit", L"Test\\bluebird_hit.png");
 	pTex = M_ASSET->LoadTexture(L"bluebird_jump_atlas", L"Test\\bluebird_jump.png");
 
-	// Setting
+	// Set
 	pTex = M_ASSET->FindAsset<CTexture>(L"bluebird_hit");
 	GetOwner()->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
 }
@@ -26,19 +26,9 @@ void CPlayerScript::Animation()
 {
 	Ptr<CTexture> pAtlasTex = M_ASSET->FindAsset<CTexture>(L"bluebird_jump_atlas");
 	GetOwner()->Animator2D()->Create(L"bluebird_jump_ani", pAtlasTex, 4, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), Vec2(50.f, 50.f), 10);
+
+	// Set
 	GetOwner()->Animator2D()->Play(L"bluebird_jump_ani", true);
-}
-
-void CPlayerScript::Begin()
-{
-	if (GetOwner()->IsBelongLevel()
-		&& !GetOwner()->IsLoadAsset())
-	{
-		Texture();
-		Animation();
-
-		GetOwner()->SetLoadAsset(true);
-	}
 }
 
 void CPlayerScript::Tick()

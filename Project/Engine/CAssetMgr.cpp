@@ -218,7 +218,6 @@ void CAssetMgr::Material()
 	{
 		CMaterial* pMaterial = new CMaterial;
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
-		//pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_EffectShader"));
 		AddAsset(L"DefaultMaterial", pMaterial);
 	}
 
@@ -239,7 +238,7 @@ void CAssetMgr::Material()
 	// UI Material
 	{
 		CMaterial* pMaterial = new CMaterial;
-		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
+		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_EffectShader"));
 		AddAsset(L"UIMaterial", pMaterial);
 	}
 
@@ -256,12 +255,8 @@ void CAssetMgr::Texture()
 	Ptr<CTexture> pTex = nullptr;
 
 	// Texture
-	pTex = LoadTexture(L"cloud", L"Test\\cloud.png");
+	pTex = LoadTexture(L"bluebird", L"Test\\bluebird.png");
 	pTex = LoadTexture(L"flower", L"Test\\flower.png");
-	pTex = LoadTexture(L"penguin_hit", L"Test\\penguin_hit.png");
-	// Animation Texture
-	//pTex = LoadTexture(L"bluebird_jump_atlas", L"Test\\bluebird_jump.png");
-	pTex = LoadTexture(L"penguin_jump_atlas", L"Test\\penguin_jump.png");
 }
 
 template<typename T>

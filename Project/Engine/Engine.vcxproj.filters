@@ -160,6 +160,12 @@
     <ClInclude Include="extern.h">
       <Filter>01.Header\etc\extern</Filter>
     </ClInclude>
+    <ClInclude Include="CMonsterScript.h">
+      <Filter>09.Script\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CTestMonsterScript.h">
+      <Filter>09.Script\Monster\Test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -287,6 +293,12 @@
     </ClCompile>
     <ClCompile Include="CRenderMgr_Init.cpp">
       <Filter>04.Manager\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonsterScript.cpp">
+      <Filter>09.Script\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CTestMonsterScript.cpp">
+      <Filter>09.Script\Monster\Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -430,6 +442,12 @@
     </Filter>
     <Filter Include="05.Asset\Shader\GraphicShader">
       <UniqueIdentifier>{9bce500b-0b8f-46ab-a648-eccfd8d28160}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.Script\Monster">
+      <UniqueIdentifier>{fc6a1528-bc28-4379-acd6-4c80e5bd2f72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.Script\Monster\Test">
+      <UniqueIdentifier>{c8cb8406-019f-4982-a599-8bb61acd0834}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
