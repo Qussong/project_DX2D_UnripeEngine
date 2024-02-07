@@ -19,8 +19,6 @@ void CLevelMgr::Init()
 		pCamObj->AddComponent(new CCamera);
 		pCamObj->AddComponent(new CCameraScript);
 		// BasicComp
-		pCamObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 0.f));
-		pCamObj->Transform()->SetLocalRotation(Vec3(0.f, 0.f, 0.f));
 		pCamObj->Camera()->SetPriority(0);
 		pCamObj->Camera()->LayerCheckAll(/*true*/);
 		pCamObj->Camera()->LayerCheck(L"UILayer", false);
@@ -196,11 +194,9 @@ void CLevelMgr::Init()
 		pGreyObj->AddComponent(new CTransform);
 		pGreyObj->AddComponent(new CMeshRender);
 		// basicComp
-		pGreyObj->Transform()->SetLocalPos(Vec3(100.f, 100.f, 300.f));
-		pGreyObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
 		pGreyObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		pGreyObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"GreyFilterMaterial"));
 
-		GamePlayStatic::SpawnGameObject(pGreyObj, LAYER_TYPE::EFFECT);
+		GamePlayStatic::SpawnGameObject(pGreyObj, LAYER_TYPE::DEFAULT);
 	}
 }

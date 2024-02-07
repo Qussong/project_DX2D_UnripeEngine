@@ -203,10 +203,12 @@ void CAssetMgr::Shader()
 	// GreyFilter Shader
 	{
 		CGraphicShader* pShader = new CGraphicShader;
+		pShader->SetName(L"GreyFilterShader");
 		pShader->VertexShader(L"postprocess.fx", "VS_GreyFilter");
 		pShader->PixelShader(L"postprocess.fx", "PS_GreyFilter");
 		pShader->SetRSType(RS_TYPE::CULL_BACK);
 		pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
+		pShader->SetBSType(BS_TYPE::DEFAULT);
 		pShader->SetDomain(SHADER_DOMAIN::DOMAIN_POSTPROCESS);
 		AddAsset(L"GreyFilterShader", pShader);
 	}
@@ -252,6 +254,7 @@ void CAssetMgr::Material()
 	// GreyFilter Material
 	{
 		CMaterial* pMaterial = new CMaterial;
+		pMaterial->SetName(L"GreyFilterMaterial");
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"GreyFilterShader"));
 		AddAsset(L"GreyFilterMaterial", pMaterial);
 	}

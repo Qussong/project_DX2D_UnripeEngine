@@ -24,9 +24,12 @@ void CRenderMgr::Tick()
 	GRAPHICS->ClearRenderTarget(v4ClearColor);
 
 	Binding();					// 리소스 바인딩
+
 	Render();					// 카메라 기준 일반 객체 Render
 	Render_Debug();				// 카메라 기준 Debug 객체 Render
+
 	Clear();					// 리소스 클리어
+
 	//GRAPHICS->RenderEnd();	// 렌더링 결과 출력 -> ImGui::Progress 뒤에 위치
 }
 
@@ -119,7 +122,7 @@ void CRenderMgr::Binding()
 			vecLight2DInfo.push_back(info);
 		}
 		// 갱신된 광원들의 정보를 구조화버퍼에 세팅해준다.
-		m_pLight2DBuffer->SetData(vecLight2DInfo.data(), vecLight2DInfo.size());
+		m_pLight2DBuffer->SetData(vecLight2DInfo.data(), (UINT)vecLight2DInfo.size());
 		m_pLight2DBuffer->UpdateData(11);
 		vecLight2DInfo.clear();
 	}

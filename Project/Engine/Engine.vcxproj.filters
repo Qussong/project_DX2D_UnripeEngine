@@ -452,6 +452,12 @@
     <Filter Include="09.Script\Monster\Test">
       <UniqueIdentifier>{c8cb8406-019f-4982-a599-8bb61acd0834}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader\Util">
+      <UniqueIdentifier>{1d27cc0e-8bd9-4bc4-afde-6794e78da987}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\Render">
+      <UniqueIdentifier>{ccd2ce2c-ade7-47a1-8a44-5086f895c6f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -462,23 +468,23 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="std2d.fx">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="value.fx">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="debug2d.fx">
-      <Filter>Shader</Filter>
+    <FxCompile Include="func.fx">
+      <Filter>Shader\Util</Filter>
     </FxCompile>
     <FxCompile Include="struct.fx">
-      <Filter>Shader</Filter>
+      <Filter>Shader\Util</Filter>
     </FxCompile>
-    <FxCompile Include="func.fx">
-      <Filter>Shader</Filter>
+    <FxCompile Include="value.fx">
+      <Filter>Shader\Util</Filter>
+    </FxCompile>
+    <FxCompile Include="debug2d.fx">
+      <Filter>Shader\Render</Filter>
+    </FxCompile>
+    <FxCompile Include="std2d.fx">
+      <Filter>Shader\Render</Filter>
     </FxCompile>
     <FxCompile Include="postprocess.fx">
-      <Filter>Shader</Filter>
+      <Filter>Shader\Render</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

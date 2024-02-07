@@ -14,8 +14,8 @@ void CRenderMgr::Init()
 
 	// PostProcess
 	Vec2 v2Resolution = GRAPHICS->GetResolution();
-	UINT iWidth = v2Resolution.x;
-	UINT iHeight = v2Resolution.y;
+	UINT iWidth = (UINT)v2Resolution.x;
+	UINT iHeight = (UINT)v2Resolution.y;
 	DXGI_FORMAT eFormat = DXGI_FORMAT_R8G8B8A8_UNORM;
 	UINT iBindFlag = D3D11_BIND_SHADER_RESOURCE;
 	m_PostProcessTex = M_ASSET->CreateTexture(L"PostProcessTex", iWidth, iHeight, eFormat, iBindFlag);

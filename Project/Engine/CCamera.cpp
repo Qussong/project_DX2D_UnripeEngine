@@ -142,25 +142,17 @@ void CCamera::SortObject()
 			switch (eDomain)
 			{
 			case SHADER_DOMAIN::DOMAIN_OPAQUE:
-			{
 				m_DomainObj[(uint32)SHADER_DOMAIN::DOMAIN_OPAQUE].push_back(pTarget);
 				break;
-			}
 			case SHADER_DOMAIN::DOMAIN_MASK:
-			{
 				m_DomainObj[(uint32)SHADER_DOMAIN::DOMAIN_MASK].push_back(pTarget);
 				break;
-			}
 			case SHADER_DOMAIN::DOMAIN_TRANSPARENT:
-			{
 				m_DomainObj[(uint32)SHADER_DOMAIN::DOMAIN_TRANSPARENT].push_back(pTarget);
 				break;
-			}
 			case SHADER_DOMAIN::DOMAIN_POSTPROCESS:
-			{
 				m_DomainObj[(uint32)SHADER_DOMAIN::DOMAIN_POSTPROCESS].push_back(pTarget);
 				break;
-			}
 			case SHADER_DOMAIN::DOMAIN_DEBUG:
 				// nothing
 				break;

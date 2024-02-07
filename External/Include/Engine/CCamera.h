@@ -33,12 +33,7 @@ private:
 	bool		m_arrLayerCheck[LAYER_MAX];	// 카메라가 Render할 Layer (true만 Render)
 
 private:
-	// 물체 분류
-	//	1. 불투명
-	//	2. 반투명
-	//	3. 투명
-	//	4. 후처리
-	//	5. 디버그
+	// 물체 분류 : 불투명/반투명/투명/후처리/디버그
 	vector<CGameObject*> m_DomainObj[(uint32)SHADER_DOMAIN::END];
 
 public:

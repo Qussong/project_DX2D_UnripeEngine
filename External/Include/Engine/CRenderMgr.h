@@ -36,11 +36,10 @@ private:
 	void Clear();		// 리소스 클리어
 
 public:
-	void RegisterCamera(CCamera* _cam, int32 _idx);
+	void		RegisterCamera(CCamera* _cam, int32 _idx);
 	inline void AddDebugShapeInfo(const tDebugShapeInfo& _info) { m_listDebugShapeInfo.push_back(_info); }
 	inline void RegisterLight2D(CLight2D* _lightObj) { m_vecLight2D.push_back(_lightObj); }
-	
-	void CopyRenderTargetToPostProcessTarget();
+	void		CopyRenderTargetToPostProcessTarget();
 
 public:
 	void Init();

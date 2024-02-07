@@ -18,7 +18,6 @@ CLevel::CLevel()
 	GetLayer(LAYER_TYPE::PLAYER)->SetName(L"PlayerLayer");
 	GetLayer(LAYER_TYPE::MONSTER)->SetName(L"MonsterLayer");
 	GetLayer(LAYER_TYPE::LIGHT2D)->SetName(L"LightLayer");
-	GetLayer(LAYER_TYPE::EFFECT)->SetName(L"EffectLayer");
 	GetLayer(LAYER_TYPE::UI)->SetName(L"UILayer");
 }
 

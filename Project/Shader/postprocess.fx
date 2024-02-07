@@ -15,15 +15,15 @@ struct VS_OUT
     float2 vUV  : TEXCOORD;
 };
 
-////////////////
-// GreyFilter //
-////////////////
+// ==========
+// GreyFilter
+// ==========
 
 VS_OUT VS_GreyFilter(VS_IN _in)
 {
     VS_OUT output = (VS_OUT) 0.f;
     
-    output.vPos = (_in.vPos, 1.f);
+    output.vPos = (_in.vPos * 2.f, 1.f);
     output.vUV = _in.vUV;
     
     return output;
@@ -36,16 +36,14 @@ float4 PS_GreyFilter(VS_OUT _in) : SV_Target
     v4Color = G_POSTPROCESS.Sample(G_SAMPLER_1, _in.vUV);
     
     float fAvg = (v4Color.r + v4Color.g + v4Color.b) / 3.f;
-    float3 v3AvgColor = float3(fAvg, fAvg, fAvg);
-    
-    v4Color = float4(v3AvgColor, 1.f);
+    v4Color.rgb = float3(fAvg, fAvg, fAvg);
     
     return v4Color;
 }
 
-////////////////
-// Distortion //
-////////////////
+// ==========
+// Distortion
+// ==========
 
 VS_OUT VS_Distortion(VS_IN _in)
 {

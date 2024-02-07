@@ -156,8 +156,7 @@ enum class LAYER_TYPE
 	PLAYER,		// 3
 	MONSTER,	// 4
 	LIGHT2D,	// 5
-	EFFECT,		// 6 -> PostProcess
-	UI,			// 7
+	UI,			// 6
 	
 	END,
 };
