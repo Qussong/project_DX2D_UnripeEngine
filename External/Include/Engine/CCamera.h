@@ -34,26 +34,28 @@ private:
 
 private:
 	// 물체 분류
-	vector<CGameObject*> m_vecOpacue;			// 불투명
-	vector<CGameObject*> m_vecMask;				// 반투명
-	vector<CGameObject*> m_vecTransparent;		// 투명
-	vector<CGameObject*> m_vecPostProcess;		// 후처리
+	//	1. 불투명
+	//	2. 반투명
+	//	3. 투명
+	//	4. 후처리
+	//	5. 디버그
+	vector<CGameObject*> m_DomainObj[(uint32)SHADER_DOMAIN::END];
 
 public:
 	// Getter
 	PROJ_TYPE		GetProjectionType() { return m_eProjType; }
-	float			GetFOV() { return m_fFOV; }
-	float			GetScale() { return m_fScale; }
-	const Matrix	GetViewMatrix() { return m_matView; }
-	const Matrix	GetProjMatrix() { return m_matProj; }
+	float			GetFOV()			{ return m_fFOV; }
+	float			GetScale()			{ return m_fScale; }
+	const Matrix	GetViewMatrix()		{ return m_matView; }
+	const Matrix	GetProjMatrix()		{ return m_matProj; }
 
 	// Setter
-	void		SetProjectionType(PROJ_TYPE _type) { m_eProjType = _type; }
-	void		SetFOV(float _fov) { m_fFOV = _fov; }
-	void		SetScale(float _scale) { m_fScale = _scale; }
+	void		SetProjectionType(PROJ_TYPE _type)	{ m_eProjType = _type; }
+	void		SetFOV(float _fov)					{ m_fFOV = _fov; }
+	void		SetScale(float _scale)				{ m_fScale = _scale; }
 
 private:
-	void		ViewMatrix();			// View 변환 행렬 계산
+	void		ViewMatrix();		// View 변환 행렬 계산
 	void		ProjectionMatrix();	// Projection 변환 행렬 계산
 
 public:
@@ -67,12 +69,12 @@ public:
 	virtual void Tick() override {};
 	virtual void FinalTick() override;
 	virtual void UpdateData() override {};
+	virtual void Render();
 
 public:
 	void		 SortObject();
 private:
 	void		 Render(vector<CGameObject*>& _vecObj);
-public:
-	virtual void Render();
+	void		 Render_PostProcess(vector<CGameObject*>& _vecObj);
 };
 

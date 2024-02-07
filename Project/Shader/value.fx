@@ -87,25 +87,27 @@ cbuffer GLOBAL_DATA : register(b3)
 }
 
 
-Texture2D       TEXTURE_0       : register(t0);
-Texture2D       TEXTURE_1       : register(t1);
-Texture2D       TEXTURE_2       : register(t2);
-Texture2D       TEXTURE_3       : register(t3);
-Texture2D       TEXTURE_4       : register(t4);
-Texture2D       TEXTURE_5       : register(t5);
+Texture2D       G_TEXTURE_0       : register(t0);
+Texture2D       G_TEXTURE_1       : register(t1);
+Texture2D       G_TEXTURE_2       : register(t2);
+Texture2D       G_TEXTURE_3       : register(t3);
+Texture2D       G_TEXTURE_4       : register(t4);
+Texture2D       G_TEXTURE_5       : register(t5);
 
-TextureCube     TEXCUBE_0       : register(t6);
-TextureCube     TEXCUBE_1       : register(t7);
+TextureCube     G_TEXCUBE_0       : register(t6);
+TextureCube     G_TEXCUBE_1       : register(t7);
 
-Texture2DArray  TEXARR_0        : register(t8);
-Texture2DArray  TEXARR_1        : register(t9);
+Texture2DArray  G_TEXARR_0        : register(t8);
+Texture2DArray  G_TEXARR_1        : register(t9);
 
-Texture2D       TEX_ANIM2D_0    : register(t10);    // Animation용 Atlas Texture
+Texture2D       G_TEX_ANIM2D_0    : register(t10);    // Animation용 Atlas Texture
 
-StructuredBuffer<tLightInfo> LIGHT2D : register(t11);   // 구조화 버퍼, Light2D
-StructuredBuffer<tLightInfo> LIGHT3D : register(t12);   // 구조화 버퍼, Light3D
+StructuredBuffer<tLightInfo> G_LIGHT2D : register(t11);   // 구조화 버퍼, Light2D
+StructuredBuffer<tLightInfo> G_LIGHT3D : register(t12);   // 구조화 버퍼, Light3D
 
-SamplerState    SAMPLER_0       : register(s0); // ANISOTROPIC
-SamplerState    SAMPLER_1       : register(s1); // POINT
+Texture2D       G_POSTPROCESS     : register(t13);
+
+SamplerState    G_SAMPLER_0       : register(s0); // ANISOTROPIC
+SamplerState    G_SAMPLER_1       : register(s1); // POINT
 
 #endif

@@ -22,6 +22,7 @@ public:
 	// Getter
 	const UINT							GetWidth()	{ return m_tDesc.Width; }
 	const UINT							GetHeight() { return m_tDesc.Height; }
+	ComPtr<ID3D11Texture2D>				GetTex2D()	{ return m_Tex2D; }
 	ComPtr<ID3D11RenderTargetView>		GetRTV()	{ return m_RTV; }
 	ComPtr<ID3D11DepthStencilView>		GetDSV()	{ return m_DSV; }
 	ComPtr<ID3D11ShaderResourceView>	GetSRV()	{ return m_SRV; }
@@ -38,7 +39,7 @@ public:
 
 public:
 	virtual int Load(const wstring& _strFilePath) override;
-	virtual void UpdateData() override {};
+	virtual void UpdateData() override {};	// 사용안함
 	void UpdateData(uint32 _iRegisterNum);	// overload
 };
 

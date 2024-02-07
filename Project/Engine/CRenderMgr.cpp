@@ -100,28 +100,6 @@ void CRenderMgr::Render_Debug()
 	}
 }
 
-void CRenderMgr::RegisterCamera(CCamera* _cam, int32 _idx)
-{
-	int32 iCamCnt = (int32)m_vecCamera.size();
-	int32 iPriority = _idx + 1;
-
-	// 등록된 카메라들보다 우선순위가 뒤에 있을 경우 카메라 컨테이너의 수용공간을 늘린다.
-	if (iCamCnt <= iPriority)
-	{
-		m_vecCamera.resize(iPriority);
-	}
-
-	// 동일한 우선순위의 카메라가 이미 존재할경우 종료
-	if (nullptr != m_vecCamera[_idx])
-	{
-		MessageBoxA(nullptr, "Already Exist Another Camera", "Priority Error", MB_OK);
-		_exit(EXIT_FAILURE);
-	}
-
-	// _idx 위치에 _cam 위치시키기
-	m_vecCamera[_idx] = _cam;
-}
-
 void CRenderMgr::Binding()
 {
 	// 전역 데이터 업데이트
@@ -150,4 +128,32 @@ void CRenderMgr::Binding()
 void CRenderMgr::Clear()
 {
 	m_vecLight2D.clear();
+}
+
+void CRenderMgr::RegisterCamera(CCamera* _cam, int32 _idx)
+{
+	int32 iCamCnt = (int32)m_vecCamera.size();
+	int32 iPriority = _idx + 1;
+
+	// 등록된 카메라들보다 우선순위가 뒤에 있을 경우 카메라 컨테이너의 수용공간을 늘린다.
+	if (iCamCnt <= iPriority)
+	{
+		m_vecCamera.resize(iPriority);
+	}
+
+	// 동일한 우선순위의 카메라가 이미 존재할경우 종료
+	if (nullptr != m_vecCamera[_idx])
+	{
+		MessageBoxA(nullptr, "Already Exist Another Camera", "Priority Error", MB_OK);
+		_exit(EXIT_FAILURE);
+	}
+
+	// _idx 위치에 _cam 위치시키기
+	m_vecCamera[_idx] = _cam;
+}
+
+void CRenderMgr::CopyRenderTargetToPostProcessTarget()
+{
+	Ptr<CTexture> pRTTex = M_ASSET->FindAsset<CTexture>(L"RenderTargetTex");
+	CONTEXT->CopyResource(m_PostProcessTex->GetTex2D().Get(), pRTTex->GetTex2D().Get());
 }

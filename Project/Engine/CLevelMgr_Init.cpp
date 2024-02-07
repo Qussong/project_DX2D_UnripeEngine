@@ -188,4 +188,19 @@ void CLevelMgr::Init()
 
 		GamePlayStatic::SpawnGameObject(pUIObj, LAYER_TYPE::UI);
 	}
+
+	// PostProcessObj_GreyFilter
+	{
+		CGameObject* pGreyObj = new CGameObject;
+		pGreyObj->SetName(L"GreyFilter");
+		pGreyObj->AddComponent(new CTransform);
+		pGreyObj->AddComponent(new CMeshRender);
+		// basicComp
+		pGreyObj->Transform()->SetLocalPos(Vec3(100.f, 100.f, 300.f));
+		pGreyObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
+		pGreyObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+		pGreyObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"GreyFilterMaterial"));
+
+		GamePlayStatic::SpawnGameObject(pGreyObj, LAYER_TYPE::EFFECT);
+	}
 }

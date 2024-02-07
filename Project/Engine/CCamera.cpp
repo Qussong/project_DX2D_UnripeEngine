@@ -10,6 +10,8 @@ CCamera::CCamera()
 	, m_fAspectRatio(1.f)
 	, m_fNear(1.f)
 	, m_fFar(1000.f)
+	, m_iPriority(0)
+	, m_arrLayerCheck{}
 {
 	m_matView = XMMatrixIdentity();
 	m_matProj = XMMatrixIdentity();
@@ -140,25 +142,47 @@ void CCamera::SortObject()
 			switch (eDomain)
 			{
 			case SHADER_DOMAIN::DOMAIN_OPAQUE:
-				m_vecOpacue.push_back(pTarget);
+			{
+				m_DomainObj[(uint32)SHADER_DOMAIN::DOMAIN_OPAQUE].push_back(pTarget);
 				break;
+			}
 			case SHADER_DOMAIN::DOMAIN_MASK:
-				m_vecMask.push_back(pTarget);
+			{
+				m_DomainObj[(uint32)SHADER_DOMAIN::DOMAIN_MASK].push_back(pTarget);
 				break;
+			}
 			case SHADER_DOMAIN::DOMAIN_TRANSPARENT:
-				m_vecTransparent.push_back(pTarget);
+			{
+				m_DomainObj[(uint32)SHADER_DOMAIN::DOMAIN_TRANSPARENT].push_back(pTarget);
 				break;
+			}
 			case SHADER_DOMAIN::DOMAIN_POSTPROCESS:
-				m_vecPostProcess.push_back(pTarget);
+			{
+				m_DomainObj[(uint32)SHADER_DOMAIN::DOMAIN_POSTPROCESS].push_back(pTarget);
 				break;
+			}
 			case SHADER_DOMAIN::DOMAIN_DEBUG:
-				// nothing
-				break;
-			default:
 				// nothing
 				break;
 			}
 		}
+	}
+}
+
+void CCamera::Render()
+{
+	// 상수버퍼 대응 구조체 값 세팅
+	g_tTransformConst.matView = m_matView;
+	g_tTransformConst.matProj = m_matProj;
+
+	// Domain 순서대로 Render
+	size_t iDomainCnt = (size_t)SHADER_DOMAIN::END;
+	for (size_t idx = 0; idx < iDomainCnt; ++idx)
+	{
+		if ((uint32)SHADER_DOMAIN::DOMAIN_POSTPROCESS == idx)
+			Render_PostProcess(m_DomainObj[idx]);
+		else
+	 		Render(m_DomainObj[idx]);
 	}
 }
 
@@ -172,15 +196,20 @@ void CCamera::Render(vector<CGameObject*>& _vecObj)
 	_vecObj.clear();
 }
 
-void CCamera::Render()
+void CCamera::Render_PostProcess(vector<CGameObject*>& _vecObj)
 {
-	// 상수버퍼 대응 구조체 값 세팅
-	g_tTransformConst.matView = m_matView;
-	g_tTransformConst.matProj = m_matProj;
+	size_t iObjCnt = _vecObj.size();
+	for (size_t i = 0; i < iObjCnt; ++i)
+	{
+		// 최종 렌더링 타겟(=Texture)을 후처리 타겟에 복사
+		M_RENDER->CopyRenderTargetToPostProcessTarget();
 
-	// Domain 순서대로 Render
-	Render(m_vecOpacue);
-	Render(m_vecMask);
-	Render(m_vecTransparent);
-	Render(m_vecPostProcess);
+		// 복사받은 PostProcess Texture 를 t13 레지스터에 바인딩
+		Ptr<CTexture> pPPTex = M_RENDER->GetPostProcessTex();
+		pPPTex->UpdateData(13);
+
+		// 후처리 객체 렌더링
+		_vecObj[i]->Render();
+	}
+	_vecObj.clear();
 }

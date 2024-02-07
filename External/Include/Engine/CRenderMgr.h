@@ -25,8 +25,9 @@ private:
 
 public:
 	// Getter
-	bool IsDebugCheck() { return m_bDebugCheck; }
-	
+	bool			IsDebugCheck()		{ return m_bDebugCheck; }
+	Ptr<CTexture>	GetPostProcessTex() { return m_PostProcessTex; }
+
 	// Setter
 	void SetDebugCheck(bool _flag) { m_bDebugCheck = _flag; }
 
@@ -36,8 +37,10 @@ private:
 
 public:
 	void RegisterCamera(CCamera* _cam, int32 _idx);
-	void AddDebugShapeInfo(const tDebugShapeInfo& _info) { m_listDebugShapeInfo.push_back(_info); }
-	void RegisterLight2D(CLight2D* _lightObj) { m_vecLight2D.push_back(_lightObj); }
+	inline void AddDebugShapeInfo(const tDebugShapeInfo& _info) { m_listDebugShapeInfo.push_back(_info); }
+	inline void RegisterLight2D(CLight2D* _lightObj) { m_vecLight2D.push_back(_lightObj); }
+	
+	void CopyRenderTargetToPostProcessTarget();
 
 public:
 	void Init();

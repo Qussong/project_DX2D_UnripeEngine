@@ -64,7 +64,7 @@ float4 PS_Std2D(VS_OUT _in) : SV_Target
             else
             {
                 // 10번 Texture 샘플링(Animation)
-                v4Color = TEX_ANIM2D_0.Sample(SAMPLER_1, vUV);
+                v4Color = G_TEX_ANIM2D_0.Sample(G_SAMPLER_1, vUV);
             }
         }
         // 애니메이션 사용하지 않는 경우
@@ -72,7 +72,7 @@ float4 PS_Std2D(VS_OUT _in) : SV_Target
         {
             // 0번 Texture 샘플링(Texture)
             if (g_btex_0)
-                v4Color = TEXTURE_0.Sample(SAMPLER_1, _in.vUV);
+                v4Color = G_TEXTURE_0.Sample(G_SAMPLER_1, _in.vUV);
         }
         
         // 알파값 0.1f 이하 Render 안함
@@ -122,7 +122,7 @@ float4 PS_Std2D_Effect(VS_OUT _in) : SV_Target
             else
             {
                 // 10번 Texture 샘플링(Animation)
-                v4Color = TEX_ANIM2D_0.Sample(SAMPLER_1, vUV);
+                v4Color = G_TEX_ANIM2D_0.Sample(G_SAMPLER_1, vUV);
             }
         }
         // 애니메이션 사용하지 않는 경우
@@ -130,7 +130,7 @@ float4 PS_Std2D_Effect(VS_OUT _in) : SV_Target
         {
             // 0번 Texture 샘플링(Texture)
             if (g_btex_0)
-                v4Color = TEXTURE_0.Sample(SAMPLER_1, _in.vUV);
+                v4Color = G_TEXTURE_0.Sample(G_SAMPLER_1, _in.vUV);
         }
             
         // Player Highlight

@@ -7,7 +7,7 @@
 void CalLight2D(float3 _worldPos, int _lightIdx, inout tLightColorInfo _output)
 {
     // ±¤¿øÀÇ Á¤º¸
-    tLightInfo tInfo = LIGHT2D[_lightIdx];
+    tLightInfo tInfo = G_LIGHT2D[_lightIdx];
     
     int iType = tInfo.iLightType;
     
@@ -32,7 +32,7 @@ void CalLight2D(float3 _worldPos, int _lightIdx, inout tLightColorInfo _output)
             }
             else
             {
-                fAttenu = saturate(1.f - fDist / LIGHT2D[0].fRadius);
+                fAttenu = saturate(1.f - fDist / G_LIGHT2D[0].fRadius);
             }
         }
         

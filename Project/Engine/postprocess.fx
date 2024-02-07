@@ -1,10 +1,12 @@
 #ifndef _POSTPROCESS
 #define _POSTPROCESS
 
+#include "value.fx"
+
 struct VS_IN
 {
-    float3 vPos     : POS;
-    float4 vColor   : COLOR;
+    float3 vPos : POS;
+    float2 vUV  : TEXCOORD;
 };
 
 struct VS_OUT
@@ -13,9 +15,16 @@ struct VS_OUT
     float2 vUV  : TEXCOORD;
 };
 
+////////////////
+// GreyFilter //
+////////////////
+
 VS_OUT VS_GreyFilter(VS_IN _in)
 {
     VS_OUT output = (VS_OUT) 0.f;
+    
+    output.vPos = (_in.vPos, 1.f);
+    output.vUV = _in.vUV;
     
     return output;
 }
@@ -23,6 +32,35 @@ VS_OUT VS_GreyFilter(VS_IN _in)
 float4 PS_GreyFilter(VS_OUT _in) : SV_Target
 {
     float4 v4Color = (float4) 0.f;
+    
+    v4Color = G_POSTPROCESS.Sample(G_SAMPLER_1, _in.vUV);
+    
+    float fAvg = (v4Color.r + v4Color.g + v4Color.b) / 3.f;
+    float3 v3AvgColor = float3(fAvg, fAvg, fAvg);
+    
+    v4Color = float4(v3AvgColor, 1.f);
+    
+    return v4Color;
+}
+
+////////////////
+// Distortion //
+////////////////
+
+VS_OUT VS_Distortion(VS_IN _in)
+{
+    VS_OUT output = (VS_OUT) 0.f;
+    
+    // 
+    
+    return output;
+}
+
+float4 PS_Distortion(VS_OUT _in) : SV_Target
+{
+    float4 v4Color = (float4) 0.f;
+    
+    //
     
     return v4Color;
 }

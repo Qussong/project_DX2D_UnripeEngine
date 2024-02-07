@@ -216,7 +216,8 @@ DirectX 2D Engine
 &nbsp;&nbsp; - CMonsterScript 생성<br>
 &nbsp;&nbsp; - Script를 사용하는 GameObject의 Texture 및 Animation 생성및 설정은 Script에서 되도록 코드 수정<br>
 &nbsp;&nbsp; - CTexture 에 Create 함수 추가하여 AssetMgr.CreateTexture()를 통해 CTexture 객체 생성가능<br>
-&nbsp;&nbsp; - Graphics) DepthStencilTexture -> CTexuter 객체로 변경<br>
+&nbsp;&nbsp; - CGraphics) DepthStencilTexture -> CTexuter 객체화<br>
+&nbsp;&nbsp; - CGraphics) RenderTargetTexture -> CTexture 객체화<br>
+&nbsp;&nbsp; - <br>
 
-
-<!-- &nbsp;&nbsp;- <br> -->
+<!-- &nbsp;&nbsp; - <br> -->

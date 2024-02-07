@@ -261,7 +261,11 @@ void CAssetMgr::Texture()
 {
 	Ptr<CTexture> pTex = nullptr;
 
-	// Texture
+	// test
 	pTex = LoadTexture(L"bluebird", L"Test\\bluebird.png");
 	pTex = LoadTexture(L"flower", L"Test\\flower.png");
+	// noise
+	pTex = LoadTexture(L"noise1", L"Noise\\noise_01.png");
+	pTex = LoadTexture(L"noise2", L"Noise\\noise_02.png");
+	pTex = LoadTexture(L"noise3", L"Noise\\noise_03.jpg");
 }

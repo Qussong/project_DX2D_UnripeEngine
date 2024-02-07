@@ -14,9 +14,10 @@ private:
 	ComPtr<ID3D11Device>			m_Device;
 	ComPtr<ID3D11DeviceContext>		m_Context;
 	ComPtr<IDXGISwapChain>			m_SwapChain;
-	ComPtr<ID3D11Texture2D>			m_RenderTarget;	// RenderTarget Texture
-	ComPtr<ID3D11RenderTargetView>	m_RenderTargetView;
-	Ptr<CTexture>					m_DSTexture;	// Depth-Stencil Texture
+
+	Ptr<CTexture>					m_RTTex;	// RenderTarget Texture
+	Ptr<CTexture>					m_DSTex;	// DepthStencil Texture
+
 	CConstantBuffer*				m_arrCB[(uint32)CB_TYPE::END];
 	ComPtr<ID3D11RasterizerState>	m_arrRS[(UINT)RS_TYPE::END];
 	ComPtr<ID3D11DepthStencilState>	m_arrDS[(UINT)DS_TYPE::END];

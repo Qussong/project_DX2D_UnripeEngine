@@ -71,7 +71,7 @@ int CGraphics::Init(HWND _hWnd, float _width, float _height)
 
 void CGraphics::RenderBegin()
 {
-	CONTEXT->OMSetRenderTargets(1, m_RenderTargetView.GetAddressOf(), m_DSTexture->GetDSV().Get());
+	CONTEXT->OMSetRenderTargets(1, m_RTTex->GetRTV().GetAddressOf(), m_DSTex->GetDSV().Get());
 
 	D3D11_VIEWPORT	viewport = {};
 	{
@@ -161,9 +161,12 @@ void CGraphics::DeviceAndSwapChain()
 void CGraphics::RenderTargetView()
 {
 	// render target texture
-	m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)m_RenderTarget.GetAddressOf());
+	ComPtr<ID3D11Texture2D> Tex2D;
+	m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)Tex2D.GetAddressOf());
+	m_RTTex = M_ASSET->CreateTexture(L"RenderTargetTex", Tex2D);
+
 	// render target view
-	HRESULT hr = m_Device->CreateRenderTargetView(m_RenderTarget.Get(), nullptr, m_RenderTargetView.GetAddressOf());
+	HRESULT hr = m_Device->CreateRenderTargetView(m_RTTex->GetTex2D().Get(), nullptr, m_RTTex->GetRTV().GetAddressOf());
 	
 	if (FAILED(hr))
 	{
@@ -174,7 +177,7 @@ void CGraphics::RenderTargetView()
 
 void CGraphics::DepthStencilView()
 {
-	m_DSTexture = M_ASSET->CreateTexture(L"DepthStencilTex",
+	m_DSTex = M_ASSET->CreateTexture(L"DepthStencilTex",
 										static_cast<UINT>(m_v2Resolution.x),
 										static_cast<UINT>(m_v2Resolution.y), 
 										DXGI_FORMAT_D24_UNORM_S8_UINT, 
@@ -229,14 +232,6 @@ int CGraphics::RasterizerState()
 	{
 		desc.FillMode = D3D11_FILL_SOLID;
 		desc.CullMode = D3D11_CULL_FRONT;
-		//desc.FrontCounterClockwise;
-		//desc.DepthBias;
-		//desc.DepthBiasClamp;
-		//desc.SlopeScaledDepthBias;
-		//desc.DepthClipEnable;
-		//desc.ScissorEnable;
-		//desc.MultisampleEnable;
-		//desc.AntialiasedLineEnable;
 	}
 	hr = DEVICE->CreateRasterizerState(&desc, m_arrRS[(uint32)RS_TYPE::CULL_FRONT].GetAddressOf());
 	if (FAILED(hr)) return E_FAIL;
@@ -282,10 +277,6 @@ int CGraphics::DepthStencilState()
 		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
 		desc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
 		desc.StencilEnable = false;
-		//desc.StencilReadMask;
-		//desc.StencilWriteMask;
-		//desc.FrontFace;
-		//desc.BackFace;
 	}
 	hr = DEVICE->CreateDepthStencilState(&desc, m_arrDS[(uint32)DS_TYPE::LESS_EQUAL].GetAddressOf());
 	if (FAILED(hr)) return E_FAIL;
@@ -388,10 +379,6 @@ int CGraphics::SamplerState()
 		tDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 		tDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 		tDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
-		//tDesc.MipLODBias;
-		//tDesc.MaxAnisotropy;
-		//tDesc.ComparisonFunc;
-		//tDesc.BorderColor[4];
 		tDesc.MinLOD = 0;
 		tDesc.MaxLOD = 1;
 	}
@@ -407,10 +394,6 @@ int CGraphics::SamplerState()
 		tDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 		tDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 		tDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
-		//tDesc.MipLODBias;
-		//tDesc.MaxAnisotropy;
-		//tDesc.ComparisonFunc;
-		//tDesc.BorderColor[4];
 		tDesc.MinLOD = 0;
 		tDesc.MaxLOD = 1;
 	}
@@ -422,15 +405,9 @@ int CGraphics::SamplerState()
 	}
 
 	CONTEXT->VSSetSamplers(0, 1, m_arrSS[0].GetAddressOf());
-	//CONTEXT->HSSetSamplers(0, 1, m_arrSS[0].GetAddressOf());
-	//CONTEXT->DSSetSamplers(0, 1, m_arrSS[0].GetAddressOf());
-	//CONTEXT->GSSetSamplers(0, 1, m_arrSS[0].GetAddressOf());
 	CONTEXT->PSSetSamplers(0, 1, m_arrSS[0].GetAddressOf());
 
 	CONTEXT->VSSetSamplers(1, 1, m_arrSS[1].GetAddressOf());
-	//CONTEXT->HSSetSamplers(1, 1, m_arrSS[1].GetAddressOf());
-	//CONTEXT->DSSetSamplers(1, 1, m_arrSS[1].GetAddressOf());
-	//CONTEXT->GSSetSamplers(1, 1, m_arrSS[1].GetAddressOf());
 	CONTEXT->PSSetSamplers(1, 1, m_arrSS[1].GetAddressOf());
 
 	return hr;
@@ -438,6 +415,6 @@ int CGraphics::SamplerState()
 
 void CGraphics::ClearRenderTarget(Vec4 _color)
 {
-	CONTEXT->ClearRenderTargetView(m_RenderTargetView.Get(), _color);		// ·»´õ Å¸°Ù Å¬¸®¾î (clearColor)
-	CONTEXT->ClearDepthStencilView(m_DSTexture->GetDSV().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, (UINT8)0);
+	CONTEXT->ClearRenderTargetView(m_RTTex->GetRTV().Get(), _color);		// ·»´õ Å¸°Ù Å¬¸®¾î (clearColor)
+	CONTEXT->ClearDepthStencilView(m_DSTex->GetDSV().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, (UINT8)0);
 }
