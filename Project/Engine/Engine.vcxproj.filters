@@ -300,6 +300,9 @@
     <ClCompile Include="CTestMonsterScript.cpp">
       <Filter>09.Script\Monster\Test</Filter>
     </ClCompile>
+    <ClCompile Include="CAssetMgr_Init.cpp">
+      <Filter>04.Manager\Asset</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="00.Default">

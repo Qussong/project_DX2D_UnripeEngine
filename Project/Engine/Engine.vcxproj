@@ -221,6 +221,7 @@ call EngineCopy.bat</Command>
     <ClCompile Include="CAnimator2D.cpp" />
     <ClCompile Include="CAsset.cpp" />
     <ClCompile Include="CAssetMgr.cpp" />
+    <ClCompile Include="CAssetMgr_Init.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CCameraScript.cpp" />
     <ClCompile Include="CCollider2D.cpp" />

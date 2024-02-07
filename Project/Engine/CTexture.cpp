@@ -105,6 +105,35 @@ int CTexture::Create(UINT _width, UINT _height, DXGI_FORMAT _format, UINT _bindF
 	return hr;
 }
 
+int CTexture::Create(ComPtr<ID3D11Texture2D> _origin)
+{
+	// 인자로 들어온 스마트 포인터 객체의 CTexture 멤버가 비어있는 경우
+	if (nullptr == _origin.Get())
+	{
+		MessageBoxA(nullptr, "Texture Object Empty", "CTexture Error", MB_OK);
+		return E_FAIL;
+	}
+
+	HRESULT hr = S_OK;
+	// Texture 복사
+	m_Tex2D = _origin;
+	m_Tex2D->GetDesc(&m_tDesc);
+
+	// View 생성
+	if (m_tDesc.BindFlags & D3D11_BIND_DEPTH_STENCIL)
+		hr = DEVICE->CreateDepthStencilView(m_Tex2D.Get(), nullptr, m_DSV.GetAddressOf());
+	else if (m_tDesc.BindFlags & D3D11_BIND_RENDER_TARGET)
+		hr = DEVICE->CreateRenderTargetView(m_Tex2D.Get(), nullptr, m_RTV.GetAddressOf());
+	else if (m_tDesc.BindFlags & D3D11_BIND_SHADER_RESOURCE)
+		hr = DEVICE->CreateShaderResourceView(m_Tex2D.Get(), nullptr, m_SRV.GetAddressOf());
+	else if (m_tDesc.BindFlags & D3D11_BIND_UNORDERED_ACCESS)
+		hr = DEVICE->CreateUnorderedAccessView(m_Tex2D.Get(), nullptr, m_UAV.GetAddressOf());
+	else
+		__noop;
+
+	return hr;
+}
+
 void CTexture::Clear(uint32 _iRegisterNum)
 {
 	ID3D11ShaderResourceView* pSRV = nullptr;

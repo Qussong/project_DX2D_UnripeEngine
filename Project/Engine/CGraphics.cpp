@@ -174,7 +174,8 @@ void CGraphics::RenderTargetView()
 
 void CGraphics::DepthStencilView()
 {
-	m_DSTexture = M_ASSET->CreateTexture(static_cast<UINT>(m_v2Resolution.x), 
+	m_DSTexture = M_ASSET->CreateTexture(L"DepthStencilTex",
+										static_cast<UINT>(m_v2Resolution.x),
 										static_cast<UINT>(m_v2Resolution.y), 
 										DXGI_FORMAT_D24_UNORM_S8_UINT, 
 										D3D11_BIND_DEPTH_STENCIL);

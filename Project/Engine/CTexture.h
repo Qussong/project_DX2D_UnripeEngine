@@ -33,6 +33,7 @@ public:
 				DXGI_FORMAT _format,
 				UINT _bindFlag,
 				D3D11_USAGE _usage = D3D11_USAGE_DEFAULT);
+	int Create(ComPtr<ID3D11Texture2D> _origin);
 	static void Clear(uint32 _iRegisterNum);
 
 public:
