@@ -23,14 +23,11 @@ void CRenderMgr::Tick()
 	Vec4 v4ClearColor = { 0.f, 0.f, 0.f, 1.f };
 	GRAPHICS->ClearRenderTarget(v4ClearColor);
 
-	Binding();			// 리소스 바인딩
-
-	Render();			// 카메라 기준 일반 객체 Render
-	Render_Debug();		// 카메라 기준 Debug 객체 Render
-
-	Clear();			// 리소스 클리어
-
-	//GRAPHICS->RenderEnd();	// ImGui::Progress 뒤에 위치
+	Binding();					// 리소스 바인딩
+	Render();					// 카메라 기준 일반 객체 Render
+	Render_Debug();				// 카메라 기준 Debug 객체 Render
+	Clear();					// 리소스 클리어
+	//GRAPHICS->RenderEnd();	// 렌더링 결과 출력 -> ImGui::Progress 뒤에 위치
 }
 
 void CRenderMgr::Render()
