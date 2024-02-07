@@ -58,9 +58,51 @@ int CTexture::Load(const wstring& _strFilePath)
 	return S_OK;
 }
 
-void CTexture::Create(UINT _width, UINT _height, DXGI_FORMAT _format, D3D11_USAGE _usage)
+int CTexture::Create(UINT _width, UINT _height, DXGI_FORMAT _format, UINT _bindFlag, D3D11_USAGE _usage)
 {
+	HRESULT hr = S_OK;
 
+	// 생성하려는 Texture 설정 세팅
+	{
+		// Texture 해상도
+		m_tDesc.Width = _width;
+		m_tDesc.Height = _height;
+		// Pixel 포멧
+		m_tDesc.Format = _format;
+		// 샘플링
+		m_tDesc.SampleDesc.Count = 1;
+		m_tDesc.SampleDesc.Quality = 0;
+		// Texture 용도
+		m_tDesc.BindFlags = _bindFlag;
+		m_tDesc.Usage  = _usage;
+		if (D3D11_USAGE_DYNAMIC == _usage)
+		{
+			m_tDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+		}
+		// 저퀄리티 버전의 사본 생성여부
+		m_tDesc.MipLevels = 1;
+		m_tDesc.MiscFlags = 0;
+		m_tDesc.ArraySize = 1;
+	}
+	
+	// Texture 생성
+	hr = DEVICE->CreateTexture2D(&m_tDesc, nullptr, m_Tex2D.GetAddressOf());
+	if (FAILED(hr))
+		return E_FAIL;
+
+	// View 생성
+	if (m_tDesc.BindFlags & D3D11_BIND_DEPTH_STENCIL)
+		hr = DEVICE->CreateDepthStencilView(m_Tex2D.Get(), nullptr, m_DSV.GetAddressOf());
+	else if (m_tDesc.BindFlags & D3D11_BIND_RENDER_TARGET)
+		hr = DEVICE->CreateRenderTargetView(m_Tex2D.Get(), nullptr, m_RTV.GetAddressOf());
+	else if (m_tDesc.BindFlags & D3D11_BIND_SHADER_RESOURCE)
+		hr = DEVICE->CreateShaderResourceView(m_Tex2D.Get(), nullptr, m_SRV.GetAddressOf());
+	else if (m_tDesc.BindFlags & D3D11_BIND_UNORDERED_ACCESS)
+		hr = DEVICE->CreateUnorderedAccessView(m_Tex2D.Get(), nullptr, m_UAV.GetAddressOf());
+	else
+		__noop;
+
+	return hr;
 }
 
 void CTexture::Clear(uint32 _iRegisterNum)

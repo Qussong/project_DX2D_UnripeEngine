@@ -305,3 +305,17 @@ Ptr<CTexture> CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _str
 
 	return pTex;
 }
+
+Ptr<CTexture> CAssetMgr::CreateTexture(UINT _width, UINT _height, DXGI_FORMAT _format,
+										UINT _bindFlag, D3D11_USAGE _usage)
+{
+	Ptr<CTexture> pTex = new CTexture;
+	HRESULT hr = pTex->Create(_width, _height, _format, _bindFlag, _usage);
+	if (FAILED(hr))
+	{
+		MessageBoxA(nullptr, "Texture Create Failed", "CAssetMgr Error", MB_OK);
+		return nullptr;
+	}
+
+	return pTex;
+}

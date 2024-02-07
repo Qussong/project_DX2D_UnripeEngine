@@ -71,7 +71,7 @@ int CGraphics::Init(HWND _hWnd, float _width, float _height)
 
 void CGraphics::RenderBegin()
 {
-	CONTEXT->OMSetRenderTargets(1, m_RenderTargetView.GetAddressOf(), m_DepthStencilView.Get());
+	CONTEXT->OMSetRenderTargets(1, m_RenderTargetView.GetAddressOf(), m_DSTexture->GetDSV().Get());
 
 	D3D11_VIEWPORT	viewport = {};
 	{
@@ -174,31 +174,10 @@ void CGraphics::RenderTargetView()
 
 void CGraphics::DepthStencilView()
 {
-	ComPtr<ID3D11Texture2D> depthStencil;
-
-	D3D11_TEXTURE2D_DESC desc = {};
-	{
-		desc.Width = static_cast<UINT>(m_v2Resolution.x);
-		desc.Height = static_cast<UINT>(m_v2Resolution.y);
-		desc.MipLevels = 1;
-		desc.ArraySize = 1;
-		desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-		desc.SampleDesc.Count = 1;
-		desc.SampleDesc.Quality = 0;
-		desc.Usage = D3D11_USAGE_DEFAULT;	// GPU 읽기, 쓰기
-		desc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
-		desc.CPUAccessFlags = 0;
-		desc.MiscFlags = 0;
-	}
-
-	DEVICE->CreateTexture2D(&desc, nullptr, depthStencil.GetAddressOf());
-	HRESULT hr = DEVICE->CreateDepthStencilView(depthStencil.Get(), nullptr, m_DepthStencilView.GetAddressOf());
-
-	if (FAILED(hr))
-	{
-		MessageBoxA(nullptr, "Depth-Stencil View Create Failed", "DepthStendcil Error", MB_OK);
-		_exit(EXIT_FAILURE);
-	}
+	m_DSTexture = M_ASSET->CreateTexture(static_cast<UINT>(m_v2Resolution.x), 
+										static_cast<UINT>(m_v2Resolution.y), 
+										DXGI_FORMAT_D24_UNORM_S8_UINT, 
+										D3D11_BIND_DEPTH_STENCIL);
 }
 
 void CGraphics::CostantBuffer()
@@ -459,5 +438,5 @@ int CGraphics::SamplerState()
 void CGraphics::ClearRenderTarget(Vec4 _color)
 {
 	CONTEXT->ClearRenderTargetView(m_RenderTargetView.Get(), _color);		// 렌더 타겟 클리어 (clearColor)
-	CONTEXT->ClearDepthStencilView(m_DepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, (UINT8)0);
+	CONTEXT->ClearDepthStencilView(m_DSTexture->GetDSV().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, (UINT8)0);
 }

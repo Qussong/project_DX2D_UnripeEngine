@@ -52,6 +52,7 @@ void CLevelMgr::Init()
 		pPlayerObj->AddComponent(new CPlayerScript);
 		pPlayerObj->AddComponent(new CCollider2D);
 		pPlayerObj->AddComponent(new CAnimator2D);
+		pPlayerObj->AddComponent(new CLight2D);
 		// BasicComp
 		pPlayerObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
 		pPlayerObj->Transform()->SetLocalScale(Vec3(100.f, 100.f, 1.f));
@@ -59,6 +60,9 @@ void CLevelMgr::Init()
 		pPlayerObj->Collider2D()->SetOffsetScale(Vec2(30.f, 30.f));
 		pPlayerObj->Collider2D()->SetOffsetPos(Vec2(0.f, 0.f));
 		pPlayerObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::CIRCLE);
+		pPlayerObj->Light2D()->SetLightType(LIGHT_TYPE::POINT);
+		pPlayerObj->Light2D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
+		pPlayerObj->Light2D()->SetRaius(150.f);
 		// RenderComp
 		pPlayerObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		pPlayerObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial"));

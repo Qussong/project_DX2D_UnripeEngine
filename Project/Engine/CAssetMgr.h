@@ -35,6 +35,8 @@ public:
 	Ptr<T> Load(const wstring& _key, const wstring& _strRelativePath);
 
 	Ptr<CTexture> LoadTexture(const wstring& _strKey, const wstring& _strRelativePath = L"");
+
+	Ptr<CTexture> CreateTexture(UINT _width, UINT _height, DXGI_FORMAT _format, UINT _bindFlag, D3D11_USAGE _usage = D3D11_USAGE_DEFAULT);
 };
 
 template <typename T>

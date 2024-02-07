@@ -28,9 +28,10 @@ public:
 	ComPtr<ID3D11UnorderedAccessView>	GetUAV()	{ return m_UAV; }
 	
 public:
-	void Create(UINT _width,
+	int Create(UINT _width,
 				UINT _height,
 				DXGI_FORMAT _format,
+				UINT _bindFlag,
 				D3D11_USAGE _usage = D3D11_USAGE_DEFAULT);
 	static void Clear(uint32 _iRegisterNum);
 

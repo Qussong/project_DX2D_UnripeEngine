@@ -17,9 +17,9 @@ private:
 	ComPtr<ID3D11Texture2D>			m_RenderTarget;	// = RenderTargetTexture
 	ComPtr<ID3D11RenderTargetView>	m_RenderTargetView;
 
-	ComPtr<ID3D11Texture2D>			m_DepthStencil;
-	ComPtr<ID3D11DepthStencilView>	m_DepthStencilView;
-	//Ptr<CTexture>					m_DepthStencilTexture;
+	//ComPtr<ID3D11Texture2D>			m_DepthStencil;
+	//ComPtr<ID3D11DepthStencilView>	m_DepthStencilView;
+	Ptr<CTexture>					m_DSTexture;	// Depth-Stencil Texture
 
 	CConstantBuffer*				m_arrCB[(uint32)CB_TYPE::END];
 	ComPtr<ID3D11RasterizerState>	m_arrRS[(UINT)RS_TYPE::END];
