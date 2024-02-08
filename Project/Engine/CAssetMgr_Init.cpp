@@ -166,6 +166,7 @@ void CAssetMgr::Shader()
 	// Default Shader(2D_DefaultShader)
 	{
 		CGraphicShader* pShader = new CGraphicShader;
+		pShader->SetName(L"2D_DefaultShader");
 		pShader->VertexShader(L"std2d.fx", "VS_Std2D");
 		pShader->PixelShader(L"std2d.fx", "PS_Std2D");
 		pShader->SetRSType(RS_TYPE::CULL_NONE);				// default = CULL_BACK
@@ -178,6 +179,7 @@ void CAssetMgr::Shader()
 	// Effect Shader(2D_EffectShader)
 	{
 		CGraphicShader* pShader = new CGraphicShader;
+		pShader->SetName(L"2D_EffectShader");
 		pShader->VertexShader(L"std2d.fx", "VS_Std2D");
 		pShader->PixelShader(L"std2d.fx", "PS_Std2D_Effect");
 		pShader->SetRSType(RS_TYPE::CULL_NONE);
@@ -190,6 +192,7 @@ void CAssetMgr::Shader()
 	// Debug Shader(2D_DebugShader)
 	{
 		CGraphicShader* pShader = new CGraphicShader;
+		pShader->SetName(L"2D_DebugShader");
 		pShader->VertexShader(L"debug2d.fx", "VS_DebugShape");
 		pShader->PixelShader(L"debug2d.fx", "PS_DebugShape");
 		pShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);
@@ -206,7 +209,7 @@ void CAssetMgr::Shader()
 		pShader->SetName(L"GreyFilterShader");
 		pShader->VertexShader(L"postprocess.fx", "VS_GreyFilter");
 		pShader->PixelShader(L"postprocess.fx", "PS_GreyFilter");
-		pShader->SetRSType(RS_TYPE::CULL_BACK);
+		pShader->SetRSType(RS_TYPE::CULL_NONE);
 		pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
 		pShader->SetBSType(BS_TYPE::DEFAULT);
 		pShader->SetDomain(SHADER_DOMAIN::DOMAIN_POSTPROCESS);
@@ -219,6 +222,7 @@ void CAssetMgr::Material()
 	// Default Material
 	{
 		CMaterial* pMaterial = new CMaterial;
+		pMaterial->SetName(L"DefaultMaterial");
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
 		AddAsset(L"DefaultMaterial", pMaterial);
 	}
@@ -226,6 +230,7 @@ void CAssetMgr::Material()
 	// Monster Material
 	{
 		CMaterial* pMaterial = new CMaterial;
+		pMaterial->SetName(L"MonsterMaterial");
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
 		AddAsset(L"MonsterMaterial", pMaterial);
 	}
@@ -233,6 +238,7 @@ void CAssetMgr::Material()
 	// Background Material
 	{
 		CMaterial* pMaterial = new CMaterial;
+		pMaterial->SetName(L"BackgroundMaterial");
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
 		AddAsset(L"BackgroundMaterial", pMaterial);
 	}
@@ -240,6 +246,7 @@ void CAssetMgr::Material()
 	// UI Material
 	{
 		CMaterial* pMaterial = new CMaterial;
+		pMaterial->SetName(L"UIMaterial");
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_EffectShader"));
 		AddAsset(L"UIMaterial", pMaterial);
 	}
@@ -247,6 +254,7 @@ void CAssetMgr::Material()
 	// Debug Material
 	{
 		CMaterial* pMaterial = new CMaterial;
+		pMaterial->SetName(L"DebugMaterial");
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DebugShader"));
 		AddAsset(L"DebugMaterial", pMaterial);
 	}

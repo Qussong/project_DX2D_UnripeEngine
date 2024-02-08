@@ -108,6 +108,10 @@ void CCamera::FinalTick()
 {
 	ViewMatrix();
 	ProjectionMatrix();
+
+	// 상수버퍼 대응 구조체 값 세팅 (여기 있으면 카메라 이동 적용안됨 Render에서 설정해줘야한다.)
+	//g_tTransformConst.matView = m_matView;
+	//g_tTransformConst.matProj = m_matProj;
 }
 
 void CCamera::SortObject()
@@ -163,7 +167,7 @@ void CCamera::SortObject()
 
 void CCamera::Render()
 {
-	// 상수버퍼 대응 구조체 값 세팅
+	// Transform 상수버퍼 대응 구조체 값 세팅
 	g_tTransformConst.matView = m_matView;
 	g_tTransformConst.matProj = m_matProj;
 

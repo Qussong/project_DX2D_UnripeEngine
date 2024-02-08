@@ -33,7 +33,6 @@ void CMeshRender::UpdateData()
 
 	GetMesh()->UpdateData();
 	GetMaterial()->UpdateData();
-
 	GetOwner()->Transform()->UpdateData();
 }
 

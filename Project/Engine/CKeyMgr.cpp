@@ -53,13 +53,9 @@ void CKeyMgr::Tick()
 			nextKeState = KEY_STATE::NONE;
 
 			if (KEY_STATE::TAP == curKeyState)
-			{
 				nextKeState = KEY_STATE::PRESSED;
-			}
 			else if (KEY_STATE::PRESSED == curKeyState)
-			{
 				nextKeState = KEY_STATE::RELEASED;
-			}
 
 			m_vecKeyData[i].eState = nextKeState;
 		}	

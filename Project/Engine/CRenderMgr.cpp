@@ -45,6 +45,7 @@ void CRenderMgr::Render()
 
 void CRenderMgr::Render_Debug()
 {
+	// Main 카메라의 View, Projection 변환 행렬을 가져와, Transform 상수버퍼 대응 구조체 값 세팅
 	g_tTransformConst.matView = m_vecCamera[0]->GetViewMatrix();
 	g_tTransformConst.matProj = m_vecCamera[0]->GetProjMatrix();
 
@@ -115,15 +116,19 @@ void CRenderMgr::Binding()
 
 	// 2D 광원 정보(tLightInfo) 업데이트
 	{
+		// 갱신된 광원에 대한 정보를 컨테이너에 추가
 		static vector<tLight2D> vecLight2DInfo;
 		for (size_t i = 0; i < m_vecLight2D.size(); ++i)
 		{
 			const tLight2D& info = m_vecLight2D[i]->GetLightInfo();
 			vecLight2DInfo.push_back(info);
 		}
-		// 갱신된 광원들의 정보를 구조화버퍼에 세팅해준다.
+
+		// 컨테이너에 들어욌는 광원 데이터들을 구조화 버퍼에 복사
 		m_pLight2DBuffer->SetData(vecLight2DInfo.data(), (UINT)vecLight2DInfo.size());
+		// 구조화 버퍼를 파이프라인에 세팅
 		m_pLight2DBuffer->UpdateData(11);
+		// 데이터를 다 넘겨줬기에 비워준다.
 		vecLight2DInfo.clear();
 	}
 }

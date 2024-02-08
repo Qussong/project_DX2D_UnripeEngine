@@ -175,14 +175,11 @@ void CLevelMgr::Init()
 		pUIObj->AddComponent(new CTransform);
 		pUIObj->AddComponent(new CMeshRender);
 		// basicComp
-		pUIObj->Transform()->SetLocalPos(Vec3(-600.f, 300.f, 500.f));
-		pUIObj->Transform()->SetLocalScale(Vec3(55.f, 50.f, 1.f));
+		pUIObj->Transform()->SetLocalPos(Vec3(400.f, -200.f, 500.f));
+		pUIObj->Transform()->SetLocalScale(Vec3(128.f * 3, 72.f * 3, 1.f));
 		// renderComp
 		pUIObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		pUIObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"UIMaterial"));
-		// texture
-		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"bluebird");
-		pUIObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
 
 		GamePlayStatic::SpawnGameObject(pUIObj, LAYER_TYPE::UI);
 	}

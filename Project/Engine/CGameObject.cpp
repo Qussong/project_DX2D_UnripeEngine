@@ -154,6 +154,13 @@ void CGameObject::Destroy()
 
 void CGameObject::Begin()
 {
+	// test
+	if (GetName() == L"UI")
+	{
+		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"PostProcessTex");
+		MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
+	}
+
 	for (UINT i = 0; i < UINT(COMPONENT_TYPE::BASIC_END); ++i)
 	{
 		if (nullptr != m_arrBasicComp[i])
@@ -193,18 +200,14 @@ void CGameObject::Tick()
 		m_pRenderComp->Tick();
 	}
 
-	//for (CScript* script : m_vecScript)
-	//{
-	//	script->Tick();
-	//}
 	for (size_t i = 0; i < m_vecScript.size(); ++i)
 	{
 		m_vecScript[i]->Tick();
 	}
 
-	for (CGameObject* child : m_vecChild)
+	for (size_t i = 0; i < m_vecChild.size(); ++i)
 	{
-		child->Tick();
+		m_vecChild[i]->Tick();
 	}
 }
 
@@ -223,14 +226,32 @@ void CGameObject::FinalTick()
 		m_pRenderComp->FinalTick();
 	}
 
-	for (CScript* script : m_vecScript)
+	for (size_t i = 0; i < m_vecScript.size(); ++i)
 	{
-		script->FinalTick();
+		m_vecScript[i]->FinalTick();
 	}
 
-	for (CGameObject* child : m_vecChild)
+	for (size_t i = 0; i < m_vecChild.size(); ++i)
 	{
-		child->FinalTick();
+		m_vecChild[i]->FinalTick();
+	}
+
+	vector<CGameObject*>::iterator iter = m_vecChild.begin();
+	for (; iter != m_vecChild.end();)
+	{
+		CGameObject* pChild = *iter;
+
+		pChild->FinalTick();
+
+		if (true == pChild->IsDead())
+		{
+			M_GC->Add(pChild);
+			iter = m_vecChild.erase(iter);
+		}
+		else
+		{
+			++iter;
+		}
 	}
 
 	// Render 를 위해 객체가 소속된 Layer의 m_vecObject에 해당 객체 추가
@@ -242,7 +263,5 @@ void CGameObject::Render()
 {
 	// CCamera의 Render 를 타고 들어온다.
 	if (nullptr != m_pRenderComp)
-	{
 		m_pRenderComp->Render();
-	}
 }

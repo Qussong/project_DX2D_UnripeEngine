@@ -36,7 +36,7 @@ void CTimeMgr::Tick()
 
 	m_fAccTime += m_fDeltaTime;
 
-	// 1초마다 FPS 출력 및 갱신
+	// 1초마다 FPS  갱신
 	if (1.f <= m_fAccTime)
 	{
 		// PrintFPS();
