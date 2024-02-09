@@ -31,9 +31,9 @@ void CMeshRender::UpdateData()
 	else
 		pAnimator->Clear();
 
-	GetMesh()->UpdateData();
 	GetMaterial()->UpdateData();
 	GetOwner()->Transform()->UpdateData();
+	GetMesh()->UpdateData();
 }
 
 void CMeshRender::Render()
@@ -45,4 +45,3 @@ void CMeshRender::Render()
 	UpdateData();
 	GetMesh()->Render();
 }
-

@@ -138,14 +138,17 @@ float4 PS_Std2D_Effect(VS_OUT _in) : SV_Target
             v4Color.r += 1.f;
     }
     
-    // 광원처리
-    tLightColorInfo tLightColor = (tLightColorInfo) 0.f;
-    for (int idx = 0; idx < g_iLight2DCnt; ++idx)
+    // UI 객체가 아니라면
+    if (!g_int_3)
     {
-        CalLight2D(_in.vWorldPos, idx, tLightColor);
+        // 광원처리
+        tLightColorInfo tLightColor = (tLightColorInfo) 0.f;
+        for (int idx = 0; idx < g_iLight2DCnt; ++idx)
+        {
+            CalLight2D(_in.vWorldPos, idx, tLightColor);
+        }
+        v4Color.rgb *= (tLightColor.v4Color.rgb + tLightColor.v4Ambient.rgb);
     }
-    
-    v4Color.rgb *= (tLightColor.v4Color.rgb + tLightColor.v4Ambient.rgb);
     
     return v4Color;
 }

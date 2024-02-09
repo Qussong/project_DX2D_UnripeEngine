@@ -222,49 +222,49 @@ void CAssetMgr::Material()
 	// Default Material
 	{
 		CMaterial* pMaterial = new CMaterial;
-		pMaterial->SetName(L"DefaultMaterial");
+		pMaterial->SetName(L"DefaultMtrl");
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
-		AddAsset(L"DefaultMaterial", pMaterial);
+		AddAsset(L"DefaultMtrl", pMaterial);
 	}
 
 	// Monster Material
 	{
 		CMaterial* pMaterial = new CMaterial;
-		pMaterial->SetName(L"MonsterMaterial");
+		pMaterial->SetName(L"MonsterMtrl");
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
-		AddAsset(L"MonsterMaterial", pMaterial);
+		AddAsset(L"MonsterMtrl", pMaterial);
 	}
 
 	// Background Material
 	{
 		CMaterial* pMaterial = new CMaterial;
-		pMaterial->SetName(L"BackgroundMaterial");
+		pMaterial->SetName(L"BackgroundMtrl");
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
-		AddAsset(L"BackgroundMaterial", pMaterial);
+		AddAsset(L"BackgroundMtrl", pMaterial);
 	}
 
 	// UI Material
 	{
 		CMaterial* pMaterial = new CMaterial;
-		pMaterial->SetName(L"UIMaterial");
+		pMaterial->SetName(L"UIMtrl");
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_EffectShader"));
-		AddAsset(L"UIMaterial", pMaterial);
+		AddAsset(L"UIMtrl", pMaterial);
 	}
 
 	// Debug Material
 	{
 		CMaterial* pMaterial = new CMaterial;
-		pMaterial->SetName(L"DebugMaterial");
+		pMaterial->SetName(L"DebugMtrl");
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DebugShader"));
-		AddAsset(L"DebugMaterial", pMaterial);
+		AddAsset(L"DebugMtrl", pMaterial);
 	}
 
 	// GreyFilter Material
 	{
 		CMaterial* pMaterial = new CMaterial;
-		pMaterial->SetName(L"GreyFilterMaterial");
+		pMaterial->SetName(L"GreyFilterMtrl");
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"GreyFilterShader"));
-		AddAsset(L"GreyFilterMaterial", pMaterial);
+		AddAsset(L"GreyFilterMtrl", pMaterial);
 	}
 }
 

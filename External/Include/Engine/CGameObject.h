@@ -34,7 +34,7 @@ private:
 	bool					m_bDead;		// 해당 플래그 값을 기반으로 TaskMgr 에서 객체 관리
 
 	bool					m_bLevel;	// 소속된 레벨 존재여부 확인
-	bool					m_bAsset;	// 관련 리소스 로드여부 확인(false : 로드안됨, true : 로드완료)
+	bool					m_bAsset;	// 리소스 로드여부 확인 ,Script에서 진행 (false : 로드안됨, true : 로드완료)
 
 public:
 	// Getter

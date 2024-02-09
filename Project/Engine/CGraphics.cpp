@@ -161,9 +161,9 @@ void CGraphics::DeviceAndSwapChain()
 void CGraphics::RenderTargetView()
 {
 	// render target texture
-	ComPtr<ID3D11Texture2D> Tex2D;
-	m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)Tex2D.GetAddressOf());
-	m_RTTex = M_ASSET->CreateTexture(L"RenderTargetTex", Tex2D);
+	ComPtr<ID3D11Texture2D> pTex2D;
+	m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)pTex2D.GetAddressOf());
+	m_RTTex = M_ASSET->CreateTexture(L"RenderTargetTex", pTex2D);
 
 	// render target view
 	HRESULT hr = m_Device->CreateRenderTargetView(m_RTTex->GetTex2D().Get(), nullptr, m_RTTex->GetRTV().GetAddressOf());

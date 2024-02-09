@@ -21,7 +21,7 @@ cbuffer MATERIAL : register(b1)
     int g_int_0;
     int g_int_1;
     int g_int_2;
-    int g_int_3;
+    int g_int_3;    // UI ±¸ºÐ(0 : UI °´Ã¼ ¾Æ´Ô, 1~ : UI °´Ã¼)
     
     float g_float_0;
     float g_float_1;

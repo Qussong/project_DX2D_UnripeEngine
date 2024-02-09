@@ -154,13 +154,6 @@ void CGameObject::Destroy()
 
 void CGameObject::Begin()
 {
-	// test
-	if (GetName() == L"UI")
-	{
-		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"PostProcessTex");
-		MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
-	}
-
 	for (UINT i = 0; i < UINT(COMPONENT_TYPE::BASIC_END); ++i)
 	{
 		if (nullptr != m_arrBasicComp[i])

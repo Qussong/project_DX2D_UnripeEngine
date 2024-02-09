@@ -166,6 +166,9 @@
     <ClInclude Include="CTestMonsterScript.h">
       <Filter>09.Script\Monster\Test</Filter>
     </ClInclude>
+    <ClInclude Include="CMinimapScript.h">
+      <Filter>09.Script\Minimap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -302,6 +305,9 @@
     </ClCompile>
     <ClCompile Include="CAssetMgr_Init.cpp">
       <Filter>04.Manager\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CMinimapScript.cpp">
+      <Filter>09.Script\Minimap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -457,6 +463,9 @@
     </Filter>
     <Filter Include="Shader\Render">
       <UniqueIdentifier>{ccd2ce2c-ade7-47a1-8a44-5086f895c6f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.Script\Minimap">
+      <UniqueIdentifier>{eddd1bec-f79c-499f-9363-7cb41daebfae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

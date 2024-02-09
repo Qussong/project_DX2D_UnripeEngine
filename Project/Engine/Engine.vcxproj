@@ -42,14 +42,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <EnableUnitySupport>true</EnableUnitySupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <EnableUnitySupport>true</EnableUnitySupport>
@@ -185,6 +185,7 @@ call EngineCopy.bat</Command>
     <ClInclude Include="CMaterial.h" />
     <ClInclude Include="CMesh.h" />
     <ClInclude Include="CMeshRender.h" />
+    <ClInclude Include="CMinimapScript.h" />
     <ClInclude Include="CMissileScript.h" />
     <ClInclude Include="CMonsterScript.h" />
     <ClInclude Include="component.h" />
@@ -243,6 +244,7 @@ call EngineCopy.bat</Command>
     <ClCompile Include="CMaterial.cpp" />
     <ClCompile Include="CMesh.cpp" />
     <ClCompile Include="CMeshRender.cpp" />
+    <ClCompile Include="CMinimapScript.cpp" />
     <ClCompile Include="CMissileScript.cpp" />
     <ClCompile Include="CMonsterScript.cpp" />
     <ClCompile Include="CPathMgr.cpp" />

@@ -11,6 +11,7 @@ public:
 
 private:
 	ScratchImage						m_Texture;	// DirectXTex를 통해 로드된 Texture 저장
+
 	D3D11_TEXTURE2D_DESC				m_tDesc;	// Texture 생성 정보
 	ComPtr<ID3D11Texture2D>				m_Tex2D;	// Texture 데이터를 GPU 메모리에서 관리
 	ComPtr<ID3D11RenderTargetView>		m_RTV;		

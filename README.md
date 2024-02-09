@@ -211,13 +211,16 @@ DirectX 2D Engine
 &nbsp;&nbsp; - CShader) 도메인 개념 추가하여 이를 기준으로 쉐이더 구분 (OPAQUE, MASK, TRANSPARENT, POSTPROCESS, DEBUG)<br>
 &nbsp;&nbsp; - CCamera) 도메인을 기준으로 객체를 분류한 후, 관련 도메인들끼리 따로 Render<br>
 
-
 **_24/02/07_** :<br>
 &nbsp;&nbsp; - CMonsterScript 생성<br>
 &nbsp;&nbsp; - Script를 사용하는 GameObject의 Texture 및 Animation 생성및 설정은 Script에서 되도록 코드 수정<br>
 &nbsp;&nbsp; - CTexture 에 Create 함수 추가하여 AssetMgr.CreateTexture()를 통해 CTexture 객체 생성가능<br>
 &nbsp;&nbsp; - CGraphics) DepthStencilTexture -> CTexuter 객체화<br>
 &nbsp;&nbsp; - CGraphics) RenderTargetTexture -> CTexture 객체화<br>
-&nbsp;&nbsp; - <br>
+
+**_24/02/08_** :<br>
+&nbsp;&nbsp; - CGameObject) Parent 객체에 포함되어있는 Child 객체도 Dead상태 판별하여 m_vecChild에서 제거후 GarbageCollector의 컨테이너에 추가해줌<br>
+&nbsp;&nbsp; - 후처리 기능 추가중 (수정중)<br>
+
 
 <!-- &nbsp;&nbsp; - <br> -->

@@ -18,3 +18,4 @@
 
 // test
 #include "CTestMonsterScript.h"
+#include "CMinimapScript.h"

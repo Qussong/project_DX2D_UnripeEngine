@@ -70,6 +70,6 @@ public:
 	void		 SortObject();
 private:
 	void		 Render(vector<CGameObject*>& _vecObj);
-	void		 Render_PostProcess(vector<CGameObject*>& _vecObj);
+	void		 Render_PostProcess();
 };
 

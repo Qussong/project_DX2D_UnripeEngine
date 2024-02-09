@@ -22,10 +22,10 @@ void CGraphicShader::UpdateData()
 	CONTEXT->IASetPrimitiveTopology(m_Topology);
 
 	CONTEXT->VSSetShader(m_VS.Get(), nullptr, 0);
+	//CONTEXT->HSSetShader(m_HS.Get(), nullptr, 0);
+	//CONTEXT->DSSetShader(m_DS.Get(), nullptr, 0);
+	//CONTEXT->GSSetShader(m_GS.Get(), nullptr, 0);
 	CONTEXT->PSSetShader(m_PS.Get(), nullptr, 0);
-	// + Hull Shader
-	// + Domain Shader
-	// + Geometry Shader
 
 	CONTEXT->RSSetState(GRAPHICS->GetRSState(m_eRSType).Get());
 	CONTEXT->OMSetDepthStencilState(GRAPHICS->GetDSState(m_eDSType).Get(), 0);

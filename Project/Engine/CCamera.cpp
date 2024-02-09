@@ -108,10 +108,6 @@ void CCamera::FinalTick()
 {
 	ViewMatrix();
 	ProjectionMatrix();
-
-	// 상수버퍼 대응 구조체 값 세팅 (여기 있으면 카메라 이동 적용안됨 Render에서 설정해줘야한다.)
-	//g_tTransformConst.matView = m_matView;
-	//g_tTransformConst.matProj = m_matProj;
 }
 
 void CCamera::SortObject()
@@ -171,15 +167,10 @@ void CCamera::Render()
 	g_tTransformConst.matView = m_matView;
 	g_tTransformConst.matProj = m_matProj;
 
-	// Domain 순서대로 Render
-	size_t iDomainCnt = (size_t)SHADER_DOMAIN::END;
-	for (size_t idx = 0; idx < iDomainCnt; ++idx)
-	{
-		if ((uint32)SHADER_DOMAIN::DOMAIN_POSTPROCESS == idx)
-			Render_PostProcess(m_DomainObj[idx]);
-		else
-	 		Render(m_DomainObj[idx]);
-	}
+	Render(m_DomainObj[(int32)SHADER_DOMAIN::DOMAIN_OPAQUE]);
+	Render(m_DomainObj[(int32)SHADER_DOMAIN::DOMAIN_MASK]);
+	Render(m_DomainObj[(int32)SHADER_DOMAIN::DOMAIN_TRANSPARENT]);
+	Render_PostProcess();
 }
 
 void CCamera::Render(vector<CGameObject*>& _vecObj)
@@ -192,20 +183,21 @@ void CCamera::Render(vector<CGameObject*>& _vecObj)
 	_vecObj.clear();
 }
 
-void CCamera::Render_PostProcess(vector<CGameObject*>& _vecObj)
+void CCamera::Render_PostProcess()
 {
-	size_t iObjCnt = _vecObj.size();
-	for (size_t i = 0; i < iObjCnt; ++i)
+	vector<CGameObject*> &vecPPObj = m_DomainObj[(uint32)SHADER_DOMAIN::DOMAIN_POSTPROCESS];
+	for (size_t i = 0; i < vecPPObj.size(); ++i)
 	{
-		// 최종 렌더링 타겟(=Texture)을 후처리 타겟에 복사
-		M_RENDER->CopyRenderTargetToPostProcessTarget();
+		// 최종 렌더링 이미지를 후처리 타겟에 복사
+		CRenderMgr::GetInst()->CopyRenderTargetToPostProcessTarget();
 
-		// 복사받은 PostProcess Texture 를 t13 레지스터에 바인딩
-		Ptr<CTexture> pPPTex = M_RENDER->GetPostProcessTex();
-		pPPTex->UpdateData(13);
+		// 복사받은 후처리 텍스쳐를 t13 레지스터에 바인딩
+		Ptr<CTexture> pPostProcessTex = CRenderMgr::GetInst()->GetPostProcessTex();
+		pPostProcessTex->UpdateData(13);
 
-		// 후처리 객체 렌더링
-		_vecObj[i]->Render();
+		// 후처리 오브젝트 렌더링
+		vecPPObj[i]->Render();
 	}
-	_vecObj.clear();
+
+	vecPPObj.clear();
 }

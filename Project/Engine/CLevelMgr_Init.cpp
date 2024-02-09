@@ -22,8 +22,7 @@ void CLevelMgr::Init()
 		pCamObj->Camera()->SetPriority(0);
 		pCamObj->Camera()->LayerCheckAll(/*true*/);
 		pCamObj->Camera()->LayerCheck(L"UILayer", false);
-		
-		m_pCurLevel->AddObject(pCamObj, LAYER_TYPE::DEFAULT);
+		GamePlayStatic::SpawnGameObject(pCamObj, LAYER_TYPE::DEFAULT);
 	}
 
 	// UI Camera
@@ -37,8 +36,7 @@ void CLevelMgr::Init()
 		pCamObj->Transform()->SetLocalRotation(Vec3(0.f, 0.f, 0.f));
 		pCamObj->Camera()->SetPriority(1);
 		pCamObj->Camera()->LayerCheck(L"UILayer", true);
-
-		m_pCurLevel->AddObject(pCamObj, LAYER_TYPE::DEFAULT);
+		GamePlayStatic::SpawnGameObject(pCamObj, LAYER_TYPE::DEFAULT);
 	}
 
 	// PlayerObj
@@ -63,8 +61,7 @@ void CLevelMgr::Init()
 		pPlayerObj->Light2D()->SetRaius(150.f);
 		// RenderComp
 		pPlayerObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		pPlayerObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMaterial"));
-
+		pPlayerObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMtrl"));
 		GamePlayStatic::SpawnGameObject(pPlayerObj, LAYER_TYPE::PLAYER);
 	}
 
@@ -86,8 +83,7 @@ void CLevelMgr::Init()
 		pMonsterObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::CIRCLE);
 		// RenderComp
 		pMonsterObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		pMonsterObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"MonsterMaterial"));
-
+		pMonsterObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"MonsterMtrl"));
 		GamePlayStatic::SpawnGameObject(pMonsterObj, LAYER_TYPE::MONSTER);
 	}
 
@@ -101,11 +97,10 @@ void CLevelMgr::Init()
 		pBackObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 600.f));
 		pBackObj->Transform()->SetLocalScale(Vec3(500.f, 500.f, 1.f));
 		pBackObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		pBackObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"BackgroundMaterial"));
+		pBackObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"BackgroundMtrl"));
 		// texture
 		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"flower");
 		pBackObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
-
 		GamePlayStatic::SpawnGameObject(pBackObj, LAYER_TYPE::BACKGROUND);
 	}
 
@@ -164,7 +159,7 @@ void CLevelMgr::Init()
 		// basicComp
 		pLightObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
 		pLightObj->Light2D()->SetLightType(LIGHT_TYPE::DIRECTIONAL);
-		pLightObj->Light2D()->SetAmbient(Vec4(0.3f, 0.3f, 0.3f, 0.3f));
+		pLightObj->Light2D()->SetAmbient(Vec4(0.2f, 0.2f, 0.2f, 1.f));
 		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
 	}
 
@@ -174,13 +169,14 @@ void CLevelMgr::Init()
 		pUIObj->SetName(L"UI");
 		pUIObj->AddComponent(new CTransform);
 		pUIObj->AddComponent(new CMeshRender);
+		pUIObj->AddComponent(new CMinimapScript);
 		// basicComp
 		pUIObj->Transform()->SetLocalPos(Vec3(400.f, -200.f, 500.f));
 		pUIObj->Transform()->SetLocalScale(Vec3(128.f * 3, 72.f * 3, 1.f));
 		// renderComp
 		pUIObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		pUIObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"UIMaterial"));
-
+		pUIObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"UIMtrl"));
+		pUIObj->MeshRender()->GetMaterial()->SetScalarParam(SCALAR_PARAM::INT_3, 1);	// hlsl코드에서 UI객체 구분
 		GamePlayStatic::SpawnGameObject(pUIObj, LAYER_TYPE::UI);
 	}
 
@@ -192,8 +188,7 @@ void CLevelMgr::Init()
 		pGreyObj->AddComponent(new CMeshRender);
 		// basicComp
 		pGreyObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		pGreyObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"GreyFilterMaterial"));
-
+		pGreyObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"GreyFilterMtrl"));
 		GamePlayStatic::SpawnGameObject(pGreyObj, LAYER_TYPE::DEFAULT);
 	}
 }
