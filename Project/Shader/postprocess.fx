@@ -37,8 +37,6 @@ float4 PS_GreyFilter(VS_OUT _in) : SV_Target
     float fAvg = (v4Color.r + v4Color.g + v4Color.b) / 3.f;
     v4Color.rgb = float3(fAvg, fAvg, fAvg);
     
-    //v4Color = float4(0.3f, 0.3f, 0.3f, 1.f);
-    
     return v4Color;
 }
 

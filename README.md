@@ -222,5 +222,9 @@ DirectX 2D Engine
 &nbsp;&nbsp; - CGameObject) Parent 객체에 포함되어있는 Child 객체도 Dead상태 판별하여 m_vecChild에서 제거후 GarbageCollector의 컨테이너에 추가해줌<br>
 &nbsp;&nbsp; - 후처리 기능 추가중 (수정중)<br>
 
+**_24/02/09_** :<br>
+&nbsp;&nbsp; - GreyFilter (PostProcess) 추가 완료<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/postprocess_greyfilter.png" width=500><br>
+&nbsp;&nbsp; - <br>
 
 <!-- &nbsp;&nbsp; - <br> -->

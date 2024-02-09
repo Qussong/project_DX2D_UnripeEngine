@@ -193,7 +193,7 @@ void CCamera::Render_PostProcess()
 
 		// 복사받은 후처리 텍스쳐를 t13 레지스터에 바인딩
 		Ptr<CTexture> pPostProcessTex = CRenderMgr::GetInst()->GetPostProcessTex();
-		pPostProcessTex->UpdateData(13);
+		pPostProcessTex->UpdateData((int32)REGISTER::TEX_POSTPROCESS);
 
 		// 후처리 오브젝트 렌더링
 		vecPPObj[i]->Render();

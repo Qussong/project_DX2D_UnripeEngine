@@ -89,7 +89,7 @@ void CAnimation::UpdateData()
 	pCB->UpdateData();
 
 	// 애니메이션이 사용하는 아틀라스 이미지를 t10에 바인딩
-	m_AtlasTex->UpdateData(10);
+	m_AtlasTex->UpdateData((int32)REGISTER::TEX_ANIM_2D);
 }
 
 void CAnimation::Clear()

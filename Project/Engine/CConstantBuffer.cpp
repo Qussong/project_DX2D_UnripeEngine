@@ -51,8 +51,8 @@ void CConstantBuffer::SetData(void* _src, UINT _cnt)
 void CConstantBuffer::UpdateData()
 {
 	CONTEXT->VSSetConstantBuffers((UINT)m_eType, 1, m_CB.GetAddressOf());
-	CONTEXT->HSSetConstantBuffers((UINT)m_eType, 1, m_CB.GetAddressOf());
-	CONTEXT->DSSetConstantBuffers((UINT)m_eType, 1, m_CB.GetAddressOf());
-	CONTEXT->GSSetConstantBuffers((UINT)m_eType, 1, m_CB.GetAddressOf());
+	//CONTEXT->HSSetConstantBuffers((UINT)m_eType, 1, m_CB.GetAddressOf());
+	//CONTEXT->DSSetConstantBuffers((UINT)m_eType, 1, m_CB.GetAddressOf());
+	//CONTEXT->GSSetConstantBuffers((UINT)m_eType, 1, m_CB.GetAddressOf());
 	CONTEXT->PSSetConstantBuffers((UINT)m_eType, 1, m_CB.GetAddressOf());
 }
