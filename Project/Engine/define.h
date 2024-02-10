@@ -23,3 +23,17 @@
 #define		DT				M_TIME->DeltaTime()
 
 #define		LIGHT_MAX_CNT	10
+
+// Layer의 Z축 위치 값
+#define		DEFAULT_LAYER_Z		0
+#define		BACKGROUND_LAYER_Z	0
+#define		TILE_LAYER_Z		0
+#define		PLAYER_LAYER_Z		0
+#define		MONSTER_LAYER_Z		0
+#define		LIGHT2D_LAYER_Z		0
+#define		UI_LAYER_Z			0
+
+// 상수버퍼 Register 번호
+#define		TEX_ANIM_2D			10
+#define		LIGHT_2D			11
+#define		TEX_POSTPROCESS		13

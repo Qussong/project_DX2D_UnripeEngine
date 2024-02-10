@@ -215,6 +215,19 @@ void CAssetMgr::Shader()
 		pShader->SetDomain(SHADER_DOMAIN::DOMAIN_POSTPROCESS);
 		AddAsset(L"GreyFilterShader", pShader);
 	}
+
+	// Distortion Shader
+	{
+		CGraphicShader* pShader = new CGraphicShader;
+		pShader->SetName(L"DistortionShader");
+		pShader->VertexShader(L"postprocess.fx", "VS_Distortion");
+		pShader->PixelShader(L"postprocess.fx", "PS_Distortion");
+		pShader->SetRSType(RS_TYPE::CULL_NONE);
+		pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
+		pShader->SetBSType(BS_TYPE::DEFAULT);
+		pShader->SetDomain(SHADER_DOMAIN::DOMAIN_POSTPROCESS);
+		AddAsset(L"DistortionShader", pShader);
+	}
 }
 
 void CAssetMgr::Material()
@@ -265,6 +278,14 @@ void CAssetMgr::Material()
 		pMaterial->SetName(L"GreyFilterMtrl");
 		pMaterial->SetShader(FindAsset<CGraphicShader>(L"GreyFilterShader"));
 		AddAsset(L"GreyFilterMtrl", pMaterial);
+	}
+
+	// Distortion Material
+	{
+		CMaterial* pMtrl = new CMaterial;
+		pMtrl->SetName(L"DistortionMtrl");
+		pMtrl->SetShader(FindAsset<CGraphicShader>(L"DistortionShader"));
+		AddAsset(L"DistortionMtrl", pMtrl);
 	}
 }
 

@@ -225,6 +225,7 @@ DirectX 2D Engine
 **_24/02/09_** :<br>
 &nbsp;&nbsp; - GreyFilter (PostProcess) 추가 완료<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/postprocess_greyfilter.png" width=500><br>
-&nbsp;&nbsp; - <br>
+&nbsp;&nbsp; - Distortion 효과 추가완료<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/Qussong/project_DX2D_UnripeEngine/assets/89381041/0807bd3b-8c12-41ff-8b79-0eeec0c2cdf2" width=500><br>
 
 <!-- &nbsp;&nbsp; - <br> -->

@@ -46,6 +46,7 @@ public:
 
 	// Setter
 	void SetLocalPos(Vec3 _pos) { m_v3LocalPostion = _pos; }
+	void SetLocalPos(Vec2 _pos);
 	void SetLocalScale(Vec3 _scale) { m_v3LocalScale = _scale; }
 	void SetLocalRotation(Vec3 _rotate) { m_v3LocalRotation = _rotate; }
 	void SetWorldMatrix(Matrix _mat) { m_matWorld = _mat; }

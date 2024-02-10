@@ -140,6 +140,16 @@ const Vec3 CTransform::GetWorldPos()
 	return WorldSRT(SRT_TYPE::POS);
 }
 
+void CTransform::SetLocalPos(Vec2 _pos)
+{
+	// 소속된 레이어 값 
+
+	// 레이어 비교
+
+	// 소속된 레이어에 맞는 Z축 값 넣기
+
+}
+
 Vec3 CTransform::ToEulerAngles(Quaternion q)
 {
 	Vec3 angles;

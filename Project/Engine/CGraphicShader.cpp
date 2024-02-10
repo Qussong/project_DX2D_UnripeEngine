@@ -137,7 +137,15 @@ void CGraphicShader::PixelShader(const wstring& _fileName, const string& _functi
 
 	if (FAILED(hr))
 	{
-		MessageBoxA(nullptr, "Pixel Shader Compile Failed", "PixelShader Error", MB_OK);
+		if (nullptr != m_ErrBlob)
+		{
+			char* pErrMsg = (char*)m_ErrBlob->GetBufferPointer();
+			MessageBoxA(nullptr, pErrMsg, "PixelShader Error", MB_OK);
+		}
+		else
+		{
+			MessageBoxA(nullptr, "Pixel Shader Compile Failed", "PixelShader Error", MB_OK);
+		}
 		_exit(EXIT_FAILURE);
 	}
 

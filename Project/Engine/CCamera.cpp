@@ -167,10 +167,24 @@ void CCamera::Render()
 	g_tTransformConst.matView = m_matView;
 	g_tTransformConst.matProj = m_matProj;
 
-	Render(m_DomainObj[(int32)SHADER_DOMAIN::DOMAIN_OPAQUE]);
-	Render(m_DomainObj[(int32)SHADER_DOMAIN::DOMAIN_MASK]);
-	Render(m_DomainObj[(int32)SHADER_DOMAIN::DOMAIN_TRANSPARENT]);
-	Render_PostProcess();
+	//Render(m_DomainObj[(int32)SHADER_DOMAIN::DOMAIN_OPAQUE]);
+	//Render(m_DomainObj[(int32)SHADER_DOMAIN::DOMAIN_MASK]);
+	//Render(m_DomainObj[(int32)SHADER_DOMAIN::DOMAIN_TRANSPARENT]);
+	//Render_PostProcess();
+
+	size_t iDomainCnt = (int32)SHADER_DOMAIN::END;
+	for (size_t i = 0; i < iDomainCnt; ++i)
+	{
+		if ((int32)SHADER_DOMAIN::DOMAIN_POSTPROCESS == i)
+		{
+			Render_PostProcess();
+		}
+		else
+		{
+			Render(m_DomainObj[i]);
+		}
+	}
+
 }
 
 void CCamera::Render(vector<CGameObject*>& _vecObj)
@@ -193,7 +207,7 @@ void CCamera::Render_PostProcess()
 
 		// 복사받은 후처리 텍스쳐를 t13 레지스터에 바인딩
 		Ptr<CTexture> pPostProcessTex = CRenderMgr::GetInst()->GetPostProcessTex();
-		pPostProcessTex->UpdateData((int32)REGISTER::TEX_POSTPROCESS);
+		pPostProcessTex->UpdateData(TEX_POSTPROCESS);
 
 		// 후처리 오브젝트 렌더링
 		vecPPObj[i]->Render();

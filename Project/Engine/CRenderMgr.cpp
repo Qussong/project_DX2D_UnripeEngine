@@ -71,7 +71,7 @@ void CRenderMgr::UpdateData()
 			m_pLight2DBuffer->SetData(vecLight2DInfo.data(), (UINT)vecLight2DInfo.size());
 		}
 		// 구조화 버퍼를 파이프라인에 세팅
-		m_pLight2DBuffer->UpdateData((int32)REGISTER::LIGHT_2D);
+		m_pLight2DBuffer->UpdateData(LIGHT_2D);
 		// 데이터를 다 넘겨줬기에 비워준다.
 		vecLight2DInfo.clear();
 	}

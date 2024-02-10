@@ -32,8 +32,6 @@ void CLevelMgr::Init()
 		pCamObj->AddComponent(new CTransform);
 		pCamObj->AddComponent(new CCamera);
 		// BasicComp
-		pCamObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 0.f));
-		pCamObj->Transform()->SetLocalRotation(Vec3(0.f, 0.f, 0.f));
 		pCamObj->Camera()->SetPriority(1);
 		pCamObj->Camera()->LayerCheck(L"UILayer", true);
 		GamePlayStatic::SpawnGameObject(pCamObj, LAYER_TYPE::DEFAULT);
@@ -165,30 +163,45 @@ void CLevelMgr::Init()
 
 	// UIObj
 	{
-		CGameObject* pUIObj = new CGameObject;
-		pUIObj->SetName(L"UI");
-		pUIObj->AddComponent(new CTransform);
-		pUIObj->AddComponent(new CMeshRender);
-		pUIObj->AddComponent(new CMinimapScript);
-		// basicComp
-		pUIObj->Transform()->SetLocalPos(Vec3(400.f, -200.f, 500.f));
-		pUIObj->Transform()->SetLocalScale(Vec3(128.f * 3, 72.f * 3, 1.f));
-		// renderComp
-		pUIObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		pUIObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"UIMtrl"));
-		pUIObj->MeshRender()->GetMaterial()->SetScalarParam(SCALAR_PARAM::INT_3, 1);	// hlsl코드에서 UI객체 구분
-		GamePlayStatic::SpawnGameObject(pUIObj, LAYER_TYPE::UI);
+		//CGameObject* pUIObj = new CGameObject;
+		//pUIObj->SetName(L"UI");
+		//pUIObj->AddComponent(new CTransform);
+		//pUIObj->AddComponent(new CMeshRender);
+		//pUIObj->AddComponent(new CMinimapScript);
+		//// basicComp
+		//pUIObj->Transform()->SetLocalPos(Vec3(400.f, -200.f, 500.f));
+		//pUIObj->Transform()->SetLocalScale(Vec3(128.f * 3, 72.f * 3, 1.f));
+		//// renderComp
+		//pUIObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+		//pUIObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"UIMtrl"));
+		//pUIObj->MeshRender()->GetMaterial()->SetScalarParam(SCALAR_PARAM::INT_3, 1);	// hlsl코드에서 UI객체 구분
+		//GamePlayStatic::SpawnGameObject(pUIObj, LAYER_TYPE::UI);
 	}
 
-	// PostProcessObj_GreyFilter
+	// PPObj_GreyFilter
 	{
-		CGameObject* pGreyObj = new CGameObject;
-		pGreyObj->SetName(L"GreyFilter");
-		pGreyObj->AddComponent(new CTransform);
-		pGreyObj->AddComponent(new CMeshRender);
+		//CGameObject* pGreyObj = new CGameObject;
+		//pGreyObj->SetName(L"GreyFilter");
+		//pGreyObj->AddComponent(new CTransform);
+		//pGreyObj->AddComponent(new CMeshRender);
+		//// basicComp
+		//pGreyObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+		//pGreyObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"GreyFilterMtrl"));
+		//GamePlayStatic::SpawnGameObject(pGreyObj, LAYER_TYPE::DEFAULT);
+	}
+
+	// PPObj_Distortion
+	{
+		CGameObject* pDisObj = new CGameObject;
+		pDisObj->SetName(L"Distortion");
+		pDisObj->AddComponent(new CTransform);
+		pDisObj->AddComponent(new CMeshRender);
 		// basicComp
-		pGreyObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		pGreyObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"GreyFilterMtrl"));
-		GamePlayStatic::SpawnGameObject(pGreyObj, LAYER_TYPE::DEFAULT);
+		pDisObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 400.f));
+		pDisObj->Transform()->SetLocalScale(Vec3(200.f, 200.f, 1.f));
+		pDisObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+		pDisObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DistortionMtrl"));
+		pDisObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, M_ASSET->FindAsset<CTexture>(L"noise3"));
+		GamePlayStatic::SpawnGameObject(pDisObj, LAYER_TYPE::DEFAULT);
 	}
 }

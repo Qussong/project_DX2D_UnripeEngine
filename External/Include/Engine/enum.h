@@ -282,12 +282,3 @@ enum class SHADER_DOMAIN
 
 	END,
 };
-
-enum class REGISTER
-{
-	TEX_ANIM_2D = 10,
-	LIGHT_2D = 11,
-	TEX_POSTPROCESS = 13,
-
-	END,
-};
