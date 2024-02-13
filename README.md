@@ -231,5 +231,7 @@ DirectX 2D Engine
 **_24/02/13_** :<br>
 &nbsp;&nbsp; - CUI 클래스 추가<br>
 &nbsp;&nbsp; - UI 설계 (Content, Inspector, Outliner)<br>
-
+&nbsp;&nbsp; - Overlay 클래스 추가 및 UI창 옵션 설정 기능 추가<br>
+&nbsp;&nbsp;&nbsp;&nbsp; ▽ UI 초기상태<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/ui_default.png" width=500><br>
 <!-- &nbsp;&nbsp; - <br> -->

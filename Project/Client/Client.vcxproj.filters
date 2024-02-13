@@ -38,6 +38,9 @@
     <Filter Include="UI\Content">
       <UniqueIdentifier>{f034460c-44be-4b17-9411-745e882639e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI\Overlay">
+      <UniqueIdentifier>{a4c56479-5697-4106-860c-31b99b203d2a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -97,6 +100,7 @@
     <ClInclude Include="CContent.h">
       <Filter>UI\Content</Filter>
     </ClInclude>
+    <ClInclude Include="COverlay.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -153,6 +157,9 @@
     </ClCompile>
     <ClCompile Include="CContent.cpp">
       <Filter>UI\Content</Filter>
+    </ClCompile>
+    <ClCompile Include="COverlay.cpp">
+      <Filter>UI\Overlay</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

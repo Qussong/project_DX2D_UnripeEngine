@@ -33,6 +33,5 @@ public:
 private:
 	void	DemoWindow();
 	void	CustomWindow();
-	void	Overlay();
 };
 

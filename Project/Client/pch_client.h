@@ -40,3 +40,4 @@
 #include "COutliner.h"
 #include "CInspector.h"
 #include "CContent.h"
+#include "COverlay.h"

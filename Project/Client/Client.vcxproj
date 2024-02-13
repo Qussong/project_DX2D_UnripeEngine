@@ -149,6 +149,7 @@
     <ClInclude Include="CInspector.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="COutliner.h" />
+    <ClInclude Include="COverlay.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="imgui\imconfig.h" />
@@ -170,6 +171,7 @@
     <ClCompile Include="CInspector.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="COutliner.cpp" />
+    <ClCompile Include="COverlay.cpp" />
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />

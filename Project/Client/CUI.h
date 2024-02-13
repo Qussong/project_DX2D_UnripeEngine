@@ -11,6 +11,8 @@ private:
 	string		m_strID;
 	bool		m_bActive;
 
+	ImGuiWindowFlags m_eWindowFlags;
+
 public:
 	// Getter
 	const string&	GetName() { return m_strName; }
@@ -21,10 +23,12 @@ public:
 	void SetName(const string& _name) { m_strName = _name; }
 	void Activate() { m_bActive = true; }
 	void Deactivate() { m_bActive = false; }
+	void SetWindowFlag(ImGuiWindowFlags _flag) { m_eWindowFlags = _flag; }
 
 public:
 	virtual void Tick() {}
+	virtual void SetWindowOption() {}	// UI芒 可记 技泼
 	virtual void Render() final;
-	virtual void Render_Update() = 0;
+	virtual void Render_Update() = 0;	// UI芒 备己 技泼
 };
 
