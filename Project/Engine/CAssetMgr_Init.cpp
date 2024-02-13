@@ -165,7 +165,7 @@ void CAssetMgr::Shader()
 {
 	// Default Shader(2D_DefaultShader)
 	{
-		CGraphicShader* pShader = new CGraphicShader;
+		Ptr<CGraphicShader> pShader = new CGraphicShader;
 		pShader->SetName(L"2D_DefaultShader");
 		pShader->VertexShader(L"std2d.fx", "VS_Std2D");
 		pShader->PixelShader(L"std2d.fx", "PS_Std2D");
@@ -173,12 +173,12 @@ void CAssetMgr::Shader()
 		pShader->SetDSType(DS_TYPE::LESS);					// default = LESS
 		pShader->SetBSType(BS_TYPE::DEFAULT);				// default = DEFAULT
 		pShader->SetDomain(SHADER_DOMAIN::DOMAIN_MASK);		// default = DOMAIN_MASK
-		AddAsset(L"2D_DefaultShader", pShader);
+		AddAsset(L"2D_DefaultShader", pShader.Get());
 	}
 
 	// Effect Shader(2D_EffectShader)
 	{
-		CGraphicShader* pShader = new CGraphicShader;
+		Ptr<CGraphicShader> pShader = new CGraphicShader;
 		pShader->SetName(L"2D_EffectShader");
 		pShader->VertexShader(L"std2d.fx", "VS_Std2D");
 		pShader->PixelShader(L"std2d.fx", "PS_Std2D_Effect");
@@ -186,12 +186,12 @@ void CAssetMgr::Shader()
 		pShader->SetDSType(DS_TYPE::NO_TEST);
 		pShader->SetBSType(BS_TYPE::ALPHA_BLEND);
 		pShader->SetDomain(SHADER_DOMAIN::DOMAIN_TRANSPARENT);
-		AddAsset(L"2D_EffectShader", pShader);
+		AddAsset(L"2D_EffectShader", pShader.Get());
 	}
 
 	// Debug Shader(2D_DebugShader)
 	{
-		CGraphicShader* pShader = new CGraphicShader;
+		Ptr<CGraphicShader> pShader = new CGraphicShader;
 		pShader->SetName(L"2D_DebugShader");
 		pShader->VertexShader(L"debug2d.fx", "VS_DebugShape");
 		pShader->PixelShader(L"debug2d.fx", "PS_DebugShape");
@@ -200,12 +200,12 @@ void CAssetMgr::Shader()
 		pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
 		pShader->SetBSType(BS_TYPE::DEFAULT);
 		pShader->SetDomain(SHADER_DOMAIN::DOMAIN_DEBUG);
-		AddAsset(L"2D_DebugShader", pShader);
+		AddAsset(L"2D_DebugShader", pShader.Get());
 	}
 
 	// GreyFilter Shader
 	{
-		CGraphicShader* pShader = new CGraphicShader;
+		Ptr<CGraphicShader> pShader = new CGraphicShader;
 		pShader->SetName(L"GreyFilterShader");
 		pShader->VertexShader(L"postprocess.fx", "VS_GreyFilter");
 		pShader->PixelShader(L"postprocess.fx", "PS_GreyFilter");
@@ -213,12 +213,12 @@ void CAssetMgr::Shader()
 		pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
 		pShader->SetBSType(BS_TYPE::DEFAULT);
 		pShader->SetDomain(SHADER_DOMAIN::DOMAIN_POSTPROCESS);
-		AddAsset(L"GreyFilterShader", pShader);
+		AddAsset(L"GreyFilterShader", pShader.Get());
 	}
 
 	// Distortion Shader
 	{
-		CGraphicShader* pShader = new CGraphicShader;
+		Ptr<CGraphicShader> pShader = new CGraphicShader;
 		pShader->SetName(L"DistortionShader");
 		pShader->VertexShader(L"postprocess.fx", "VS_Distortion");
 		pShader->PixelShader(L"postprocess.fx", "PS_Distortion");
@@ -226,7 +226,7 @@ void CAssetMgr::Shader()
 		pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
 		pShader->SetBSType(BS_TYPE::DEFAULT);
 		pShader->SetDomain(SHADER_DOMAIN::DOMAIN_POSTPROCESS);
-		AddAsset(L"DistortionShader", pShader);
+		AddAsset(L"DistortionShader", pShader.Get());
 	}
 }
 
@@ -234,58 +234,58 @@ void CAssetMgr::Material()
 {
 	// Default Material
 	{
-		CMaterial* pMaterial = new CMaterial;
-		pMaterial->SetName(L"DefaultMtrl");
-		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
-		AddAsset(L"DefaultMtrl", pMaterial);
+		Ptr<CMaterial> pMtrl = new CMaterial;
+		pMtrl->SetName(L"DefaultMtrl");
+		pMtrl->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
+		AddAsset(L"DefaultMtrl", pMtrl.Get());
 	}
 
 	// Monster Material
 	{
-		CMaterial* pMaterial = new CMaterial;
-		pMaterial->SetName(L"MonsterMtrl");
-		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
-		AddAsset(L"MonsterMtrl", pMaterial);
+		Ptr<CMaterial> pMtrl = new CMaterial;
+		pMtrl->SetName(L"MonsterMtrl");
+		pMtrl->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
+		AddAsset(L"MonsterMtrl", pMtrl.Get());
 	}
 
 	// Background Material
 	{
-		CMaterial* pMaterial = new CMaterial;
-		pMaterial->SetName(L"BackgroundMtrl");
-		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
-		AddAsset(L"BackgroundMtrl", pMaterial);
+		Ptr<CMaterial> pMtrl = new CMaterial;
+		pMtrl->SetName(L"BackgroundMtrl");
+		pMtrl->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
+		AddAsset(L"BackgroundMtrl", pMtrl.Get());
 	}
 
 	// UI Material
 	{
-		CMaterial* pMaterial = new CMaterial;
-		pMaterial->SetName(L"UIMtrl");
-		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_EffectShader"));
-		AddAsset(L"UIMtrl", pMaterial);
+		Ptr<CMaterial> pMtrl = new CMaterial;
+		pMtrl->SetName(L"UIMtrl");
+		pMtrl->SetShader(FindAsset<CGraphicShader>(L"2D_EffectShader"));
+		AddAsset(L"UIMtrl", pMtrl.Get());
 	}
 
 	// Debug Material
 	{
-		CMaterial* pMaterial = new CMaterial;
-		pMaterial->SetName(L"DebugMtrl");
-		pMaterial->SetShader(FindAsset<CGraphicShader>(L"2D_DebugShader"));
-		AddAsset(L"DebugMtrl", pMaterial);
+		Ptr<CMaterial> pMtrl = new CMaterial;
+		pMtrl->SetName(L"DebugMtrl");
+		pMtrl->SetShader(FindAsset<CGraphicShader>(L"2D_DebugShader"));
+		AddAsset(L"DebugMtrl", pMtrl.Get());
 	}
 
 	// GreyFilter Material
 	{
-		CMaterial* pMaterial = new CMaterial;
-		pMaterial->SetName(L"GreyFilterMtrl");
-		pMaterial->SetShader(FindAsset<CGraphicShader>(L"GreyFilterShader"));
-		AddAsset(L"GreyFilterMtrl", pMaterial);
+		Ptr<CMaterial> pMtrl = new CMaterial;
+		pMtrl->SetName(L"GreyFilterMtrl");
+		pMtrl->SetShader(FindAsset<CGraphicShader>(L"GreyFilterShader"));
+		AddAsset(L"GreyFilterMtrl", pMtrl.Get());
 	}
 
 	// Distortion Material
 	{
-		CMaterial* pMtrl = new CMaterial;
+		Ptr<CMaterial> pMtrl = new CMaterial;
 		pMtrl->SetName(L"DistortionMtrl");
 		pMtrl->SetShader(FindAsset<CGraphicShader>(L"DistortionShader"));
-		AddAsset(L"DistortionMtrl", pMtrl);
+		AddAsset(L"DistortionMtrl", pMtrl.Get());
 	}
 }
 
