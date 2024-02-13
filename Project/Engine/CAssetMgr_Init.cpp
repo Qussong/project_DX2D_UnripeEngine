@@ -79,7 +79,7 @@ void CAssetMgr::Mesh()
 
 		// ¿ø µÑ·¹
 		Vtx		temp;
-		int32	iSlice = 20;
+		int32	iSlice = 30;
 		float	fTheta = 0.f;
 		float	fRadius = 0.5f;
 

@@ -228,4 +228,8 @@ DirectX 2D Engine
 &nbsp;&nbsp; - Distortion 효과 추가완료<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/Qussong/project_DX2D_UnripeEngine/assets/89381041/0807bd3b-8c12-41ff-8b79-0eeec0c2cdf2" width=500><br>
 
+**_24/02/13_** :<br>
+&nbsp;&nbsp; - CUI 클래스 추가<br>
+&nbsp;&nbsp; - UI 설계 진행중<br>
+
 <!-- &nbsp;&nbsp; - <br> -->

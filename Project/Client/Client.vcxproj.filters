@@ -26,6 +26,9 @@
     <Filter Include="03.ImGuiMgr">
       <UniqueIdentifier>{fc9ed8de-59cf-43bc-acac-4c4426111767}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{6d91bd96-d08a-4f72-a090-710f1fb5e0f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -73,6 +76,9 @@
     <ClInclude Include="CImGuiMgr.h">
       <Filter>03.ImGuiMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -117,6 +123,9 @@
     </ClCompile>
     <ClCompile Include="CImGuiMgr.cpp">
       <Filter>03.ImGuiMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

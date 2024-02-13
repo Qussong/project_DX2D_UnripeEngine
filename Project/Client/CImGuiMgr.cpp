@@ -11,6 +11,14 @@ CImGuiMgr::~CImGuiMgr()
     ImGui_ImplDX11_Shutdown();
     ImGui_ImplWin32_Shutdown();
     ImGui::DestroyContext();
+
+    // Custom UI
+    //Lazy::DelMap(m_mapUI);
+    for (auto& pair : m_mapUI)
+    {
+        delete pair.second;
+    }
+    m_mapUI.clear();
 }
 
 void CImGuiMgr::Init(HWND _hMainWnd)
@@ -38,6 +46,9 @@ void CImGuiMgr::Init(HWND _hMainWnd)
     // Setup Platform/Renderer backends
     ImGui_ImplWin32_Init(_hMainWnd);
     ImGui_ImplDX11_Init(DEVICE, CONTEXT);
+
+    // Create Custom UI
+    Create_UI();
 }
 
 void CImGuiMgr::Progress()
@@ -55,14 +66,25 @@ void CImGuiMgr::Tick()
     ImGui_ImplWin32_NewFrame();
     ImGui::NewFrame();
 
+    // Custom UI Update
+    for (const auto& pair : m_mapUI)
+        pair.second->Tick();
+
     // test
-    Test();
-}
+    DemoWindow();
+    CustomWindow();
+    Overlay();
+};
 
 void CImGuiMgr::Render()
 {
     ImGuiIO& io = ImGui::GetIO();
 
+    // Custom UI Render
+    for (const auto& pair : m_mapUI)
+        pair.second->Render();
+
+    // ImGui::Rendering
     ImGui::Render();
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
@@ -74,18 +96,44 @@ void CImGuiMgr::Render()
     }
 }
 
-void CImGuiMgr::Test()
+void CImGuiMgr::Create_UI()
 {
-    DemoWindow();
-    //CustomWindow();
-    MyScene();
-    Overlay();
+    //
+}
+
+CUI* CImGuiMgr::FindUI(const string& _strUIName)
+{
+    map<string, CUI*>::iterator iter = m_mapUI.find(_strUIName);
+
+    // 해당하는 이름을 가진 UI가 없는 경우
+    if (m_mapUI.end() == iter)
+        return nullptr;
+
+    // 해당하는 이름을 가진 UI가 존재하는 경우
+    return iter->second;
+}
+
+void CImGuiMgr::AddUI(const string& _strKey, CUI* _ui)
+{
+    CUI* pUI = FindUI(_strKey);
+
+    // 인자로 주어진 이름(key) 값을 가진 UI가 존재하지 않는 경우
+    if (nullptr == pUI)
+    {
+        MessageBoxA(nullptr, "UI NOT EXIT", "CImGuiMgr Error", MB_OK);
+        _exit(EXIT_FAILURE);
+    }
+
+    // 인자로 주어진 이름을 가진 UI가 존재하는 경우 -> 등록
+    m_mapUI.insert(make_pair(_strKey, _ui));
 }
 
 void CImGuiMgr::DemoWindow()
 {
     if (show_demo_window)
+    {
         ImGui::ShowDemoWindow(&show_demo_window);
+    }
 }
 
 void CImGuiMgr::CustomWindow()
@@ -121,17 +169,6 @@ void CImGuiMgr::CustomWindow()
             show_another_window = false;
         ImGui::End();
     }
-}
-
-void CImGuiMgr::MyScene()
-{
-    ImGuiIO& io = ImGui::GetIO();
-
-    ImGui::Begin("My Scene");
-    {
-        //ImGui::Image();
-    }
-    ImGui::End();
 }
 
 void CImGuiMgr::Overlay()
