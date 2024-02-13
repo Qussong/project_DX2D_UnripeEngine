@@ -230,6 +230,6 @@ DirectX 2D Engine
 
 **_24/02/13_** :<br>
 &nbsp;&nbsp; - CUI 클래스 추가<br>
-&nbsp;&nbsp; - UI 설계 진행중<br>
+&nbsp;&nbsp; - UI 설계 (Content, Inspector, Outliner)<br>
 
 <!-- &nbsp;&nbsp; - <br> -->

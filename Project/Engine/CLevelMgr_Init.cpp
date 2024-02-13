@@ -56,7 +56,7 @@ void CLevelMgr::Init()
 		pPlayerObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::RECT);
 		pPlayerObj->Light2D()->SetLightType(LIGHT_TYPE::POINT);
 		pPlayerObj->Light2D()->SetLightColor(Vec3(1.f, 1.f, .7f));
-		pPlayerObj->Light2D()->SetRaius(150.f);
+		pPlayerObj->Light2D()->SetRaius(50.f);
 		// RenderComp
 		pPlayerObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		pPlayerObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMtrl"));
@@ -197,7 +197,7 @@ void CLevelMgr::Init()
 		pDisObj->AddComponent(new CTransform);
 		pDisObj->AddComponent(new CMeshRender);
 		// basicComp
-		pDisObj->Transform()->SetLocalPos(Vec3(-50.f, -50.f, 400.f));
+		pDisObj->Transform()->SetLocalPos(Vec3(150.f, 150.f, 400.f));
 		pDisObj->Transform()->SetLocalScale(Vec3(200.f, 200.f, 1.f));
 		pDisObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		pDisObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DistortionMtrl"));
@@ -207,16 +207,16 @@ void CLevelMgr::Init()
 
 	// PPObj_Distortion2
 	{
-		CGameObject* pDisObj = new CGameObject;
-		pDisObj->SetName(L"Distortion");
-		pDisObj->AddComponent(new CTransform);
-		pDisObj->AddComponent(new CMeshRender);
-		// basicComp
-		pDisObj->Transform()->SetLocalPos(Vec3(50.f, 50.f, 400.f));
-		pDisObj->Transform()->SetLocalScale(Vec3(200.f, 200.f, 1.f));
-		pDisObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"CircleMesh"));
-		pDisObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DistortionMtrl"));
-		pDisObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, M_ASSET->FindAsset<CTexture>(L"noise3"));
-		GamePlayStatic::SpawnGameObject(pDisObj, LAYER_TYPE::DEFAULT);
+		//CGameObject* pDisObj = new CGameObject;
+		//pDisObj->SetName(L"Distortion");
+		//pDisObj->AddComponent(new CTransform);
+		//pDisObj->AddComponent(new CMeshRender);
+		//// basicComp
+		//pDisObj->Transform()->SetLocalPos(Vec3(50.f, 50.f, 400.f));
+		//pDisObj->Transform()->SetLocalScale(Vec3(200.f, 200.f, 1.f));
+		//pDisObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"CircleMesh"));
+		//pDisObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DistortionMtrl"));
+		//pDisObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, M_ASSET->FindAsset<CTexture>(L"noise3"));
+		//GamePlayStatic::SpawnGameObject(pDisObj, LAYER_TYPE::DEFAULT);
 	}
 }

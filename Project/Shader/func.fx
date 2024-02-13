@@ -27,12 +27,14 @@ void CalLight2D(float3 _worldPos, int _lightIdx, inout tLightColorInfo _output)
         {
             if(g_int_0)
             {
+                // 빛의 세기가 곡선을 이루며 급격히 줄어드는 경우(중심점이 좀 더 밝다.)
                 float fTheta = (fDist / tInfo.fRadius) * (PI / 2.f);
                 fAttenu = saturate(cos(fTheta));
             }
             else
             {
-                fAttenu = saturate(1.f - fDist / G_LIGHT2D[0].fRadius);
+                // 빛의 세기가 일정한 세기로 줄어드는 경우
+                fAttenu = saturate(1.f - fDist / G_LIGHT2D[_lightIdx].fRadius);
             }
         }
         

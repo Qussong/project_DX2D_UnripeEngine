@@ -9,6 +9,9 @@ namespace Lazy
 
 	template <typename T1, typename T2>
 	void DelMap(map<T1, T2>& _map);
+
+	template<typename T, UINT SIZE>
+	void DelArray(T* (&Arr)[SIZE]);
 }
 
 namespace GamePlayStatic
@@ -28,8 +31,31 @@ namespace GamePlayStatic
 	//void DrawDebugSphere();
 }
 
+template<typename T>
+void Lazy::DelVector(vector<T>& _vec)
+{
+	size_t length = _vec.size();
+	for (size_t i = 0; i < length; i++)
+	{
+		if (nullptr == _vec[i])
+			return;
+		delete _vec[i];
+	}
+	_vec.clear();
+}
+
+template<typename T1, typename T2>
+void Lazy::DelMap(map<T1, T2>& _map)
+{
+	for (auto& pair : _map)
+	{
+		delete pair.second;
+	}
+	_map.clear();
+}
+
 template<typename T, UINT SIZE>
-void Delete_Array(T* (&Arr)[SIZE])
+void Lazy::DelArray(T* (&Arr)[SIZE])
 {
 	for (int i = i = 0; i < SIZE; ++i)
 	{
@@ -39,16 +65,4 @@ void Delete_Array(T* (&Arr)[SIZE])
 			Arr[i] = nullptr;
 		}
 	}
-}
-
-template<typename T>
-void Delete_Vec(vector<T*>& _vec)
-{
-	for (size_t i = 0; i < _vec.size(); ++i)
-	{
-		if (nullptr != _vec[i])
-			delete _vec[i];
-	}
-
-	_vec.clear();
 }

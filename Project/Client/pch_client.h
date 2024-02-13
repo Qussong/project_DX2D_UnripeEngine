@@ -37,3 +37,6 @@
 
 // UI
 #include "CUI.h"
+#include "COutliner.h"
+#include "CInspector.h"
+#include "CContent.h"

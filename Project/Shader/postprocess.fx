@@ -81,7 +81,7 @@ float4 PS_Distortion(VS_OUT _in) : SV_Target
     v4Color = G_POSTPROCESS.Sample(G_SAMPLER_0, vScreenUV);
     
     // test
-    v4Color += float4(0.1f, 0.f, 0.2f, 0.f);
+    v4Color += float4(0.1f, 0.1f, 0.1f, 0.f);
     
     return v4Color;
 }

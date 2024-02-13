@@ -24,7 +24,7 @@ public:
 
 public:
 	virtual void Tick() {}
-	virtual void Render();
+	virtual void Render() final;
 	virtual void Render_Update() = 0;
 };
 

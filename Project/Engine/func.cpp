@@ -116,26 +116,3 @@ void GamePlayStatic::DrawDebugCross(Vec3 _worldPos, float _scale, Vec3 _color, b
 
 	M_RENDER->AddDebugShapeInfo(info);
 }
-
-template<typename T>
-void Lazy::DelVector(vector<T>&_vec)
-{
-	size_t length = _vec.size();
-	for (size_t i = 0; i < length; i++)
-	{
-		if (nullptr == _vec[i])
-			return;
-		delete _vec[i];
-	}
-	_vec.clear();
-}
-
-template<typename T1, typename T2>
-void Lazy::DelMap(map<T1, T2>& _map)
-{
-	for (auto& pair : _map)
-	{
-		delete pair.second;
-	}
-	_map.clear();
-}

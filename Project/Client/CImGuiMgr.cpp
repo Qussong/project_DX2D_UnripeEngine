@@ -13,12 +13,7 @@ CImGuiMgr::~CImGuiMgr()
     ImGui::DestroyContext();
 
     // Custom UI
-    //Lazy::DelMap(m_mapUI);
-    for (auto& pair : m_mapUI)
-    {
-        delete pair.second;
-    }
-    m_mapUI.clear();
+    Lazy::DelMap(m_mapUI);
 }
 
 void CImGuiMgr::Init(HWND _hMainWnd)
@@ -71,8 +66,8 @@ void CImGuiMgr::Tick()
         pair.second->Tick();
 
     // test
-    DemoWindow();
-    CustomWindow();
+    //DemoWindow();
+    //CustomWindow();
     Overlay();
 };
 
@@ -80,7 +75,7 @@ void CImGuiMgr::Render()
 {
     ImGuiIO& io = ImGui::GetIO();
 
-    // Custom UI Render
+    // Custom UI Rendering
     for (const auto& pair : m_mapUI)
         pair.second->Render();
 
@@ -98,7 +93,25 @@ void CImGuiMgr::Render()
 
 void CImGuiMgr::Create_UI()
 {
-    //
+    CUI* pUI = nullptr;
+
+    // Inspector
+    {
+        pUI = new CInspector;
+        AddUI(pUI->GetID(), pUI);
+    }
+
+    // Content
+    {
+        pUI = new CContent;
+        AddUI(pUI->GetID(), pUI);
+    }
+
+    // Outliner
+    {
+        pUI = new COutliner;
+        AddUI(pUI->GetID(), pUI);
+    }
 }
 
 CUI* CImGuiMgr::FindUI(const string& _strUIName)
@@ -120,12 +133,14 @@ void CImGuiMgr::AddUI(const string& _strKey, CUI* _ui)
     // 인자로 주어진 이름(key) 값을 가진 UI가 존재하지 않는 경우
     if (nullptr == pUI)
     {
-        MessageBoxA(nullptr, "UI NOT EXIT", "CImGuiMgr Error", MB_OK);
-        _exit(EXIT_FAILURE);
+        m_mapUI.insert(make_pair(_strKey, _ui));
+    }
+    // 인자로 주어진 이름(key) 값을 가진 UI가 존재하는 경우
+    else
+    {
+        m_mapUI.insert(make_pair(_strKey, pUI));
     }
 
-    // 인자로 주어진 이름을 가진 UI가 존재하는 경우 -> 등록
-    m_mapUI.insert(make_pair(_strKey, _ui));
 }
 
 void CImGuiMgr::DemoWindow()
