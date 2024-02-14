@@ -71,6 +71,9 @@ void CImGuiMgr::Tick()
     for (const auto& pair : m_mapUI)
         pair.second->Tick();
 
+
+    bool flag = true;
+    ImGui::ShowExampleAppSimpleOverlay(&flag);
     // Sample
     //DemoWindow();
     //CustomWindow();
