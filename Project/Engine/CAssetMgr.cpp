@@ -9,24 +9,7 @@ CAssetMgr::~CAssetMgr()
 {
 }
 
-template<typename T>
-ASSET_TYPE CAssetMgr::GetAssetType()
-{
-	const type_info& info = typeid(T);
 
-	ASSET_TYPE type = ASSET_TYPE::END;
-
-	if (&typeid(CMesh) == &info)
-		type = ASSET_TYPE::MESH;
-	else if (&typeid(CGraphicShader) == &info)
-		type = ASSET_TYPE::GRAPHIC_SHADER;
-	else if (&typeid(CTexture) == &info)
-		type = ASSET_TYPE::TEXTURE;
-	else if (&typeid(CMaterial) == &info)
-		type = ASSET_TYPE::MATERIAL;
-
-	return type;
-}
 
 Ptr<CTexture> CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelativePath)
 {

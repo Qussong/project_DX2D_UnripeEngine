@@ -53,6 +53,9 @@
     <Filter Include="UI\ComponentUI\MeshRenderUI">
       <UniqueIdentifier>{d1944b2c-c4e3-41e1-bb9a-8a36618c0408}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.ImGui\Guizmo">
+      <UniqueIdentifier>{cf449383-0e50-4198-9835-5d62752ff911}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -126,6 +129,24 @@
     </ClInclude>
     <ClInclude Include="CMeshRenderUI.h">
       <Filter>UI\ComponentUI\MeshRenderUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\GraphEditor.h">
+      <Filter>02.ImGui\Guizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\ImCurveEdit.h">
+      <Filter>02.ImGui\Guizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\ImGradient.h">
+      <Filter>02.ImGui\Guizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\ImGuizmo.h">
+      <Filter>02.ImGui\Guizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\ImSequencer.h">
+      <Filter>02.ImGui\Guizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\ImZoomSlider.h">
+      <Filter>02.ImGui\Guizmo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +222,21 @@
     </ClCompile>
     <ClCompile Include="enum_client.h">
       <Filter>01.Header</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\GraphEditor.cpp">
+      <Filter>02.ImGui\Guizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\ImCurveEdit.cpp">
+      <Filter>02.ImGui\Guizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\ImGradient.cpp">
+      <Filter>02.ImGui\Guizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\ImGuizmo.cpp">
+      <Filter>02.ImGui\Guizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\ImSequencer.cpp">
+      <Filter>02.ImGui\Guizmo</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

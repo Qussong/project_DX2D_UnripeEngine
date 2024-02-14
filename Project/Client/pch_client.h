@@ -31,6 +31,9 @@
 #include "imgui/imgui_impl_win32.h"
 #include "imgui/imgui_impl_dx11.h"
 
+// Guizmo
+#include "imgui/ImGuizmo.h"
+
 // ETC
 #include "value_client.h"
 #include "enum_client.h"
