@@ -7,6 +7,7 @@ CComponentUI::CComponentUI(const string& _name, const string& _id, COMPONENT_TYP
 	, m_eType(_type)
 	, m_strCompTitle(_name)
 {
+	SetCompTitle(_name);
 }
 
 CComponentUI::~CComponentUI()

@@ -46,9 +46,9 @@ void CImGuiMgr::Init(HWND _hMainWnd)
     Create_UI();
 
     // test
-    CLevel* pCurLevel = M_LEVEL->GetCurrentLevel();
-    CGameObject* pTarget = pCurLevel->FindObjectByName(L"PlayerObj");
-    CInspector* pInspector = (CInspector*)FindUI("##Inspector");
+    CLevel*         pCurLevel   = M_LEVEL->GetCurrentLevel();
+    CGameObject*    pTarget     = pCurLevel->FindObjectByName(L"PlayerObj");
+    CInspector*     pInspector  = (CInspector*)FindUI("##Inspector");
     pInspector->SetTargetObject(pTarget);
 }
 
@@ -74,10 +74,9 @@ void CImGuiMgr::Tick()
         pair.second->Tick();
 
     // Sample
-    bool isShow = true;
-    DockSpace(&isShow);
-    CustomWindow(&isShow);
-    //ImGui::ShowDemoWindow(&isShow);
+    DockSpace(&m_bShow);
+    //CustomWindow(&m_bShow);
+    //ImGui::ShowDemoWindow(&m_bShow);
 };
 
 void CImGuiMgr::Render()
@@ -166,11 +165,11 @@ void CImGuiMgr::CustomWindow(bool* isOpen)
     static float f = 0.0f;
     static int counter = 0;
 
-    ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+    ImGui::Begin("Hello, world!", isOpen);                          // Create a window called "Hello, world!" and append into it.
 
     ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
-    ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
-    ImGui::Checkbox("Another Window", &show_another_window);
+    ImGui::Checkbox("Demo Window", &m_bShow);      // Edit bools storing our window open/close state
+    ImGui::Checkbox("Another Window", &m_bShow);
 
     ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
     ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
@@ -184,12 +183,12 @@ void CImGuiMgr::CustomWindow(bool* isOpen)
     ImGui::End();
 
     // 3. Show another simple window.
-    if (show_another_window)
+    if (m_bShow)
     {
-        ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
+        ImGui::Begin("Another Window", &m_bShow);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
         ImGui::Text("Hello from another window!");
         if (ImGui::Button("Close Me"))
-            show_another_window = false;
+            m_bShow = false;
         ImGui::End();
     }
 }
@@ -200,8 +199,6 @@ void CImGuiMgr::DockSpace(bool* isOpen)
     static bool opt_padding = false;
     static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
 
-    // We are using the ImGuiWindowFlags_NoDocking flag to make the parent window not dockable into,
-    // because it would be confusing to have two docking targets within each others.
     ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
     if (opt_fullscreen)
     {
@@ -219,16 +216,9 @@ void CImGuiMgr::DockSpace(bool* isOpen)
         dockspace_flags &= ~ImGuiDockNodeFlags_PassthruCentralNode;
     }
 
-    // When using ImGuiDockNodeFlags_PassthruCentralNode, DockSpace() will render our background
-    // and handle the pass-thru hole, so we ask Begin() to not render a background.
     if (dockspace_flags & ImGuiDockNodeFlags_PassthruCentralNode)
         window_flags |= ImGuiWindowFlags_NoBackground;
 
-    // Important: note that we proceed even if Begin() returns false (aka window is collapsed).
-    // This is because we want to keep our DockSpace() active. If a DockSpace() is inactive,
-    // all active windows docked into it will lose their parent and become undocked.
-    // We cannot preserve the docking relationship between an active window and an inactive docking, otherwise
-    // any change of dockspace/settings would lead to windows being stuck in limbo and never being visible.
     if (!opt_padding)
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
     ImGui::Begin("DockSpace Demo", isOpen, window_flags);
@@ -238,7 +228,6 @@ void CImGuiMgr::DockSpace(bool* isOpen)
     if (opt_fullscreen)
         ImGui::PopStyleVar(2);
 
-    // Submit the DockSpace
     ImGuiIO& io = ImGui::GetIO();
     if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
     {
@@ -250,8 +239,6 @@ void CImGuiMgr::DockSpace(bool* isOpen)
     {
         if (ImGui::BeginMenu("Options"))
         {
-            // Disabling fullscreen would allow the window to be moved to the front of other windows,
-            // which we can't undo at the moment without finer window depth/z control.
             ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen);
             ImGui::MenuItem("Padding", NULL, &opt_padding);
             ImGui::Separator();

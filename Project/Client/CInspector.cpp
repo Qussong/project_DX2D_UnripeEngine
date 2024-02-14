@@ -9,6 +9,9 @@ CInspector::CInspector()
 	// 자식 UI 생성
 	m_arrCompUI[(UINT)COMPONENT_TYPE::TRANSFORM] = new CTransformUI;
 	AddChildUI(m_arrCompUI[(UINT)COMPONENT_TYPE::TRANSFORM]);
+
+	m_arrCompUI[(UINT)COMPONENT_TYPE::MESHRENDER] = new CMeshRenderUI;
+	AddChildUI(m_arrCompUI[(UINT)COMPONENT_TYPE::MESHRENDER]);
 }
 
 CInspector::~CInspector()

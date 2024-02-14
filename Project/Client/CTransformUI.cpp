@@ -4,6 +4,7 @@
 CTransformUI::CTransformUI()
 	: Super("TransformUI", "##TransformUI", COMPONENT_TYPE::TRANSFORM)
 {
+	SetSize(ImVec2(0.f, 100.f));
 }
 
 CTransformUI::~CTransformUI()

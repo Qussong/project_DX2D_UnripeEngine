@@ -116,3 +116,13 @@ void GamePlayStatic::DrawDebugCross(Vec3 _worldPos, float _scale, Vec3 _color, b
 
 	M_RENDER->AddDebugShapeInfo(info);
 }
+
+string Lazy::ToString(const wstring& _str)
+{
+	return string(_str.begin(), _str.end());
+}
+
+wstring Lazy::ToWString(const string& _str)
+{
+	return wstring(_str.begin(), _str.end());
+}

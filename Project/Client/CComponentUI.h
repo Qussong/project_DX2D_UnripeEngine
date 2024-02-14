@@ -22,6 +22,7 @@ public:
 	// Setter
 	void SetTargetObj(CGameObject* _obj);
 	void SetType(COMPONENT_TYPE _type) { m_eType = _type; }
+	void SetCompTitle(const string& _title) { m_strCompTitle = _title; }
 
 public:
 	virtual void Tick() override {}

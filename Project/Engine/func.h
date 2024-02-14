@@ -12,6 +12,9 @@ namespace Lazy
 
 	template<typename T, UINT SIZE>
 	void DelArray(T* (&Arr)[SIZE]);
+
+	string ToString(const wstring& _str);
+	wstring ToWString(const string& _str);
 }
 
 namespace GamePlayStatic
