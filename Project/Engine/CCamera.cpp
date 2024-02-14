@@ -191,6 +191,9 @@ void CCamera::Render(vector<CGameObject*>& _vecObj)
 void CCamera::Render_PostProcess()
 {
 	vector<CGameObject*> &vecPPObj = m_DomainObj[(uint32)SHADER_DOMAIN::DOMAIN_POSTPROCESS];
+
+	vecPPObj.push_back(new CGameObject);	// ViewUI 에 모든 후처리 과정이 보이도록 하기위해 더미객체추가
+
 	for (size_t i = 0; i < vecPPObj.size(); ++i)
 	{
 		// 최종 렌더링 이미지를 후처리 타겟에 복사

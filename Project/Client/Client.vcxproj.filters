@@ -70,9 +70,6 @@
     <ClInclude Include="targetver.h">
       <Filter>00.Default</Filter>
     </ClInclude>
-    <ClInclude Include="value_client.h">
-      <Filter>00.Default</Filter>
-    </ClInclude>
     <ClInclude Include="Client.h">
       <Filter>00.Default\main</Filter>
     </ClInclude>
@@ -153,6 +150,9 @@
     </ClInclude>
     <ClInclude Include="CViewUI.h">
       <Filter>UI\View</Filter>
+    </ClInclude>
+    <ClInclude Include="value_client.h">
+      <Filter>01.Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

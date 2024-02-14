@@ -33,6 +33,7 @@
 
 // Guizmo
 #include "imgui/ImGuizmo.h"
+#include "imgui/imgui_internal.h"
 
 // ETC
 #include "value_client.h"

@@ -31,7 +31,7 @@ public:
 	void	AddUI(const string& _key, CUI* _ui);	// key = id
 
 private:
-	void	DemoWindow();
-	void	CustomWindow();
+	void	CustomWindow(bool* isOpen);
+	void	DockSpace(bool* isOpen);
 };
 

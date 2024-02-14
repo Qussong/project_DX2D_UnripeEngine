@@ -12,4 +12,3 @@ public:
 	virtual void SetWindowOption() override;
 	virtual void Render_Update() override;
 };
-

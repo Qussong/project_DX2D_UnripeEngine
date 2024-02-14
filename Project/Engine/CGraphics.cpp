@@ -112,9 +112,14 @@ void CGraphics::RenderEnd()
 void CGraphics::SetWindow()
 {
 	RECT rt = { 0, 0, (LONG)m_v2Resolution.x, (LONG)m_v2Resolution.y };
+	// 창 크기 조정
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, false);
 	int resizeWindowWidth = rt.right - rt.left;
 	int resizeWindowHeight = rt.bottom - rt.top;
+	// 조정된 창 크기 저장
+	m_v2ResizeResolution.x = resizeWindowWidth;
+	m_v2ResizeResolution.y = resizeWindowHeight;
+
 	int centerPosLeft = (MONITOR_SIZE_WIDTH - resizeWindowWidth) / 2;
 	int centerPosTop = (MONITOR_SIZE_HEIGHT - resizeWindowHeight) / 2;
 

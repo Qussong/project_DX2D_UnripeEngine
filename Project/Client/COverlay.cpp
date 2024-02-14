@@ -4,12 +4,13 @@
 COverlay::COverlay()
 	: Super("Overlay", "##Overlay")
 {
-    ImGuiWindowFlags flag = ImGuiWindowFlags_NoDecoration
-        | ImGuiWindowFlags_NoDocking
-        | ImGuiWindowFlags_AlwaysAutoResize
-        | ImGuiWindowFlags_NoSavedSettings
-        | ImGuiWindowFlags_NoFocusOnAppearing
-        | ImGuiWindowFlags_NoNav;
+    ImGuiWindowFlags flag = 
+        ImGuiWindowFlags_NoDecoration |
+        ImGuiWindowFlags_NoDocking |
+        ImGuiWindowFlags_AlwaysAutoResize |
+        ImGuiWindowFlags_NoSavedSettings |
+        ImGuiWindowFlags_NoFocusOnAppearing |
+        ImGuiWindowFlags_NoNav;
 
     SetWindowFlag(flag);
 }
@@ -31,4 +32,3 @@ void COverlay::Render_Update()
     ImGui::Text("FPS: %d", M_TIME->FPS());
     ImGui::Text("Mouse Pos: (%.1f, %.1f)", M_KEY->GetMouseCurPos().x, M_KEY->GetMouseCurPos().y);
 }
-

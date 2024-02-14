@@ -121,50 +121,49 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
     switch (message)
     {
+    case WM_GETMINMAXINFO:
+    {
+        // Window 크기 제한
+        ((MINMAXINFO*)lParam)->ptMaxTrackSize.x = GRAPHICS->GetResizeResolution().x;
+        ((MINMAXINFO*)lParam)->ptMaxTrackSize.y = GRAPHICS->GetResizeResolution().y;
+        ((MINMAXINFO*)lParam)->ptMinTrackSize.x = GRAPHICS->GetResizeResolution().x;
+        ((MINMAXINFO*)lParam)->ptMinTrackSize.y = GRAPHICS->GetResizeResolution().y;
+        return false;
+    }
     case WM_MOUSEWHEEL:
-        {
-            // ↑ : 120 , ↓ : -120
-            short zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
-            M_KEY->SetMouseWheel(zDelta);
-        }
+    {
+        // ↑ : 120 , ↓ : -120
+        short zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
+        M_KEY->SetMouseWheel(zDelta);
         break;
+    }
     case WM_COMMAND:
+    {
+        int wmId = LOWORD(wParam);
+        switch (wmId)
         {
-            int wmId = LOWORD(wParam);
-            switch (wmId)
-            {
-            case IDM_ABOUT:
-                DialogBox(g_hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                break;
-            case IDM_EXIT:
-                DestroyWindow(hWnd);
-                break;
-            default:
-                return DefWindowProc(hWnd, message, wParam, lParam);
-            }
+        case IDM_ABOUT:
+            DialogBox(g_hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+            break;
+        case IDM_EXIT:
+            DestroyWindow(hWnd);
+            break;
+        default:
+            return DefWindowProc(hWnd, message, wParam, lParam);
         }
         break;
+    }
     case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
+    {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hWnd, &ps);
 
-            EndPaint(hWnd, &ps);
-        }
+        EndPaint(hWnd, &ps);
         break;
+    }
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
-    // Dear ImGui
-    //case WM_DPICHANGED:
-    //    if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DpiEnableScaleViewports)
-    //    {
-    //        const int dpi = HIWORD(wParam);
-    //        printf("WM_DPICHANGED to %d (%.0f%%)\n", dpi, (float)dpi / 96.0f * 100.0f);
-    //        const RECT* suggested_rect = (RECT*)lParam;
-    //        ::SetWindowPos(hWnd, nullptr, suggested_rect->left, suggested_rect->top, suggested_rect->right - suggested_rect->left, suggested_rect->bottom - suggested_rect->top, SWP_NOZORDER | SWP_NOACTIVATE);
-    //    }
-    //    break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
     }

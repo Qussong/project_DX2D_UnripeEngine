@@ -8,6 +8,7 @@ class CGraphics
 private:
 	HWND		m_hWnd;
 	Vec2		m_v2Resolution;
+	Vec2		m_v2ResizeResolution;
 	bool		m_bStandByMode;
 
 private:
@@ -29,6 +30,7 @@ public:
 	ID3D11DeviceContext*			GetContext()				{ return m_Context.Get(); }
 	IDXGISwapChain*					GetSwapChain()				{ return m_SwapChain.Get(); }
 	Vec2							GetResolution()				{ return m_v2Resolution; }
+	Vec2							GetResizeResolution()		{ return m_v2ResizeResolution; }
 	CConstantBuffer*				GetCB(CB_TYPE _type)		{ return m_arrCB[(UINT)_type]; }
 	ComPtr<ID3D11RasterizerState>	GetRSState(RS_TYPE _Type)	{ return m_arrRS[(UINT)_Type]; }
 	ComPtr<ID3D11DepthStencilState> GetDSState(DS_TYPE _Type)	{ return m_arrDS[(UINT)_Type]; }

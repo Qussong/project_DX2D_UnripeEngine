@@ -13,11 +13,13 @@ private:
 	short			m_sMouseWheel;
 
 public:
-	KEY_STATE	GetKeyState(KEY _key) { return m_vecKeyData[(int)_key].eState; }
-	Vec2		GetMouseCurPos() { return m_v2CurMousePos; }
-	Vec2		GetMouseDragDir() { return m_v2MouseDragDir; }
-	short		GetMouseWheel() { return m_sMouseWheel; }
+	// Getter
+	const KEY_STATE	GetKeyState(KEY _key) { return m_vecKeyData[(int)_key].eState; }
+	const Vec2		GetMouseCurPos() { return m_v2CurMousePos; }
+	const Vec2		GetMouseDragDir() { return m_v2MouseDragDir; }
+	const short		GetMouseWheel() { return m_sMouseWheel; }
 
+	// Setter
 	void		SetMouseWheel(short _wheel) { m_sMouseWheel = _wheel; }
 
 public:

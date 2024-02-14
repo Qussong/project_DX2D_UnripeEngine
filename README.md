@@ -238,5 +238,8 @@ DirectX 2D Engine
 **_24/02/14_** :<br>
 &nbsp;&nbsp; - CComponentUI 클래스 추가<br>
 &nbsp;&nbsp; - ImGuizmo 라이브러리 추가<br>
+&nbsp;&nbsp; - DockingUI, ViewUI 추가<br>
+&nbsp;&nbsp; - ViewUI 창 Mouse Wheel Event 기능 추가 및 MainWindow 창 크기 고정<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/ui_custom_1.png" width=500><br>
 
 <!-- &nbsp;&nbsp; - <br> -->
