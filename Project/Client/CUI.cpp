@@ -45,7 +45,7 @@ void CUI::Render()
 	{
 		SetWindowOption();
 
-		ImGui::BeginChild(string(m_strName + m_strID).c_str());
+		ImGui::BeginChild(string(m_strName + m_strID).c_str(), m_v2Size);
 
 		Render_Update();
 

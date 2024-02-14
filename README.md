@@ -234,4 +234,8 @@ DirectX 2D Engine
 &nbsp;&nbsp; - Overlay 클래스 추가 및 UI창 옵션 설정 기능 추가<br>
 &nbsp;&nbsp;&nbsp;&nbsp; ▽ UI 초기상태<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/ui_default.png" width=500><br>
+
+**_24/02/14_** :<br>
+&nbsp;&nbsp; - CComponentUI 클래스 추가<br>
+
 <!-- &nbsp;&nbsp; - <br> -->

@@ -44,6 +44,12 @@ void CImGuiMgr::Init(HWND _hMainWnd)
 
     // Create Custom UI
     Create_UI();
+
+    // test
+    CLevel* pCurLevel = M_LEVEL->GetCurrentLevel();
+    CGameObject* pTarget = pCurLevel->FindObjectByName(L"PlayerObj");
+    CInspector* pInspector = (CInspector*)FindUI("##Inspector");
+    pInspector->SetTargetObject(pTarget);
 }
 
 void CImGuiMgr::Progress()
@@ -119,9 +125,9 @@ void CImGuiMgr::Create_UI()
     }
 }
 
-CUI* CImGuiMgr::FindUI(const string& _strUIName)
+CUI* CImGuiMgr::FindUI(const string& _name)
 {
-    map<string, CUI*>::iterator iter = m_mapUI.find(_strUIName);
+    map<string, CUI*>::iterator iter = m_mapUI.find(_name);
 
     // 해당하는 이름을 가진 UI가 없는 경우
     if (m_mapUI.end() == iter)
@@ -131,19 +137,19 @@ CUI* CImGuiMgr::FindUI(const string& _strUIName)
     return iter->second;
 }
 
-void CImGuiMgr::AddUI(const string& _strKey, CUI* _ui)
+void CImGuiMgr::AddUI(const string& _key, CUI* _ui)
 {
-    CUI* pUI = FindUI(_strKey);
+    CUI* pUI = FindUI(_key);
 
     // 인자로 주어진 이름(key) 값을 가진 UI가 존재하지 않는 경우
     if (nullptr == pUI)
     {
-        m_mapUI.insert(make_pair(_strKey, _ui));
+        m_mapUI.insert(make_pair(_key, _ui));
     }
     // 인자로 주어진 이름(key) 값을 가진 UI가 존재하는 경우
     else
     {
-        m_mapUI.insert(make_pair(_strKey, pUI));
+        m_mapUI.insert(make_pair(_key, pUI));
     }
 
 }

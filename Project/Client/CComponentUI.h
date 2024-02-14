@@ -16,7 +16,7 @@ private:
 
 public:
 	// Getter
-	const CGameObject* GetTargetObj() { return m_pTargetObj; }
+	CGameObject* GetTargetObj() { return m_pTargetObj; }
 	const COMPONENT_TYPE GetType() { return m_eType; }
 
 	// Setter

@@ -45,3 +45,5 @@
 #include "CContent.h"
 #include "COverlay.h"
 #include "CComponentUI.h"
+#include "CTransformUI.h"
+#include "CMeshRenderUI.h"

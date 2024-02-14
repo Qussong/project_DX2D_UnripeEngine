@@ -40,7 +40,7 @@ public:
 	// Getter
 	CGameObject*			GetParent() { return m_pParent; }
 	bool					IsDead() { return m_bDead; }
-	vector<CGameObject*>&	GetChild() { return m_vecChild; }
+	vector<CGameObject*>&	GetChildren() { return m_vecChild; }
 	LAYER_TYPE				GetLayer() { return m_eLayerType; }
 	bool					IsBelongLevel() { return m_bLevel; }
 	bool					IsLoadAsset() { return m_bAsset; }
@@ -55,7 +55,7 @@ public:
 
 public:
 	void				AddComponent(CComponent* _comp);
-	CComponent*			GetComponent(COMPONENT_TYPE _type) { return m_arrBasicComp[(uint32)_type]; }
+	CComponent*			GetComponent(COMPONENT_TYPE _type) { return m_arrBasicComp[(uint32)_type]; }	// 없어도 될것 같아서 임시 주석
 
 	CTransform*			Transform() { return static_cast<CTransform*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::TRANSFORM]); }
 	CRenderComponent*	RenderComp() { return m_pRenderComp; }

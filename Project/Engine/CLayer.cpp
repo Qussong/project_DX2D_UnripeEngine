@@ -48,7 +48,7 @@ void CLayer::AddObject(CGameObject* _obj, bool _isChildMove)
 		// 객체의 레벨 소속여부 설정(특정 레벨에 소속됨)
 		pObj->SetBelongLevel(true);
 
-		vector<CGameObject*> children = pObj->GetChild();
+		vector<CGameObject*> children = pObj->GetChildren();
 		for (size_t i = 0; i < children.size(); ++i)
 		{
 			que.push_back(children[i]);

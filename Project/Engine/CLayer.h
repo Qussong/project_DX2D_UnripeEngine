@@ -21,8 +21,9 @@ public:
 
 public:
 	// Getter
-	LAYER_TYPE					GetLayerType() { return m_eLayerType; }
-	vector<CGameObject*>&		GetLayerObjects() { return m_vecObject; }
+	LAYER_TYPE				GetLayerType() { return m_eLayerType; }
+	vector<CGameObject*>&	GetLayerParents() { return m_vecParent; }
+	vector<CGameObject*>&	GetLayerObjects() { return m_vecObject; }
 
 public:
 	void Begin();

@@ -27,8 +27,8 @@ private:
 	void	Create_UI();
 
 public:
-	CUI*	FindUI(const string& _strUIName);
-	void	AddUI(const string& _strKey, CUI* _ui);
+	CUI*	FindUI(const string& _id);
+	void	AddUI(const string& _key, CUI* _ui);	// key = id
 
 private:
 	void	DemoWindow();

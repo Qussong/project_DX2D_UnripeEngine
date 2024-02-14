@@ -60,7 +60,8 @@ void CLevelMgr::Init()
 		// RenderComp
 		pPlayerObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		pPlayerObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMtrl"));
-		GamePlayStatic::SpawnGameObject(pPlayerObj, LAYER_TYPE::PLAYER);
+		//GamePlayStatic::SpawnGameObject(pPlayerObj, LAYER_TYPE::PLAYER);
+		m_pCurLevel->AddObject(pPlayerObj, LAYER_TYPE::PLAYER);
 	}
 
 	// MonsterObj

@@ -57,6 +57,73 @@ CLayer* CLevel::GetLayer(const wstring& _layerName)
 	return nullptr;
 }
 
+CGameObject* CLevel::FindObjectByName(const wstring& _name)
+{
+	// Layer
+	for (UINT i = 0; i < LAYER_MAX; ++i)
+	{
+		// Parnet Obj
+		const vector<CGameObject*>& vecParent = m_arrLayer[i]->GetLayerParents();
+
+		for (size_t k =	0; k < vecParent.size(); ++k)
+		{
+			list<CGameObject*> list;
+			list.push_back(vecParent[k]);
+
+			while (!list.empty())
+			{
+				// Target
+				CGameObject* obj = list.front();
+				list.pop_front();
+
+				// Child Obj
+				const vector<CGameObject*> vecChildren = obj->GetChildren();
+				for (size_t o = 0; o < vecChildren.size(); ++o)
+					list.push_back(vecChildren[o]);
+
+				// Result
+				if (obj->GetName() == _name)
+					return obj;
+			}
+		}
+	}
+
+	// Nothing
+	return nullptr;
+}
+
+void CLevel::FindObjectByName(const wstring& _name, vector<CGameObject*>& _container)
+{
+	// Layer
+	for (UINT i = 0; i < LAYER_MAX; ++i)
+	{
+		// Parnet Obj
+		const vector<CGameObject*>& vecParent = m_arrLayer[i]->GetLayerParents();
+
+		for (size_t k = 0; k < vecParent.size(); ++k)
+		{
+			list<CGameObject*> list;
+			list.push_back(vecParent[i]);
+
+			while (!list.empty())
+			{
+				// Target
+				CGameObject* obj = list.front();
+				list.pop_front();
+
+				// Child Obj
+				const vector<CGameObject*> vecChildren = obj->GetChildren();
+				for (CGameObject* child : vecChildren)
+					list.push_back(child);
+
+				// Result
+				if (obj->GetName() == _name)
+					_container.push_back(obj);
+			}
+		}
+	}
+}
+
 void CLevel::Clear()
 {
 	for (UINT i = 0; i < LAYER_MAX; ++i)

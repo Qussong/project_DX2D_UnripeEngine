@@ -47,7 +47,7 @@ enum class ASSET_TYPE
 
 enum class COMPONENT_TYPE
 {
-	NONE,
+	NONE = -1,
 
 	// Basic Component
 	TRANSFORM,
