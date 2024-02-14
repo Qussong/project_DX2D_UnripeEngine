@@ -167,22 +167,13 @@ void CCamera::Render()
 	g_tTransformConst.matView = m_matView;
 	g_tTransformConst.matProj = m_matProj;
 
-	//Render(m_DomainObj[(int32)SHADER_DOMAIN::DOMAIN_OPAQUE]);
-	//Render(m_DomainObj[(int32)SHADER_DOMAIN::DOMAIN_MASK]);
-	//Render(m_DomainObj[(int32)SHADER_DOMAIN::DOMAIN_TRANSPARENT]);
-	//Render_PostProcess();
-
 	size_t iDomainCnt = (int32)SHADER_DOMAIN::END;
 	for (size_t i = 0; i < iDomainCnt; ++i)
 	{
 		if ((int32)SHADER_DOMAIN::DOMAIN_POSTPROCESS == i)
-		{
 			Render_PostProcess();
-		}
 		else
-		{
 			Render(m_DomainObj[i]);
-		}
 	}
 
 }
@@ -206,7 +197,7 @@ void CCamera::Render_PostProcess()
 		CRenderMgr::GetInst()->CopyRenderTargetToPostProcessTarget();
 
 		// 복사받은 후처리 텍스쳐를 t13 레지스터에 바인딩
-		Ptr<CTexture> pPostProcessTex = CRenderMgr::GetInst()->GetPostProcessTex();
+		Ptr<CTexture> pPostProcessTex = M_RENDER->GetPostProcessTex();
 		pPostProcessTex->UpdateData(TEX_POSTPROCESS);
 
 		// 후처리 오브젝트 렌더링

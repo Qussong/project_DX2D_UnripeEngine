@@ -74,7 +74,7 @@ void CImGuiMgr::Tick()
         pair.second->Tick();
 
     // Sample
-    //DemoWindow();
+    DemoWindow();
     //CustomWindow();
 };
 
@@ -123,6 +123,12 @@ void CImGuiMgr::Create_UI()
     // Overlay
     {
         pUI = new COverlay;
+        AddUI(pUI->GetID(), pUI);
+    }
+
+    // View
+    {
+        pUI = new CViewUI;
         AddUI(pUI->GetID(), pUI);
     }
 }

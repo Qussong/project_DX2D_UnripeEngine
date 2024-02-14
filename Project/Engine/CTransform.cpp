@@ -26,6 +26,9 @@ void CTransform::FinalTick()
 	Matrix matRotZ = XMMatrixRotationZ(m_v3LocalRotation.z);
 	Matrix matTrans = XMMatrixTranslation(m_v3LocalPostion.x, m_v3LocalPostion.y, m_v3LocalPostion.z);
 
+	// Local 행렬
+	m_matLocal = matScale * (matRotX * matRotY * matRotZ) * matTrans;
+
 	// World 행렬
 	m_matWorld = XMMatrixIdentity();
 	m_matWorld = m_matWorld * matScale * (matRotX * matRotY * matRotZ) * matTrans;

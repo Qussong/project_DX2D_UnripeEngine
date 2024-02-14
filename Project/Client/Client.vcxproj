@@ -157,6 +157,7 @@
     <ClInclude Include="COverlay.h" />
     <ClInclude Include="CTransformUI.h" />
     <ClInclude Include="CUI.h" />
+    <ClInclude Include="CViewUI.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="imgui\GraphEditor.h" />
     <ClInclude Include="imgui\imconfig.h" />
@@ -189,6 +190,7 @@
     <ClCompile Include="COverlay.cpp" />
     <ClCompile Include="CTransformUI.cpp" />
     <ClCompile Include="CUI.cpp" />
+    <ClCompile Include="CViewUI.cpp" />
     <ClCompile Include="enum_client.h" />
     <ClCompile Include="imgui\GraphEditor.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>

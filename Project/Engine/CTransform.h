@@ -16,6 +16,7 @@ private:
 	Vec3	m_v3LocalScale;						// localR
 	Vec3	m_v3LocalRotation;					// localT
 	Vec3	m_arrLocalDir[(UINT)DIR_TYPE::END];	// localDir
+	Matrix	m_matLocal;							// localMatrix
 
 	// world
 	Vec3	m_arrWorldDir[(UINT)DIR_TYPE::END];	// WorldDir
@@ -38,6 +39,7 @@ public:
 	const Vec3		GetLocalRotation() { return m_v3LocalRotation; }
 	const Vec3		GetLocalPos() { return m_v3LocalPostion; }
 	const Vec3		GetLocalDirection(DIR_TYPE _dir) { return m_arrLocalDir[(uint32)_dir]; }
+	const Matrix	GetLocalMatrix() { return m_matLocal; }
 	const Vec3		GetWorldScale();
 	const Vec3		GetWorldRotation();
 	const Vec3		GetWorldPos();

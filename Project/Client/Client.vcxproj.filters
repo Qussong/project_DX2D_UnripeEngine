@@ -56,6 +56,9 @@
     <Filter Include="02.ImGui\Guizmo">
       <UniqueIdentifier>{cf449383-0e50-4198-9835-5d62752ff911}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI\View">
+      <UniqueIdentifier>{d6b9b2e5-de26-416e-a909-ce38eaa34636}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -148,6 +151,9 @@
     <ClInclude Include="imgui\ImZoomSlider.h">
       <Filter>02.ImGui\Guizmo</Filter>
     </ClInclude>
+    <ClInclude Include="CViewUI.h">
+      <Filter>UI\View</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -237,6 +243,9 @@
     </ClCompile>
     <ClCompile Include="imgui\ImSequencer.cpp">
       <Filter>02.ImGui\Guizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="CViewUI.cpp">
+      <Filter>UI\View</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

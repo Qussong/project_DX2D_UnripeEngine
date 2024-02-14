@@ -50,3 +50,4 @@
 #include "CComponentUI.h"
 #include "CTransformUI.h"
 #include "CMeshRenderUI.h"
+#include "CViewUI.h"
