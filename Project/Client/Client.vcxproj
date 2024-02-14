@@ -148,6 +148,7 @@
     <ClInclude Include="CImGuiMgr.h" />
     <ClInclude Include="CInspector.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="CComponentUI.h" />
     <ClInclude Include="COutliner.h" />
     <ClInclude Include="COverlay.h" />
     <ClInclude Include="CUI.h" />
@@ -170,9 +171,11 @@
     <ClCompile Include="CImGuiMgr.cpp" />
     <ClCompile Include="CInspector.cpp" />
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="CComponentUI.cpp" />
     <ClCompile Include="COutliner.cpp" />
     <ClCompile Include="COverlay.cpp" />
     <ClCompile Include="CUI.cpp" />
+    <ClCompile Include="enum_client.h" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />

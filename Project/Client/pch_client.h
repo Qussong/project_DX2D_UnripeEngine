@@ -31,8 +31,11 @@
 #include "imgui/imgui_impl_win32.h"
 #include "imgui/imgui_impl_dx11.h"
 
-// 
+// ETC
 #include "value_client.h"
+#include "enum_client.h"
+
+// Manager
 #include "CImGuiMgr.h"
 
 // UI
@@ -41,3 +44,4 @@
 #include "CInspector.h"
 #include "CContent.h"
 #include "COverlay.h"
+#include "CComponentUI.h"

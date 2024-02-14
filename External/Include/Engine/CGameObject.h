@@ -54,8 +54,8 @@ public:
 	void					SetLoadAsset(bool _flag) { m_bAsset = _flag; }
 
 public:
-	void			AddComponent(CComponent* _comp);
-	//CComponent*	GetComponent(COMPONENT_TYPE _type) { return m_arrBasicComp[(uint32)_type]; }	// 없어도 될것 같아서 임시 주석
+	void				AddComponent(CComponent* _comp);
+	CComponent*			GetComponent(COMPONENT_TYPE _type) { return m_arrBasicComp[(uint32)_type]; }
 
 	CTransform*			Transform() { return static_cast<CTransform*>(m_arrBasicComp[(uint32)COMPONENT_TYPE::TRANSFORM]); }
 	CRenderComponent*	RenderComp() { return m_pRenderComp; }

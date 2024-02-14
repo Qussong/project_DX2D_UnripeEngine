@@ -41,6 +41,12 @@
     <Filter Include="UI\Overlay">
       <UniqueIdentifier>{a4c56479-5697-4106-860c-31b99b203d2a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI\Inspector\AssetUI">
+      <UniqueIdentifier>{b832d488-1927-4a20-8329-d5b798d9d88b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Inspector\ComponentUI">
+      <UniqueIdentifier>{f80eb86c-60e7-41ca-b71a-0f8e17ba7579}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -100,7 +106,12 @@
     <ClInclude Include="CContent.h">
       <Filter>UI\Content</Filter>
     </ClInclude>
-    <ClInclude Include="COverlay.h" />
+    <ClInclude Include="CComponentUI.h">
+      <Filter>UI\Inspector\ComponentUI</Filter>
+    </ClInclude>
+    <ClInclude Include="COverlay.h">
+      <Filter>UI\Overlay</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -160,6 +171,12 @@
     </ClCompile>
     <ClCompile Include="COverlay.cpp">
       <Filter>UI\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="CComponentUI.cpp">
+      <Filter>UI\Inspector\ComponentUI</Filter>
+    </ClCompile>
+    <ClCompile Include="enum_client.h">
+      <Filter>01.Header\pch</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
