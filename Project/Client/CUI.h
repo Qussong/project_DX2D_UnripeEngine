@@ -26,11 +26,12 @@ public:
 
 	// Setter
 	void SetName(const string& _name)			{ m_strName = _name; }
-	void Activate()								{ m_bActive = true; }
-	void Deactivate()							{ m_bActive = false; }
 	void SetSize(ImVec2 _size)					{ m_v2Size = _size; }
 	void SetWindowFlag(ImGuiWindowFlags _flag)	{ m_eWindowFlags = _flag; }
 	void SetParentUI(CUI* _parent)				{ m_pParent = _parent; }
+
+	virtual void Activate()		{ m_bActive = true; }
+	virtual void Deactivate()	{ m_bActive = false; }
 
 public:
 	void AddChildUI(CUI* _child) { m_vecChildren.push_back(_child); _child->SetParentUI(this); }

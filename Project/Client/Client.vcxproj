@@ -152,6 +152,7 @@
     <ClInclude Include="CInspector.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CComponentUI.h" />
+    <ClInclude Include="CListUI.h" />
     <ClInclude Include="CMeshRenderUI.h" />
     <ClInclude Include="COutliner.h" />
     <ClInclude Include="COverlay.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="CInspector.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CComponentUI.cpp" />
+    <ClCompile Include="CListUI.cpp" />
     <ClCompile Include="CMeshRenderUI.cpp" />
     <ClCompile Include="COutliner.cpp" />
     <ClCompile Include="COverlay.cpp" />
