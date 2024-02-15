@@ -45,6 +45,7 @@ public:
 	const Vec3		GetWorldPos();
 	const Vec3		GetWorldDirection(DIR_TYPE _dir) { return m_arrWorldDir[(uint32)_dir]; }
 	const Matrix	GetWorldMatrix() { return m_matWorld; }
+	const bool		IsAffectScale() { return m_bAbsolute; }
 
 	// Setter
 	void SetLocalPos(Vec3 _pos) { m_v3LocalPostion = _pos; }

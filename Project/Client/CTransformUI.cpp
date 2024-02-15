@@ -4,7 +4,7 @@
 CTransformUI::CTransformUI()
 	: Super("TransformUI", "##TransformUI", COMPONENT_TYPE::TRANSFORM)
 {
-	SetSize(ImVec2(0.f, 100.f));
+	SetSize(ImVec2(0.f, 120.f));
 }
 
 CTransformUI::~CTransformUI()
@@ -27,12 +27,17 @@ void CTransformUI::Render_Update()
 	Vec3 v3Rot	 = pTransform->GetLocalRotation();
 	v3Rot = (v3Rot / XM_PI) * 180.f;	// To Degree
 
-	ImGui::InputFloat3("Local Pos", v3Pos);
-	ImGui::InputFloat3("Local Scale", v3Scale);
-	ImGui::InputFloat3("Local Rot", v3Rot);
+	ImGui::Text("Local Pos   : "); ImGui::SameLine(); ImGui::DragFloat3("##LocalPos", v3Pos);
+	ImGui::Text("Local Scale : "); ImGui::SameLine(); ImGui::DragFloat3("##LocalScale", v3Scale);
+	ImGui::Text("Local Rot   : "); ImGui::SameLine(); ImGui::DragFloat3("##LocalRot", v3Rot);
 
 	v3Rot = (v3Rot / 180.f) * XM_PI;	// To Radian
 	pTransform->SetLocalPos(v3Pos);
 	pTransform->SetLocalScale(v3Scale);
 	pTransform->SetLocalRotation(v3Rot);
+
+	// Absolute
+	bool bAbsolute = GetTargetObj()->Transform()->IsAffectScale();
+	ImGui::Text("Scale Absolute "); ImGui::SameLine(); ImGui::Checkbox("##ScaleAbsolute", &bAbsolute);
+	GetTargetObj()->Transform()->SetAffectScale(bAbsolute);
 }
