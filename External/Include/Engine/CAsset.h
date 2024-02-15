@@ -44,7 +44,7 @@ private:
 			delete this;
 	}
 
-	friend CAssetMgr;
+	friend class CAssetMgr;
 
 	template <typename T>
 	friend class Ptr;

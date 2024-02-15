@@ -1,5 +1,7 @@
 #pragma once
 
+class CShader;
+
 class CGraphicShader
 	: public CShader
 {
@@ -41,7 +43,6 @@ private:
 
 public:
 	virtual void UpdateData() override;
-	virtual int Load(const wstring& _strFilePath) override { return E_FAIL; };
 
 public:
 	// Vertex Shader »ý¼º

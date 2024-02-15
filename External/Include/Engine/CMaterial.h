@@ -16,7 +16,6 @@ public:
 
 public:
 	virtual void UpdateData() override;
-	virtual int Load(const wstring& _strFilePath) override { return E_FAIL; };
 
 public:
 	void SetShader(Ptr<CGraphicShader> _shader) { m_pShader = _shader; }

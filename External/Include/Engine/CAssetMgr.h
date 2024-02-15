@@ -1,8 +1,10 @@
 #pragma once
 
 class CAsset;
+class CMesh;
 class CGraphicShader;
 class CTexture;
+class CMaterial;
 
 class CAssetMgr
 	: public CSingleton<CAssetMgr>
