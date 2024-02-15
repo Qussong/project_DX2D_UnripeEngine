@@ -21,6 +21,14 @@ void CMeshRenderUI::Render_Update()
 	Ptr<CMesh> pMesh = pMeshRender->GetMesh();
 	Ptr<CMaterial> pMtrl = pMeshRender->GetMaterial();
 
-	ImGui::Text(Lazy::ToString(pMesh->GetName()).c_str());
-	ImGui::Text(Lazy::ToString(pMtrl->GetName()).c_str());
+	string meshName = Lazy::ToString(pMesh->GetName().c_str());
+	string mtrlName = Lazy::ToString(pMtrl->GetName().c_str());
+
+	ImGui::Text("Mesh    ");
+	ImGui::SameLine();
+	ImGui::InputText("##MeshName", (char*)meshName.c_str(), meshName.length(), ImGuiInputTextFlags_ReadOnly);
+
+	ImGui::Text("Material");
+	ImGui::SameLine();
+	ImGui::InputText("##Material", (char*)mtrlName.c_str(), mtrlName.length(), ImGuiInputTextFlags_ReadOnly);
 }

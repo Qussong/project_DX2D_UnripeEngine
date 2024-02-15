@@ -242,4 +242,7 @@ DirectX 2D Engine
 &nbsp;&nbsp; - ViewUI 창 Mouse Wheel Event 기능 추가 및 MainWindow 창 크기 고정<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./ReadMe/ui_custom_1.png" width=500><br>
 
+**_24/02/15_** :<br>
+&nbsp;&nbsp; - MeshRenderUI 내용수정<br>
+
 <!-- &nbsp;&nbsp; - <br> -->

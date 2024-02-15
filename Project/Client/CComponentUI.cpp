@@ -37,12 +37,13 @@ void CComponentUI::Render_Update()
 	ImGui::Separator();
 
 	ImGui::PushID(0);
-	ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.f, 0.6f, 0.6f));
-	ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(0.f, 0.6f, 0.6f));
+	ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::ImColor(1.f, 0.f, 0.f));
+	ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.f, .6f, .6f));	// 색상, 채도, 명도
+	ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(0.f, 1.f, .6f));
 	ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(0.f, 0.6f, 0.6f));
 
 	ImGui::Button(m_strCompTitle.c_str());
 
-	ImGui::PopStyleColor(3);
+	ImGui::PopStyleColor(4);
 	ImGui::PopID();
 }

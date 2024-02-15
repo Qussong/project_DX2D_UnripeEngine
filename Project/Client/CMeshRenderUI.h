@@ -9,7 +9,6 @@ public:
 	CMeshRenderUI();
 	virtual ~CMeshRenderUI();
 
-
 public:
 	virtual void Tick() override {}
 	virtual void SetWindowOption() override {}	// UI창 옵션 세팅
