@@ -2,10 +2,17 @@
 #define _TILEMAP
 
 #include "value.fx"
+#include "struct.fx"
 
 // Parameter
-#define v2LeftTopUV  g_vec2_0
-#define v2SliceUV    g_vec2_1
+#define FACE_X      g_int_0
+#define FACE_Y      g_int_1
+
+#define vSliceUV    g_vec2_0
+
+#define TileAtlas   G_TEXTURE_0
+
+StructuredBuffer<tTileInfo> g_TileInfo : register(t20);
 
 struct VS_IN
 {
@@ -35,8 +42,18 @@ float4 PS_TileMap(VS_OUT _in) : SV_Target
     
     if(g_btex_0)
     {
-        float2 v2UV = v2LeftTopUV + (v2SliceUV * _in.v2UV);
-        v4Color = G_TEXTURE_0.Sample(G_SAMPLER_1, v2UV);
+        // 면 개수만큼 _in.vUV 를 배율을 늘림
+        float2 vUV = _in.v2UV * float2(FACE_X, FACE_Y);
+        int2 Integer = (int2) floor(vUV);
+        vUV = vUV - Integer;
+                
+        int bufferidx = Integer.y * FACE_X + Integer.x;
+        
+        if (!g_TileInfo[bufferidx].bRender)
+            discard;
+        
+        vUV = g_TileInfo[bufferidx].v2LeftTopUV + (vSliceUV * vUV);
+        v4Color = TileAtlas.Sample(G_SAMPLER_1, vUV);
     }
     
     return v4Color;

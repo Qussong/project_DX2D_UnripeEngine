@@ -30,6 +30,7 @@ struct tTask
 	UINT_PTR	iParam2;
 };
 
+// 디버그
 struct tDebugShapeInfo
 {
 	DEBUG_SHAPE		eShape;
@@ -43,6 +44,7 @@ struct tDebugShapeInfo
 	bool			bDepthTest;
 };
 
+// 충돌체
 union CollisionID
 {
 	struct
@@ -53,6 +55,7 @@ union CollisionID
 	UINT_PTR iID;
 };
 
+// 애니메이션
 struct tAniFrmInfo
 {
 	Vec2	v2LeftTop;
@@ -60,6 +63,14 @@ struct tAniFrmInfo
 	Vec2	v2Offset;
 	Vec2	v2Background;
 	float	fDuration;
+};
+
+// 타일맵
+struct tTileInfo
+{
+	Vec2 v2LeftTopUV;
+	int  bRender;
+	int	 iPadding;
 };
 
 ////////////////////////////////////////

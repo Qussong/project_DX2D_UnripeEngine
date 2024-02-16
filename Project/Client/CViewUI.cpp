@@ -196,4 +196,79 @@ void CViewUI::Render_Update()
     }
 
 	ImGui::Image(pSRV, ImVec2(iWindowWidth, iWindowHeight));
+
+    // Gizmo
+    {
+        //CLevel* pCurLevel = M_LEVEL->GetCurrentLevel();
+        //CGameObject* pCamObj = pCurLevel->FindObjectByName(L"MainCamera");
+        //Matrix matView = pCamObj->Camera()->GetViewMatrix();
+        //Matrix matProj = pCamObj->Camera()->GetProjMatrix();
+
+        //CGameObject* pPlayerObj = pCurLevel->FindObjectByName(L"PlayerObj");
+        //Matrix matPlayer = pPlayerObj->Transform()->GetWorldMatrix();
+
+        //ImGuiIO& io = ImGui::GetIO();
+        //float viewManipulateRight = io.DisplaySize.x;
+        //float viewManipulateTop = 0;
+        //int gizmoCount = 1;
+
+        //static ImGuiWindowFlags gizmoWindowFlags = 0;
+        //static ImGuizmo::OPERATION mCurrentGizmoOperation(ImGuizmo::TRANSLATE);
+        //static ImGuizmo::MODE mCurrentGizmoMode(ImGuizmo::WORLD);
+
+        //static bool useSnap = false;
+        //static float snap[3] = { 1.f, 1.f, 1.f };
+        //static float bounds[] = { -0.5f, -0.5f, -0.5f, 0.5f, 0.5f, 0.5f };
+        //static float boundsSnap[] = { 0.1f, 0.1f, 0.1f };
+        //static bool boundSizing = false;
+        //static bool boundSizingSnap = false;
+
+        //static const float identityMatrix[16] =
+        //{ 1.f, 0.f, 0.f, 0.f,
+        //  0.f, 1.f, 0.f, 0.f,
+        //  0.f, 0.f, 1.f, 0.f,
+        //  0.f, 0.f, 0.f, 1.f };
+
+        //float objectMatrix[4][16] = {
+        //                             { 1.f, 0.f, 0.f, 0.f,
+        //                               0.f, 1.f, 0.f, 0.f,
+        //                               0.f, 0.f, 1.f, 0.f,
+        //                               0.f, 0.f, 0.f, 1.f },
+        //                             
+        //                             { 1.f, 0.f, 0.f, 0.f,
+        //                               0.f, 1.f, 0.f, 0.f,
+        //                               0.f, 0.f, 1.f, 0.f,
+        //                               2.f, 0.f, 0.f, 1.f },
+        //                             
+        //                             { 1.f, 0.f, 0.f, 0.f,
+        //                               0.f, 1.f, 0.f, 0.f,
+        //                               0.f, 0.f, 1.f, 0.f,
+        //                               2.f, 0.f, 2.f, 1.f },
+        //                             
+        //                             { 1.f, 0.f, 0.f, 0.f,
+        //                               0.f, 1.f, 0.f, 0.f,
+        //                               0.f, 0.f, 1.f, 0.f,
+        //                               0.f, 0.f, 2.f, 1.f } };
+
+        //ImGuizmo::SetDrawlist();
+        //float windowWidth = (float)ImGui::GetWindowWidth();
+        //float windowHeight = (float)ImGui::GetWindowHeight();
+        //ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
+        //viewManipulateRight = ImGui::GetWindowPos().x + windowWidth;
+        //viewManipulateTop = ImGui::GetWindowPos().y;
+        //ImGuiWindow* window = ImGui::GetCurrentWindow();
+        //gizmoWindowFlags = ImGui::IsWindowHovered() && ImGui::IsMouseHoveringRect(window->InnerRect.Min, window->InnerRect.Max) ? ImGuiWindowFlags_NoMove : 0;
+
+        //ImGuizmo::DrawGrid(*matView.m, *matProj.m, identityMatrix, 100.f);
+        //ImGuizmo::DrawCubes(*matView.m, *matProj.m, &objectMatrix[0][0], gizmoCount);
+        //ImGuizmo::Manipulate(*matView.m,
+        //    *matProj.m,
+        //    mCurrentGizmoOperation,
+        //    mCurrentGizmoMode,
+        //    *matPlayer.m,
+        //    NULL,
+        //    useSnap ? &snap[0] : NULL,
+        //    boundSizing ? bounds : NULL,
+        //    boundSizingSnap ? boundsSnap : NULL);
+    }
 }

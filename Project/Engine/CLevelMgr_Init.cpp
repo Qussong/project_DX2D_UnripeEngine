@@ -165,19 +165,19 @@ void CLevelMgr::Init()
 
 	// UIObj
 	{
-		CGameObject* pUIObj = new CGameObject;
-		pUIObj->SetName(L"UI");
-		pUIObj->AddComponent(new CTransform);
-		pUIObj->AddComponent(new CMeshRender);
-		pUIObj->AddComponent(new CMinimapScript);
-		// basicComp
-		pUIObj->Transform()->SetLocalPos(Vec3(400.f, -200.f, 500.f));
-		pUIObj->Transform()->SetLocalScale(Vec3(128.f * 2, 72.f * 2, 1.f));
-		// renderComp
-		pUIObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		pUIObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"UIMtrl"));
-		pUIObj->MeshRender()->GetMaterial()->SetScalarParam(SCALAR_PARAM::INT_3, 1);	// hlsl코드에서 UI객체 구분
-		GamePlayStatic::SpawnGameObject(pUIObj, LAYER_TYPE::UI);
+		//CGameObject* pUIObj = new CGameObject;
+		//pUIObj->SetName(L"UI");
+		//pUIObj->AddComponent(new CTransform);
+		//pUIObj->AddComponent(new CMeshRender);
+		//pUIObj->AddComponent(new CMinimapScript);
+		//// basicComp
+		//pUIObj->Transform()->SetLocalPos(Vec3(400.f, -200.f, 500.f));
+		//pUIObj->Transform()->SetLocalScale(Vec3(128.f * 2, 72.f * 2, 1.f));
+		//// renderComp
+		//pUIObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+		//pUIObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"UIMtrl"));
+		//pUIObj->MeshRender()->GetMaterial()->SetScalarParam(SCALAR_PARAM::INT_3, 1);	// hlsl코드에서 UI객체 구분
+		//GamePlayStatic::SpawnGameObject(pUIObj, LAYER_TYPE::UI);
 	}
 
 	// PPObj_GreyFilter
@@ -194,32 +194,32 @@ void CLevelMgr::Init()
 
 	// PPObj_Distortion1
 	{
-		CGameObject* pDisObj = new CGameObject;
-		pDisObj->SetName(L"Distortion");
-		pDisObj->AddComponent(new CTransform);
-		pDisObj->AddComponent(new CMeshRender);
-		// basicComp
-		pDisObj->Transform()->SetLocalPos(Vec3(150.f, 0.f, 400.f));
-		pDisObj->Transform()->SetLocalScale(Vec3(200.f, 200.f, 1.f));
-		pDisObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		pDisObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DistortionMtrl"));
-		pDisObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, M_ASSET->FindAsset<CTexture>(L"noise3"));
-		GamePlayStatic::SpawnGameObject(pDisObj, LAYER_TYPE::DEFAULT);
+		//CGameObject* pDisObj = new CGameObject;
+		//pDisObj->SetName(L"Distortion");
+		//pDisObj->AddComponent(new CTransform);
+		//pDisObj->AddComponent(new CMeshRender);
+		//// basicComp
+		//pDisObj->Transform()->SetLocalPos(Vec3(150.f, 0.f, 400.f));
+		//pDisObj->Transform()->SetLocalScale(Vec3(200.f, 200.f, 1.f));
+		//pDisObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+		//pDisObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DistortionMtrl"));
+		//pDisObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, M_ASSET->FindAsset<CTexture>(L"noise3"));
+		//GamePlayStatic::SpawnGameObject(pDisObj, LAYER_TYPE::DEFAULT);
 	}
 
 	// PPObj_Distortion2
 	{
-		CGameObject* pDisObj = new CGameObject;
-		pDisObj->SetName(L"Distortion");
-		pDisObj->AddComponent(new CTransform);
-		pDisObj->AddComponent(new CMeshRender);
-		// basicComp
-		pDisObj->Transform()->SetLocalPos(Vec3(-150.f, 0.f, 400.f));
-		pDisObj->Transform()->SetLocalScale(Vec3(200.f, 200.f, 1.f));
-		pDisObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"CircleMesh"));
-		pDisObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DistortionMtrl"));
-		pDisObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, M_ASSET->FindAsset<CTexture>(L"noise3"));
-		GamePlayStatic::SpawnGameObject(pDisObj, LAYER_TYPE::DEFAULT);
+		//CGameObject* pDisObj = new CGameObject;
+		//pDisObj->SetName(L"Distortion");
+		//pDisObj->AddComponent(new CTransform);
+		//pDisObj->AddComponent(new CMeshRender);
+		//// basicComp
+		//pDisObj->Transform()->SetLocalPos(Vec3(-150.f, 0.f, 400.f));
+		//pDisObj->Transform()->SetLocalScale(Vec3(200.f, 200.f, 1.f));
+		//pDisObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"CircleMesh"));
+		//pDisObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DistortionMtrl"));
+		//pDisObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, M_ASSET->FindAsset<CTexture>(L"noise3"));
+		//GamePlayStatic::SpawnGameObject(pDisObj, LAYER_TYPE::DEFAULT);
 	}
 
 	// TileMap
@@ -232,6 +232,13 @@ void CLevelMgr::Init()
 		pTileObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 550.f));
 		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"tileAtlas");
 		pTileObj->TileMap()->SetTileAtlas(pTex, Vec2(64.f, 64.f));
+		pTileObj->TileMap()->SetFaceCnt(6, 6);
+		pTileObj->TileMap()->SetTileRenderSize(Vec2(30.f, 30.f));
+		for (int row = 0; row < 6; ++row)
+		{
+			for (int col = 0; col < 6; ++col)
+				pTileObj->TileMap()->SetTileIndex(row, col, row * 6 + col);
+		}
 		GamePlayStatic::SpawnGameObject(pTileObj, LAYER_TYPE::TILE);
 	}
 }

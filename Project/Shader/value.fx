@@ -86,7 +86,6 @@ cbuffer GLOBAL_DATA : register(b3)
     int     padding;
 }
 
-
 Texture2D       G_TEXTURE_0       : register(t0);
 Texture2D       G_TEXTURE_1       : register(t1);
 Texture2D       G_TEXTURE_2       : register(t2);

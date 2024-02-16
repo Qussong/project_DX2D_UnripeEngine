@@ -76,6 +76,7 @@ void CGameObject::AddComponent(CComponent* _comp)
 		m_pRenderComp = renderComp;
 		renderComp->SetOwner(this);
 	}
+
 	// BasicComp or Script
 	else
 	{
