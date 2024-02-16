@@ -240,14 +240,6 @@ void CAssetMgr::Material()
 		AddAsset(L"DefaultMtrl", pMtrl.Get());
 	}
 
-	// Monster Material
-	{
-		Ptr<CMaterial> pMtrl = new CMaterial;
-		pMtrl->SetName(L"MonsterMtrl");
-		pMtrl->SetShader(FindAsset<CGraphicShader>(L"2D_DefaultShader"));
-		AddAsset(L"MonsterMtrl", pMtrl.Get());
-	}
-
 	// Background Material
 	{
 		Ptr<CMaterial> pMtrl = new CMaterial;

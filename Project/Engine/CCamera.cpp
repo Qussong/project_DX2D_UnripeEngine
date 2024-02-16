@@ -192,12 +192,10 @@ void CCamera::Render_PostProcess()
 {
 	vector<CGameObject*> &vecPPObj = m_DomainObj[(uint32)SHADER_DOMAIN::DOMAIN_POSTPROCESS];
 
-	vecPPObj.push_back(new CGameObject);	// ViewUI 에 모든 후처리 과정이 보이도록 하기위해 더미객체추가
-
 	for (size_t i = 0; i < vecPPObj.size(); ++i)
 	{
-		// 최종 렌더링 이미지를 후처리 타겟에 복사
-		CRenderMgr::GetInst()->CopyRenderTargetToPostProcessTarget();
+		// 렌더링 이미지를 후처리 타겟에 복사
+		M_RENDER->CopyRenderTargetToPostProcessTarget();
 
 		// 복사받은 후처리 텍스쳐를 t13 레지스터에 바인딩
 		Ptr<CTexture> pPostProcessTex = M_RENDER->GetPostProcessTex();

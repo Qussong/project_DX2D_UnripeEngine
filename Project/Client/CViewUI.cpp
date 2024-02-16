@@ -169,7 +169,7 @@ void EditTransform(float* cameraView, float* cameraProjection, float* matrix, bo
 
 void CViewUI::Render_Update()
 {
-    Ptr<CTexture> pViewTex = M_RENDER->GetPostProcessTex();
+    Ptr<CTexture> pViewTex = M_RENDER->GetViewUITex();
     ID3D11ShaderResourceView* pSRV = pViewTex->GetSRV().Get();
     Vec2 v2Resolution = GRAPHICS->GetResolution();
     float iWindowWidth = ImGui::GetWindowWidth();

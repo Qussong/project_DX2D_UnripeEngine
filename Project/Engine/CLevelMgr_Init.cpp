@@ -82,7 +82,8 @@ void CLevelMgr::Init()
 		pMonsterObj->Collider2D()->SetColliderType(COLLIDER2D_TYPE::CIRCLE);
 		// RenderComp
 		pMonsterObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		pMonsterObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"MonsterMtrl"));
+		//pMonsterObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"MonsterMtrl"));
+		pMonsterObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DefaultMtrl"));
 		GamePlayStatic::SpawnGameObject(pMonsterObj, LAYER_TYPE::MONSTER);
 	}
 
@@ -219,5 +220,17 @@ void CLevelMgr::Init()
 		pDisObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DistortionMtrl"));
 		pDisObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, M_ASSET->FindAsset<CTexture>(L"noise3"));
 		GamePlayStatic::SpawnGameObject(pDisObj, LAYER_TYPE::DEFAULT);
+	}
+
+	// Dumy
+	{
+		//CGameObject* pDumyObj = new CGameObject;
+		//pDumyObj->SetName(L"DumyObj");
+		//pDumyObj->AddComponent(new CTransform);
+		//pDumyObj->AddComponent(new CMeshRender);
+		////
+		//pDumyObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+		//pDumyObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DistortionMtrl"));
+		//GamePlayStatic::SpawnGameObject(pDumyObj, LAYER_TYPE::DEFAULT);
 	}
 }

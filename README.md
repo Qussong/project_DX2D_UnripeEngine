@@ -245,4 +245,7 @@ DirectX 2D Engine
 **_24/02/15_** :<br>
 &nbsp;&nbsp; - MeshRenderUI 내용수정<br>
 
+**_24/02/16_** :<br>
+&nbsp;&nbsp; - ViewUI 출력 이미지 별도 생성 및 디버그 모드도 출력되도록 수정<br>
+
 <!-- &nbsp;&nbsp; - <br> -->

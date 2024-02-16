@@ -23,10 +23,14 @@ private:
 	// PostProcess
 	Ptr<CTexture>			m_PostProcessTex;
 
+	// ViewUI
+	Ptr<CTexture>			m_ViewUITex;
+
 public:
 	// Getter
 	bool			IsDebugCheck()		{ return m_bDebugCheck; }
 	Ptr<CTexture>	GetPostProcessTex() { return m_PostProcessTex; }
+	Ptr<CTexture>	GetViewUITex()		{ return m_ViewUITex; }
 
 	// Setter
 	void			SetDebugCheck(bool _flag) { m_bDebugCheck = _flag; }
@@ -36,6 +40,7 @@ public:
 	inline void		AddDebugShapeInfo(const tDebugShapeInfo& _info) { m_listDebugShapeInfo.push_back(_info); }
 	inline void		RegisterLight2D(CLight2D* _lightObj) { m_vecLight2D.push_back(_lightObj); }
 	void			CopyRenderTargetToPostProcessTarget();
+	void			CopyRenderTargetToViewUITarget();
 
 public:
 	void			Init();

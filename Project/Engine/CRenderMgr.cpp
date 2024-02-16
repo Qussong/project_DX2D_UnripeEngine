@@ -45,6 +45,12 @@ void CRenderMgr::CopyRenderTargetToPostProcessTarget()
 	CONTEXT->CopyResource(m_PostProcessTex->GetTex2D().Get(), pRTTex->GetTex2D().Get());
 }
 
+void CRenderMgr::CopyRenderTargetToViewUITarget()
+{
+	Ptr<CTexture> pRTTex = M_ASSET->FindAsset<CTexture>(L"RenderTargetTex");
+	CONTEXT->CopyResource(m_ViewUITex->GetTex2D().Get(), pRTTex->GetTex2D().Get());
+}
+
 void CRenderMgr::UpdateData()
 {
 	// 전역 데이터 업데이트
@@ -161,7 +167,11 @@ void CRenderMgr::Render_Debug()
 		// 수명이 남은 경우
 		else
 			++iter;
+
 	}
+
+	// 최종 렌더링 이미지를 ViewUI 타겟에 복사
+	CopyRenderTargetToViewUITarget();
 }
 
 void CRenderMgr::Clear()
