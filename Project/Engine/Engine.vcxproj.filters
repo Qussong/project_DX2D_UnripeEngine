@@ -169,6 +169,9 @@
     <ClInclude Include="CMinimapScript.h">
       <Filter>09.Script\Minimap</Filter>
     </ClInclude>
+    <ClInclude Include="CTileMap.h">
+      <Filter>08.RenderComponent\TileMap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -308,6 +311,9 @@
     </ClCompile>
     <ClCompile Include="CMinimapScript.cpp">
       <Filter>09.Script\Minimap</Filter>
+    </ClCompile>
+    <ClCompile Include="CTileMap.cpp">
+      <Filter>08.RenderComponent\TileMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -467,6 +473,9 @@
     <Filter Include="09.Script\Minimap">
       <UniqueIdentifier>{eddd1bec-f79c-499f-9363-7cb41daebfae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="08.RenderComponent\TileMap">
+      <UniqueIdentifier>{1abfc230-1b96-49d8-8912-d4d92fe8da2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -493,6 +502,9 @@
       <Filter>Shader\Render</Filter>
     </FxCompile>
     <FxCompile Include="postprocess.fx">
+      <Filter>Shader\Render</Filter>
+    </FxCompile>
+    <FxCompile Include="tilemap.fx">
       <Filter>Shader\Render</Filter>
     </FxCompile>
   </ItemGroup>

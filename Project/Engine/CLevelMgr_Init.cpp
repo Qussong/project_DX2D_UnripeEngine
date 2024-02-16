@@ -165,19 +165,19 @@ void CLevelMgr::Init()
 
 	// UIObj
 	{
-		//CGameObject* pUIObj = new CGameObject;
-		//pUIObj->SetName(L"UI");
-		//pUIObj->AddComponent(new CTransform);
-		//pUIObj->AddComponent(new CMeshRender);
-		//pUIObj->AddComponent(new CMinimapScript);
-		//// basicComp
-		//pUIObj->Transform()->SetLocalPos(Vec3(400.f, -200.f, 500.f));
-		//pUIObj->Transform()->SetLocalScale(Vec3(128.f * 3, 72.f * 3, 1.f));
-		//// renderComp
-		//pUIObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		//pUIObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"UIMtrl"));
-		//pUIObj->MeshRender()->GetMaterial()->SetScalarParam(SCALAR_PARAM::INT_3, 1);	// hlsl코드에서 UI객체 구분
-		//GamePlayStatic::SpawnGameObject(pUIObj, LAYER_TYPE::UI);
+		CGameObject* pUIObj = new CGameObject;
+		pUIObj->SetName(L"UI");
+		pUIObj->AddComponent(new CTransform);
+		pUIObj->AddComponent(new CMeshRender);
+		pUIObj->AddComponent(new CMinimapScript);
+		// basicComp
+		pUIObj->Transform()->SetLocalPos(Vec3(400.f, -200.f, 500.f));
+		pUIObj->Transform()->SetLocalScale(Vec3(128.f * 2, 72.f * 2, 1.f));
+		// renderComp
+		pUIObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
+		pUIObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"UIMtrl"));
+		pUIObj->MeshRender()->GetMaterial()->SetScalarParam(SCALAR_PARAM::INT_3, 1);	// hlsl코드에서 UI객체 구분
+		GamePlayStatic::SpawnGameObject(pUIObj, LAYER_TYPE::UI);
 	}
 
 	// PPObj_GreyFilter
@@ -199,7 +199,7 @@ void CLevelMgr::Init()
 		pDisObj->AddComponent(new CTransform);
 		pDisObj->AddComponent(new CMeshRender);
 		// basicComp
-		pDisObj->Transform()->SetLocalPos(Vec3(150.f, 150.f, 400.f));
+		pDisObj->Transform()->SetLocalPos(Vec3(150.f, 0.f, 400.f));
 		pDisObj->Transform()->SetLocalScale(Vec3(200.f, 200.f, 1.f));
 		pDisObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		pDisObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DistortionMtrl"));
@@ -214,7 +214,7 @@ void CLevelMgr::Init()
 		pDisObj->AddComponent(new CTransform);
 		pDisObj->AddComponent(new CMeshRender);
 		// basicComp
-		pDisObj->Transform()->SetLocalPos(Vec3(50.f, 50.f, 400.f));
+		pDisObj->Transform()->SetLocalPos(Vec3(-150.f, 0.f, 400.f));
 		pDisObj->Transform()->SetLocalScale(Vec3(200.f, 200.f, 1.f));
 		pDisObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"CircleMesh"));
 		pDisObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DistortionMtrl"));
@@ -222,15 +222,16 @@ void CLevelMgr::Init()
 		GamePlayStatic::SpawnGameObject(pDisObj, LAYER_TYPE::DEFAULT);
 	}
 
-	// Dumy
+	// TileMap
 	{
-		//CGameObject* pDumyObj = new CGameObject;
-		//pDumyObj->SetName(L"DumyObj");
-		//pDumyObj->AddComponent(new CTransform);
-		//pDumyObj->AddComponent(new CMeshRender);
-		////
-		//pDumyObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
-		//pDumyObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"DistortionMtrl"));
-		//GamePlayStatic::SpawnGameObject(pDumyObj, LAYER_TYPE::DEFAULT);
+		CGameObject* pTileObj = new CGameObject;
+		pTileObj->SetName(L"TileMap");
+		pTileObj->AddComponent(new CTransform);
+		pTileObj->AddComponent(new CTileMap);
+		// basicComp
+		pTileObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 550.f));
+		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"tileAtlas");
+		pTileObj->TileMap()->SetTileAtlas(pTex, Vec2(64.f, 64.f));
+		GamePlayStatic::SpawnGameObject(pTileObj, LAYER_TYPE::TILE);
 	}
 }

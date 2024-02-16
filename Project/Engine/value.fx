@@ -28,8 +28,8 @@ cbuffer MATERIAL : register(b1)
     float g_float_2;
     float g_float_3;
     
-    float2 g_vec2_0;
-    float2 g_vec2_1;
+    float2 g_vec2_0;    // (tilemap.fx) vLeftTopUV
+    float2 g_vec2_1;    // (tilemap.fx) vSliceUV
     float2 g_vec2_2;
     float2 g_vec2_3;
     

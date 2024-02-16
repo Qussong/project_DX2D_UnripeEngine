@@ -13,8 +13,7 @@ void CMinimapScript::Tick()
 {
 	if (nullptr != GetOwner())
 	{
-		//Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"PostProcessTex");
-		Ptr<CTexture> pTex = M_RENDER->GetPostProcessTex();
+		Ptr<CTexture> pTex = M_RENDER->GetViewUITex();
 		GetOwner()->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
 	}
 }

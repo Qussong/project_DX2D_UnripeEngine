@@ -167,7 +167,6 @@ void CRenderMgr::Render_Debug()
 		// 수명이 남은 경우
 		else
 			++iter;
-
 	}
 
 	// 최종 렌더링 이미지를 ViewUI 타겟에 복사

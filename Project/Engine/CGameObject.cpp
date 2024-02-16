@@ -116,6 +116,11 @@ CMeshRender* CGameObject::MeshRender()
 	return dynamic_cast<CMeshRender*>(m_pRenderComp);
 }
 
+CTileMap* CGameObject::TileMap()
+{
+	return dynamic_cast<CTileMap*>(m_pRenderComp);
+}
+
 void CGameObject::DisconnectWithParent()
 {
 	vector<CGameObject*> brothers = m_pParent->m_vecChild;

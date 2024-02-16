@@ -14,10 +14,10 @@ CLevel::CLevel()
 
 	GetLayer(LAYER_TYPE::DEFAULT)->SetName(L"DefaultLayer");
 	GetLayer(LAYER_TYPE::BACKGROUND)->SetName(L"BackgroundLayer");
-	GetLayer(LAYER_TYPE::TILE)->SetName(L"TileLayer");
 	GetLayer(LAYER_TYPE::PLAYER)->SetName(L"PlayerLayer");
 	GetLayer(LAYER_TYPE::MONSTER)->SetName(L"MonsterLayer");
 	GetLayer(LAYER_TYPE::LIGHT2D)->SetName(L"LightLayer");
+	GetLayer(LAYER_TYPE::TILE)->SetName(L"TileLayer");
 	GetLayer(LAYER_TYPE::UI)->SetName(L"UILayer");
 }
 

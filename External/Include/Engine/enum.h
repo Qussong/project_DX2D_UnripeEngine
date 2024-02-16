@@ -152,10 +152,10 @@ enum class LAYER_TYPE
 
 	DEFAULT,	// 0
 	BACKGROUND,	// 1
-	TILE,		// 2
-	PLAYER,		// 3
-	MONSTER,	// 4
-	LIGHT2D,	// 5
+	PLAYER,		// 2
+	MONSTER,	// 3
+	LIGHT2D,	// 4
+	TILE,		// 5
 	UI,			// 6
 	
 	END,

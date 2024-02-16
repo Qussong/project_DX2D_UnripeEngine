@@ -247,5 +247,7 @@ DirectX 2D Engine
 
 **_24/02/16_** :<br>
 &nbsp;&nbsp; - ViewUI 출력 이미지 별도 생성 및 디버그 모드도 출력되도록 수정<br>
+&nbsp;&nbsp; - CTilMap 클래스 추가<br>
+
 
 <!-- &nbsp;&nbsp; - <br> -->
