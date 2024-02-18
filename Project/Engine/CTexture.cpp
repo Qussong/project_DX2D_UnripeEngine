@@ -4,6 +4,8 @@
 CTexture::CTexture()
 	: Super(ASSET_TYPE::TEXTURE)
 	, m_tDesc{}
+	, m_iRecentNum_SRV(0)
+	, m_iRecentNum_UAV(0)
 {
 	SetName(L"Texture");
 }
@@ -92,15 +94,32 @@ int CTexture::Create(UINT _width, UINT _height, DXGI_FORMAT _format, UINT _bindF
 
 	// View »ý¼º
 	if (m_tDesc.BindFlags & D3D11_BIND_DEPTH_STENCIL)
+	{
 		hr = DEVICE->CreateDepthStencilView(m_Tex2D.Get(), nullptr, m_DSV.GetAddressOf());
-	else if (m_tDesc.BindFlags & D3D11_BIND_RENDER_TARGET)
-		hr = DEVICE->CreateRenderTargetView(m_Tex2D.Get(), nullptr, m_RTV.GetAddressOf());
-	else if (m_tDesc.BindFlags & D3D11_BIND_SHADER_RESOURCE)
-		hr = DEVICE->CreateShaderResourceView(m_Tex2D.Get(), nullptr, m_SRV.GetAddressOf());
-	else if (m_tDesc.BindFlags & D3D11_BIND_UNORDERED_ACCESS)
-		hr = DEVICE->CreateUnorderedAccessView(m_Tex2D.Get(), nullptr, m_UAV.GetAddressOf());
+	}
 	else
-		__noop;
+	{
+		if (m_tDesc.BindFlags & D3D11_BIND_RENDER_TARGET)
+		{
+			hr = DEVICE->CreateRenderTargetView(m_Tex2D.Get(), nullptr, m_RTV.GetAddressOf());
+			if (FAILED(hr))
+				return hr;
+		}
+
+		if (m_tDesc.BindFlags & D3D11_BIND_SHADER_RESOURCE)
+		{
+			hr = DEVICE->CreateShaderResourceView(m_Tex2D.Get(), nullptr, m_SRV.GetAddressOf());
+			if (FAILED(hr))
+				return hr;
+		}
+
+		if (m_tDesc.BindFlags & D3D11_BIND_UNORDERED_ACCESS)
+		{
+			hr = DEVICE->CreateUnorderedAccessView(m_Tex2D.Get(), nullptr, m_UAV.GetAddressOf());
+			if (FAILED(hr))
+				return hr;
+		}
+	}
 
 	return hr;
 }
@@ -143,6 +162,42 @@ void CTexture::Clear(uint32 _iRegisterNum)
 	CONTEXT->DSSetShaderResources(_iRegisterNum, 1, &pSRV);
 	CONTEXT->GSSetShaderResources(_iRegisterNum, 1, &pSRV);
 	CONTEXT->PSSetShaderResources(_iRegisterNum, 1, &pSRV);
+}
+
+int CTexture::UpdateData_CS_SRV(int _registerNum)
+{
+	if (nullptr == m_SRV)
+		return E_FAIL;
+
+	m_iRecentNum_SRV = _registerNum;
+	CONTEXT->CSSetShaderResources(_registerNum, 1, m_SRV.GetAddressOf());
+
+	return S_OK;
+}
+
+int CTexture::UpdateData_CS_UAV(int _registerNum)
+{
+	if (nullptr == m_UAV)
+		return E_FAIL;
+
+	m_iRecentNum_UAV = _registerNum;
+	UINT i = -1;
+	CONTEXT->CSSetUnorderedAccessViews(_registerNum, 1, m_UAV.GetAddressOf(), &i);
+
+	return S_OK;
+}
+
+void CTexture::Clear_CS_SRV()
+{
+	ID3D11ShaderResourceView* pSRV = nullptr;
+	CONTEXT->CSSetShaderResources(m_iRecentNum_SRV, 1, &pSRV);
+}
+
+void CTexture::Clear_CS_UAV()
+{
+	ID3D11UnorderedAccessView* pUAV = nullptr;
+	UINT i = -1;
+	CONTEXT->CSSetUnorderedAccessViews(m_iRecentNum_SRV, 1, &pUAV, &i);
 }
 
 void CTexture::UpdateData(uint32 _iRegisterNum)

@@ -11,6 +11,15 @@ void CLevelMgr::Init()
 		M_COLLISION->LayerCheck(L"MonsterLayer", L"MonsterLayer");
 	}
 
+	// ComputeShader
+	{
+		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"CSTex");
+		Ptr<CSetColorShader> pCS = (CSetColorShader*)M_ASSET->FindAsset<CComputeShader>(L"SetColorShader").Get();
+		pCS->SetColor(Vec3(0.f, 1.f, .5f));
+		pCS->SetTargetTex(pTex);
+		pCS->Execute();
+	}
+
 	// Main Camera
 	{
 		CGameObject* pCamObj = new CGameObject;
@@ -99,54 +108,54 @@ void CLevelMgr::Init()
 		pBackObj->MeshRender()->SetMesh(M_ASSET->FindAsset<CMesh>(L"RectMesh"));
 		pBackObj->MeshRender()->SetMaterial(M_ASSET->FindAsset<CMaterial>(L"BackgroundMtrl"));
 		// texture
-		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"flower");
+		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"CSTex");
 		pBackObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
 		GamePlayStatic::SpawnGameObject(pBackObj, LAYER_TYPE::BACKGROUND);
 	}
 
 	// LightObj_POINT1
 	{
-		CGameObject* pLightObj = new CGameObject;
-		pLightObj->SetName(L"Light_Point1");
-		pLightObj->AddComponent(new CTransform);
-		pLightObj->AddComponent(new CMeshRender);
-		pLightObj->AddComponent(new CLight2D);
-		// basicComp
-		pLightObj->Transform()->SetLocalPos(Vec3(-50.f, -50.f, 500.f));
-		pLightObj->Light2D()->SetLightType(LIGHT_TYPE::POINT);
-		pLightObj->Light2D()->SetLightColor(Vec3(1.f, 0.f, 0.f));
-		pLightObj->Light2D()->SetRaius(150.f);
-		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
+		//CGameObject* pLightObj = new CGameObject;
+		//pLightObj->SetName(L"Light_Point1");
+		//pLightObj->AddComponent(new CTransform);
+		//pLightObj->AddComponent(new CMeshRender);
+		//pLightObj->AddComponent(new CLight2D);
+		//// basicComp
+		//pLightObj->Transform()->SetLocalPos(Vec3(-50.f, -50.f, 500.f));
+		//pLightObj->Light2D()->SetLightType(LIGHT_TYPE::POINT);
+		//pLightObj->Light2D()->SetLightColor(Vec3(1.f, 0.f, 0.f));
+		//pLightObj->Light2D()->SetRaius(150.f);
+		//GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
 	}
 
 	// LightObj_POINT2
 	{
-		CGameObject* pLightObj = new CGameObject;
-		pLightObj->SetName(L"Light_Point2");
-		pLightObj->AddComponent(new CTransform);
-		pLightObj->AddComponent(new CMeshRender);
-		pLightObj->AddComponent(new CLight2D);
-		// basicComp
-		pLightObj->Transform()->SetLocalPos(Vec3(50.f, -50.f, 500.f));
-		pLightObj->Light2D()->SetLightType(LIGHT_TYPE::POINT);
-		pLightObj->Light2D()->SetLightColor(Vec3(0.f, 1.f, 0.f));
-		pLightObj->Light2D()->SetRaius(150.f);
-		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
+		//CGameObject* pLightObj = new CGameObject;
+		//pLightObj->SetName(L"Light_Point2");
+		//pLightObj->AddComponent(new CTransform);
+		//pLightObj->AddComponent(new CMeshRender);
+		//pLightObj->AddComponent(new CLight2D);
+		//// basicComp
+		//pLightObj->Transform()->SetLocalPos(Vec3(50.f, -50.f, 500.f));
+		//pLightObj->Light2D()->SetLightType(LIGHT_TYPE::POINT);
+		//pLightObj->Light2D()->SetLightColor(Vec3(0.f, 1.f, 0.f));
+		//pLightObj->Light2D()->SetRaius(150.f);
+		//GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
 	}
 
 	// LightObj_POINT3
 	{
-		CGameObject* pLightObj = new CGameObject;
-		pLightObj->SetName(L"Light_Point2");
-		pLightObj->AddComponent(new CTransform);
-		pLightObj->AddComponent(new CMeshRender);
-		pLightObj->AddComponent(new CLight2D);
-		// basicComp
-		pLightObj->Transform()->SetLocalPos(Vec3(0.f, 70.f, 500.f));
-		pLightObj->Light2D()->SetLightType(LIGHT_TYPE::POINT);
-		pLightObj->Light2D()->SetLightColor(Vec3(0.f, 0.f, 1.f));
-		pLightObj->Light2D()->SetRaius(150.f);
-		GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
+		//CGameObject* pLightObj = new CGameObject;
+		//pLightObj->SetName(L"Light_Point2");
+		//pLightObj->AddComponent(new CTransform);
+		//pLightObj->AddComponent(new CMeshRender);
+		//pLightObj->AddComponent(new CLight2D);
+		//// basicComp
+		//pLightObj->Transform()->SetLocalPos(Vec3(0.f, 70.f, 500.f));
+		//pLightObj->Light2D()->SetLightType(LIGHT_TYPE::POINT);
+		//pLightObj->Light2D()->SetLightColor(Vec3(0.f, 0.f, 1.f));
+		//pLightObj->Light2D()->SetRaius(150.f);
+		//GamePlayStatic::SpawnGameObject(pLightObj, LAYER_TYPE::LIGHT2D);
 	}
 
 	// LightObj_DIRECTIONAL
@@ -240,14 +249,5 @@ void CLevelMgr::Init()
 				pTileObj->TileMap()->SetTileIndex(row, col, row * 6 + col);
 		}
 		GamePlayStatic::SpawnGameObject(pTileObj, LAYER_TYPE::TILE);
-	}
-
-	// ComputeShader
-	{
-		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"CSTex");
-		Ptr<CSetColorShader> pCS = (CSetColorShader*)M_ASSET->FindAsset<CComputeShader>(L"SetColorShader").Get();
-		pCS->SetColor(Vec3(1.f, 0.f, 0.f));
-		pCS->SetTargetTex(pTex);
-		pCS->Execute();
 	}
 }

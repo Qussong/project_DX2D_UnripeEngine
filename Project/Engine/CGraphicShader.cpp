@@ -16,7 +16,7 @@ CGraphicShader::~CGraphicShader()
 {
 }
 
-void CGraphicShader::UpdateData()
+int CGraphicShader::UpdateData()
 {
 	CONTEXT->IASetInputLayout(m_Layout.Get());
 	CONTEXT->IASetPrimitiveTopology(m_Topology);
@@ -30,6 +30,8 @@ void CGraphicShader::UpdateData()
 	CONTEXT->RSSetState(GRAPHICS->GetRSState(m_eRSType).Get());
 	CONTEXT->OMSetDepthStencilState(GRAPHICS->GetDSState(m_eDSType).Get(), 0);
 	CONTEXT->OMSetBlendState(GRAPHICS->GetBSState(m_eBSType).Get(), nullptr, 0xffffffff);
+
+	return S_OK;
 }
 
 void CGraphicShader::Layout()

@@ -42,7 +42,7 @@ private:
 	void Layout();
 
 public:
-	virtual void UpdateData() override;
+	virtual int UpdateData() override;
 
 public:
 	// Vertex Shader »ý¼º

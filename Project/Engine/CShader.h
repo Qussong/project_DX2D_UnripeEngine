@@ -1,6 +1,5 @@
 #pragma once
 
-//class CAsset;
 #include "CAsset.h";
 
 class CShader
@@ -16,5 +15,5 @@ protected:
 	ComPtr<ID3DBlob>	m_ErrBlob;	// ErrorBlob
 
 public:
-	virtual void UpdateData() = 0;
+	virtual int UpdateData() = 0;
 };

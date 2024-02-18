@@ -1,7 +1,5 @@
 #pragma once
 
-//class CTexture;
-//class CComputeShader;
 #include "CComputeShader.h"
 
 class CSetColorShader
@@ -19,10 +17,10 @@ private:
 
 public:
 	void SetTargetTex(Ptr<CTexture> _tex) { m_pTargetTex = _tex; }
-	void SetColor(Vec3 _color) { m_v4Color = Vec4(_color, 0.f); }
+	void SetColor(Vec3 _color) { m_v4Color = Vec4(_color, 1.f); }
 
 public:
-	virtual void UpdateData() override;
-	virtual void Clear() override;
+	virtual int		UpdateData() override;
+	virtual void	Clear() override;
 };
 

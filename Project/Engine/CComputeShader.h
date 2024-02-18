@@ -21,6 +21,7 @@ private:
 	UINT			m_iGroupY;
 	UINT			m_iGroupZ;
 
+protected:
 	// 스레드 개수
 	const UINT		m_iThreadX;
 	const UINT		m_iThreadY;
@@ -44,8 +45,8 @@ public:
 	int		Create(const wstring& _wstrRelativePath, const string& _strFuncName, const string& _version = "cs_5_0");
 	void	Execute();
 
-public:
-	virtual void UpdateData() = 0;
+private:
+	virtual int UpdateData() = 0;
 	virtual void Clear() = 0;
 };
 

@@ -60,7 +60,8 @@ int CComputeShader::Create(const wstring& _wstrRelativePath, const string& _strF
 
 void CComputeShader::Execute()
 {
-	UpdateData();
+	if (FAILED(UpdateData()))
+		return;
 
 	// 상수 데이터 바인딩
 	static CConstantBuffer* pCB = GRAPHICS->GetCB(CB_TYPE::MATERIAL);
@@ -68,6 +69,7 @@ void CComputeShader::Execute()
 	pCB->UpdateData_CS();
 
 	// ComputeShader Execute
+	CONTEXT->CSSetShader(m_CS.Get(), 0, 0);
 	CONTEXT->Dispatch(m_iGroupX, m_iGroupY, m_iGroupZ);
 
 	Clear();

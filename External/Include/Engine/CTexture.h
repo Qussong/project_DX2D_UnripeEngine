@@ -18,6 +18,8 @@ private:
 	ComPtr<ID3D11DepthStencilView>		m_DSV;
 	ComPtr<ID3D11ShaderResourceView>	m_SRV;		// Shader에서 사용하는 용도(Texture Register(t) 바인딩)
 	ComPtr<ID3D11UnorderedAccessView>	m_UAV;		// GPGPU(Gernal Purpose GPU), ComputeShader, 읽기/쓰기 동시가능 (Unordered Register(u) 바인딩)
+	UINT								m_iRecentNum_SRV;
+	UINT								m_iRecentNum_UAV;
 
 public:
 	// Getter
@@ -37,10 +39,13 @@ public:
 				D3D11_USAGE _usage = D3D11_USAGE_DEFAULT);
 	int Create(ComPtr<ID3D11Texture2D> _origin);
 	static void Clear(uint32 _iRegisterNum);
+	int			UpdateData_CS_SRV(int _registerNum);
+	int			UpdateData_CS_UAV(int _registerNum);
+	void		Clear_CS_SRV();
+	void		Clear_CS_UAV();
 
 public:
 	virtual int Load(const wstring& _strFilePath) override;
-	//virtual void UpdateData() override {};	// 사용안함
 	void UpdateData(uint32 _iRegisterNum);	// overload
 };
 
