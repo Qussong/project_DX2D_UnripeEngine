@@ -14,19 +14,10 @@
 void CS_SetColor(uint3 id : SV_DispatchThreadID)
 {   
     // »öÄ¥µÉ ¹üÀ§
-    //if (id.y >= TEX_HEIGHT / 2 - RANGE && id.y <= TEX_HEIGHT / 2 + RANGE)
-    //{
-    //    G_TARGETTEX[id.xy] = float4(g_vec4_0.rgb, 1.f);
-    //}
-    
     if (id.y >= TEX_HEIGHT / 2)
-    {
         G_TARGETTEX[id.xy] = float4(g_vec4_0.rgb, 1.f);
-    }
     else
-    {
         G_TARGETTEX[id.xy] = float4(0.f, 1.f, 1.f, 1.f);
-    }
 }
 
 #endif

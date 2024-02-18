@@ -19,12 +19,17 @@ void CLevelMgr::Init()
 		pCS->SetTargetTex(pTex);
 		pCS->Execute();
 
-		tPixel* pPixel = pTex->GetPixels();
+		// Texture의 Pixel정보 접근
+		{
+			float fTexWidth = pTex->GetWidth();
+			float fTexHeight = pTex->GetHeight();
 
-		//tPixel pixel = pPixel[1048575];
-		tPixel pixel = pPixel[524287];
-
-		int a = 0;
+			tPixel* pPixel = pTex->GetPixels();
+			int idx1 = fTexWidth * (fTexHeight / 2.f - 1);		// 0,255,255
+			int idx2 = fTexWidth * (fTexHeight / 2.f);			// 255,0,0
+			int idx3 = fTexWidth * (fTexHeight / 2.f) + 1.f;	// 255,0,0
+			tPixel pixel = pPixel[idx3];
+		}
 	}
 
 	// Main Camera

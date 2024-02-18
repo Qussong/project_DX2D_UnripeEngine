@@ -79,6 +79,21 @@ struct tPixel
 	BYTE r, g, b, a;
 };
 
+// 파티클
+struct tParticle
+{
+	Vec4	v4WorldPos;			// 위치
+	Vec4	v4WorldScale;		// 크기
+	Vec4	v4WorldRotation;	// 회전값
+	Vec4	v4Velocity;			// 속도
+	Vec4	v4Color;			// 색상
+
+	float	fMass;				// 질량
+	float	fAge;				// 현재 나이
+	float	fLife;				// 수명
+	int		iActive;			// 활성화, 비활성화 여부
+};
+
 ////////////////////////////////////////
 // [ 상수/구조화 버퍼 대응 구조체 ]
 ////////////////////////////////////////

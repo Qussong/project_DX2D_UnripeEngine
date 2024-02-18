@@ -10,14 +10,16 @@ public:
 private:
 	ComPtr<ID3D11Buffer>				m_SB;
 	ComPtr<ID3D11ShaderResourceView>	m_SRV;
+	ComPtr<ID3D11UnorderedAccessView>	m_UAV;
 
 	ComPtr<ID3D11Buffer>				m_SB_Read;		// GPU -> SysMem
 	ComPtr<ID3D11Buffer>				m_SB_Write;		// SysMem -> GPU
 
 	UINT								m_iElementSize;
 	UINT								m_iElementCnt;
+
 	SB_TYPE								m_eType;
-	bool								m_bSysMemMove;	// ?
+	bool								m_bSysMemMove;
 
 public:
 	// Getter

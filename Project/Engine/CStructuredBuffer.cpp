@@ -92,6 +92,9 @@ int32 CStructuredBuffer::Create(UINT _elementSize, UINT _elementCnt, SB_TYPE _ty
 			tDesc.ByteWidth = m_iElementSize * m_iElementCnt;
 			tDesc.Usage = D3D11_USAGE_DEFAULT;
 			tDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+			// Read-Write 可记栏肺 积己等 备炼拳滚欺绰 UAV 积己档 啊瓷窍档废 积己
+			if (SB_TYPE::READ_WRITE == m_eType)
+				tDesc.BindFlags |= D3D11_BIND_UNORDERED_ACCESS;
 			tDesc.CPUAccessFlags = 0;
 			tDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
 			tDesc.StructureByteStride = m_iElementSize;
@@ -109,15 +112,13 @@ int32 CStructuredBuffer::Create(UINT _elementSize, UINT _elementCnt, SB_TYPE _ty
 			tSub.pSysMem = _sysMem;
 			hr = DEVICE->CreateBuffer(&tDesc, &tSub, m_SB.GetAddressOf());
 		}
+
+		if (FAILED(hr))
+			return E_FAIL;
 	}
 
-	if (FAILED(hr))
-	{
-		MessageBoxA(nullptr, "Create StructuredBuffer Failed", "CStructuredBuffer Error", MB_OK);
-		return E_FAIL;
-	}
 
-	// Shader Resource View 积己
+	// Shader Resource View & Unordered Access View 积己
 	{
 		D3D11_SHADER_RESOURCE_VIEW_DESC tDesc = {};
 		{
@@ -125,12 +126,21 @@ int32 CStructuredBuffer::Create(UINT _elementSize, UINT _elementCnt, SB_TYPE _ty
 			tDesc.Buffer.NumElements = _elementCnt;
 		}
 		hr = DEVICE->CreateShaderResourceView(m_SB.Get(), &tDesc, m_SRV.GetAddressOf());
-	}
+		if (FAILED(hr))
+			return E_FAIL;
 
-	if (FAILED(hr))
-	{
-		MessageBoxA(nullptr, "Create ShaderResourceView Failed", "CStructuredBuffer Error", MB_OK);
-		return E_FAIL;
+		// Read-Write 可记栏肺 积己等 备炼拳滚欺绰 UAV档 积己
+		if (SB_TYPE::READ_WRITE == m_eType)
+		{
+			D3D11_UNORDERED_ACCESS_VIEW_DESC tDesc = {};
+			{
+				tDesc.ViewDimension = D3D11_UAV_DIMENSION_BUFFER;
+				tDesc.Buffer.NumElements = 1;
+			}
+			hr = DEVICE->CreateUnorderedAccessView(m_SB.Get(), &tDesc, m_UAV.GetAddressOf());
+			if (FAILED(hr))
+				return E_FAIL;
+		}
 	}
 
 	if (m_bSysMemMove)
@@ -156,10 +166,7 @@ int32 CStructuredBuffer::Create(UINT _elementSize, UINT _elementCnt, SB_TYPE _ty
 		tDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 		hr = DEVICE->CreateBuffer(&tDesc, nullptr, m_SB_Write.GetAddressOf());
 		if (FAILED(hr))
-		{
-			MessageBoxA(nullptr, "Create StructuredBuffer Write Buffer Failed", "CStructuredBuffer Error", MB_OK);
 			return E_FAIL;
-		}
 	}
 
 	return hr;

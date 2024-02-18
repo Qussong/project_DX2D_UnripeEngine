@@ -256,8 +256,8 @@ enum class COLLIDER2D_TYPE
 // StructuredBuffer
 enum class SB_TYPE
 {
-	READ_ONLY,
-	READ_WRITE,
+	READ_ONLY,	// SRV
+	READ_WRITE,	// SRV + UAV
 
 	END,
 };
