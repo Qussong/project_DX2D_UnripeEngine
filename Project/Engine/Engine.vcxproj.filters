@@ -172,6 +172,9 @@
     <ClInclude Include="CTileMap.h">
       <Filter>08.RenderComponent\TileMap</Filter>
     </ClInclude>
+    <ClInclude Include="CParticleSystem.h">
+      <Filter>08.RenderComponent\Particle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp">
@@ -314,6 +317,9 @@
     </ClCompile>
     <ClCompile Include="CTileMap.cpp">
       <Filter>08.RenderComponent\TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="CParticleSystem.cpp">
+      <Filter>08.RenderComponent\Particle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -475,6 +481,9 @@
     </Filter>
     <Filter Include="08.RenderComponent\TileMap">
       <UniqueIdentifier>{1abfc230-1b96-49d8-8912-d4d92fe8da2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.RenderComponent\Particle">
+      <UniqueIdentifier>{8f3baa1c-1bfb-4a83-ae92-e355092dc324}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

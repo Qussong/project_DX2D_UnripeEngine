@@ -10,6 +10,7 @@
 #include "CAnimation.h"
 #include "CLight2D.h"
 #include "CTileMap.h"
+#include "CParticleSystem.h"
 
 #include "CScript.h"
 #include "CPlayerScript.h"

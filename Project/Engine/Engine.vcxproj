@@ -191,6 +191,7 @@ call EngineCopy.bat</Command>
     <ClInclude Include="CMissileScript.h" />
     <ClInclude Include="CMonsterScript.h" />
     <ClInclude Include="component.h" />
+    <ClInclude Include="CParticleSystem.h" />
     <ClInclude Include="CPathMgr.h" />
     <ClInclude Include="CPlayerScript.h" />
     <ClInclude Include="CRenderComponent.h" />
@@ -250,6 +251,7 @@ call EngineCopy.bat</Command>
     <ClCompile Include="CMinimapScript.cpp" />
     <ClCompile Include="CMissileScript.cpp" />
     <ClCompile Include="CMonsterScript.cpp" />
+    <ClCompile Include="CParticleSystem.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="CPlayerScript.cpp" />
     <ClCompile Include="CRenderComponent.cpp" />
