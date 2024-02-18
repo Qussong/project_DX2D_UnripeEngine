@@ -15,9 +15,16 @@ void CLevelMgr::Init()
 	{
 		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"CSTex");
 		Ptr<CSetColorShader> pCS = (CSetColorShader*)M_ASSET->FindAsset<CComputeShader>(L"SetColorShader").Get();
-		pCS->SetColor(Vec3(0.f, 1.f, .5f));
+		pCS->SetColor(Vec3(1.f, 0.f, 0.f));
 		pCS->SetTargetTex(pTex);
 		pCS->Execute();
+
+		tPixel* pPixel = pTex->GetPixels();
+
+		//tPixel pixel = pPixel[1048575];
+		tPixel pixel = pPixel[524287];
+
+		int a = 0;
 	}
 
 	// Main Camera

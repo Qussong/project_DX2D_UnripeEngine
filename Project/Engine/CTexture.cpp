@@ -200,6 +200,14 @@ void CTexture::Clear_CS_UAV()
 	CONTEXT->CSSetUnorderedAccessViews(m_iRecentNum_SRV, 1, &pUAV, &i);
 }
 
+tPixel* CTexture::GetPixels()
+{
+	if (nullptr == m_Texture.GetPixels())
+		CaptureTexture(DEVICE, CONTEXT, m_Tex2D.Get(), m_Texture);
+
+	return (tPixel*)m_Texture.GetPixels();
+}
+
 void CTexture::UpdateData(uint32 _iRegisterNum)
 {
 	CONTEXT->VSSetShaderResources(_iRegisterNum, 1, m_SRV.GetAddressOf());

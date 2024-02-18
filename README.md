@@ -253,5 +253,6 @@ DirectX 2D Engine
 &nbsp;&nbsp; - CParticleSystem 클래스 추가<br>
 &nbsp;&nbsp; - CComputeShader 클래스 추가<br>
 &nbsp;&nbsp; - ComputeShader를 통해서 Texture 색칠하는 기능 구현<br>
+&nbsp;&nbsp; - Texture의 픽셀정보 접근 함수 생성 (CTexture::GetPixels())<br>
 
 <!-- &nbsp;&nbsp; - <br> -->

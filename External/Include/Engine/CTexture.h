@@ -44,6 +44,8 @@ public:
 	void		Clear_CS_SRV();
 	void		Clear_CS_UAV();
 
+	tPixel*		GetPixels();
+
 public:
 	virtual int Load(const wstring& _strFilePath) override;
 	void UpdateData(uint32 _iRegisterNum);	// overload
