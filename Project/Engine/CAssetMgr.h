@@ -5,6 +5,7 @@ class CMesh;
 class CGraphicShader;
 class CTexture;
 class CMaterial;
+class CComputeShader;
 
 class CAssetMgr
 	: public CSingleton<CAssetMgr>
@@ -21,6 +22,8 @@ private:
 	void Mesh();
 	void Shader();
 	void Material();
+	void ComputeShader();
+
 	void Texture();		// 공용이미지 로드
 
 	template<typename T>
@@ -53,6 +56,8 @@ ASSET_TYPE CAssetMgr::GetAssetType()
 		type = ASSET_TYPE::MESH;
 	else if (&typeid(CGraphicShader) == &info)
 		type = ASSET_TYPE::GRAPHIC_SHADER;
+	else if (&typeid(CComputeShader) == &info)
+		type = ASSET_TYPE::COMPUTE_SHADER;
 	else if (&typeid(CTexture) == &info)
 		type = ASSET_TYPE::TEXTURE;
 	else if (&typeid(CMaterial) == &info)

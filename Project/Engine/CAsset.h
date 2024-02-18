@@ -16,7 +16,6 @@ private:
 	const ASSET_TYPE	m_eType;
 
 public:
-	virtual void UpdateData() = 0;
 	virtual int Load(const wstring& _strFilePath) { return E_FAIL; }
 
 	const wstring& GetAssetKey() { return m_strKey; }
@@ -27,7 +26,7 @@ private:
 	void SetRelativePath(const wstring& _path) { m_strRelativePath = _path; }
 
 	void AddRefCnt() { ++m_iRefCnt; }
-	void SubRefCnt() /*{ --m_iRefCnt; }*/
+	void SubRefCnt()
 	{
 		--m_iRefCnt;
 		if (0 >= m_iRefCnt)

@@ -39,12 +39,12 @@ using namespace DirectX;
 #include "CEngine.h"	// 엔진
 #include "component.h"	// 컴포넌트
 
+#include "CEntity.h"
 #include "CAsset.h"
 #include "CMesh.h"
 #include "CTexture.h"
 #include "CMaterial.h"
 #include "CGraphics.h"
-#include "CEntity.h"
 #include "CShader.h"
 #include "CGraphicShader.h"
 #include "CConstantBuffer.h"
@@ -52,5 +52,7 @@ using namespace DirectX;
 #include "CGameObject.h"
 #include "CLevel.h"
 #include "CLayer.h"
+#include "CComputeShader.h"
+#include "CSetColorShader.h"
 
 #include "manager.h"	// 매니저

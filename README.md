@@ -251,5 +251,7 @@ DirectX 2D Engine
 
 **_24/02/18_** :<br>
 &nbsp;&nbsp; - CParticleSystem 클래스 추가<br>
+&nbsp;&nbsp; - CComputeShader 클래스 추가<br>
+&nbsp;&nbsp; - ComputeShader 설계중<br>
 
 <!-- &nbsp;&nbsp; - <br> -->

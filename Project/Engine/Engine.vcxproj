@@ -172,6 +172,7 @@ call EngineCopy.bat</Command>
     <ClInclude Include="CCollider2D.h" />
     <ClInclude Include="CCollisionMgr.h" />
     <ClInclude Include="CComponent.h" />
+    <ClInclude Include="CComputeShader.h" />
     <ClInclude Include="CConstantBuffer.h" />
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CEntity.h" />
@@ -197,6 +198,7 @@ call EngineCopy.bat</Command>
     <ClInclude Include="CRenderComponent.h" />
     <ClInclude Include="CRenderMgr.h" />
     <ClInclude Include="CScript.h" />
+    <ClInclude Include="CSetColorShader.h" />
     <ClInclude Include="CShader.h" />
     <ClInclude Include="CStructuredBuffer.h" />
     <ClInclude Include="CTaskMgr.h" />
@@ -232,6 +234,7 @@ call EngineCopy.bat</Command>
     <ClCompile Include="CCollider2D.cpp" />
     <ClCompile Include="CCollisionMgr.cpp" />
     <ClCompile Include="CComponent.cpp" />
+    <ClCompile Include="CComputeShader.cpp" />
     <ClCompile Include="CConstantBuffer.cpp" />
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CEntity.cpp" />
@@ -258,6 +261,7 @@ call EngineCopy.bat</Command>
     <ClCompile Include="CRenderMgr.cpp" />
     <ClCompile Include="CRenderMgr_Init.cpp" />
     <ClCompile Include="CScript.cpp" />
+    <ClCompile Include="CSetColorShader.cpp" />
     <ClCompile Include="CShader.cpp" />
     <ClCompile Include="CStructuredBuffer.cpp" />
     <ClCompile Include="CTaskMgr.cpp" />
@@ -290,6 +294,12 @@ call EngineCopy.bat</Command>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="postprocess.fx">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="setcolor.fx">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>

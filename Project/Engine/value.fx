@@ -28,8 +28,8 @@ cbuffer MATERIAL : register(b1)
     float g_float_2;
     float g_float_3;
     
-    float2 g_vec2_0;    // (tilemap.fx) vLeftTopUV
-    float2 g_vec2_1;    // (tilemap.fx) vSliceUV
+    float2 g_vec2_0;   
+    float2 g_vec2_1;    
     float2 g_vec2_2;
     float2 g_vec2_3;
     
@@ -86,27 +86,29 @@ cbuffer GLOBAL_DATA : register(b3)
     int     padding;
 }
 
-Texture2D       G_TEXTURE_0       : register(t0);
-Texture2D       G_TEXTURE_1       : register(t1);
-Texture2D       G_TEXTURE_2       : register(t2);
-Texture2D       G_TEXTURE_3       : register(t3);
-Texture2D       G_TEXTURE_4       : register(t4);
-Texture2D       G_TEXTURE_5       : register(t5);
+//RWTexture2D<float4> G_TARGETTEX         : register(u0);
 
-TextureCube     G_TEXCUBE_0       : register(t6);
-TextureCube     G_TEXCUBE_1       : register(t7);
+Texture2D           G_TEXTURE_0         : register(t0);
+Texture2D           G_TEXTURE_1         : register(t1);
+Texture2D           G_TEXTURE_2         : register(t2);
+Texture2D           G_TEXTURE_3         : register(t3);
+Texture2D           G_TEXTURE_4         : register(t4);
+Texture2D           G_TEXTURE_5         : register(t5);
 
-Texture2DArray  G_TEXARR_0        : register(t8);
-Texture2DArray  G_TEXARR_1        : register(t9);
+TextureCube         G_TEXCUBE_0         : register(t6);
+TextureCube         G_TEXCUBE_1         : register(t7);
 
-Texture2D       G_TEX_ANIM2D_0    : register(t10);    // Animation용 Atlas Texture
+Texture2DArray      G_TEXARR_0          : register(t8);
+Texture2DArray      G_TEXARR_1          : register(t9);
 
-StructuredBuffer<tLightInfo> G_LIGHT2D : register(t11);   // 구조화 버퍼, Light2D
-StructuredBuffer<tLightInfo> G_LIGHT3D : register(t12);   // 구조화 버퍼, Light3D
+Texture2D           G_TEX_ANIM2D_0      : register(t10);    // Animation용 Atlas Texture
 
-Texture2D       G_POSTPROCESS     : register(t13);
+StructuredBuffer<tLightInfo> G_LIGHT2D  : register(t11);   // 구조화 버퍼, Light2D
+StructuredBuffer<tLightInfo> G_LIGHT3D  : register(t12);   // 구조화 버퍼, Light3D
 
-SamplerState    G_SAMPLER_0       : register(s0); // ANISOTROPIC
-SamplerState    G_SAMPLER_1       : register(s1); // POINT
+Texture2D           G_POSTPROCESS       : register(t13);
+
+SamplerState        G_SAMPLER_0         : register(s0); // ANISOTROPIC
+SamplerState        G_SAMPLER_1         : register(s1); // POINT
 
 #endif

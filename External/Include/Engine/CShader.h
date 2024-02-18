@@ -1,6 +1,7 @@
 #pragma once
 
-class CAsset;
+//class CAsset;
+#include "CAsset.h";
 
 class CShader
 	: public CAsset
@@ -15,7 +16,5 @@ protected:
 	ComPtr<ID3DBlob>	m_ErrBlob;	// ErrorBlob
 
 public:
-	virtual void UpdateData() override { /* nothing */ };
-	virtual int Load(const wstring& _strFilePath) override { return E_FAIL; };
+	virtual void UpdateData() = 0;
 };
-

@@ -89,15 +89,15 @@ struct tTransform
 // CB_TYPE::MATERIAL
 struct tMaterial
 {
-	int32		iArr[4];	// 정수 데이터 (SCALAR_PARAM::INT_0 ~ 1)
-	float		fArr[4];	// 실수 데이터 (SCALAR_PARAM::FLOAT_0 ~ 1)
-	Vec2		v2Arr[4];	// Vec2 데이터 (SCALAR_PARAM::VEC2_0 ~ 1)
-	Vec4		v4Arr[4];	// Vec4 데이터 (SCALAR_PARAM::VEC4_0 ~ 1)
-	Matrix		matArr[4];	// Matrix 데이터 (SCALAR_PARAM::MAT_0 ~ 1)
+	int32		iArr[4];						// 정수 데이터 (SCALAR_PARAM::INT_0 ~ 1)
+	float		fArr[4];						// 실수 데이터 (SCALAR_PARAM::FLOAT_0 ~ 1)
+	Vec2		v2Arr[4];						// Vec2 데이터 (SCALAR_PARAM::VEC2_0 ~ 1)
+	Vec4		v4Arr[4];						// Vec4 데이터 (SCALAR_PARAM::VEC4_0 ~ 1)
+	Matrix		matArr[4];						// Matrix 데이터 (SCALAR_PARAM::MAT_0 ~ 1)
 
 	int32		bTex[(int32)TEX_PARAM::END];	// Texture 존재 여부
 
-	int32		iPadding[2];	// 16Byte 단위 맞추는 용도
+	int32		iPadding[2];					// 16Byte 단위 맞추는 용도
 };
 
 // CB_TYPE::ANI2D

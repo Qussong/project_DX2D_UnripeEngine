@@ -20,4 +20,5 @@ public:
     void Create(UINT _size, UINT _cnt);
     void SetData(void* _src, UINT _cnt = 0);    // Binding
     void UpdateData();
+    void UpdateData_CS();   // ComputeShader
 };

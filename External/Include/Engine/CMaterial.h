@@ -15,7 +15,7 @@ public:
 	Ptr<CGraphicShader>		m_pShader;
 
 public:
-	virtual void UpdateData() override;
+	virtual void UpdateData();
 
 public:
 	void SetShader(Ptr<CGraphicShader> _shader) { m_pShader = _shader; }

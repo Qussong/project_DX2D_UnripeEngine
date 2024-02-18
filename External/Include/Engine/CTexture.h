@@ -40,7 +40,7 @@ public:
 
 public:
 	virtual int Load(const wstring& _strFilePath) override;
-	virtual void UpdateData() override {};	// 사용안함
+	//virtual void UpdateData() override {};	// 사용안함
 	void UpdateData(uint32 _iRegisterNum);	// overload
 };
 

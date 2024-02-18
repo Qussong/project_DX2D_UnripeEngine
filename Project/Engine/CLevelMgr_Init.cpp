@@ -241,4 +241,13 @@ void CLevelMgr::Init()
 		}
 		GamePlayStatic::SpawnGameObject(pTileObj, LAYER_TYPE::TILE);
 	}
+
+	// ComputeShader
+	{
+		Ptr<CTexture> pTex = M_ASSET->FindAsset<CTexture>(L"CSTex");
+		Ptr<CSetColorShader> pCS = (CSetColorShader*)M_ASSET->FindAsset<CComputeShader>(L"SetColorShader").Get();
+		pCS->SetColor(Vec3(1.f, 0.f, 0.f));
+		pCS->SetTargetTex(pTex);
+		pCS->Execute();
+	}
 }

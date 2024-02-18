@@ -3,10 +3,11 @@
 
 void CAssetMgr::Init()
 {
-	Mesh();		// Mesh 持失
-	Shader();	// shader 持失
-	Material();	// Material 持失
-	Texture();	// Texture 持失
+	Mesh();				// Mesh 持失
+	Shader();			// shader 持失
+	ComputeShader();	// ComputeShader 持失
+	Material();			// Material 持失
+	Texture();			// Texture 持失
 }
 
 void CAssetMgr::Mesh()
@@ -302,6 +303,16 @@ void CAssetMgr::Material()
 	}
 }
 
+void CAssetMgr::ComputeShader()
+{
+	Ptr<CComputeShader> pShader = nullptr;
+
+	// SetColorShader
+	pShader = new CSetColorShader;
+	pShader->Create(L"setcolor.fx", "CS_SetColor");
+	AddAsset(L"SetColorShader", pShader.Get());
+}
+
 void CAssetMgr::Texture()
 {
 	Ptr<CTexture> pTex = nullptr;
@@ -315,4 +326,8 @@ void CAssetMgr::Texture()
 	pTex = LoadTexture(L"noise1", L"Noise\\noise_01.png");
 	pTex = LoadTexture(L"noise2", L"Noise\\noise_02.png");
 	pTex = LoadTexture(L"noise3", L"Noise\\noise_03.jpg");
+	// computeShader
+	pTex = M_ASSET->CreateTexture(L"CSTex"
+		, 1024, 1024, DXGI_FORMAT_R8G8B8A8_UNORM
+		, D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_UNORDERED_ACCESS);
 }

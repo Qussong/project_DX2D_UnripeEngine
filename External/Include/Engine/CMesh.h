@@ -21,7 +21,7 @@ private:
 
 
 public:
-	virtual void UpdateData() override;
+	virtual void UpdateData();
 	virtual int Load(const wstring& _strFilePath) override { return E_FAIL; };
 
 public:
