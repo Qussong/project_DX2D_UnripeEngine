@@ -1,6 +1,27 @@
-# project_DX2D_UnripeEngine
-DirectX 2D Engine
+# $\large\bf\color{#556B2F}DirectX11\ Project$
 
+### $\large\bf\color{#CD5C5C}프로젝트\ 명$
+Unripe Engine
+
+### $\large\bf\color{#CD5C5C}프로젝트\ 인원$
+1명 (김기훈)
+
+### $\large\bf\color{#CD5C5C}프로젝트\ 기간$
+2024/01/09 ~ 2024/02/18 (미완)
+
+### $\large\bf\color{#CD5C5C}목적$
+① DirectX 11의 깊이 있는 학습과 게임 엔진 설계에 대한 경험</br>
+② 그래픽 파이프라인 이해</br>
+③ C/C++, DirectX11 의 활용 능력의 향상</br>
+④ 기능 구현 및 응용 능력 향상</br>
+
+### $\large\bf\color{#CD5C5C}Notion\ URL$
+<a href="https://reminiscent-moth-47a.notion.site/DirectX11-1207e40d2ccc809ca7ffcd6a61c86def?pvs=4">
+    <img src="./ReadMe/Notion.png" alt="UnripeEngine 개발일지" width="400"/>
+</a>
+</br>
+
+### $\large\bf\color{#CD5C5C}타임라인$
 **_24/01/09_** :<br>
 &nbsp;&nbsp; - Unripe 엔진 초기화<br>
 &nbsp;&nbsp; - type 재정의 (types.h)<br>
