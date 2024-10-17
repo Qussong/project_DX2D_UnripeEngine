@@ -16,6 +16,7 @@ Unripe Engine
 ④ 기능 구현 및 응용 능력 향상</br>
 
 ### $\large\bf\color{#CD5C5C}Notion\ URL$
+$\color{#4F4F4F}(\ ↓ 이미지\ 클릭시\ 해당\ 페이지로\ 이동합니다.↓\ )$</br>
 <a href="https://reminiscent-moth-47a.notion.site/DirectX11-1207e40d2ccc809ca7ffcd6a61c86def?pvs=4">
     <img src="./ReadMe/Notion.png" alt="UnripeEngine 개발일지" width="400"/>
 </a>
