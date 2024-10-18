@@ -15,7 +15,8 @@ Unripe Engine
 ③ C/C++, DirectX11 의 활용 능력의 향상</br>
 ④ 기능 구현 및 응용 능력 향상</br>
 
-### $\large\bf\color{#CD5C5C}Notion\ URL$
+### $\large\bf\color{#CD5C5C}결과물$
+<b>[ Notion URL ]</b></br>
 $\color{#4F4F4F}(\ ↓ 이미지\ 클릭시\ 해당\ 페이지로\ 이동합니다.↓\ )$</br>
 <a href="https://reminiscent-moth-47a.notion.site/DirectX11-1207e40d2ccc809ca7ffcd6a61c86def?pvs=4">
     <img src="./ReadMe/Notion.png" alt="UnripeEngine 개발일지" width="400"/>
